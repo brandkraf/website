@@ -9,18 +9,22 @@ import {
 
 function FAQSection({ faqs }) {
   return (
-    <section className="section-padding bg-white border-t border-border">
-      <div className="container-custom max-w-3xl">
+    <section className="section-padding relative overflow-hidden bg-background border-t border-border">
+      <div className="absolute inset-0 bg-grid-soft opacity-30 pointer-events-none" />
+      <div className="container-custom relative max-w-3xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-12"
+          className="mb-12 flex flex-col items-center text-center"
         >
-          <h2 className="mb-4">Frequently Asked Questions</h2>
+          <span className="chip-brand mb-4">FAQ</span>
+          <h2 className="mb-4">
+            Frequently asked <span className="text-gradient">questions</span>
+          </h2>
           <p className="text-lg text-muted-foreground">
-            Got questions? We've got answers.
+            Got questions? We&apos;ve got answers.
           </p>
         </motion.div>
 
@@ -32,11 +36,15 @@ function FAQSection({ faqs }) {
         >
           <Accordion type="single" collapsible className="w-full space-y-4">
             {faqs.map((faq, idx) => (
-              <AccordionItem key={idx} value={`item-${idx}`} className="bg-muted/50 border border-border rounded-lg px-6">
-                <AccordionTrigger className="text-left font-semibold hover:no-underline hover:text-primary py-4">
+              <AccordionItem
+                key={idx}
+                value={`item-${idx}`}
+                className="glass-card rounded-2xl border-transparent px-6 transition-colors duration-300 data-[state=open]:ring-1 data-[state=open]:ring-brandkraf-teal/30"
+              >
+                <AccordionTrigger className="py-5 text-left font-semibold hover:text-brandkraf-teal hover:no-underline">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground pb-4 leading-relaxed">
+                <AccordionContent className="pb-5 leading-relaxed text-muted-foreground">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
