@@ -6,18 +6,21 @@ function PortfolioExamplesSection({ projects }) {
   if (!projects || projects.length === 0) return null;
 
   return (
-    <section className="section-padding bg-muted/30">
-      <div className="container-custom">
+    <section className="section-padding relative overflow-hidden bg-gradient-to-b from-muted/40 via-background to-muted/30">
+      <div className="container-custom relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-12"
+          className="mb-12 flex flex-col items-start"
         >
-          <h2 className="mb-4">Featured Work</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl">
-            See how we've helped other brands achieve their goals.
+          <span className="chip-brand mb-4">Portfolio</span>
+          <h2 className="mb-4">
+            Featured <span className="text-gradient">work</span>
+          </h2>
+          <p className="max-w-2xl text-lg text-muted-foreground">
+            See how we&apos;ve helped other brands achieve their goals.
           </p>
         </motion.div>
 

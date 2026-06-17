@@ -82,14 +82,22 @@ export default function OurTeamSection() {
       <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/3 w-[800px] h-[800px] rounded-full bg-brandkraf-purple/5 blur-[120px] pointer-events-none" />
       
       <div className="container-custom relative z-10">
-        <div className="text-center mb-16 max-w-3xl mx-auto">
-          <motion.h2 
+        <div className="mx-auto mb-16 flex max-w-3xl flex-col items-center text-center">
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="chip-brand mb-4"
+          >
+            The people
+          </motion.span>
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="mb-4"
           >
-            Our Team
+            Our <span className="text-gradient">team</span>
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}

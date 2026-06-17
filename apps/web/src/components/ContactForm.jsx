@@ -113,8 +113,9 @@ function ContactForm() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-white p-8 rounded-xl soft-shadow border border-gray-100"
+      className="relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-8 elevated-shadow"
     >
+      <span className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brandkraf-teal to-brandkraf-purple" />
       <AnimatePresence mode="wait">
         {submitStatus === 'success' && (
           <motion.div
@@ -257,7 +258,7 @@ function ContactForm() {
         <Button
           type="submit"
           size="lg"
-          className="w-full bg-brandkraf-teal text-white hover:bg-brandkraf-purple smooth-transition rounded-lg mt-4"
+          className="mt-4 w-full rounded-xl bg-gradient-to-r from-brandkraf-teal to-brandkraf-purple font-semibold text-white shadow-lg shadow-brandkraf-teal/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-brandkraf-purple/30"
           disabled={isSubmitting}
         >
           {isSubmitting ? (

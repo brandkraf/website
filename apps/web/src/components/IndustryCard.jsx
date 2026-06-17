@@ -13,25 +13,26 @@ export default function IndustryCard({ title, description, icon: Icon, slug, ind
       transition={{ duration: 0.4, delay: index * 0.05 }}
       className="h-full"
     >
-      <Link 
-        to={`${basePath}/${slug}`} 
+      <Link
+        to={`${basePath}/${slug}`}
         className={cn(
-          "group flex flex-col h-full bg-card hover:bg-accent/10 rounded-2xl p-6",
-          "border border-border/50 shadow-sm hover:shadow-md",
-          "transition-all duration-300 relative overflow-hidden cursor-pointer"
+          'group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl bg-card p-6',
+          'border border-border/60 shadow-sm',
+          'transition-all duration-300 hover:-translate-y-1.5 hover:border-brandkraf-teal/30 hover:shadow-xl'
         )}
       >
-        <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-5 transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-          <Icon className="w-6 h-6" />
+        <div className="pointer-events-none absolute -top-16 -right-16 h-36 w-36 rounded-full bg-gradient-to-br from-brandkraf-teal/15 to-brandkraf-purple/15 blur-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+        <div className="relative mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-brandkraf-teal to-brandkraf-purple text-white shadow-md shadow-brandkraf-teal/25 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3">
+          <Icon className="h-6 w-6" />
         </div>
-        <h3 className="text-lg font-bold mb-2 text-foreground group-hover:text-primary transition-colors">
+        <h3 className="relative mb-2 text-lg font-bold text-foreground transition-colors group-hover:text-brandkraf-teal">
           {title}
         </h3>
-        <p className="text-sm text-muted-foreground flex-grow mb-6">
+        <p className="relative mb-6 flex-grow text-sm text-muted-foreground">
           {description}
         </p>
-        <div className="mt-auto inline-flex items-center text-sm font-semibold text-primary">
-          View Cases <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
+        <div className="relative mt-auto inline-flex items-center text-sm font-semibold text-brandkraf-teal">
+          View Cases <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
         </div>
       </Link>
     </motion.div>

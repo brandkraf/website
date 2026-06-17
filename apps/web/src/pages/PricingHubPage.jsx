@@ -83,15 +83,21 @@ export default function PricingHubPage() {
 
       <Header />
 
-      <main className="flex-grow pt-32 pb-24">
-        <div className="container-custom">
-          <motion.div 
+      <main className="relative flex-grow overflow-hidden pb-24 pt-32">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[520px] gradient-mesh" />
+        <div className="blob h-80 w-80 bg-brandkraf-teal/15 -top-10 -left-10" />
+        <div className="blob h-96 w-96 bg-brandkraf-purple/15 top-0 right-0" style={{ animationDelay: '-5s' }} />
+        <div className="container-custom relative">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-center max-w-3xl mx-auto mb-16"
+            className="mx-auto mb-16 flex max-w-3xl flex-col items-center text-center"
           >
-            <h1 className="mb-6">Transparent Pricing for Every Stage of Growth</h1>
+            <span className="chip-brand mb-4">Pricing</span>
+            <h1 className="mb-6">
+              Transparent pricing for every stage of <span className="text-gradient">growth</span>
+            </h1>
             <p className="text-xl text-muted-foreground">
               Select a service below to view detailed pricing tiers, features, and deliverables tailored to your specific needs.
             </p>

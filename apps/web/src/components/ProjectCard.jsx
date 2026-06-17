@@ -26,21 +26,22 @@ function ProjectCard({ image, clientType, objective, results, category, delay = 
       transition={{ duration: 0.5, delay }}
       className="h-full"
     >
-      <Card className="overflow-hidden bg-white border border-gray-100 soft-shadow rounded-lg smooth-transition hover:shadow-lg hover:border-brandkraf-purple group h-full flex flex-col">
+      <Card className="group flex h-full flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white soft-shadow smooth-transition hover:-translate-y-1.5 hover:border-brandkraf-teal/30 hover:elevated-shadow">
         <div className="relative aspect-video overflow-hidden">
           <img
             src={image}
             alt={clientType}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
-          <div className="absolute top-4 left-4">
-            <Badge className="bg-brandkraf-teal text-white rounded-full font-medium border-none smooth-transition group-hover:bg-brandkraf-purple">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+          <div className="absolute left-4 top-4">
+            <Badge className="rounded-full border-none bg-gradient-to-r from-brandkraf-teal to-brandkraf-purple font-medium text-white shadow-md">
               {category}
             </Badge>
           </div>
         </div>
-        <CardContent className="p-6 flex-grow flex flex-col">
-          <h3 className="text-lg font-semibold text-foreground mb-2 smooth-transition group-hover:text-brandkraf-purple">
+        <CardContent className="flex flex-grow flex-col p-6">
+          <h3 className="mb-2 text-lg font-bold text-foreground smooth-transition group-hover:text-brandkraf-teal">
             {clientType}
           </h3>
           <p className="text-sm text-gray-600 mb-6 flex-grow">{objective}</p>

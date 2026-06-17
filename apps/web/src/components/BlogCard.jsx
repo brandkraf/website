@@ -14,16 +14,16 @@ function BlogCard({ slug, image, title, excerpt, date, readTime, category, delay
       transition={{ duration: 0.5, delay }}
       className="h-full"
     >
-      <Card className="overflow-hidden bg-card border border-border soft-shadow rounded-lg smooth-transition hover:shadow-lg group h-full flex flex-col">
-        <Link to={`/blog/${slug}`} className="block relative aspect-video overflow-hidden">
+      <Card className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card soft-shadow smooth-transition hover:-translate-y-1.5 hover:border-brandkraf-teal/30 hover:elevated-shadow">
+        <Link to={`/blog/${slug}`} className="relative block aspect-video overflow-hidden">
           <img
             src={image || 'https://images.unsplash.com/photo-1681184025442-1517cb9319c1'}
             alt={title}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
           {category && (
-            <div className="absolute top-4 left-4">
-              <Badge className="bg-primary/90 text-primary-foreground rounded-full font-medium border-none backdrop-blur-sm">
+            <div className="absolute left-4 top-4">
+              <Badge className="rounded-full border-none bg-gradient-to-r from-brandkraf-teal to-brandkraf-purple font-medium text-white shadow-md backdrop-blur-sm">
                 {category}
               </Badge>
             </div>

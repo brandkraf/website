@@ -49,17 +49,23 @@ function ContactPage() {
 
       <Header />
 
-      <main className="pt-32 pb-20 relative">
-        <div className="container-custom">
+      <main className="relative overflow-hidden pb-20 pt-32">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[520px] gradient-mesh" />
+        <div className="blob h-80 w-80 bg-brandkraf-teal/15 -top-10 -left-10" />
+        <div className="blob h-96 w-96 bg-brandkraf-purple/15 top-0 right-0" style={{ animationDelay: '-5s' }} />
+        <div className="container-custom relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="mb-16 flex flex-col items-center text-center"
           >
-            <h1 className="mb-4">Let's grow your brand together</h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Book a free 30-minute strategy call. We'll analyze your current marketing and show you exactly how we can help you scale.
+            <span className="chip-brand mb-4">Contact us</span>
+            <h1 className="mb-4">
+              Let&apos;s grow your brand <span className="text-gradient">together</span>
+            </h1>
+            <p className="mx-auto max-w-2xl text-xl text-muted-foreground">
+              Book a free 30-minute strategy call. We&apos;ll analyze your current marketing and show you exactly how we can help you scale.
             </p>
           </motion.div>
 
@@ -83,10 +89,10 @@ function ContactPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="space-y-6"
             >
-              <Card className="bg-primary text-primary-foreground">
+              <Card className="relative overflow-hidden border-none bg-gradient-to-br from-brandkraf-teal to-brandkraf-purple text-white">
                 <CardContent className="p-8">
                   <h3 className="text-xl font-semibold mb-4">Prefer WhatsApp?</h3>
-                  <p className="mb-6 text-primary-foreground/90">
+                  <p className="mb-6 text-white/90">
                     Get instant responses to your questions. Chat with our team directly on WhatsApp.
                   </p>
                   <WhatsAppButton

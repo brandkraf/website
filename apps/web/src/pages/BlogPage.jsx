@@ -73,16 +73,22 @@ function BlogPage() {
 
       <Header />
 
-      <main className="pt-32 pb-20 min-h-screen bg-background">
-        <div className="container-custom">
+      <main className="relative min-h-screen overflow-hidden bg-background pb-20 pt-32">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[480px] gradient-mesh" />
+        <div className="blob h-80 w-80 bg-brandkraf-teal/15 -top-10 -left-10" />
+        <div className="blob h-96 w-96 bg-brandkraf-purple/15 top-0 right-0" style={{ animationDelay: '-5s' }} />
+        <div className="container-custom relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-12"
+            className="mb-12 flex flex-col items-center text-center"
           >
-            <h1 className="mb-4">Marketing insights & strategies</h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <span className="chip-brand mb-4">Blog</span>
+            <h1 className="mb-4">
+              Marketing insights &amp; <span className="text-gradient">strategies</span>
+            </h1>
+            <p className="mx-auto max-w-2xl text-xl text-muted-foreground">
               Learn from real campaigns, proven strategies, and industry insights to grow your brand.
             </p>
           </motion.div>

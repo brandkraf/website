@@ -88,18 +88,24 @@ function PortfolioPage() {
 
       <Header />
 
-      <main className="pt-32 pb-24 min-h-screen bg-muted/10 relative">
-        <div className="container-custom">
+      <main className="relative min-h-screen overflow-hidden bg-background pb-24 pt-32">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[520px] gradient-mesh" />
+        <div className="blob h-80 w-80 bg-brandkraf-teal/15 -top-10 -left-10" />
+        <div className="blob h-96 w-96 bg-brandkraf-purple/15 top-0 right-0" style={{ animationDelay: '-5s' }} />
+        <div className="container-custom relative">
           {/* Hero Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto mb-20"
+            className="mx-auto mb-20 flex max-w-3xl flex-col items-center text-center"
           >
-            <h1 className="mb-6">Explore Our Work</h1>
-            <p className="text-xl text-muted-foreground leading-relaxed mb-8">
-              BrandKraf's expertise lies in creating high-quality digital content and data-driven campaigns. We build solutions that scale brands and deliver measurable growth.
+            <span className="chip-brand mb-4">Portfolio</span>
+            <h1 className="mb-6">
+              Explore our <span className="text-gradient">work</span>
+            </h1>
+            <p className="mb-8 text-xl leading-relaxed text-muted-foreground">
+              BrandKraf&apos;s expertise lies in creating high-quality digital content and data-driven campaigns. We build solutions that scale brands and deliver measurable growth.
             </p>
             <p className="text-lg font-medium text-foreground">
               Select a service below to view details and case studies
@@ -122,11 +128,11 @@ function PortfolioPage() {
                     to={`/portfolio/${service.slug}`}
                     className="portfolio-card flex flex-col h-full group outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                   >
-                    <div className="inline-flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary mb-6 transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                    <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brandkraf-teal to-brandkraf-purple text-white shadow-lg shadow-brandkraf-teal/25 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3">
                       <Icon className="h-7 w-7" />
                     </div>
-                    
-                    <h3 className="text-xl font-bold mb-3 text-foreground tracking-tight group-hover:text-primary transition-colors">
+
+                    <h3 className="mb-3 text-xl font-bold tracking-tight text-foreground transition-colors group-hover:text-brandkraf-teal">
                       {service.title}
                     </h3>
                     

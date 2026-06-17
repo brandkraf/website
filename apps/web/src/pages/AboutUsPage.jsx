@@ -56,14 +56,23 @@ export default function AboutUsPage() {
             <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=2574&auto=format&fit=crop')] opacity-10 mix-blend-overlay object-cover" />
           </div>
           
-          <div className="container-custom relative z-10 text-center">
-            <motion.h1 
-              initial={{ opacity: 0, y: 30 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ duration: 0.7, ease: "easeOut" }} 
-              className="text-white mb-6"
+          <div className="container-custom relative z-10 flex flex-col items-center text-center">
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="chip-glass mb-6"
             >
-              About BrandKraf
+              Who we are
+            </motion.span>
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              className="mb-6 text-white"
+            >
+              About{' '}
+              <span className="bg-gradient-to-r from-brandkraf-teal to-brandkraf-purple bg-clip-text text-transparent">BrandKraf</span>
             </motion.h1>
             <motion.p 
               initial={{ opacity: 0, y: 20 }} 
@@ -233,14 +242,15 @@ export default function AboutUsPage() {
         {/* 5. CORE VALUES SECTION */}
         <section className="section-padding bg-muted/20 border-y border-border">
           <div className="container-custom">
-            <div className="text-center mb-16 max-w-3xl mx-auto">
-              <motion.h2 
-                initial={{ opacity: 0, y: 20 }} 
-                whileInView={{ opacity: 1, y: 0 }} 
-                viewport={{ once: true }} 
+            <div className="mx-auto mb-16 flex max-w-3xl flex-col items-center text-center">
+              <span className="chip-brand mb-4">What drives us</span>
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 className="mb-4"
               >
-                Core Values
+                Core <span className="text-gradient">values</span>
               </motion.h2>
               <motion.p 
                 initial={{ opacity: 0, y: 20 }} 
@@ -372,7 +382,7 @@ export default function AboutUsPage() {
               viewport={{ once: true }} 
               transition={{ delay: 0.2 }}
             >
-              <Button asChild size="lg" className="rounded-full bg-brandkraf-teal hover:bg-brandkraf-teal/90 text-white h-14 px-8 text-lg font-semibold shadow-lg shadow-brandkraf-teal/20 transition-all hover:scale-105 active:scale-95">
+              <Button asChild size="lg" className="h-14 rounded-xl bg-gradient-to-r from-brandkraf-teal to-brandkraf-purple bg-[length:200%_100%] bg-left px-8 text-lg font-semibold text-white shadow-lg shadow-brandkraf-teal/25 transition-[background-position,box-shadow,transform] duration-500 hover:-translate-y-0.5 hover:bg-right hover:shadow-xl hover:shadow-brandkraf-purple/40">
                 <Link to="/contact">
                   Contact Us <ArrowRight className="ml-2 w-5 h-5" />
                 </Link>
