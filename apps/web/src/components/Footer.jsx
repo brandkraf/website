@@ -21,8 +21,8 @@ function Footer() {
 
   return (
     <footer className="relative bg-slate-950 text-slate-300 overflow-hidden">
-      {/* Gradient top accent + soft brand glows */}
-      <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brandkraf-teal via-brandkraf-purple to-brandkraf-teal" />
+      {/* Animated gradient top accent + soft brand glows */}
+      <div className="absolute inset-x-0 top-0 h-1 gradient-animated" />
       <div className="pointer-events-none absolute -top-24 -left-24 h-72 w-72 rounded-full bg-brandkraf-teal/10 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-24 right-0 h-72 w-72 rounded-full bg-brandkraf-purple/10 blur-3xl" />
 

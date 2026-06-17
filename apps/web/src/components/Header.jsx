@@ -32,12 +32,15 @@ function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 [backdrop-filter:blur(16px)_saturate(160%)] ${
           isScrolled
-            ? 'bg-white/80 backdrop-blur-xl border-b border-gray-200/70 shadow-[0_8px_30px_-12px_rgba(16,24,40,0.18)]'
-            : 'bg-white/60 backdrop-blur-md border-b border-transparent'
+            ? 'bg-white/70 border-b border-white/40 shadow-[0_8px_30px_-12px_rgba(16,24,40,0.18)]'
+            : 'bg-white/40 border-b border-transparent'
         }`}
       >
+        {isScrolled && (
+          <span className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-brandkraf-teal/40 to-transparent" />
+        )}
         <nav className="container-custom">
           <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'h-16' : 'h-20'}`}>
             <Link to="/" className="flex items-center flex-shrink-0 group">

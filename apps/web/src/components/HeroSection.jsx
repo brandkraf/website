@@ -24,11 +24,11 @@ function HeroSection({
   return (
     <>
       <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-background pt-32 pb-16 lg:pt-24 lg:pb-0">
-        {/* Layered backdrop: dotted grid + soft brand blobs */}
-        <div className="absolute inset-0 bg-grid-soft opacity-60 pointer-events-none" />
+        {/* Layered backdrop: animated gradient mesh + dotted grid + soft brand blobs */}
+        <div className="absolute inset-0 gradient-mesh pointer-events-none" />
+        <div className="absolute inset-0 bg-grid-soft opacity-50 pointer-events-none" />
         <div className="blob bg-brandkraf-teal/20 h-72 w-72 -top-10 -left-10" />
         <div className="blob bg-brandkraf-purple/20 h-80 w-80 top-1/3 right-0" style={{ animationDelay: '-5s' }} />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(29,181,168,0.06),transparent_55%),radial-gradient(circle_at_bottom_left,rgba(147,51,234,0.06),transparent_55%)] pointer-events-none" />
 
         <div className="container-custom relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-10 items-center">
@@ -97,7 +97,7 @@ function HeroSection({
               <img
                 src="https://horizons-cdn.hostinger.com/6602f595-c4d7-40bf-a729-a377f9b27c39/8aaa0f3fe5dc3f1e591d45d0339e89ad.png"
                 alt="BrandKraf Marketing Strategy"
-                className="relative z-10 w-full max-w-[280px] sm:max-w-sm lg:max-w-md mx-auto drop-shadow-2xl transform hover:-translate-y-2 transition-transform duration-500 object-contain"
+                className="relative z-10 w-full max-w-[280px] sm:max-w-sm lg:max-w-md mx-auto drop-shadow-2xl animate-float-y object-contain"
               />
 
               {/* Floating glass stat cards */}
@@ -105,7 +105,7 @@ function HeroSection({
                 initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
                 animate={isMobile ? undefined : { opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
-                className="hidden sm:flex absolute z-20 top-6 -left-2 lg:-left-6 glass-surface rounded-2xl px-4 py-3 elevated-shadow items-center gap-3"
+                className="hidden sm:flex absolute z-20 top-6 -left-2 lg:-left-6 glass-card rounded-2xl px-4 py-3 items-center gap-3 animate-float-y"
               >
                 <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brandkraf-teal/15 text-brandkraf-teal">
                   <TrendingUp className="h-5 w-5" />
@@ -120,7 +120,8 @@ function HeroSection({
                 initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
                 animate={isMobile ? undefined : { opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.65 }}
-                className="hidden sm:flex absolute z-20 bottom-8 -right-2 lg:-right-4 glass-surface rounded-2xl px-4 py-3 elevated-shadow items-center gap-3"
+                style={{ animationDelay: '-3s' }}
+                className="hidden sm:flex absolute z-20 bottom-8 -right-2 lg:-right-4 glass-card rounded-2xl px-4 py-3 items-center gap-3 animate-float-y"
               >
                 <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brandkraf-purple/15 text-brandkraf-purple">
                   <Star className="h-5 w-5" />
