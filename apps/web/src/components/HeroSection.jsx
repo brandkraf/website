@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button.jsx';
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles, Star, TrendingUp, BarChart3, Users } from 'lucide-react';
+import { ArrowRight, Sparkles, Star, TrendingUp, Users } from 'lucide-react';
 import WhatsAppInquiryForm from './WhatsAppInquiryForm.jsx';
 import { useIsMobile } from '@/hooks/useIsMobile.js';
 
@@ -140,38 +140,6 @@ function HeroSection({
                 />
               </div>
             </div>
-
-            {/* Floating metric cards */}
-            <motion.div
-              initial={isMobile ? { opacity: 1 } : { opacity: 0, y: 14 }}
-              animate={isMobile ? undefined : { opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.7, ease }}
-              className="animate-float-y absolute -left-3 top-10 hidden items-center gap-3 rounded-2xl glass-card px-4 py-3 sm:flex lg:-left-8"
-            >
-              <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brandkraf-teal/15 text-brandkraf-teal">
-                <TrendingUp className="h-5 w-5" />
-              </span>
-              <div className="leading-tight">
-                <p className="text-sm font-bold text-foreground">+182%</p>
-                <p className="text-xs text-muted-foreground">Engagement lift</p>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={isMobile ? { opacity: 1 } : { opacity: 0, y: 14 }}
-              animate={isMobile ? undefined : { opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.85, ease }}
-              style={{ animationDelay: '-3s' }}
-              className="animate-float-y absolute -right-3 bottom-10 hidden items-center gap-3 rounded-2xl glass-card px-4 py-3 sm:flex lg:-right-8"
-            >
-              <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brandkraf-purple/15 text-brandkraf-purple">
-                <BarChart3 className="h-5 w-5" />
-              </span>
-              <div className="leading-tight">
-                <p className="text-sm font-bold text-foreground">3.5x ROAS</p>
-                <p className="text-xs text-muted-foreground">Across paid campaigns</p>
-              </div>
-            </motion.div>
           </motion.div>
         </div>
       </section>
