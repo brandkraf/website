@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button.jsx';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ArrowRight, Sparkles, Star, TrendingUp, Users } from 'lucide-react';
 import WhatsAppInquiryForm from './WhatsAppInquiryForm.jsx';
-import { SplineScene } from '@/components/ui/splite.jsx';
-import { Spotlight } from '@/components/ui/spotlight.jsx';
+import HeroDashboard from './HeroDashboard.jsx';
 import { useIsMobile } from '@/hooks/useIsMobile.js';
-
-// Interactive 3D scene — replace with your exported Spline URL (prod.spline.design/XXXX/scene.splinecode)
-const SPLINE_SCENE = 'https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode';
 
 function HeroSection({
   headline = "We don't just market. We scale brands.",
@@ -37,6 +33,23 @@ function HeroSection({
     { icon: TrendingUp, value: '3.5x', label: 'Avg. ROAS' },
     { icon: Star, value: '4.9/5', label: 'Client rating' },
   ];
+
+  // Mouse-driven 3D tilt for the showcase
+  const tiltX = useMotionValue(0);
+  const tiltY = useMotionValue(0);
+  const rotateX = useSpring(useTransform(tiltY, [-0.5, 0.5], [7, -7]), { stiffness: 150, damping: 18 });
+  const rotateY = useSpring(useTransform(tiltX, [-0.5, 0.5], [-7, 7]), { stiffness: 150, damping: 18 });
+
+  const handleTilt = (e) => {
+    if (isMobile) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    tiltX.set((e.clientX - rect.left) / rect.width - 0.5);
+    tiltY.set((e.clientY - rect.top) / rect.height - 0.5);
+  };
+  const resetTilt = () => {
+    tiltX.set(0);
+    tiltY.set(0);
+  };
 
   return (
     <>
@@ -119,47 +132,53 @@ function HeroSection({
             </motion.div>
           </div>
 
-          {/* ---- Interactive 3D showcase ---- */}
-          <motion.div
-            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-            animate={isMobile ? undefined : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.4, ease }}
-            className="relative mx-auto mt-16 w-full max-w-4xl"
+          {/* ---- Showcase: glass app window with 3D tilt + floating logo ---- */}
+          <div
+            className="relative mx-auto mt-16 w-full max-w-4xl [perspective:1600px]"
+            onMouseMove={handleTilt}
+            onMouseLeave={resetTilt}
           >
             {/* glow behind */}
             <div className="absolute inset-x-8 -top-6 bottom-0 rounded-[2rem] bg-gradient-to-tr from-brandkraf-teal/30 to-brandkraf-purple/30 blur-3xl opacity-40" />
 
-            {/* Floating white logo badge */}
-            <div className="absolute -top-7 left-5 z-30 hidden sm:block lg:-left-6">
-              <div className="animate-float-y rounded-2xl bg-white px-4 py-3 shadow-xl ring-1 ring-black/5">
-                <img
-                  src="https://horizons-cdn.hostinger.com/6602f595-c4d7-40bf-a729-a377f9b27c39/45f4e79912ee94c15363cebd3219075f.png"
-                  alt="BrandKraf"
-                  className="h-7 w-auto object-contain"
-                />
+            <motion.div
+              initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+              animate={isMobile ? undefined : { opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.4, ease }}
+              style={isMobile ? undefined : { rotateX, rotateY, transformStyle: 'preserve-3d' }}
+              className="relative"
+            >
+              {/* Floating white logo badge (pops forward in 3D) */}
+              <div
+                style={{ transform: 'translateZ(70px)' }}
+                className="absolute -top-7 left-5 z-30 hidden sm:block lg:-left-6"
+              >
+                <div className="animate-float-y rounded-2xl bg-white px-4 py-3 shadow-xl ring-1 ring-black/5">
+                  <img
+                    src="https://horizons-cdn.hostinger.com/6602f595-c4d7-40bf-a729-a377f9b27c39/45f4e79912ee94c15363cebd3219075f.png"
+                    alt="BrandKraf"
+                    className="h-7 w-auto object-contain"
+                  />
+                </div>
               </div>
-            </div>
 
-            <div className="glass-card relative overflow-hidden rounded-[1.75rem] p-3 sm:p-4">
-              {/* window chrome */}
-              <div className="mb-3 flex items-center gap-1.5 px-2">
-                <span className="h-3 w-3 rounded-full bg-red-400/80" />
-                <span className="h-3 w-3 rounded-full bg-amber-400/80" />
-                <span className="h-3 w-3 rounded-full bg-emerald-400/80" />
-                <span className="ml-3 h-5 flex-1 rounded-md bg-foreground/5" />
+              <div
+                style={{ transform: 'translateZ(30px)' }}
+                className="glass-card relative overflow-hidden rounded-[1.75rem] p-3 sm:p-4"
+              >
+                {/* window chrome */}
+                <div className="mb-3 flex items-center gap-1.5 px-2">
+                  <span className="h-3 w-3 rounded-full bg-red-400/80" />
+                  <span className="h-3 w-3 rounded-full bg-amber-400/80" />
+                  <span className="h-3 w-3 rounded-full bg-emerald-400/80" />
+                  <span className="ml-3 h-5 flex-1 rounded-md bg-foreground/5" />
+                </div>
+                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-brandkraf-teal/5 to-brandkraf-purple/5 p-4 sm:p-6">
+                  <HeroDashboard />
+                </div>
               </div>
-
-              {/* Spotlight-lit dark stage with interactive 3D */}
-              <div className="relative h-[360px] overflow-hidden rounded-2xl bg-[#0a0e1a] sm:h-[440px]">
-                <Spotlight className="-top-40 left-10 md:-top-24 md:left-48" fill="#5eead4" />
-                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(147,51,234,0.18),transparent_60%)]" />
-                <SplineScene scene={SPLINE_SCENE} className="h-full w-full" />
-                <span className="pointer-events-none absolute bottom-3 right-4 text-xs font-medium text-white/40">
-                  Drag to explore ↗
-                </span>
-              </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
