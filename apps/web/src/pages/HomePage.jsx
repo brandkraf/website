@@ -164,8 +164,10 @@ function HomePage() {
 
         <TrustSection />
 
+        {/* Services */}
         <section className="section-padding relative overflow-hidden">
           <div className="absolute inset-0 bg-grid-soft opacity-40 pointer-events-none" />
+          <div className="blob bg-brandkraf-teal/10 h-72 w-72 top-20 -left-20" />
           <div className="container-custom relative">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -174,25 +176,28 @@ function HomePage() {
               transition={{ duration: 0.6 }}
               className="text-center mb-16 flex flex-col items-center"
             >
-              <span className="chip-brand mb-4">What we do</span>
+              <span className="chip-brand mb-4">
+                <Sparkles className="h-4 w-4" /> What we do
+              </span>
               <h2 className="mb-4">
-                Our <span className="text-gradient">services</span>
+                Everything you need to <span className="text-gradient">scale</span>
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 Full-service marketing solutions to help your brand grow and scale
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mb-12">
               {services.map((service, index) => (
-                <ServiceCard key={index} {...service} delay={index * 0.1} />
+                <ServiceCard key={index} {...service} delay={index * 0.08} />
               ))}
             </div>
           </div>
         </section>
 
-        <section className="section-padding bg-muted/30">
-          <div className="container-custom">
+        {/* Why choose */}
+        <section className="section-padding relative overflow-hidden bg-gradient-to-b from-muted/40 via-background to-muted/30">
+          <div className="container-custom relative">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -209,23 +214,28 @@ function HomePage() {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {whyChoose.map((item, index) => {
                 const Icon = item.icon;
                 return (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 24 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.08 }}
-                    className="group relative bg-card rounded-2xl border border-border p-7 text-center sm:text-left soft-shadow transition-all duration-300 hover:-translate-y-1 hover:elevated-shadow hover:border-primary/30"
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="group relative rounded-2xl p-[1.5px] bg-gradient-to-br from-white/0 via-gray-200/50 to-white/0 hover:from-brandkraf-teal/60 hover:to-brandkraf-purple/60 transition-all duration-500"
                   >
-                    <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brandkraf-teal/15 to-brandkraf-purple/15 text-brandkraf-teal mb-5 transition-colors duration-300 group-hover:from-brandkraf-teal group-hover:to-brandkraf-purple group-hover:text-white">
-                      <Icon className="h-7 w-7" />
+                    <div className="relative h-full rounded-2xl glass-card p-7 hover-lift overflow-hidden">
+                      <span className="pointer-events-none absolute right-4 top-3 text-5xl font-black text-brandkraf-teal/5 group-hover:text-brandkraf-teal/10 transition-colors">
+                        0{index + 1}
+                      </span>
+                      <div className="relative mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brandkraf-teal to-brandkraf-purple text-white shadow-lg shadow-brandkraf-teal/25 transition-transform duration-300 group-hover:scale-110">
+                        <Icon className="h-7 w-7" />
+                      </div>
+                      <h3 className="relative text-lg font-bold mb-2">{item.title}</h3>
+                      <p className="relative text-sm text-muted-foreground leading-relaxed">{item.description}</p>
                     </div>
-                    <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
                   </motion.div>
                 );
               })}
