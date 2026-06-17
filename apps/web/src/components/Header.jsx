@@ -42,7 +42,7 @@ function Header() {
           <span className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-brandkraf-teal/40 to-transparent" />
         )}
         <nav className="container-custom">
-          <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'h-16' : 'h-20'}`}>
+          <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'h-20' : 'h-24'}`}>
             <Link to="/" className="flex items-center flex-shrink-0 group">
               <img 
                 src="https://horizons-cdn.hostinger.com/6602f595-c4d7-40bf-a729-a377f9b27c39/45f4e79912ee94c15363cebd3219075f.png" 
@@ -58,22 +58,29 @@ function Header() {
                   <Link
                     key={link.path}
                     to={link.path}
-                    className={`group relative px-3.5 py-2 text-sm font-medium rounded-lg transition-colors duration-200 ${
+                    className={`group relative px-4 py-2.5 text-[15px] font-semibold rounded-xl transition-all duration-200 ${
                       isActive
                         ? 'text-brandkraf-teal'
                         : 'text-gray-600 hover:text-brandkraf-teal hover:bg-brandkraf-teal/5'
                     }`}
                   >
-                    {link.name}
                     {isActive && (
-                      <motion.div
+                      <motion.span
+                        layoutId="activeNavPill"
+                        className="absolute inset-0 rounded-xl bg-gradient-to-r from-brandkraf-teal/10 to-brandkraf-purple/10 ring-1 ring-brandkraf-teal/15"
+                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                    <span className="relative z-10">{link.name}</span>
+                    {isActive && (
+                      <motion.span
                         layoutId="activeNav"
-                        className="absolute bottom-1 left-3.5 right-3.5 h-0.5 rounded-full bg-gradient-to-r from-brandkraf-teal to-brandkraf-purple"
+                        className="absolute bottom-1.5 left-4 right-4 h-0.5 rounded-full bg-gradient-to-r from-brandkraf-teal to-brandkraf-purple"
                         transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                       />
                     )}
                     {!isActive && (
-                      <span className="absolute bottom-1 left-3.5 right-3.5 h-0.5 rounded-full bg-brandkraf-teal/60 scale-x-0 opacity-0 origin-left transition-all duration-300 group-hover:scale-x-100 group-hover:opacity-100" />
+                      <span className="absolute bottom-1.5 left-4 right-4 h-0.5 rounded-full bg-brandkraf-teal/60 scale-x-0 opacity-0 origin-left transition-all duration-300 group-hover:scale-x-100 group-hover:opacity-100" />
                     )}
                   </Link>
                 );
@@ -83,7 +90,7 @@ function Header() {
             <div className="hidden md:block">
               <Button
                 onClick={() => setIsFormOpen(true)}
-                className="bg-gradient-to-r from-brandkraf-teal to-brandkraf-purple text-white bg-[length:200%_100%] bg-left hover:bg-right transition-[background-position,box-shadow,transform] duration-500 rounded-xl shadow-md shadow-brandkraf-teal/20 hover:shadow-lg hover:shadow-brandkraf-purple/25 active:scale-[0.98]"
+                className="h-11 px-6 text-[15px] font-semibold bg-gradient-to-r from-brandkraf-teal to-brandkraf-purple text-white bg-[length:200%_100%] bg-left hover:bg-right transition-[background-position,box-shadow,transform] duration-500 rounded-xl shadow-md shadow-brandkraf-teal/20 hover:shadow-lg hover:shadow-brandkraf-purple/25 active:scale-[0.98]"
               >
                 Get Free Strategy Call
               </Button>
