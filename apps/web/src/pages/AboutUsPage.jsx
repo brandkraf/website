@@ -48,20 +48,18 @@ export default function AboutUsPage() {
 
       <main className="relative min-h-screen bg-background">
         {/* 1. HERO SECTION */}
-        <section className="relative pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden flex items-center min-h-[60vh]">
-          <div className="absolute inset-0 z-0 bg-slate-950">
-            {/* Subtle animated gradient glow */}
-            <div className="absolute top-0 left-1/4 w-full md:w-1/2 h-[500px] bg-brandkraf-teal/20 blur-[120px] rounded-full mix-blend-screen opacity-50 animate-pulse" />
-            <div className="absolute bottom-0 right-1/4 w-full md:w-1/2 h-[500px] bg-brandkraf-purple/20 blur-[120px] rounded-full mix-blend-screen opacity-50" />
-            <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=2574&auto=format&fit=crop')] opacity-10 mix-blend-overlay object-cover" />
-          </div>
-          
+        <section className="relative flex min-h-[60vh] items-center overflow-hidden bg-background pt-32 pb-24 md:pt-40 md:pb-32">
+          <div className="pointer-events-none absolute inset-0 gradient-mesh" />
+          <div className="pointer-events-none absolute inset-0 bg-grid-soft opacity-40" />
+          <div className="blob h-80 w-80 bg-brandkraf-teal/20 -top-10 -left-10" />
+          <div className="blob h-96 w-96 bg-brandkraf-purple/20 top-0 right-0" style={{ animationDelay: '-5s' }} />
+
           <div className="container-custom relative z-10 flex flex-col items-center text-center">
             <motion.span
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="chip-glass mb-6"
+              className="chip-brand mb-6"
             >
               Who we are
             </motion.span>
@@ -69,16 +67,15 @@ export default function AboutUsPage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: "easeOut" }}
-              className="mb-6 text-white"
+              className="mb-6"
             >
-              About{' '}
-              <span className="bg-gradient-to-r from-brandkraf-teal to-brandkraf-purple bg-clip-text text-transparent">BrandKraf</span>
+              About <span className="text-gradient">BrandKraf</span>
             </motion.h1>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }} 
-              className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed"
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+              className="mx-auto max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl"
             >
               Your ultimate one-stop digital marketing, premium content production, and creative growth partner. We bridge the gap between imagination and measurable success.
             </motion.p>
@@ -194,45 +191,49 @@ export default function AboutUsPage() {
         </section>
 
         {/* 4. MISSION & VISION SECTION */}
-        <section className="section-padding bg-background">
-          <div className="container-custom">
-            <div className="grid md:grid-cols-2 gap-8">
+        <section className="section-padding relative overflow-hidden bg-gradient-to-b from-background via-muted/30 to-background">
+          <div className="container-custom relative">
+            <div className="grid gap-8 md:grid-cols-2">
               {/* Mission Card */}
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }} 
-                whileInView={{ opacity: 1, y: 0 }} 
-                viewport={{ once: true }} 
-                className="group relative overflow-hidden rounded-3xl bg-slate-950 p-10 md:p-12 transition-all hover:shadow-2xl hover:shadow-brandkraf-teal/20"
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="group relative overflow-hidden rounded-3xl p-[1.5px] bg-gradient-to-br from-brandkraf-teal/30 via-gray-200/50 to-brandkraf-purple/30 transition-all duration-500 hover:from-brandkraf-teal hover:to-brandkraf-purple hover:-translate-y-1.5"
               >
-                <div className="absolute top-0 right-0 w-64 h-64 bg-brandkraf-teal/10 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 group-hover:bg-brandkraf-teal/20 transition-colors duration-500" />
-                <div className="relative z-10">
-                  <div className="w-14 h-14 bg-brandkraf-teal/20 rounded-xl flex items-center justify-center mb-8">
-                    <Target className="w-7 h-7 text-brandkraf-teal" />
+                <div className="relative h-full overflow-hidden rounded-[1.4rem] glass-card p-10 md:p-12">
+                  <div className="pointer-events-none absolute -top-20 -right-20 h-56 w-56 rounded-full bg-gradient-to-br from-brandkraf-teal/20 to-brandkraf-purple/20 blur-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                  <div className="relative z-10">
+                    <div className="mb-8 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brandkraf-teal to-brandkraf-purple text-white shadow-lg shadow-brandkraf-teal/25">
+                      <Target className="h-7 w-7" />
+                    </div>
+                    <h3 className="mb-4">Our Mission</h3>
+                    <p className="text-lg leading-relaxed text-muted-foreground">
+                      To empower businesses with scalable, data-driven marketing strategies and scroll-stopping creative content. We aim to act as the catalyst that transforms ambitious visions into sustainable market leadership.
+                    </p>
                   </div>
-                  <h3 className="text-white mb-4">Our Mission</h3>
-                  <p className="text-slate-300 leading-relaxed text-lg">
-                    To empower businesses with scalable, data-driven marketing strategies and scroll-stopping creative content. We aim to act as the catalyst that transforms ambitious visions into sustainable market leadership.
-                  </p>
                 </div>
               </motion.div>
 
               {/* Vision Card */}
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }} 
-                whileInView={{ opacity: 1, y: 0 }} 
-                viewport={{ once: true }} 
-                transition={{ delay: 0.1 }} 
-                className="group relative overflow-hidden rounded-3xl bg-slate-950 p-10 md:p-12 transition-all hover:shadow-2xl hover:shadow-brandkraf-purple/20"
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="group relative overflow-hidden rounded-3xl p-[1.5px] bg-gradient-to-br from-brandkraf-purple/30 via-gray-200/50 to-brandkraf-teal/30 transition-all duration-500 hover:from-brandkraf-purple hover:to-brandkraf-teal hover:-translate-y-1.5"
               >
-                <div className="absolute top-0 right-0 w-64 h-64 bg-brandkraf-purple/10 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 group-hover:bg-brandkraf-purple/20 transition-colors duration-500" />
-                <div className="relative z-10">
-                  <div className="w-14 h-14 bg-brandkraf-purple/20 rounded-xl flex items-center justify-center mb-8">
-                    <Eye className="w-7 h-7 text-brandkraf-purple" />
+                <div className="relative h-full overflow-hidden rounded-[1.4rem] glass-card p-10 md:p-12">
+                  <div className="pointer-events-none absolute -top-20 -right-20 h-56 w-56 rounded-full bg-gradient-to-br from-brandkraf-purple/20 to-brandkraf-teal/20 blur-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                  <div className="relative z-10">
+                    <div className="mb-8 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brandkraf-purple to-brandkraf-teal text-white shadow-lg shadow-brandkraf-purple/25">
+                      <Eye className="h-7 w-7" />
+                    </div>
+                    <h3 className="mb-4">Our Vision</h3>
+                    <p className="text-lg leading-relaxed text-muted-foreground">
+                      To become the premier, globally recognized standard for digital marketing excellence. We envision a future where every brand we partner with not only succeeds, but redefines the boundaries of their industry.
+                    </p>
                   </div>
-                  <h3 className="text-white mb-4">Our Vision</h3>
-                  <p className="text-slate-300 leading-relaxed text-lg">
-                    To become the premier, globally recognized standard for digital marketing excellence. We envision a future where every brand we partner with not only succeeds, but redefines the boundaries of their industry.
-                  </p>
                 </div>
               </motion.div>
             </div>
@@ -354,35 +355,35 @@ export default function AboutUsPage() {
         </section>
 
         {/* 7. FINAL CTA SECTION */}
-        <section className="py-24 relative overflow-hidden bg-slate-950">
-          <div className="absolute inset-0 z-0">
-            <div className="absolute inset-0 bg-gradient-to-r from-brandkraf-teal/20 to-brandkraf-purple/20 opacity-40 mix-blend-overlay" />
-          </div>
+        <section className="relative overflow-hidden py-24">
+          <div className="absolute inset-0 bg-gradient-to-br from-brandkraf-teal via-brandkraf-purple to-brandkraf-teal bg-[length:200%_200%] animate-[gradient-pan_8s_linear_infinite]" />
+          <div className="pointer-events-none absolute -top-16 -left-10 h-72 w-72 rounded-full bg-white/20 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-20 -right-10 h-80 w-80 rounded-full bg-white/10 blur-3xl" />
           <div className="container-custom relative z-10 text-center">
-            <motion.h2 
-              initial={{ opacity: 0, y: 20 }} 
-              whileInView={{ opacity: 1, y: 0 }} 
-              viewport={{ once: true }} 
-              className="text-white mb-6 text-4xl md:text-5xl lg:text-6xl"
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mb-6 text-4xl font-bold text-white md:text-5xl lg:text-6xl"
             >
-              Let's Build Something That Matters.
+              Let&apos;s Build Something That Matters.
             </motion.h2>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }} 
-              whileInView={{ opacity: 1, y: 0 }} 
-              viewport={{ once: true }} 
-              transition={{ delay: 0.1 }} 
-              className="text-slate-300 max-w-2xl mx-auto text-lg mb-10"
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="mx-auto mb-10 max-w-2xl text-lg text-white/90"
             >
               Whether you need compelling UGC, aggressive ad scaling, or a complete digital overhaul, we are ready to partner with you.
             </motion.p>
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }} 
-              whileInView={{ opacity: 1, y: 0 }} 
-              viewport={{ once: true }} 
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              <Button asChild size="lg" className="h-14 rounded-xl bg-gradient-to-r from-brandkraf-teal to-brandkraf-purple bg-[length:200%_100%] bg-left px-8 text-lg font-semibold text-white shadow-lg shadow-brandkraf-teal/25 transition-[background-position,box-shadow,transform] duration-500 hover:-translate-y-0.5 hover:bg-right hover:shadow-xl hover:shadow-brandkraf-purple/40">
+              <Button asChild size="lg" className="h-14 rounded-xl bg-white px-8 text-lg font-bold text-brandkraf-teal shadow-xl transition-all duration-300 hover:-translate-y-1 hover:bg-gray-50 hover:shadow-2xl">
                 <Link to="/contact">
                   Contact Us <ArrowRight className="ml-2 w-5 h-5" />
                 </Link>
