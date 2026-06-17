@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button.jsx';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles, Star, TrendingUp, Users } from 'lucide-react';
 import WhatsAppInquiryForm from './WhatsAppInquiryForm.jsx';
+import HeroDashboard from './HeroDashboard.jsx';
 import { useIsMobile } from '@/hooks/useIsMobile.js';
 
 function HeroSection({
@@ -132,12 +133,8 @@ function HeroSection({
                 <span className="h-3 w-3 rounded-full bg-emerald-400/80" />
                 <span className="ml-3 h-5 flex-1 rounded-md bg-foreground/5" />
               </div>
-              <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-brandkraf-teal/10 to-brandkraf-purple/10">
-                <img
-                  src="https://horizons-cdn.hostinger.com/6602f595-c4d7-40bf-a729-a377f9b27c39/8aaa0f3fe5dc3f1e591d45d0339e89ad.png"
-                  alt="BrandKraf marketing performance"
-                  className="mx-auto w-full max-w-md object-contain p-6 sm:max-w-lg"
-                />
+              <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-brandkraf-teal/5 to-brandkraf-purple/5 p-4 sm:p-6">
+                <HeroDashboard />
               </div>
             </div>
           </motion.div>
