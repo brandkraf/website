@@ -113,7 +113,7 @@ function Header() {
           <span className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-brandkraf-teal/40 to-transparent" />
         )}
         <nav className="container-custom">
-          <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'h-20' : 'h-24'}`}>
+          <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'h-[5.5rem]' : 'h-24'}`}>
             {/* Logo */}
             <Link to="/" className="flex items-center flex-shrink-0">
               <img
