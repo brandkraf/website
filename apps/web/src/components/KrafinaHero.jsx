@@ -51,7 +51,7 @@ export default function KrafinaHero() {
       {/* Pulsing brand aura */}
       <div className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
         <motion.div
-          className="h-[24rem] w-[24rem] rounded-full bg-gradient-to-tr from-brandkraf-teal/30 to-brandkraf-purple/30 blur-3xl"
+          className="h-[30rem] w-[30rem] rounded-full bg-gradient-to-tr from-brandkraf-teal/30 to-brandkraf-purple/30 blur-3xl"
           animate={reduceMotion ? undefined : { scale: [1, 1.08, 1], opacity: [0.5, 0.8, 0.5] }}
           transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
         />
@@ -66,7 +66,7 @@ export default function KrafinaHero() {
 
       {/* Krafina — animated mascot video, floats and gently sways */}
       <motion.div
-        className="relative z-10 w-[250px] sm:w-[300px] lg:w-[360px]"
+        className="relative z-10 w-[300px] sm:w-[380px] lg:w-[460px]"
         animate={floatAnim}
         transition={{ duration: 6.5, repeat: Infinity, ease: 'easeInOut' }}
       >
@@ -94,7 +94,7 @@ export default function KrafinaHero() {
 
       {/* Soft ground shadow */}
       <motion.div
-        className="pointer-events-none absolute bottom-2 left-1/2 h-5 w-44 -translate-x-1/2 rounded-[50%] bg-black/15 blur-xl"
+        className="pointer-events-none absolute bottom-2 left-1/2 h-5 w-56 -translate-x-1/2 rounded-[50%] bg-black/15 blur-xl"
         animate={reduceMotion ? undefined : { scaleX: [1, 0.88, 1], opacity: [0.18, 0.12, 0.18] }}
         transition={{ duration: 6.5, repeat: Infinity, ease: 'easeInOut' }}
       />
