@@ -55,9 +55,6 @@ export function CheckoutPaymentButton({
         throw new Error('No checkout URL received from server');
       }
 
-      // Log payment initialization
-      console.log('Payment initialized, redirecting to:', checkout_url);
-
       // Redirect to HitPay secure checkout page
       try {
         // Check if we are in an iframe (like a preview environment)

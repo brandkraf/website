@@ -44,8 +44,8 @@ export default function CheckoutPage() {
     }
   };
 
-  const handlePaymentSuccess = (paymentData) => {
-    console.log('Payment successful:', paymentData);
+  const handlePaymentSuccess = () => {
+    // Payment success is handled by HitPay's redirect to /payment-success.
   };
 
   const handlePaymentError = (error) => {

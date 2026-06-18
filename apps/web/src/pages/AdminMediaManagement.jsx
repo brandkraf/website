@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { 
@@ -47,7 +47,7 @@ function AdminMediaManagement() {
   
   const fileInputRef = useRef(null);
 
-  const fetchVideos = async () => {
+  const fetchVideos = useCallback(async () => {
     try {
       setLoading(true);
       const filterStr = filterIndustry ? `industry="${filterIndustry}"` : '';
@@ -63,11 +63,11 @@ function AdminMediaManagement() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [filterIndustry]);
 
   useEffect(() => {
     fetchVideos();
-  }, [filterIndustry]);
+  }, [fetchVideos]);
 
   const isVideoFile = (filename) => {
     if (!filename) return false;

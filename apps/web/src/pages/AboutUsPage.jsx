@@ -166,7 +166,7 @@ export default function AboutUsPage() {
                 </div>
                 <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-card p-6 md:p-8 rounded-2xl shadow-sm border border-border">
                   <h4 className="text-xl font-bold mb-2">Rapid Scaling</h4>
-                  <p className="text-muted-foreground">By delivering uncompromising quality in UGC, Paid Ads, and Social Media Management, we quickly earned the trust of over 50+ leading brands across Malaysia and Southeast Asia.</p>
+                  <p className="text-muted-foreground">By delivering uncompromising quality in UGC, Paid Ads, and Social Media Management, we quickly earned the trust of over 200+ leading brands across Malaysia and Southeast Asia.</p>
                 </div>
               </motion.div>
 
