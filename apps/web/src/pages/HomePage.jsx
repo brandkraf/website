@@ -162,11 +162,9 @@ function HomePage() {
 
       <main className="relative">
         <HeroSection
-          backgroundImage="https://images.unsplash.com/photo-1689028294160-e78a88abcb19"
           headline="We don't just market. We scale brands."
           subheadline="Helping businesses grow with content, ads, and AI-driven marketing"
           ctaText="Get Free Strategy Call"
-          ctaLink="/contact"
         />
 
         <ClientLogosSlider />
