@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 
 // Transparent still (van on no background), used as the video poster and as the
-// fallback on browsers/settings where the WebM can't play (Safari/iOS) or
-// shouldn't (reduced-motion).
+// reduced-motion fallback.
 const HERO_STILL = '/brandkraf-van-poster.png';
 
 function Sparkle({ className, delay = 0, size = 16 }) {
@@ -24,9 +23,9 @@ function Sparkle({ className, delay = 0, size = 16 }) {
   );
 }
 
-// Apple's WebKit (desktop Safari + ALL iOS browsers) plays WebM but drops the
-// alpha channel, so a transparent mascot video shows as a black box there.
-// Detect it so we can render an image fallback instead.
+// Apple's WebKit (desktop Safari + ALL iOS browsers) drops the alpha channel on
+// WebM, so we serve it an HEVC-with-alpha MP4 instead (the only transparent
+// video format Safari supports). Detect it to choose the right source.
 function detectAppleWebkit() {
   if (typeof navigator === 'undefined') return false;
   const ua = navigator.userAgent;
@@ -37,16 +36,14 @@ function detectAppleWebkit() {
 
 export default function KrafinaHero() {
   const reduceMotion = useReducedMotion();
-  const [isApple, setIsApple] = useState(false);
+  // Computed once on mount (client-only SPA, so navigator is available).
+  const [isApple] = useState(() => detectAppleWebkit());
 
-  useEffect(() => {
-    setIsApple(detectAppleWebkit());
-  }, []);
-
-  // Decide what fills the hero slot:
-  //  - everyone else -> transparent animated van video
-  //  - Apple/WebKit (no WebM alpha) OR reduced-motion -> static van still
-  const showVideo = !isApple && !reduceMotion;
+  // Transparent video source per browser; reduced-motion shows the still instead.
+  //  - Apple/WebKit -> HEVC-with-alpha MP4
+  //  - everyone else -> VP8-alpha WebM
+  const videoSrc = isApple ? '/brandkraf-van.mp4' : '/brandkraf-van.webm';
+  const showVideo = !reduceMotion;
 
   return (
     <div className="relative mx-auto flex w-full max-w-2xl items-center justify-center py-6">
@@ -70,7 +67,8 @@ export default function KrafinaHero() {
       <div className="relative z-10 w-[340px] sm:w-[520px] lg:w-[640px]">
         {showVideo ? (
           <video
-            src="/brandkraf-van.webm"
+            key={videoSrc}
+            src={videoSrc}
             poster={HERO_STILL}
             className="w-full object-contain drop-shadow-2xl"
             autoPlay
@@ -81,7 +79,7 @@ export default function KrafinaHero() {
             aria-label="Animated BrandKraf media production van and team"
           />
         ) : (
-          // Safari/iOS (no WebM alpha) or reduced-motion: static van still.
+          // Reduced-motion: static van still.
           <img
             src={HERO_STILL}
             alt="BrandKraf media production van and team"
