@@ -23,9 +23,8 @@ function Sparkle({ className, delay = 0, size = 16 }) {
   );
 }
 
-// Apple's WebKit (desktop Safari + ALL iOS browsers) drops the alpha channel on
-// WebM, so we serve it an HEVC-with-alpha MP4 instead (the only transparent
-// video format Safari supports). Detect it to choose the right source.
+// Apple's WebKit (desktop Safari + ALL iOS browsers, incl. iOS "Chrome") can't
+// render a transparent WebM, so we serve it an HEVC-with-alpha MP4 instead.
 function detectAppleWebkit() {
   if (typeof navigator === 'undefined') return false;
   const ua = navigator.userAgent;
@@ -79,7 +78,7 @@ export default function KrafinaHero() {
             aria-label="Animated BrandKraf media production van and team"
           />
         ) : (
-          // Reduced-motion: static van still.
+          // Safari/iOS or reduced-motion: static van still.
           <img
             src={HERO_STILL}
             alt="BrandKraf media production van and team"
