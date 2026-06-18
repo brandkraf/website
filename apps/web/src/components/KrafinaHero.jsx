@@ -43,21 +43,17 @@ export default function KrafinaHero() {
     setIsApple(detectAppleWebkit());
   }, []);
 
-  // Gentle vertical float only when the user hasn't asked for reduced motion.
-  // (No rotation — a tilting wordmark looks off, unlike the old mascot.)
-  const floatAnim = reduceMotion ? undefined : { y: [0, -14, 0] };
-
   // Decide what fills the hero slot:
   //  - everyone else -> transparent animated van video
   //  - Apple/WebKit (no WebM alpha) OR reduced-motion -> static van still
   const showVideo = !isApple && !reduceMotion;
 
   return (
-    <div className="relative mx-auto flex w-full max-w-xl items-center justify-center py-6">
+    <div className="relative mx-auto flex w-full max-w-2xl items-center justify-center py-6">
       {/* Pulsing brand aura */}
       <div className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
         <motion.div
-          className="h-[38rem] w-[38rem] rounded-full bg-gradient-to-tr from-brandkraf-teal/30 to-brandkraf-purple/30 blur-3xl"
+          className="h-[44rem] w-[44rem] rounded-full bg-gradient-to-tr from-brandkraf-teal/30 to-brandkraf-purple/30 blur-3xl"
           animate={reduceMotion ? undefined : { scale: [1, 1.08, 1], opacity: [0.5, 0.8, 0.5] }}
           transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
         />
@@ -70,12 +66,8 @@ export default function KrafinaHero() {
       <Sparkle className="right-12 bottom-28 text-brandkraf-teal" delay={1.9} size={16} />
       <Sparkle className="left-1/2 top-2 text-brandkraf-teal" delay={2.4} size={12} />
 
-      {/* Animated BrandKraf media van, floats gently */}
-      <motion.div
-        className="relative z-10 w-[340px] sm:w-[460px] lg:w-[560px]"
-        animate={floatAnim}
-        transition={{ duration: 6.5, repeat: Infinity, ease: 'easeInOut' }}
-      >
+      {/* BrandKraf media van — static (no hover/float) */}
+      <div className="relative z-10 w-[340px] sm:w-[520px] lg:w-[640px]">
         {showVideo ? (
           <video
             src="/brandkraf-van.webm"
@@ -96,7 +88,7 @@ export default function KrafinaHero() {
             className="w-full object-contain drop-shadow-2xl"
           />
         )}
-      </motion.div>
+      </div>
     </div>
   );
 }
