@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 
-const LOGO_SRC = 'https://horizons-cdn.hostinger.com/6602f595-c4d7-40bf-a729-a377f9b27c39/45f4e79912ee94c15363cebd3219075f.png';
-
 function Sparkle({ className, delay = 0, size = 16 }) {
   return (
     <motion.svg
@@ -44,9 +42,8 @@ export default function KrafinaHero() {
   const floatAnim = reduceMotion ? undefined : { y: [0, -16, 0], rotate: [0, 1.6, 0, -1.6, 0] };
 
   // Decide what fills the mascot slot:
-  //  - Apple/WebKit (no WebM alpha) -> brand logo
-  //  - reduced-motion -> static mascot still
   //  - everyone else -> transparent animated video
+  //  - Apple/WebKit (no WebM alpha) OR reduced-motion -> static mascot still
   const showVideo = !isApple && !reduceMotion;
 
   return (
@@ -85,15 +82,8 @@ export default function KrafinaHero() {
             preload="metadata"
             aria-label="Animation of Krafina, the BrandKraf mascot"
           />
-        ) : isApple ? (
-          // Safari / iOS: brand logo (transparent WebM not supported here).
-          <img
-            src={LOGO_SRC}
-            alt="BrandKraf"
-            className="w-full object-contain drop-shadow-xl"
-          />
         ) : (
-          // Reduced-motion: static mascot still.
+          // Safari/iOS (no WebM alpha) or reduced-motion: static mascot still.
           <img
             src="/krafina-camera.png"
             alt="Krafina, the BrandKraf mascot, holding a camera"
