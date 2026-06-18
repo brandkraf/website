@@ -24,7 +24,7 @@ function Sparkle({ className, delay = 0, size = 16 }) {
 }
 
 // Apple's WebKit (desktop Safari + ALL iOS browsers, incl. iOS "Chrome") can't
-// render a transparent WebM, so we show a static transparent still there.
+// render a transparent WebM, so we serve it an animated transparent GIF instead.
 function detectAppleWebkit() {
   if (typeof navigator === 'undefined') return false;
   const ua = navigator.userAgent;
@@ -38,10 +38,12 @@ export default function KrafinaHero() {
   // Computed once on mount (client-only SPA, so navigator is available).
   const [isApple] = useState(() => detectAppleWebkit());
 
-  // Safari/iOS can't render transparent video reliably (no WebM alpha; HEVC-alpha
-  // was a dead end), so they get the static transparent still. Reduced-motion
-  // too. Everyone else gets the transparent WebM.
+  // Hero visual per context (all transparent):
+  //  - reduced-motion -> static PNG still (no animation)
+  //  - Safari/iOS -> animated transparent GIF (no WebM alpha; HEVC was a dead end)
+  //  - everyone else -> VP8-alpha WebM video
   const showVideo = !isApple && !reduceMotion;
+  const showGif = isApple && !reduceMotion;
 
   // Force the muted *property* (React only sets the attribute) so the WebM
   // autoplays even on stricter browsers.
@@ -87,8 +89,15 @@ export default function KrafinaHero() {
             preload="auto"
             aria-label="Animated BrandKraf media production van and team"
           />
+        ) : showGif ? (
+          // Safari/iOS: animated transparent GIF.
+          <img
+            src="/brandkraf-van.gif"
+            alt="BrandKraf media production van and team"
+            className="w-full object-contain drop-shadow-2xl"
+          />
         ) : (
-          // Safari/iOS or reduced-motion: static van still.
+          // Reduced-motion: static van still.
           <img
             src={HERO_STILL}
             alt="BrandKraf media production van and team"
