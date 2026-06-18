@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
+
+const LOGO_SRC = 'https://horizons-cdn.hostinger.com/6602f595-c4d7-40bf-a729-a377f9b27c39/45f4e79912ee94c15363cebd3219075f.png';
 
 function Sparkle({ className, delay = 0, size = 16 }) {
   return (
@@ -19,13 +21,33 @@ function Sparkle({ className, delay = 0, size = 16 }) {
   );
 }
 
+// Apple's WebKit (desktop Safari + ALL iOS browsers) plays WebM but drops the
+// alpha channel, so a transparent mascot video shows as a black box there.
+// Detect it so we can render an image fallback instead.
+function detectAppleWebkit() {
+  if (typeof navigator === 'undefined') return false;
+  const ua = navigator.userAgent;
+  const isIOS = /iP(hone|od|ad)/.test(ua);
+  const isDesktopSafari = /Safari/.test(ua) && !/Chrom(e|ium)|Android|Edg|OPR|SamsungBrowser|FxiOS|CriOS/.test(ua);
+  return isIOS || isDesktopSafari;
+}
+
 export default function KrafinaHero() {
   const reduceMotion = useReducedMotion();
+  const [isApple, setIsApple] = useState(false);
+
+  useEffect(() => {
+    setIsApple(detectAppleWebkit());
+  }, []);
 
   // Float/sway only when the user hasn't asked for reduced motion.
-  const floatAnim = reduceMotion
-    ? undefined
-    : { y: [0, -16, 0], rotate: [0, 1.6, 0, -1.6, 0] };
+  const floatAnim = reduceMotion ? undefined : { y: [0, -16, 0], rotate: [0, 1.6, 0, -1.6, 0] };
+
+  // Decide what fills the mascot slot:
+  //  - Apple/WebKit (no WebM alpha) -> brand logo
+  //  - reduced-motion -> static mascot still
+  //  - everyone else -> transparent animated video
+  const showVideo = !isApple && !reduceMotion;
 
   return (
     <div className="relative mx-auto flex w-full max-w-xl items-center justify-center py-6">
@@ -51,14 +73,7 @@ export default function KrafinaHero() {
         animate={floatAnim}
         transition={{ duration: 6.5, repeat: Infinity, ease: 'easeInOut' }}
       >
-        {reduceMotion ? (
-          // Reduced-motion: show a still frame instead of an autoplaying video.
-          <img
-            src="/krafina-camera.png"
-            alt="Krafina, the BrandKraf mascot, holding a camera"
-            className="w-full object-contain drop-shadow-2xl"
-          />
-        ) : (
+        {showVideo ? (
           <video
             src="/krafina-mascot.webm"
             poster="/krafina-camera.png"
@@ -69,6 +84,20 @@ export default function KrafinaHero() {
             playsInline
             preload="metadata"
             aria-label="Animation of Krafina, the BrandKraf mascot"
+          />
+        ) : isApple ? (
+          // Safari / iOS: brand logo (transparent WebM not supported here).
+          <img
+            src={LOGO_SRC}
+            alt="BrandKraf"
+            className="w-full object-contain drop-shadow-xl"
+          />
+        ) : (
+          // Reduced-motion: static mascot still.
+          <img
+            src="/krafina-camera.png"
+            alt="Krafina, the BrandKraf mascot, holding a camera"
+            className="w-full object-contain drop-shadow-2xl"
           />
         )}
       </motion.div>

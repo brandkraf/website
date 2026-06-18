@@ -194,7 +194,7 @@
 
   /* Mobile Logo Styling */
   .header-logo {
-    @apply h-12 sm:h-14 md:h-16 w-auto max-w-[210px] sm:max-w-[240px] md:max-w-[260px] object-contain transition-opacity duration-200;
+    @apply h-14 sm:h-16 md:h-[4.5rem] w-auto max-w-[300px] sm:max-w-[360px] md:max-w-[420px] object-contain transition-opacity duration-200;
   }
 
   .header-logo:hover {
