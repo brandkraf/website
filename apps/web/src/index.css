@@ -112,32 +112,58 @@
   html {
     scroll-behavior: smooth;
   }
-  
+
+  /* Subtle, consistent transitions on inline links */
+  a {
+    transition: color 0.2s ease, opacity 0.2s ease;
+  }
+
   body {
     @apply bg-background text-foreground;
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 16px;
-    line-height: 1.625;
-    transition: all 0.3s ease;
+    line-height: 1.65;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: 'ss01', 'cv01', 'cv03';
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
-    line-height: 1.15;
-    letter-spacing: -0.02em;
+    line-height: 1.12;
+    letter-spacing: -0.025em;
     text-wrap: balance;
   }
-  
-  h1 { @apply text-4xl md:text-5xl lg:text-6xl font-extrabold; }
-  h2 { @apply text-3xl md:text-4xl lg:text-5xl; }
+
+  h1 { @apply text-4xl md:text-5xl lg:text-6xl font-extrabold; letter-spacing: -0.035em; }
+  h2 { @apply text-3xl md:text-4xl lg:text-5xl; letter-spacing: -0.03em; }
   h3 { @apply text-2xl md:text-3xl; }
   h4 { @apply text-xl md:text-2xl; }
   h5 { @apply text-lg md:text-xl; }
   h6 { @apply text-base md:text-lg; }
-  
+
   p {
     @apply max-w-[65ch];
+  }
+
+  /* Brand text selection */
+  ::selection {
+    background: hsl(var(--brandkraf-teal) / 0.2);
+    color: hsl(var(--foreground));
+  }
+
+  /* Consistent, accessible focus ring on interactive elements */
+  a:focus-visible,
+  button:focus-visible,
+  [role="button"]:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: 2px solid hsl(var(--brandkraf-teal) / 0.6);
+    outline-offset: 2px;
+    border-radius: 0.5rem;
   }
 }
 
@@ -147,7 +173,7 @@
   }
   
   .section-padding {
-    @apply py-20 md:py-24 lg:py-28;
+    @apply py-20 md:py-28 lg:py-32;
   }
 
   .portfolio-card {

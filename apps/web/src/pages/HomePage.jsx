@@ -18,6 +18,7 @@ function HomePage() {
     {
       icon: Share2,
       title: 'Social Media Management',
+      path: '/portfolio/social-media-management',
       description: 'Strategic content planning and community management across all platforms',
       features: [
         'Content calendar planning',
@@ -29,6 +30,7 @@ function HomePage() {
     {
       icon: Video,
       title: 'UGC Content Creation',
+      path: '/portfolio/ugc-content-creation',
       description: 'Authentic user-generated content that drives engagement and conversions',
       features: [
         'Professional UGC videos',
@@ -40,6 +42,7 @@ function HomePage() {
     {
       icon: Target,
       title: 'Paid Advertising',
+      path: '/portfolio/paid-advertising',
       description: 'Data-driven ad campaigns on Meta, TikTok, and Google',
       features: [
         'Campaign strategy and setup',
@@ -51,6 +54,7 @@ function HomePage() {
     {
       icon: Globe,
       title: 'Website Development',
+      path: '/portfolio/website-development',
       description: 'High-converting websites built for performance and user experience',
       features: [
         'Custom website design',
@@ -62,6 +66,7 @@ function HomePage() {
     {
       icon: Palette,
       title: 'Branding & Creative',
+      path: '/portfolio/branding-creative',
       description: 'Complete brand identity and creative design services',
       features: [
         'Logo and brand identity',
@@ -73,6 +78,7 @@ function HomePage() {
     {
       icon: Users,
       title: 'KOC/KOL Service',
+      path: '/portfolio/koc-kol-service',
       description: 'Strategic collaborations with Key Opinion Creators and Leaders to amplify your brand reach and credibility.',
       features: [
         'Influencer matching & outreach',
@@ -84,6 +90,7 @@ function HomePage() {
     {
       icon: Radio,
       title: 'TikTok Live Service',
+      path: '/portfolio/tiktok-live-service',
       description: 'Engaging live streaming sessions designed to boost real-time sales, launch products, and build community.',
       features: [
         'Live stream strategy & planning',
@@ -95,6 +102,7 @@ function HomePage() {
     {
       icon: Sparkles,
       title: 'AI Driven Marketing Solution',
+      path: '/portfolio/ai-driven-marketing',
       description: 'Leverage advanced artificial intelligence to optimize your marketing strategies, predict trends, and maximize ROI.',
       features: [
         'Predictive analytics & modeling',
@@ -106,6 +114,7 @@ function HomePage() {
     {
       icon: MessageSquareCode,
       title: 'Chatbot Development',
+      path: '/portfolio/chatbot-development',
       description: 'Intelligent conversational agents designed to qualify leads, automate support, and engage customers 24/7.',
       features: [
         'Custom AI chatbot architecture',
