@@ -1,0 +1,13 @@
+# BrandKraf robots.txt
+User-agent: *
+Allow: /
+
+# Keep private / transactional pages out of the index
+Disallow: /admin
+Disallow: /admin-login
+Disallow: /checkout
+Disallow: /payment-success
+Disallow: /payment-failure
+Disallow: /media-upload
+
+Sitemap: https://www.brandkraf.com/sitemap.xml
