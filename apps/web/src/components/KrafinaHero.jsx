@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 
+// Static logo used as the video poster and as the fallback on browsers/settings
+// where the transparent WebM can't play (Safari/iOS) or shouldn't (reduced-motion).
+const LOGO_SRC = 'https://horizons-cdn.hostinger.com/6602f595-c4d7-40bf-a729-a377f9b27c39/45f4e79912ee94c15363cebd3219075f.png';
+
 function Sparkle({ className, delay = 0, size = 16 }) {
   return (
     <motion.svg
@@ -38,12 +42,13 @@ export default function KrafinaHero() {
     setIsApple(detectAppleWebkit());
   }, []);
 
-  // Float/sway only when the user hasn't asked for reduced motion.
-  const floatAnim = reduceMotion ? undefined : { y: [0, -16, 0], rotate: [0, 1.6, 0, -1.6, 0] };
+  // Gentle vertical float only when the user hasn't asked for reduced motion.
+  // (No rotation — a tilting wordmark looks off, unlike the old mascot.)
+  const floatAnim = reduceMotion ? undefined : { y: [0, -14, 0] };
 
-  // Decide what fills the mascot slot:
-  //  - everyone else -> transparent animated video
-  //  - Apple/WebKit (no WebM alpha) OR reduced-motion -> static mascot still
+  // Decide what fills the hero slot:
+  //  - everyone else -> transparent animated logo video
+  //  - Apple/WebKit (no WebM alpha) OR reduced-motion -> static logo still
   const showVideo = !isApple && !reduceMotion;
 
   return (
@@ -51,7 +56,7 @@ export default function KrafinaHero() {
       {/* Pulsing brand aura */}
       <div className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
         <motion.div
-          className="h-[30rem] w-[30rem] rounded-full bg-gradient-to-tr from-brandkraf-teal/30 to-brandkraf-purple/30 blur-3xl"
+          className="h-[34rem] w-[34rem] rounded-full bg-gradient-to-tr from-brandkraf-teal/30 to-brandkraf-purple/30 blur-3xl"
           animate={reduceMotion ? undefined : { scale: [1, 1.08, 1], opacity: [0.5, 0.8, 0.5] }}
           transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
         />
@@ -64,40 +69,33 @@ export default function KrafinaHero() {
       <Sparkle className="right-12 bottom-28 text-brandkraf-teal" delay={1.9} size={16} />
       <Sparkle className="left-1/2 top-2 text-brandkraf-teal" delay={2.4} size={12} />
 
-      {/* Krafina — animated mascot video, floats and gently sways */}
+      {/* Animated BrandKraf logo, floats gently */}
       <motion.div
-        className="relative z-10 w-[300px] sm:w-[380px] lg:w-[460px]"
+        className="relative z-10 w-[320px] sm:w-[420px] lg:w-[500px]"
         animate={floatAnim}
         transition={{ duration: 6.5, repeat: Infinity, ease: 'easeInOut' }}
       >
         {showVideo ? (
           <video
-            src="/krafina-mascot.webm"
-            poster="/krafina-camera.png"
+            src="/brandkraf-hero.webm"
+            poster={LOGO_SRC}
             className="w-full object-contain drop-shadow-2xl"
             autoPlay
             loop
             muted
             playsInline
             preload="metadata"
-            aria-label="Animation of Krafina, the BrandKraf mascot"
+            aria-label="Animated BrandKraf logo"
           />
         ) : (
-          // Safari/iOS (no WebM alpha) or reduced-motion: static mascot still.
+          // Safari/iOS (no WebM alpha) or reduced-motion: static logo still.
           <img
-            src="/krafina-camera.png"
-            alt="Krafina, the BrandKraf mascot, holding a camera"
-            className="w-full object-contain drop-shadow-2xl"
+            src={LOGO_SRC}
+            alt="BrandKraf"
+            className="w-full object-contain drop-shadow-xl"
           />
         )}
       </motion.div>
-
-      {/* Soft ground shadow */}
-      <motion.div
-        className="pointer-events-none absolute bottom-2 left-1/2 h-5 w-56 -translate-x-1/2 rounded-[50%] bg-black/15 blur-xl"
-        animate={reduceMotion ? undefined : { scaleX: [1, 0.88, 1], opacity: [0.18, 0.12, 0.18] }}
-        transition={{ duration: 6.5, repeat: Infinity, ease: 'easeInOut' }}
-      />
     </div>
   );
 }
