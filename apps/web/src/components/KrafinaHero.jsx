@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 
 // Transparent still (van on no background), used as the video poster and as the
@@ -44,6 +44,18 @@ export default function KrafinaHero() {
   const videoSrc = isApple ? '/brandkraf-van.mp4' : '/brandkraf-van.webm';
   const showVideo = !reduceMotion;
 
+  // iOS Safari blocks autoplay unless the muted *property* is set (React only
+  // sets the attribute) — so force it via a ref and kick off playback.
+  const videoRef = useRef(null);
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = true;
+    v.setAttribute('muted', '');
+    const p = v.play();
+    if (p && p.catch) p.catch(() => {});
+  }, [videoSrc]);
+
   return (
     <div className="relative mx-auto flex w-full max-w-2xl items-center justify-center py-6">
       {/* Pulsing brand aura */}
@@ -67,6 +79,7 @@ export default function KrafinaHero() {
         {showVideo ? (
           <video
             key={videoSrc}
+            ref={videoRef}
             src={videoSrc}
             poster={HERO_STILL}
             className="w-full object-contain drop-shadow-2xl"
@@ -74,7 +87,7 @@ export default function KrafinaHero() {
             loop
             muted
             playsInline
-            preload="metadata"
+            preload="auto"
             aria-label="Animated BrandKraf media production van and team"
           />
         ) : (
