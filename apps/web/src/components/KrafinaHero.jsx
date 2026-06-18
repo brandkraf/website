@@ -24,7 +24,7 @@ function Sparkle({ className, delay = 0, size = 16 }) {
 }
 
 // Apple's WebKit (desktop Safari + ALL iOS browsers, incl. iOS "Chrome") can't
-// render a transparent WebM, so we show a static still there instead of a black box.
+// render a transparent WebM, so we serve it an HEVC-with-alpha MP4 instead.
 function detectAppleWebkit() {
   if (typeof navigator === 'undefined') return false;
   const ua = navigator.userAgent;
@@ -38,13 +38,14 @@ export default function KrafinaHero() {
   // Computed once on mount (client-only SPA, so navigator is available).
   const [isApple] = useState(() => detectAppleWebkit());
 
-  // Apple/WebKit can't show our transparent video reliably (WebM alpha is
-  // unsupported, and the HEVC-alpha export played invisibly on Safari), so
-  // iOS/Safari and reduced-motion get the static still. Everyone else: WebM.
-  const showVideo = !isApple && !reduceMotion;
+  // Transparent video source per browser; reduced-motion shows the still instead.
+  //  - Apple/WebKit -> HEVC-with-alpha MP4 (videotoolbox export)
+  //  - everyone else -> VP8-alpha WebM
+  const videoSrc = isApple ? '/brandkraf-van.mp4' : '/brandkraf-van.webm';
+  const showVideo = !reduceMotion;
 
-  // Force the muted *property* (React only sets the attribute) so the WebM
-  // autoplays even on stricter browsers.
+  // iOS Safari blocks autoplay unless the muted *property* is set (React only
+  // sets the attribute) — force it via a ref and kick off playback.
   const videoRef = useRef(null);
   useEffect(() => {
     const v = videoRef.current;
@@ -52,7 +53,7 @@ export default function KrafinaHero() {
     v.muted = true;
     const p = v.play();
     if (p && p.catch) p.catch(() => {});
-  }, []);
+  }, [videoSrc]);
 
   return (
     <div className="relative mx-auto flex w-full max-w-2xl items-center justify-center py-6">
@@ -76,8 +77,9 @@ export default function KrafinaHero() {
       <div className="relative z-10 w-[340px] sm:w-[520px] lg:w-[640px]">
         {showVideo ? (
           <video
+            key={videoSrc}
             ref={videoRef}
-            src="/brandkraf-van.webm"
+            src={videoSrc}
             poster={HERO_STILL}
             className="w-full object-contain drop-shadow-2xl"
             autoPlay
