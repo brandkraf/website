@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button.jsx';
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles, Star, TrendingUp, Users } from 'lucide-react';
+import { ArrowRight, Sparkles, TrendingUp, Shield, Clock } from 'lucide-react';
 import WhatsAppInquiryForm from './WhatsAppInquiryForm.jsx';
 import KrafinaHero from './KrafinaHero.jsx';
 import { useIsMobile } from '@/hooks/useIsMobile.js';
@@ -28,10 +28,13 @@ function HeroSection({
   const lead = parts.length > 1 ? parts[0] + '.' : headline;
   const emphasis = parts.length > 1 ? parts.slice(1).join('. ') : '';
 
+  // Hero shows distinct proof points only — the hard stats (brands served,
+  // client rating, total views) live in the dedicated TrustSection below,
+  // so we don't repeat (or contradict) them here.
   const stats = [
-    { icon: Users, value: '50+', label: 'Brands scaled' },
-    { icon: TrendingUp, value: '3.5x', label: 'Avg. ROAS' },
-    { icon: Star, value: '4.9/5', label: 'Client rating' },
+    { icon: TrendingUp, value: '3.5x', label: 'Average ROAS' },
+    { icon: Shield, value: '100%', label: 'In-house team' },
+    { icon: Clock, value: '24h', label: 'Response time' },
   ];
 
   return (

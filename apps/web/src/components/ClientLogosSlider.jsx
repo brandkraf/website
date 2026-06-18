@@ -92,14 +92,19 @@ function ClientLogosSlider() {
       <div className="absolute inset-y-0 right-0 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none w-16 md:w-32" />
       
       <div className="container-custom mb-12 relative z-20">
-        <motion.h3 
+        <motion.div
           initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           whileInView={isMobile ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center text-xl md:text-2xl font-semibold text-foreground"
+          className="text-center"
         >
-          Trusted by Leading Brands
-        </motion.h3>
+          <h3 className="text-xl md:text-2xl font-semibold text-foreground">
+            Trusted by <span className="text-gradient">200+ leading brands</span>
+          </h3>
+          <p className="mt-2 text-sm md:text-base text-muted-foreground">
+            From ambitious startups to national brands and government agencies
+          </p>
+        </motion.div>
       </div>
 
       <div className="flex w-full overflow-hidden">

@@ -154,7 +154,7 @@ function HomePage() {
         <title>BrandKraf - Scale Your Brand with Content, Ads & AI Marketing</title>
         <meta
           name="description"
-          content="We help businesses grow with social media management, UGC content, paid ads, and AI-driven marketing. Based in Malaysia, trusted by 50+ brands."
+          content="We help businesses grow with social media management, UGC content, paid ads, and AI-driven marketing. Based in Malaysia, trusted by 200+ brands."
         />
       </Helmet>
 
@@ -231,9 +231,9 @@ function HomePage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="group relative rounded-2xl p-[1.5px] bg-gradient-to-br from-white/0 via-gray-200/50 to-white/0 hover:from-brandkraf-teal/60 hover:to-brandkraf-purple/60 transition-all duration-500"
+                    className="group relative rounded-2xl p-[1.5px] bg-gradient-to-br from-brandkraf-teal/25 via-gray-200/60 to-brandkraf-purple/25 transition-all duration-500 hover:from-brandkraf-teal hover:via-brandkraf-teal/40 hover:to-brandkraf-purple hover:-translate-y-1.5 hover:shadow-[0_24px_60px_-20px_rgba(20,184,166,0.45)]"
                   >
-                    <div className="relative h-full rounded-2xl glass-card p-7 hover-lift overflow-hidden">
+                    <div className="relative h-full rounded-2xl glass-card p-7 overflow-hidden">
                       <span className="pointer-events-none absolute right-4 top-3 text-5xl font-black text-brandkraf-teal/5 group-hover:text-brandkraf-teal/10 transition-colors">
                         0{index + 1}
                       </span>

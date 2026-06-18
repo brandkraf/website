@@ -9,7 +9,7 @@ function CaseStudySection() {
   const isMobile = useIsMobile();
 
   const metrics = [
-    { icon: Eye, value: 250, suffix: 'K+', label: 'Total Views' },
+    { icon: Eye, value: 250, suffix: 'K+', label: 'Campaign Views' },
     { icon: Users, value: 1200, suffix: '+', label: 'Units Sold' },
     { icon: TrendingUp, value: 45, suffix: '%', label: 'Sales Growth' }
   ];
