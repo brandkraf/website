@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'sonner';
-import pb from '@/lib/pocketbaseClient.js';
+import { supabase } from '@/lib/supabaseClient.js';
 
 function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -79,20 +79,19 @@ function ContactForm() {
     try {
       const pageSource = document.referrer || window.location.href;
 
-      // Submit to PocketBase
-      // The backend server hook intercepts this creation and automatically 
-      // dispatches an email notification to admin@brandkraf.com
-      await pb.collection('contact_submissions').create({
+      // Save the submission to Supabase
+      const { error: sbError } = await supabase.from('contact_submissions').insert({
         name: data.name,
         phone: data.phone,
         email: data.email,
-        businessType: data.businessType,
+        business_type: data.businessType,
         message: data.message,
-        consentGiven: data.consentGiven,
-        pageSource: pageSource,
-        ipAddress: ipAddress
-      }, { $autoCancel: false });
-      
+        consent_given: data.consentGiven,
+        page_source: pageSource,
+        ip_address: ipAddress,
+      });
+      if (sbError) throw sbError;
+
       setSubmitStatus('success');
       toast.success('Thank you! Your message has been sent.');
       reset();

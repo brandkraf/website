@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import pb from '@/lib/pocketbaseClient.js';
+import { supabase } from '@/lib/supabaseClient.js';
 import { useAuth } from '@/contexts/AuthContext.jsx';
 import { Users, Calendar, TrendingUp, KeyRound, Loader2, AlertCircle } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card.jsx';
@@ -15,8 +15,7 @@ function AdminPage() {
   const [stats, setStats] = useState({ total: 0, thisMonth: 0 });
   const [isLoading, setIsLoading] = useState(true);
 
-  // Password Change State
-  const [oldPassword, setOldPassword] = useState('');
+  // Password change state
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isUpdating, setIsUpdating] = useState(false);
@@ -29,16 +28,16 @@ function AdminPage() {
         const firstDayOfMonth = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
 
         const [totalRes, monthRes] = await Promise.all([
-          pb.collection('contact_submissions').getList(1, 1, { $autoCancel: false }),
-          pb.collection('contact_submissions').getList(1, 1, {
-            filter: `created >= "${firstDayOfMonth}"`,
-            $autoCancel: false
-          })
+          supabase.from('contact_submissions').select('*', { count: 'exact', head: true }),
+          supabase
+            .from('contact_submissions')
+            .select('*', { count: 'exact', head: true })
+            .gte('created_at', firstDayOfMonth),
         ]);
 
         setStats({
-          total: totalRes.totalItems,
-          thisMonth: monthRes.totalItems
+          total: totalRes.count || 0,
+          thisMonth: monthRes.count || 0,
         });
       } catch (error) {
         console.error('Failed to fetch stats:', error);
@@ -65,19 +64,15 @@ function AdminPage() {
 
     setIsUpdating(true);
     try {
-      await pb.collection('admin_users').update(currentUser.id, {
-        oldPassword,
-        password: newPassword,
-        passwordConfirm: confirmPassword
-      }, { $autoCancel: false });
+      const { error } = await supabase.auth.updateUser({ password: newPassword });
+      if (error) throw error;
 
-      setOldPassword('');
       setNewPassword('');
       setConfirmPassword('');
       toast.success('Password updated successfully');
     } catch (err) {
       console.error('Failed to update password:', err);
-      setUpdateError(err.response?.message || 'Failed to update password. Please verify your current password.');
+      setUpdateError(err.message || 'Failed to update password. Please try again.');
     } finally {
       setIsUpdating(false);
     }
@@ -91,7 +86,7 @@ function AdminPage() {
 
       <div>
         <h1 className="text-3xl font-bold tracking-tight text-foreground">Dashboard Overview</h1>
-        <p className="text-muted-foreground mt-2">Welcome to the BrandKraf administration portal, <span className="font-medium text-gray-900">{currentUser?.username}</span>.</p>
+        <p className="text-muted-foreground mt-2">Welcome to the BrandKraf administration portal, <span className="font-medium text-gray-900">{currentUser?.email}</span>.</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -132,7 +127,7 @@ function AdminPage() {
           </CardHeader>
           <CardContent>
             <p className="text-sm text-gray-700 leading-relaxed">
-              Check the <a href="/admin/leads" className="font-semibold text-brandkraf-teal hover:underline">Leads tab</a> regularly. System notifications and new lead alerts are sent directly to <a href="mailto:admin@brandkraf.com" className="font-semibold text-brandkraf-teal hover:underline">admin@brandkraf.com</a>.
+              Check the <a href="/admin/leads" className="font-semibold text-brandkraf-teal hover:underline">Leads tab</a> regularly for new contact form and inquiry submissions.
             </p>
           </CardContent>
         </Card>
@@ -156,19 +151,6 @@ function AdminPage() {
                   <p>{updateError}</p>
                 </div>
               )}
-
-              <div className="space-y-2">
-                <Label htmlFor="oldPassword">Current Password</Label>
-                <Input
-                  id="oldPassword"
-                  type="password"
-                  required
-                  value={oldPassword}
-                  onChange={(e) => setOldPassword(e.target.value)}
-                  placeholder="••••••••"
-                  className="bg-white text-gray-900"
-                />
-              </div>
 
               <div className="space-y-2">
                 <Label htmlFor="newPassword">New Password</Label>

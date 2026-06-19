@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { ChevronRight, ArrowLeft, Calendar, User, AlertCircle, RefreshCw } from 'lucide-react';
 import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
-import pb from '@/lib/pocketbaseClient.js';
+import { supabase } from '@/lib/supabaseClient.js';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -23,10 +23,13 @@ export default function BlogDetailPage() {
       setLoading(true);
       setError(null);
       // Fetch post by slug
-      const record = await pb.collection('blog_posts').getFirstListItem(`slug="${slug}"`, {
-        $autoCancel: false
-      });
-      setPost(record);
+      const { data, error: sbError } = await supabase
+        .from('blog_posts')
+        .select('*')
+        .eq('slug', slug)
+        .single();
+      if (sbError) throw sbError;
+      setPost(data);
     } catch (err) {
       console.error('Error fetching blog post:', err);
       // If 404 from PocketBase, the generic message is fine
@@ -40,9 +43,7 @@ export default function BlogDetailPage() {
     fetchPost();
   }, [fetchPost]);
 
-  const imageUrl = post?.featured_image 
-    ? pb.files.getUrl(post, post.featured_image) 
-    : null;
+  const imageUrl = post?.featured_image || null;
 
   return (
     <div className="min-h-screen flex flex-col bg-background">

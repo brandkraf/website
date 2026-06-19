@@ -7,7 +7,7 @@ import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
 import BlogCard from '@/components/BlogCard.jsx';
 import BlogFilter from '@/components/BlogFilter.jsx';
-import pb from '@/lib/pocketbaseClient.js';
+import { supabase } from '@/lib/supabaseClient.js';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
 
@@ -22,16 +22,20 @@ function BlogPage() {
     try {
       setLoading(true);
       setError(null);
-      const result = await pb.collection('blog_posts').getList(1, 50, {
-        sort: '-published_date',
-        $autoCancel: false
-      });
-      
-      setPosts(result.items);
-      
+      const { data, error: sbError } = await supabase
+        .from('blog_posts')
+        .select('*')
+        .eq('published', true)
+        .order('published_date', { ascending: false })
+        .limit(50);
+
+      if (sbError) throw sbError;
+      const items = data || [];
+      setPosts(items);
+
       // Extract unique categories for the filter
       const uniqueCategories = new Set(
-        result.items
+        items
           .map(post => post.category)
           .filter(Boolean)
       );
@@ -132,9 +136,8 @@ function BlogPage() {
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             >
               {filteredPosts.map((post, index) => {
-                const imageUrl = post.featured_image 
-                  ? pb.files.getUrl(post, post.featured_image) 
-                  : 'https://images.unsplash.com/photo-1681184025442-1517cb9319c1';
+                const imageUrl = post.featured_image
+                  || 'https://images.unsplash.com/photo-1681184025442-1517cb9319c1';
                 
                 const formattedDate = post.published_date 
                   ? format(new Date(post.published_date), 'MMM dd, yyyy')

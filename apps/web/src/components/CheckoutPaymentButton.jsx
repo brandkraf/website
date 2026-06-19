@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
-import apiServerClient from '@/lib/apiServerClient.js';
+import { supabase } from '@/lib/supabaseClient.js';
 
 export function CheckoutPaymentButton({
   amount,
@@ -27,29 +27,23 @@ export function CheckoutPaymentButton({
         return;
       }
 
-      // Call HitPay initialize endpoint
-      const response = await apiServerClient.fetch('/hitpay/initialize', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
+      // Call the HitPay Edge Function (keeps the secret key server-side)
+      const { data, error } = await supabase.functions.invoke('hitpay-initialize', {
+        body: {
           amount,
           description,
           orderId,
           customerName,
           customerEmail,
           customerPhone,
-        }),
+        },
       });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to initialize payment');
+      if (error) {
+        throw new Error(error.message || 'Failed to initialize payment');
       }
 
-      const data = await response.json();
-      const { checkout_url } = data;
+      const checkout_url = data?.checkout_url;
 
       if (!checkout_url) {
         throw new Error('No checkout URL received from server');

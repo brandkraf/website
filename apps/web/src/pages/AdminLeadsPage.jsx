@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import pb from '@/lib/pocketbaseClient.js';
+import { supabase } from '@/lib/supabaseClient.js';
 import { format } from 'date-fns';
 import { Download, Search, Trash2, Mail, Phone, Building2, User, Clock, FileWarning } from 'lucide-react';
 import { toast } from 'sonner';
@@ -29,18 +29,23 @@ function AdminLeadsPage() {
   const fetchLeads = async () => {
     setLoading(true);
     try {
-      const filterStr = debouncedSearch
-        ? `name ~ "${debouncedSearch}" || email ~ "${debouncedSearch}" || phone ~ "${debouncedSearch}"`
-        : '';
+      const from = (page - 1) * 50;
+      let query = supabase
+        .from('contact_submissions')
+        .select('*', { count: 'exact' })
+        .order('created_at', { ascending: false })
+        .range(from, from + 49);
 
-      const result = await pb.collection('contact_submissions').getList(page, 50, {
-        sort: '-created',
-        filter: filterStr,
-        $autoCancel: false
-      });
+      if (debouncedSearch) {
+        const q = debouncedSearch.replace(/[%,()]/g, '');
+        query = query.or(`name.ilike.%${q}%,email.ilike.%${q}%,phone.ilike.%${q}%`);
+      }
 
-      setLeads(result.items);
-      setTotalPages(result.totalPages);
+      const { data, error, count } = await query;
+      if (error) throw error;
+
+      setLeads(data || []);
+      setTotalPages(Math.max(1, Math.ceil((count || 0) / 50)));
     } catch (error) {
       console.error('Failed to fetch leads:', error);
       toast.error('Failed to load leads data');
@@ -58,7 +63,8 @@ function AdminLeadsPage() {
     if (!window.confirm('Are you sure you want to delete this lead?')) return;
     
     try {
-      await pb.collection('contact_submissions').delete(id, { $autoCancel: false });
+      const { error } = await supabase.from('contact_submissions').delete().eq('id', id);
+      if (error) throw error;
       toast.success('Lead deleted successfully');
       fetchLeads();
     } catch (error) {
@@ -70,17 +76,20 @@ function AdminLeadsPage() {
   const exportToCSV = async () => {
     try {
       // Fetch all matching records for export, not just current page
-      const filterStr = debouncedSearch
-        ? `name ~ "${debouncedSearch}" || email ~ "${debouncedSearch}" || phone ~ "${debouncedSearch}"`
-        : '';
-        
-      const allResults = await pb.collection('contact_submissions').getFullList({
-        sort: '-created',
-        filter: filterStr,
-        $autoCancel: false
-      });
+      let exportQuery = supabase
+        .from('contact_submissions')
+        .select('*')
+        .order('created_at', { ascending: false });
 
-      if (allResults.length === 0) {
+      if (debouncedSearch) {
+        const q = debouncedSearch.replace(/[%,()]/g, '');
+        exportQuery = exportQuery.or(`name.ilike.%${q}%,email.ilike.%${q}%,phone.ilike.%${q}%`);
+      }
+
+      const { data: allResults, error: exportError } = await exportQuery;
+      if (exportError) throw exportError;
+
+      if (!allResults || allResults.length === 0) {
         toast.info('No data to export');
         return;
       }
@@ -93,12 +102,12 @@ function AdminLeadsPage() {
             `"${(row.name || '').replace(/"/g, '""')}"`,
             `"${(row.email || '').replace(/"/g, '""')}"`,
             `"${(row.phone || '').replace(/"/g, '""')}"`,
-            `"${(row.businessType || '').replace(/"/g, '""')}"`,
+            `"${(row.business_type || '').replace(/"/g, '""')}"`,
             `"${(row.message || '').replace(/"/g, '""')}"`,
-            `"${format(new Date(row.created), 'yyyy-MM-dd HH:mm:ss')}"`,
-            row.consentGiven ? 'Yes' : 'No',
-            `"${(row.pageSource || '').replace(/"/g, '""')}"`,
-            `"${(row.ipAddress || '').replace(/"/g, '""')}"`
+            `"${format(new Date(row.created_at), 'yyyy-MM-dd HH:mm:ss')}"`,
+            row.consent_given ? 'Yes' : 'No',
+            `"${(row.page_source || '').replace(/"/g, '""')}"`,
+            `"${(row.ip_address || '').replace(/"/g, '""')}"`
           ].join(',');
         })
       ].join('\n');
@@ -195,8 +204,8 @@ function AdminLeadsPage() {
                         <span className="font-medium text-gray-900">{lead.name}</span>
                       </div>
                       <div className="mt-1 flex items-center gap-1.5 text-xs">
-                        <span className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium ${lead.consentGiven ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'}`}>
-                          {lead.consentGiven ? 'Consent: Yes' : 'Consent: No'}
+                        <span className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium ${lead.consent_given ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'}`}>
+                          {lead.consent_given ? 'Consent: Yes' : 'Consent: No'}
                         </span>
                       </div>
                     </TableCell>
@@ -217,7 +226,7 @@ function AdminLeadsPage() {
                     <TableCell>
                       <div className="flex items-center gap-2 text-sm text-gray-600">
                         <Building2 className="h-4 w-4 text-gray-400 shrink-0" />
-                        <span className="capitalize">{lead.businessType || 'N/A'}</span>
+                        <span className="capitalize">{lead.business_type || 'N/A'}</span>
                       </div>
                     </TableCell>
                     <TableCell>

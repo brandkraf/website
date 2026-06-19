@@ -13,7 +13,7 @@ import {
 import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
 import WhatsAppButton from '@/components/WhatsAppButton.jsx';
-import pb from '@/lib/pocketbaseClient.js';
+import { supabase } from '@/lib/supabaseClient.js';
 import { Dialog, DialogContent } from '@/components/ui/dialog.jsx';
 
 export default function UGCIndustryLayout({
@@ -35,13 +35,16 @@ export default function UGCIndustryLayout({
     
     const fetchVideos = async () => {
       try {
-        const records = await pb.collection('ugc_videos').getList(1, 20, {
-          filter: `published=true && industry="${slug}"`,
-          sort: '-created',
-          $autoCancel: false
-        });
+        const { data, error } = await supabase
+          .from('ugc_videos')
+          .select('*')
+          .eq('published', true)
+          .eq('industry', slug)
+          .order('created_at', { ascending: false })
+          .limit(20);
+        if (error) throw error;
         if (isMounted) {
-          setPublishedVideos(records.items);
+          setPublishedVideos(data || []);
         }
       } catch (error) {
         console.error('Error fetching published videos:', error);
@@ -114,7 +117,7 @@ export default function UGCIndustryLayout({
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
                 {publishedVideos.map((video) => {
-                  const url = pb.files.getUrl(video, video.videoFile);
+                  const url = video.video_url;
                   return (
                     <motion.div 
                       key={video.id}

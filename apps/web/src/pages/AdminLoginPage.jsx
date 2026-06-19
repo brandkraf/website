@@ -9,7 +9,7 @@ import { Loader2, AlertCircle } from 'lucide-react';
 import { Helmet } from 'react-helmet';
 
 function AdminLoginPage() {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -27,11 +27,11 @@ function AdminLoginPage() {
     setIsLoading(true);
 
     try {
-      await login(username, password);
+      await login(email, password);
       navigate('/admin');
     } catch (err) {
       console.error(err);
-      setError('Invalid username or password. Please try again.');
+      setError('Invalid email or password. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -61,14 +61,14 @@ function AdminLoginPage() {
             )}
             
             <div className="space-y-2">
-              <Label htmlFor="username">Username</Label>
+              <Label htmlFor="email">Email</Label>
               <Input
-                id="username"
-                type="text"
+                id="email"
+                type="email"
                 required
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder="admin"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="admin@brandkraf.com"
                 className="bg-white text-gray-900 focus:border-brandkraf-teal focus:ring-brandkraf-teal/20"
                 disabled={isLoading}
               />

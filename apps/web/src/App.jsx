@@ -75,13 +75,10 @@ const CheckoutPage = lazy(() => import('./pages/CheckoutPage.jsx'));
 const PaymentSuccessPage = lazy(() => import('./pages/PaymentSuccessPage.jsx'));
 const PaymentFailurePage = lazy(() => import('./pages/PaymentFailurePage.jsx'));
 
-const UnprotectedMediaUploadPage = lazy(() => import('./pages/UnprotectedMediaUploadPage.jsx'));
-
 const AdminLayout = lazy(() => import('./components/AdminLayout.jsx'));
 const AdminLoginPage = lazy(() => import('./pages/AdminLoginPage.jsx'));
 const AdminPage = lazy(() => import('./pages/AdminPage.jsx'));
 const AdminLeadsPage = lazy(() => import('./pages/AdminLeadsPage.jsx'));
-const AdminMediaManagement = lazy(() => import('./pages/AdminMediaManagement.jsx'));
 
 // Lightweight branded fallback shown while a route chunk loads.
 function RouteFallback() {
@@ -167,15 +164,11 @@ function App() {
 
             <Route path="/admin-login" element={<AdminLoginPage />} />
 
-            {/* Hidden Unprotected Media Tool */}
-            <Route path="/media-upload" element={<UnprotectedMediaUploadPage />} />
-
             {/* Protected Admin Routes */}
             <Route element={<ProtectedRoute />}>
               <Route element={<AdminLayout />}>
                 <Route path="/admin" element={<AdminPage />} />
                 <Route path="/admin/leads" element={<AdminLeadsPage />} />
-                <Route path="/admin/media-management" element={<AdminMediaManagement />} />
               </Route>
             </Route>
 

@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label.jsx';
 import { Textarea } from '@/components/ui/textarea.jsx';
 import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
-import pb from '@/lib/pocketbaseClient.js';
+import { supabase } from '@/lib/supabaseClient.js';
 
 function WhatsAppInquiryForm({ open, onOpenChange }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -17,15 +17,15 @@ function WhatsAppInquiryForm({ open, onOpenChange }) {
   const onSubmit = async (data) => {
     setIsSubmitting(true);
     try {
-      // 1. Save to PocketBase 'inquiries' collection
-      // 'serviceInterested' is required by the database schema, so we provide a default
-      await pb.collection('inquiries').create({
-        fullName: data.fullName,
+      // 1. Save to Supabase 'inquiries' table
+      const { error: sbError } = await supabase.from('inquiries').insert({
+        full_name: data.fullName,
         email: data.email,
-        phoneNumber: data.phoneNumber,
-        serviceInterested: 'WhatsApp Strategy Call', 
-        message: data.message
-      }, { $autoCancel: false });
+        phone_number: data.phoneNumber,
+        service_interested: 'WhatsApp Strategy Call',
+        message: data.message,
+      });
+      if (sbError) throw sbError;
 
       // 2. Construct WhatsApp Message
       const waText = `Hello BrandKraf! I'd like to book a strategy call.\n\n*Name:* ${data.fullName}\n*Email:* ${data.email}\n*Phone:* ${data.phoneNumber}\n*Message:* ${data.message}`;
