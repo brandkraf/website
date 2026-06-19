@@ -104,7 +104,7 @@ function AdminLeadsPage() {
             `"${(row.phone || '').replace(/"/g, '""')}"`,
             `"${(row.business_type || '').replace(/"/g, '""')}"`,
             `"${(row.message || '').replace(/"/g, '""')}"`,
-            `"${format(new Date(row.created_at), 'yyyy-MM-dd HH:mm:ss')}"`,
+            `"${row.created_at ? format(new Date(row.created_at), 'yyyy-MM-dd HH:mm:ss') : ''}"`,
             row.consent_given ? 'Yes' : 'No',
             `"${(row.page_source || '').replace(/"/g, '""')}"`,
             `"${(row.ip_address || '').replace(/"/g, '""')}"`
@@ -237,7 +237,7 @@ function AdminLeadsPage() {
                     <TableCell>
                       <div className="flex items-center gap-2 text-sm text-gray-500">
                         <Clock className="h-4 w-4 text-gray-400 shrink-0" />
-                        <span>{format(new Date(lead.created), 'MMM d, yyyy')}</span>
+                        <span>{lead.created_at ? format(new Date(lead.created_at), 'MMM d, yyyy') : '—'}</span>
                       </div>
                     </TableCell>
                     <TableCell className="text-right">
