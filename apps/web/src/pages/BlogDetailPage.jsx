@@ -55,7 +55,7 @@ export default function BlogDetailPage() {
       <Header />
 
       <main className="flex-grow pt-32 pb-24">
-        <div className="container-custom max-w-4xl">
+        <div className="container-custom max-w-3xl">
           
           {/* Breadcrumbs */}
           <nav className="flex items-center text-sm text-muted-foreground mb-8">
@@ -141,10 +141,21 @@ export default function BlogDetailPage() {
               )}
 
               {/* Content */}
-              <div 
-                className="prose prose-lg dark:prose-invert prose-headings:font-bold prose-headings:tracking-tight prose-a:text-primary hover:prose-a:text-primary/80 max-w-none prose-img:rounded-xl prose-img:shadow-md"
+              <div
+                className="prose prose-lg max-w-none prose-headings:scroll-mt-28 prose-img:rounded-xl prose-img:shadow-md first-letter:float-left first-letter:mr-3 first-letter:text-6xl first-letter:font-extrabold first-letter:leading-[0.85] first-letter:text-brandkraf-teal"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
+
+              {/* End-of-article CTA */}
+              <div className="mt-14 rounded-2xl bg-gradient-to-br from-brandkraf-teal to-brandkraf-purple p-[1.5px]">
+                <div className="rounded-2xl bg-white px-7 py-8 text-center sm:px-10">
+                  <h3 className="text-2xl font-extrabold tracking-tight text-foreground">Ready to grow your brand?</h3>
+                  <p className="mx-auto mt-2 max-w-md text-muted-foreground">BrandKraf helps Malaysian businesses scale with content, ads, and AI-driven marketing.</p>
+                  <Button asChild className="mt-5 h-12 rounded-xl bg-gradient-to-r from-brandkraf-teal to-brandkraf-purple px-7 font-semibold text-white shadow-lg shadow-brandkraf-teal/25 hover:-translate-y-0.5 transition-transform">
+                    <Link to="/contact">Book a Free Strategy Call</Link>
+                  </Button>
+                </div>
+              </div>
 
               {/* Footer */}
               <footer className="mt-16 pt-8 border-t border-border flex justify-between items-center">
