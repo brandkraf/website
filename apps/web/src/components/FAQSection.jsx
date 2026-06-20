@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import {
   Accordion,
@@ -8,8 +9,27 @@ import {
 } from '@/components/ui/accordion.jsx';
 
 function FAQSection({ faqs }) {
+  // FAQPage structured data → eligible for expandable FAQ rich results in Google.
+  const faqSchema =
+    faqs && faqs.length
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: faqs.map((faq) => ({
+            '@type': 'Question',
+            name: faq.question,
+            acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+          })),
+        }
+      : null;
+
   return (
     <section className="section-padding relative overflow-hidden bg-background border-t border-border">
+      {faqSchema && (
+        <Helmet>
+          <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+        </Helmet>
+      )}
       <div className="absolute inset-0 bg-grid-soft opacity-30 pointer-events-none" />
       <div className="container-custom relative max-w-3xl">
         <motion.div

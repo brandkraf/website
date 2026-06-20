@@ -44,12 +44,57 @@ export default function BlogDetailPage() {
   }, [fetchPost]);
 
   const imageUrl = post?.featured_image || null;
+  const postUrl = post ? `https://www.brandkraf.com/blog/${post.slug}` : null;
+
+  // BlogPosting + BreadcrumbList structured data (rich results + AI citation).
+  const articleSchema = post && {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'BlogPosting',
+        headline: post.title,
+        description: post.excerpt || undefined,
+        image: imageUrl || undefined,
+        datePublished: post.published_date,
+        dateModified: post.updated_at || post.published_date,
+        author: { '@type': 'Organization', name: post.author || 'BrandKraf', url: 'https://www.brandkraf.com' },
+        publisher: {
+          '@type': 'Organization',
+          name: 'BrandKraf',
+          logo: {
+            '@type': 'ImageObject',
+            url: 'https://horizons-cdn.hostinger.com/6602f595-c4d7-40bf-a729-a377f9b27c39/45f4e79912ee94c15363cebd3219075f.png',
+          },
+        },
+        mainEntityOfPage: { '@type': 'WebPage', '@id': postUrl },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.brandkraf.com' },
+          { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://www.brandkraf.com/blog' },
+          { '@type': 'ListItem', position: 3, name: post.title, item: postUrl },
+        ],
+      },
+    ],
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Helmet>
         <title>{post ? `${post.title} | BrandKraf Blog` : 'Blog Article | BrandKraf'}</title>
         {post?.excerpt && <meta name="description" content={post.excerpt} />}
+        {postUrl && <link rel="canonical" href={postUrl} />}
+        {post && <meta property="og:type" content="article" />}
+        {post && <meta property="og:title" content={post.title} />}
+        {post?.excerpt && <meta property="og:description" content={post.excerpt} />}
+        {postUrl && <meta property="og:url" content={postUrl} />}
+        {imageUrl && <meta property="og:image" content={imageUrl} />}
+        {post && <meta name="twitter:card" content="summary_large_image" />}
+        {post && <meta name="twitter:title" content={post.title} />}
+        {imageUrl && <meta name="twitter:image" content={imageUrl} />}
+        {post && <meta property="article:published_time" content={post.published_date} />}
+        {post && <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>}
       </Helmet>
 
       <Header />
