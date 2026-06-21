@@ -141,7 +141,7 @@ export default function EnergyUGCPage() {
               </div>
               <div className="relative">
                 <div className="aspect-square rounded-3xl overflow-hidden border border-border shadow-2xl">
-                  <img 
+                  <img loading="lazy" decoding="async" 
                     src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=2070&auto=format&fit=crop" 
                     alt="Green Energy Wind Turbines" 
                     className="w-full h-full object-cover"

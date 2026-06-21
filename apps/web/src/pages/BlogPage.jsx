@@ -65,6 +65,20 @@ function BlogPage() {
     return `${minutes} min read`;
   };
 
+  // Blog index structured data (ItemList of posts) for richer search treatment.
+  const listSchema = posts.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    name: 'BrandKraf Marketing Blog',
+    url: 'https://www.brandkraf.com/blog',
+    description: 'Expert insights on TikTok marketing, lead generation, content strategy, and ads optimization for Malaysian businesses.',
+    blogPost: posts.slice(0, 50).map((p) => ({
+      '@type': 'BlogPosting',
+      headline: p.title,
+      url: `https://www.brandkraf.com/blog/${p.slug}`,
+    })),
+  } : null;
+
   return (
     <>
       <Helmet>
@@ -73,6 +87,7 @@ function BlogPage() {
           name="description"
           content="Expert insights on TikTok marketing, lead generation, content strategy, and ads optimization. Learn from real campaigns and proven strategies."
         />
+        {listSchema && <script type="application/ld+json">{JSON.stringify(listSchema)}</script>}
       </Helmet>
 
       <Header />

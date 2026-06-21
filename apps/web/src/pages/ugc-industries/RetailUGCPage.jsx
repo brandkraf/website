@@ -141,7 +141,7 @@ export default function RetailUGCPage() {
               </div>
               <div className="relative">
                 <div className="aspect-square rounded-3xl overflow-hidden border border-border shadow-2xl">
-                  <img 
+                  <img loading="lazy" decoding="async" 
                     src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2070&auto=format&fit=crop" 
                     alt="Retail E-commerce" 
                     className="w-full h-full object-cover"

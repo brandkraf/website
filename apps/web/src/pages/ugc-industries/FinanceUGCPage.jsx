@@ -158,7 +158,7 @@ export default function FinanceUGCPage() {
               </div>
               <div className="relative">
                 <div className="aspect-square rounded-3xl overflow-hidden border border-border shadow-2xl">
-                  <img 
+                  <img loading="lazy" decoding="async" 
                     src="https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2070&auto=format&fit=crop" 
                     alt="Mobile Banking App" 
                     className="w-full h-full object-cover"

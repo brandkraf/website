@@ -141,7 +141,7 @@ export default function BeautyUGCPage() {
               </div>
               <div className="relative">
                 <div className="aspect-square rounded-3xl overflow-hidden border border-border shadow-2xl">
-                  <img 
+                  <img loading="lazy" decoding="async" 
                     src="https://images.unsplash.com/photo-1596462502278-27bf85033e5a?q=80&w=2071&auto=format&fit=crop" 
                     alt="Content Creation in Beauty" 
                     className="w-full h-full object-cover"

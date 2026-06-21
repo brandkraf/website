@@ -141,7 +141,7 @@ export default function MediaUGCPage() {
               </div>
               <div className="relative">
                 <div className="aspect-square rounded-3xl overflow-hidden border border-border shadow-2xl">
-                  <img 
+                  <img loading="lazy" decoding="async" 
                     src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1974&auto=format&fit=crop" 
                     alt="Media & Entertainment Audience" 
                     className="w-full h-full object-cover"

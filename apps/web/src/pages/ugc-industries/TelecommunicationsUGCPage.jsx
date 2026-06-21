@@ -152,7 +152,7 @@ export default function TelecommunicationsUGCPage() {
               </div>
               <div className="relative">
                 <div className="aspect-square rounded-3xl overflow-hidden border border-border shadow-2xl">
-                  <img 
+                  <img loading="lazy" decoding="async" 
                     src="https://images.unsplash.com/photo-1516383740770-fbcc5ccbece0?q=80&w=1974&auto=format&fit=crop" 
                     alt="Telecommunications Network" 
                     className="w-full h-full object-cover"

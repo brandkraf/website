@@ -98,7 +98,7 @@ export default function KrafinaHero() {
           />
         ) : (
           // Reduced-motion: static van still.
-          <img
+          <img loading="lazy" decoding="async"
             src={HERO_STILL}
             alt="BrandKraf media production van and team"
             className="w-full object-contain drop-shadow-2xl"

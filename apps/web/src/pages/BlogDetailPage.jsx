@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { format } from 'date-fns';
 import { motion } from 'framer-motion';
-import { ChevronRight, ArrowLeft, Calendar, User, AlertCircle, RefreshCw } from 'lucide-react';
+import { ChevronRight, ArrowLeft, ArrowRight, Calendar, User, AlertCircle, RefreshCw, List } from 'lucide-react';
 import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
 import { supabase } from '@/lib/supabaseClient.js';
@@ -15,6 +15,7 @@ export default function BlogDetailPage() {
   const { slug } = useParams();
   const navigate = useNavigate();
   const [post, setPost] = useState(null);
+  const [related, setRelated] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -30,6 +31,32 @@ export default function BlogDetailPage() {
         .single();
       if (sbError) throw sbError;
       setPost(data);
+
+      // Related posts: same category first, then fill with most-recent (internal linking + dwell time).
+      let rel = [];
+      if (data.category) {
+        const { data: sameCat } = await supabase
+          .from('blog_posts')
+          .select('slug,title,featured_image,category')
+          .eq('published', true)
+          .eq('category', data.category)
+          .neq('slug', slug)
+          .order('published_date', { ascending: false })
+          .limit(3);
+        rel = sameCat || [];
+      }
+      if (rel.length < 3) {
+        const exclude = [slug, ...rel.map((r) => r.slug)];
+        const { data: recent } = await supabase
+          .from('blog_posts')
+          .select('slug,title,featured_image,category')
+          .eq('published', true)
+          .not('slug', 'in', `(${exclude.join(',')})`)
+          .order('published_date', { ascending: false })
+          .limit(3 - rel.length);
+        rel = [...rel, ...(recent || [])];
+      }
+      setRelated(rel);
     } catch (err) {
       console.error('Error fetching blog post:', err);
       // If 404 from PocketBase, the generic message is fine
@@ -89,6 +116,22 @@ export default function BlogDetailPage() {
       },
     ],
   };
+
+  // Build a table of contents from the article's <h2> headings, injecting ids for anchor links.
+  const { contentHtml, toc } = useMemo(() => {
+    if (!post?.content) return { contentHtml: '', toc: [] };
+    const items = [];
+    const used = {};
+    const html = post.content.replace(/<h2(\s[^>]*)?>([\s\S]*?)<\/h2>/gi, (m, attrs, inner) => {
+      const text = inner.replace(/<[^>]+>/g, '').trim();
+      let id = text.toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').slice(0, 60) || 'section';
+      used[id] = (used[id] || 0) + 1;
+      if (used[id] > 1) id = `${id}-${used[id]}`;
+      items.push({ id, text });
+      return `<h2 id="${id}"${attrs || ''}>${inner}</h2>`;
+    });
+    return { contentHtml: html, toc: items };
+  }, [post]);
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -197,10 +240,28 @@ export default function BlogDetailPage() {
                 </figure>
               )}
 
+              {/* Table of contents */}
+              {toc.length >= 3 && (
+                <nav aria-label="Table of contents" className="mb-10 rounded-2xl border border-border bg-muted/30 p-6">
+                  <p className="mb-3 flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-muted-foreground">
+                    <List className="h-4 w-4" /> In this article
+                  </p>
+                  <ul className="space-y-2">
+                    {toc.map((h) => (
+                      <li key={h.id}>
+                        <a href={`#${h.id}`} className="text-brandkraf-teal underline-offset-2 hover:underline">
+                          {h.text}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+              )}
+
               {/* Content */}
               <div
                 className="prose prose-lg max-w-none prose-headings:scroll-mt-28 prose-img:rounded-xl prose-img:shadow-md first-letter:float-left first-letter:mr-3 first-letter:text-6xl first-letter:font-extrabold first-letter:leading-[0.85] first-letter:text-brandkraf-teal"
-                dangerouslySetInnerHTML={{ __html: post.content }}
+                dangerouslySetInnerHTML={{ __html: contentHtml }}
               />
 
               {/* End-of-article CTA */}
@@ -227,6 +288,45 @@ export default function BlogDetailPage() {
                   </Link>
                 </Button>
               </footer>
+
+              {/* Related articles — internal linking + dwell time */}
+              {related.length > 0 && (
+                <section className="mt-16 border-t border-border pt-10">
+                  <h2 className="mb-6 text-2xl font-extrabold tracking-tight">Related articles</h2>
+                  <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    {related.map((r) => (
+                      <Link
+                        key={r.slug}
+                        to={`/blog/${r.slug}`}
+                        className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
+                      >
+                        {r.featured_image && (
+                          <img
+                            src={r.featured_image}
+                            alt={r.title}
+                            loading="lazy"
+                            decoding="async"
+                            className="aspect-video w-full object-cover"
+                          />
+                        )}
+                        <div className="flex flex-1 flex-col p-4">
+                          {r.category && (
+                            <span className="mb-2 text-xs font-semibold uppercase tracking-wide text-brandkraf-teal">
+                              {r.category}
+                            </span>
+                          )}
+                          <h3 className="font-bold leading-tight text-foreground line-clamp-2 group-hover:text-brandkraf-teal">
+                            {r.title}
+                          </h3>
+                          <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-brandkraf-teal">
+                            Read more <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                          </span>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </section>
+              )}
             </motion.article>
           )}
         </div>

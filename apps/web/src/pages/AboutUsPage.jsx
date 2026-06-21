@@ -323,7 +323,7 @@ export default function AboutUsPage() {
                   <DialogTrigger asChild>
                     <div className="relative group cursor-pointer rounded-2xl overflow-hidden border border-border bg-muted p-4 md:p-8 mx-auto max-w-2xl transition-all hover:border-primary/40 hover:shadow-xl">
                       <div className="aspect-[4/3] md:aspect-video rounded-xl overflow-hidden bg-white shadow-sm border border-gray-100 relative">
-                        <img 
+                        <img loading="lazy" decoding="async" 
                           src="https://horizons-cdn.hostinger.com/6602f595-c4d7-40bf-a729-a377f9b27c39/ssm-2026_page-0001-iks0s.jpg" 
                           alt="BrandKraf SSM Certificate" 
                           className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity" 
@@ -342,7 +342,7 @@ export default function AboutUsPage() {
                   <DialogContent className="max-w-4xl p-1 bg-white rounded-xl border-none shadow-2xl">
                     <DialogTitle className="sr-only">SSM Certificate</DialogTitle>
                     <DialogDescription className="sr-only">Official business registration certificate for BrandKraf.</DialogDescription>
-                    <img 
+                    <img loading="lazy" decoding="async" 
                       src="https://horizons-cdn.hostinger.com/6602f595-c4d7-40bf-a729-a377f9b27c39/ssm-2026_page-0001-iks0s.jpg" 
                       alt="BrandKraf SSM Certificate High Resolution" 
                       className="w-full h-auto max-h-[85vh] object-contain rounded-lg" 

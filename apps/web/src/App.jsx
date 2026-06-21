@@ -65,6 +65,7 @@ const ChatbotDevelopmentPricingPage = lazy(() => import('./pages/ChatbotDevelopm
 
 const ContactPage = lazy(() => import('./pages/ContactPage.jsx'));
 const MarketingCostCalculatorPage = lazy(() => import('./pages/MarketingCostCalculatorPage.jsx'));
+const RoasCalculatorPage = lazy(() => import('./pages/RoasCalculatorPage.jsx'));
 const BlogPage = lazy(() => import('./pages/BlogPage.jsx'));
 const BlogDetailPage = lazy(() => import('./pages/BlogDetailPage.jsx'));
 const TermsAndConditionsPage = lazy(() => import('./pages/TermsAndConditionsPage.jsx'));
@@ -155,6 +156,7 @@ function App() {
 
             {/* Free tools (linkable assets) */}
             <Route path="/marketing-cost-calculator" element={<MarketingCostCalculatorPage />} />
+            <Route path="/roas-calculator" element={<RoasCalculatorPage />} />
 
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/:slug" element={<BlogDetailPage />} />

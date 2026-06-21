@@ -141,7 +141,7 @@ export default function ConstructionUGCPage() {
               </div>
               <div className="relative">
                 <div className="aspect-square rounded-3xl overflow-hidden border border-border shadow-2xl">
-                  <img 
+                  <img loading="lazy" decoding="async" 
                     src="https://images.unsplash.com/photo-1541888086925-92051bc69c82?q=80&w=2070&auto=format&fit=crop" 
                     alt="On-site Construction Documentation" 
                     className="w-full h-full object-cover"

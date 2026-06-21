@@ -141,7 +141,7 @@ export default function ManufacturingUGCPage() {
               </div>
               <div className="relative">
                 <div className="aspect-square rounded-3xl overflow-hidden border border-border shadow-2xl">
-                  <img 
+                  <img loading="lazy" decoding="async" 
                     src="https://images.unsplash.com/photo-1565439390118-bbf11d0e8bf9?q=80&w=2070&auto=format&fit=crop" 
                     alt="Manufacturing Process" 
                     className="w-full h-full object-cover"

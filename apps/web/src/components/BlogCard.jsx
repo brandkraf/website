@@ -19,6 +19,8 @@ function BlogCard({ slug, image, title, excerpt, date, readTime, category, delay
           <img
             src={image || 'https://images.unsplash.com/photo-1681184025442-1517cb9319c1'}
             alt={title}
+            loading="lazy"
+            decoding="async"
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
           {category && (

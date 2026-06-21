@@ -159,7 +159,7 @@ export default function AgricultureUGCPage() {
               </div>
               <div className="relative">
                 <div className="aspect-square rounded-3xl overflow-hidden border border-border shadow-2xl">
-                  <img 
+                  <img loading="lazy" decoding="async" 
                     src="https://images.unsplash.com/photo-1592982537447-6f2a6a0c6c13?q=80&w=2070&auto=format&fit=crop" 
                     alt="Content Creation in Agriculture" 
                     className="w-full h-full object-cover"

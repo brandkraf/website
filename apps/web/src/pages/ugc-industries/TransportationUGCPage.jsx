@@ -152,7 +152,7 @@ export default function TransportationUGCPage() {
               </div>
               <div className="relative">
                 <div className="aspect-square rounded-3xl overflow-hidden border border-border shadow-2xl">
-                  <img 
+                  <img loading="lazy" decoding="async" 
                     src="https://images.unsplash.com/photo-1586528116311-ad8ed745363c?q=80&w=2070&auto=format&fit=crop" 
                     alt="Transportation Logistics" 
                     className="w-full h-full object-cover"

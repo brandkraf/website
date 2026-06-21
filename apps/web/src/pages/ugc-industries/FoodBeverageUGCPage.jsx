@@ -141,7 +141,7 @@ export default function FoodBeverageUGCPage() {
               </div>
               <div className="relative">
                 <div className="aspect-square rounded-3xl overflow-hidden border border-border shadow-2xl">
-                  <img 
+                  <img loading="lazy" decoding="async" 
                     src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=2070&auto=format&fit=crop" 
                     alt="Delicious Food Spread" 
                     className="w-full h-full object-cover"
