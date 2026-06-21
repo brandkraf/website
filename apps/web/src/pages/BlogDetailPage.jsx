@@ -46,6 +46,17 @@ export default function BlogDetailPage() {
   const imageUrl = post?.featured_image || null;
   const postUrl = post ? `https://www.brandkraf.com/blog/${post.slug}` : null;
 
+  // Google Rich Results wants a full ISO 8601 datetime WITH a timezone offset, not a
+  // bare date. published_date is a Postgres DATE ("2026-06-16"); updated_at is timestamptz.
+  const toIsoDateTime = (value) => {
+    if (!value) return undefined;
+    if (/\d{2}:\d{2}.*(Z|[+-]\d{2}:?\d{2})$/.test(value)) return value; // already datetime + offset
+    if (/^\d{4}-\d{2}-\d{2}$/.test(value)) return `${value}T08:00:00+08:00`; // date-only → Malaysia time
+    return value;
+  };
+  const publishedIso = post ? toIsoDateTime(post.published_date) : undefined;
+  const modifiedIso = post ? toIsoDateTime(post.updated_at || post.published_date) : undefined;
+
   // BlogPosting + BreadcrumbList structured data (rich results + AI citation).
   const articleSchema = post && {
     '@context': 'https://schema.org',
@@ -55,8 +66,8 @@ export default function BlogDetailPage() {
         headline: post.title,
         description: post.excerpt || undefined,
         image: imageUrl || undefined,
-        datePublished: post.published_date,
-        dateModified: post.updated_at || post.published_date,
+        datePublished: publishedIso,
+        dateModified: modifiedIso,
         author: { '@type': 'Organization', name: post.author || 'BrandKraf', url: 'https://www.brandkraf.com' },
         publisher: {
           '@type': 'Organization',
@@ -93,7 +104,8 @@ export default function BlogDetailPage() {
         {post && <meta name="twitter:card" content="summary_large_image" />}
         {post && <meta name="twitter:title" content={post.title} />}
         {imageUrl && <meta name="twitter:image" content={imageUrl} />}
-        {post && <meta property="article:published_time" content={post.published_date} />}
+        {post && <meta property="article:published_time" content={publishedIso} />}
+        {post && <meta property="article:modified_time" content={modifiedIso} />}
         {post && <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>}
       </Helmet>
 

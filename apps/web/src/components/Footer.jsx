@@ -9,6 +9,7 @@ function Footer() {
     { name: 'Home', path: '/' },
     { name: 'Portfolio', path: '/portfolio' },
     { name: 'Pricing', path: '/pricing' },
+    { name: 'Cost Calculator', path: '/marketing-cost-calculator' },
     { name: 'Blog', path: '/blog' },
     { name: 'Contact', path: '/contact' }
   ];
