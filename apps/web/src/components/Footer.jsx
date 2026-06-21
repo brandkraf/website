@@ -12,6 +12,7 @@ function Footer() {
     { name: 'Pricing', path: '/pricing' },
     { name: 'Cost Calculator', path: '/marketing-cost-calculator' },
     { name: 'ROAS Calculator', path: '/roas-calculator' },
+    { name: 'Guides', path: '/guides' },
     { name: 'Blog', path: '/blog' },
     { name: 'Contact', path: '/contact' }
   ];

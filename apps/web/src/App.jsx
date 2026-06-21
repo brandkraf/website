@@ -67,6 +67,8 @@ const ContactPage = lazy(() => import('./pages/ContactPage.jsx'));
 const MarketingCostCalculatorPage = lazy(() => import('./pages/MarketingCostCalculatorPage.jsx'));
 const RoasCalculatorPage = lazy(() => import('./pages/RoasCalculatorPage.jsx'));
 const LocationPage = lazy(() => import('./pages/LocationPage.jsx'));
+const GuidesIndexPage = lazy(() => import('./pages/GuidesIndexPage.jsx'));
+const GuidePage = lazy(() => import('./pages/GuidePage.jsx'));
 const BlogPage = lazy(() => import('./pages/BlogPage.jsx'));
 const BlogDetailPage = lazy(() => import('./pages/BlogDetailPage.jsx'));
 const TermsAndConditionsPage = lazy(() => import('./pages/TermsAndConditionsPage.jsx'));
@@ -161,6 +163,10 @@ function App() {
 
             {/* Location landing pages (local SEO) */}
             <Route path="/digital-marketing-agency/:city" element={<LocationPage />} />
+
+            {/* Topic cluster guides (pillar pages) */}
+            <Route path="/guides" element={<GuidesIndexPage />} />
+            <Route path="/guides/:topic" element={<GuidePage />} />
 
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/:slug" element={<BlogDetailPage />} />

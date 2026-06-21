@@ -8,6 +8,7 @@
 import fs from 'fs';
 import path from 'path';
 import { locationSlugs } from '../src/data/locations.js';
+import { clusterSlugs } from '../src/data/clusters.js';
 
 const SITE = 'https://www.brandkraf.com';
 const SUPABASE_URL = 'https://xweoognqlpvafyxhzvgz.supabase.co';
@@ -38,6 +39,11 @@ async function main() {
   // Location landing pages (dynamic :city route is excluded above; add the real URLs here).
   for (const slug of locationSlugs) {
     urls.push({ loc: `${SITE}/digital-marketing-agency/${slug}`, lastmod: today, priority: '0.8' });
+  }
+
+  // Topic cluster guides (dynamic :topic route is excluded above; add the real URLs here).
+  for (const slug of clusterSlugs) {
+    urls.push({ loc: `${SITE}/guides/${slug}`, lastmod: today, priority: '0.7' });
   }
 
   // Pull live published blog posts from Supabase (anon key + RLS = published only).
