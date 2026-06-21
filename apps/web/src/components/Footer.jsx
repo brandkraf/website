@@ -10,8 +10,7 @@ function Footer() {
     { name: 'Home', path: '/' },
     { name: 'Portfolio', path: '/portfolio' },
     { name: 'Pricing', path: '/pricing' },
-    { name: 'Cost Calculator', path: '/marketing-cost-calculator' },
-    { name: 'ROAS Calculator', path: '/roas-calculator' },
+    { name: 'Free Tools', path: '/tools' },
     { name: 'Guides', path: '/guides' },
     { name: 'Blog', path: '/blog' },
     { name: 'Contact', path: '/contact' }

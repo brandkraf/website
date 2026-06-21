@@ -66,6 +66,9 @@ const ChatbotDevelopmentPricingPage = lazy(() => import('./pages/ChatbotDevelopm
 const ContactPage = lazy(() => import('./pages/ContactPage.jsx'));
 const MarketingCostCalculatorPage = lazy(() => import('./pages/MarketingCostCalculatorPage.jsx'));
 const RoasCalculatorPage = lazy(() => import('./pages/RoasCalculatorPage.jsx'));
+const EngagementRateCalculatorPage = lazy(() => import('./pages/EngagementRateCalculatorPage.jsx'));
+const AdBudgetCalculatorPage = lazy(() => import('./pages/AdBudgetCalculatorPage.jsx'));
+const ToolsIndexPage = lazy(() => import('./pages/ToolsIndexPage.jsx'));
 const LocationPage = lazy(() => import('./pages/LocationPage.jsx'));
 const GuidesIndexPage = lazy(() => import('./pages/GuidesIndexPage.jsx'));
 const GuidePage = lazy(() => import('./pages/GuidePage.jsx'));
@@ -158,8 +161,11 @@ function App() {
             <Route path="/contact" element={<ContactPage />} />
 
             {/* Free tools (linkable assets) */}
+            <Route path="/tools" element={<ToolsIndexPage />} />
             <Route path="/marketing-cost-calculator" element={<MarketingCostCalculatorPage />} />
             <Route path="/roas-calculator" element={<RoasCalculatorPage />} />
+            <Route path="/engagement-rate-calculator" element={<EngagementRateCalculatorPage />} />
+            <Route path="/ad-budget-calculator" element={<AdBudgetCalculatorPage />} />
 
             {/* Location landing pages (local SEO) */}
             <Route path="/digital-marketing-agency/:city" element={<LocationPage />} />

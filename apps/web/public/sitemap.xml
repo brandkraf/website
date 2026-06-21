@@ -283,6 +283,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.brandkraf.com/tools</loc>
+    <lastmod>2026-06-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.brandkraf.com/marketing-cost-calculator</loc>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
@@ -290,6 +296,18 @@
   </url>
   <url>
     <loc>https://www.brandkraf.com/roas-calculator</loc>
+    <lastmod>2026-06-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.brandkraf.com/engagement-rate-calculator</loc>
+    <lastmod>2026-06-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.brandkraf.com/ad-budget-calculator</loc>
     <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
