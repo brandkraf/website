@@ -1,6 +1,12 @@
 <IfModule mod_rewrite.c>
 	RewriteEngine On
 	RewriteBase /
+
+	# Canonical host: 301 redirect non-www -> www (matches canonical tags, one true address)
+	RewriteCond %{HTTP_HOST} ^brandkraf\.com$ [NC]
+	RewriteRule ^(.*)$ https://www.brandkraf.com/$1 [R=301,L]
+
+	# SPA fallback: serve index.html for anything that isn't a real file or directory
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{REQUEST_FILENAME} !-d
 	RewriteRule ^ index.html [L]
