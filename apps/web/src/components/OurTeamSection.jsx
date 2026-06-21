@@ -2,77 +2,37 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import TeamMemberCard from './TeamMemberCard.jsx';
 
-const teamMembers = [
+// Grouped by department for a tidy, scannable org structure.
+const teamGroups = [
   {
-    name: "Muhd Shauqi",
-    role: "Project Manager",
-    image: "https://horizons-cdn.hostinger.com/6602f595-c4d7-40bf-a729-a377f9b27c39/208ba1702fe118b67428a2d766788abe.png"
+    department: "Leadership & Management",
+    members: [
+      { name: "Wan Marzuki", role: "Marketing Head", image: "/team/wan-marzuki.webp" },
+      { name: "Norafieza", role: "Operation Manager", image: "/team/norafieza.webp" },
+      { name: "Razali Gany", role: "Public Relations Head", image: "/team/razali-gany.webp" },
+      { name: "Wan Shahid", role: "Team Leader", image: "/team/wan-shahid.webp" },
+      { name: "Muhd Shauqi", role: "Project Manager", image: "/team/muhd-shauqi.webp" },
+      { name: "Muhd Najmi", role: "Project Manager", image: "/team/muhd-najmi.webp" },
+    ],
   },
   {
-    name: "Muhd Haziq",
-    role: "Chief Editor",
-    image: "https://horizons-cdn.hostinger.com/6602f595-c4d7-40bf-a729-a377f9b27c39/0b0f94abcde83e6e607a92dcf2d64bea.png"
+    department: "Creative & Production",
+    members: [
+      { name: "Ahmad Harith", role: "Chief Videographer", image: "/team/ahmad-harith.webp" },
+      { name: "Muhd Haziq", role: "Chief Editor", image: "/team/muhd-haziq.webp" },
+      { name: "Luqman", role: "Videographer", image: "/team/luqman.webp" },
+      { name: "Daniel Dean", role: "Editor", image: "/team/daniel-dean.webp" },
+      { name: "Marsukka", role: "Web Developer", image: "/team/marsukka.webp" },
+    ],
   },
   {
-    name: "Marsukka",
-    role: "Web Developer",
-    image: "https://horizons-cdn.hostinger.com/6602f595-c4d7-40bf-a729-a377f9b27c39/5d04db7057c2171c1306944c3cfb839b.png"
+    department: "Sales",
+    members: [
+      { name: "Nor Farzana", role: "Sales Manager", image: "/team/nor-farzana.webp" },
+      { name: "Muhd Farik", role: "Sales Executive", image: "/team/muhd-farik.webp" },
+      { name: "Puteri Intan", role: "Sales Executive", image: "/team/puteri-intan.webp" },
+    ],
   },
-  {
-    name: "Daniel Dean",
-    role: "Editor",
-    image: "https://horizons-cdn.hostinger.com/6602f595-c4d7-40bf-a729-a377f9b27c39/354a2e25490ba9a78bf5dec6a5534eba.png"
-  },
-  {
-    name: "Muhd Farik",
-    role: "Sales Executive",
-    image: "https://horizons-cdn.hostinger.com/6602f595-c4d7-40bf-a729-a377f9b27c39/a6fce8da6ac0b7a339c2c3db326e0ccd.png"
-  },
-  {
-    name: "Norafieza",
-    role: "Operation Manager",
-    image: "https://horizons-cdn.hostinger.com/6602f595-c4d7-40bf-a729-a377f9b27c39/15752b9a296d96465246b290809251d4.png"
-  },
-  {
-    name: "Puteri Intan",
-    role: "Sales Executive",
-    image: "https://horizons-cdn.hostinger.com/6602f595-c4d7-40bf-a729-a377f9b27c39/4578030f6ef9bf3a94d5086977198cd6.png"
-  },
-  {
-    name: "Ahmad Harith",
-    role: "Chief Videographer",
-    image: "https://horizons-cdn.hostinger.com/6602f595-c4d7-40bf-a729-a377f9b27c39/96a4187eb0cbb4618ef018da281b9cf9.png"
-  },
-  {
-    name: "Luqman",
-    role: "Videographer",
-    image: "https://horizons-cdn.hostinger.com/6602f595-c4d7-40bf-a729-a377f9b27c39/9389cc5ce4189eb1a064d0cc41e1d729.png"
-  },
-  {
-    name: "Nor Farzana",
-    role: "Sales Manager",
-    image: "https://horizons-cdn.hostinger.com/6602f595-c4d7-40bf-a729-a377f9b27c39/bb41539818f5c219ef00b1752ac16069.png"
-  },
-  {
-    name: "Wan Marzuki",
-    role: "Marketing Head",
-    image: "https://horizons-cdn.hostinger.com/6602f595-c4d7-40bf-a729-a377f9b27c39/b6a07c0cb0339d71de00bb5ce650013d.png"
-  },
-  {
-    name: "Muhd Najmi",
-    role: "Project Manager",
-    image: "https://horizons-cdn.hostinger.com/6602f595-c4d7-40bf-a729-a377f9b27c39/4c64fae68234291a5b12547722e71c1b.png"
-  },
-  {
-    name: "Razali Gany",
-    role: "Public Relation Head",
-    image: "https://horizons-cdn.hostinger.com/6602f595-c4d7-40bf-a729-a377f9b27c39/295a313382d0d2849f693f15773e5062.png"
-  },
-  {
-    name: "Wan Shahid",
-    role: "Team Leader",
-    image: "https://horizons-cdn.hostinger.com/6602f595-c4d7-40bf-a729-a377f9b27c39/1a8db7324cfe36cf857b3d01416940b6.png"
-  }
 ];
 
 export default function OurTeamSection() {
@@ -110,9 +70,22 @@ export default function OurTeamSection() {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {teamMembers.map((member, idx) => (
-            <TeamMemberCard key={idx} member={member} index={idx} />
+        <div className="space-y-16">
+          {teamGroups.map((group) => (
+            <div key={group.department}>
+              <div className="mb-8 flex items-center gap-4">
+                <h3 className="whitespace-nowrap text-xl font-bold md:text-2xl">{group.department}</h3>
+                <span className="h-px flex-1 bg-gradient-to-r from-border to-transparent" />
+                <span className="rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">
+                  {group.members.length} {group.members.length === 1 ? 'member' : 'members'}
+                </span>
+              </div>
+              <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                {group.members.map((member, idx) => (
+                  <TeamMemberCard key={member.name} member={member} index={idx} />
+                ))}
+              </div>
+            </div>
           ))}
         </div>
       </div>

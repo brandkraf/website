@@ -21,7 +21,11 @@ export default function TeamMemberCard({ member, index }) {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.4 }}
             src={member.image}
-            alt={member.name}
+            alt={`${member.name} — ${member.role} at BrandKraf`}
+            loading="lazy"
+            decoding="async"
+            width="192"
+            height="192"
             className="h-full w-full object-cover object-top"
           />
         </div>

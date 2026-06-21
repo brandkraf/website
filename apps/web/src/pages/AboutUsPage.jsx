@@ -94,7 +94,15 @@ export default function AboutUsPage() {
                 className="relative"
               >
                 <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl relative z-10">
-                  <img src="https://horizons-cdn.hostinger.com/6602f595-c4d7-40bf-a729-a377f9b27c39/img_9520-DauCc.PNG" alt="BrandKraf Founder" className="w-full h-full object-cover" />
+                  <img
+                    src="/team/founder.webp"
+                    alt="Muhammad Marzuk, Founder & CEO of BrandKraf"
+                    width="800"
+                    height="800"
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 {/* Decorative background element */}
                 <div className="absolute -bottom-6 -left-6 w-full h-full rounded-3xl border-2 border-brandkraf-teal/30 -z-10" />
