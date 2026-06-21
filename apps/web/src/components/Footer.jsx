@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
+import { locations } from '@/data/locations.js';
 
 function Footer() {
   const currentYear = new Date().getFullYear();
@@ -114,6 +115,21 @@ function Footer() {
               <li>Saturday: 10am - 4pm</li>
               <li>Sunday: Closed</li>
             </ul>
+          </div>
+        </div>
+
+        <div className="mb-8 border-t border-white/10 pt-8">
+          <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">Areas we serve</span>
+          <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-400">
+            {locations.map((loc) => (
+              <Link
+                key={loc.slug}
+                to={`/digital-marketing-agency/${loc.slug}`}
+                className="transition-colors duration-200 hover:text-white"
+              >
+                {loc.city}
+              </Link>
+            ))}
           </div>
         </div>
 
