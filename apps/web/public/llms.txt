@@ -1,26 +1,47 @@
-# BrandKraf
+# BrandKraf — Digital Marketing Agency in Malaysia
 
-> BrandKraf is a digital marketing agency based in Cheras, Kuala Lumpur, Malaysia. We help businesses grow with social media management, UGC content creation, paid advertising, branding, website development, AI-driven marketing, TikTok Live, KOC/KOL campaigns, and chatbot development. Trusted by 200+ brands across Malaysia and Southeast Asia.
+> BrandKraf is a Kuala Lumpur-based digital marketing agency that helps Malaysian businesses grow with user-generated content (UGC), TikTok marketing, Meta and Google ads, social media management, KOC/influencer campaigns, and AI-driven automation.
+
+BrandKraf is an SSM-registered, full-service agency based in Cheras, Kuala Lumpur, serving SMEs and brands across Malaysia and Southeast Asia — with strategy, content, advertising, and automation under one roof. Contact: admin@brandkraf.com, +60 3-9134 3603.
 
 ## Services
-- [Social Media Management](https://www.brandkraf.com/portfolio/social-media-management): Strategic content planning and community management across all platforms.
-- [UGC Content Creation](https://www.brandkraf.com/portfolio/ugc-content-creation): Authentic user-generated video content that drives engagement and conversions.
-- [Paid Advertising](https://www.brandkraf.com/portfolio/paid-advertising): Data-driven ad campaigns on Meta, TikTok, and Google.
-- [Website Development](https://www.brandkraf.com/portfolio/website-development): High-converting websites built for performance.
-- [Branding & Creative](https://www.brandkraf.com/portfolio/branding-creative): Complete brand identity and creative design.
-- [KOC/KOL Service](https://www.brandkraf.com/portfolio/koc-kol-service): Influencer collaborations to amplify brand reach.
-- [TikTok Live Service](https://www.brandkraf.com/portfolio/tiktok-live-service): Live streaming sessions to boost real-time sales.
-- [AI-Driven Marketing](https://www.brandkraf.com/portfolio/ai-driven-marketing): AI to optimize strategy, predict trends, and maximize ROI.
-- [Chatbot Development](https://www.brandkraf.com/portfolio/chatbot-development): Conversational agents that qualify leads and automate support.
+- [Social Media Management](https://www.brandkraf.com/portfolio/social-media-management): Full-service social media content, posting, and growth across Instagram, TikTok, Facebook, and more.
+- [Paid Advertising](https://www.brandkraf.com/portfolio/paid-advertising): Profitable Meta, Google, and marketplace (Shopee/Lazada) ad campaigns managed end-to-end.
+- [UGC Content Creation](https://www.brandkraf.com/portfolio/ugc-content-creation): Authentic, ad-ready user-generated content across every industry.
+- [TikTok Live Selling](https://www.brandkraf.com/portfolio/tiktok-live-service): TikTok live commerce and selling for Malaysian brands.
+- [KOC / Influencer Marketing](https://www.brandkraf.com/portfolio/koc-kol-service): KOC and influencer campaigns that drive measurable sales, not vanity reach.
+- [AI-Driven Marketing](https://www.brandkraf.com/portfolio/ai-driven-marketing): AI-powered marketing strategy, content, and automation.
+- [Branding & Creative](https://www.brandkraf.com/portfolio/branding-creative): Brand identity, design, and creative direction.
+- [Website Development](https://www.brandkraf.com/portfolio/website-development): Fast, conversion-focused websites.
+- [Chatbot Development](https://www.brandkraf.com/portfolio/chatbot-development): WhatsApp and web chatbots that qualify leads and answer customers 24/7.
 
-## Key pages
-- [Pricing](https://www.brandkraf.com/pricing): Service packages and pricing.
-- [Portfolio](https://www.brandkraf.com/portfolio): Case studies and past work.
-- [Blog](https://www.brandkraf.com/blog): Marketing insights and guides.
-- [About Us](https://www.brandkraf.com/about-us): Our story and team.
-- [Contact](https://www.brandkraf.com/contact): Book a free strategy call.
+## Free tools
+- [Free Marketing Tools](https://www.brandkraf.com/tools): Hub of free, no-sign-up marketing calculators.
+- [Marketing Cost Calculator](https://www.brandkraf.com/marketing-cost-calculator): Estimate digital marketing costs in Malaysia by service.
+- [ROAS Calculator](https://www.brandkraf.com/roas-calculator): Calculate return on ad spend, ROI, and profit.
+- [Engagement Rate Calculator](https://www.brandkraf.com/engagement-rate-calculator): Measure social engagement rate vs industry benchmarks.
+- [Ad Budget Calculator](https://www.brandkraf.com/ad-budget-calculator): Work backwards from a sales goal to the ad budget you need.
 
-## Contact
-- Email: admin@brandkraf.com
-- Phone: +60 3-9134 3603
-- Address: 28-02-02, Jalan 2/101c, Cheras Business Centre, 56100 Cheras, Kuala Lumpur, Malaysia
+## Guides
+- [Digital Marketing Guides](https://www.brandkraf.com/guides): Hub of in-depth guides organized by topic.
+- [TikTok Marketing in Malaysia](https://www.brandkraf.com/guides/tiktok-marketing): Win the platform Malaysians can’t stop scrolling.
+- [Social Media Marketing](https://www.brandkraf.com/guides/social-media-marketing): Turn followers into customers, not just likes.
+- [UGC & Influencer Marketing](https://www.brandkraf.com/guides/ugc-influencer-marketing): Authentic content that sells harder than ads.
+- [Paid Advertising](https://www.brandkraf.com/guides/paid-advertising): Make every ringgit of ad spend work harder.
+- [SEO & Local Marketing](https://www.brandkraf.com/guides/seo): Be the brand customers find first.
+- [AI Marketing & Automation](https://www.brandkraf.com/guides/ai-marketing): Do more with a smaller team.
+- [Digital Marketing Basics & Growth](https://www.brandkraf.com/guides/digital-marketing-basics): The foundations every Malaysian business needs.
+
+## Locations
+- [Digital Marketing Agency in Kuala Lumpur](https://www.brandkraf.com/digital-marketing-agency/kuala-lumpur): Digital marketing services for businesses in Kuala Lumpur, Federal Territory.
+- [Digital Marketing Agency in Petaling Jaya](https://www.brandkraf.com/digital-marketing-agency/petaling-jaya): Digital marketing services for businesses in Petaling Jaya, Selangor.
+- [Digital Marketing Agency in Shah Alam](https://www.brandkraf.com/digital-marketing-agency/shah-alam): Digital marketing services for businesses in Shah Alam, Selangor.
+- [Digital Marketing Agency in Subang Jaya](https://www.brandkraf.com/digital-marketing-agency/subang-jaya): Digital marketing services for businesses in Subang Jaya, Selangor.
+- [Digital Marketing Agency in Johor Bahru](https://www.brandkraf.com/digital-marketing-agency/johor-bahru): Digital marketing services for businesses in Johor Bahru, Johor.
+- [Digital Marketing Agency in Penang](https://www.brandkraf.com/digital-marketing-agency/penang): Digital marketing services for businesses in Penang, Penang.
+
+## Company
+- [Blog](https://www.brandkraf.com/blog): 30+ in-depth digital marketing guides for Malaysian businesses.
+- [Pricing](https://www.brandkraf.com/pricing): Transparent pricing for every service.
+- [About Us](https://www.brandkraf.com/about-us): Who we are, our team, and our story.
+- [Contact](https://www.brandkraf.com/contact): Book a free strategy call or request a quote.
