@@ -27,8 +27,8 @@ const CLEAN = {
 const HELMET_RE = /<Helmet[^>]*?>([\s\S]*?)<\/Helmet>/i;
 const TITLE_RE = /<title[^>]*?>\s*(.*?)\s*<\/title>/i;
 const DESC_RE = /<meta\s+name=["']description["']\s+content=["'](.*?)["']/i;
-// path + element component from a <Route path="..." element={<Comp .../>} />
-const ROUTE_RE = /<Route\s+path="([^"]+)"\s+element=\{<(\w+)[^>]*\/>\}/g;
+// path + element component from a routes.jsx entry: { path: '/x', element: <Comp /> }
+const ROUTE_RE = /path:\s*'([^']+)',\s*element:\s*<(\w+)\s*\/>/g;
 
 function cleanText(t) {
   if (!t) return t;
@@ -98,14 +98,14 @@ function main() {
   const cwd = process.cwd();
   const distDir = path.join(cwd, '..', '..', 'dist', 'apps', 'web');
   const indexPath = path.join(distDir, 'index.html');
-  const appJsx = path.join(cwd, 'src', 'App.jsx');
+  const routesFile = path.join(cwd, 'src', 'routes.jsx');
   const pagesDir = path.join(cwd, 'src', 'pages');
 
   if (!fs.existsSync(indexPath)) { console.warn('[prerender] dist/index.html not found, skipping'); return; }
-  if (!fs.existsSync(appJsx)) { console.warn('[prerender] App.jsx not found, skipping'); return; }
+  if (!fs.existsSync(routesFile)) { console.warn('[prerender] routes.jsx not found, skipping'); return; }
 
   const template = fs.readFileSync(indexPath, 'utf8');
-  const appSrc = fs.readFileSync(appJsx, 'utf8');
+  const appSrc = fs.readFileSync(routesFile, 'utf8');
   const components = mapComponents(pagesDir, {});
 
   const seen = new Set();

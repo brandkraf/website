@@ -5,6 +5,8 @@ import { Menu, X, ChevronDown, Share2, Video, Target, Globe, Palette, Users, Rad
 import { motion, AnimatePresence } from 'framer-motion';
 import WhatsAppInquiryForm from './WhatsAppInquiryForm.jsx';
 import { useScrollPosition } from '@/hooks/useScrollPosition.js';
+import { useLanguage } from '@/contexts/LanguageContext.jsx';
+import LanguageToggle from './LanguageToggle.jsx';
 
 const services = [
   { icon: Share2,           name: 'Social Media Management', path: '/portfolio/social-media-management',  desc: 'Content strategy & community growth' },
@@ -19,6 +21,7 @@ const services = [
 ];
 
 function ServicesDropdown({ onClose }) {
+  const { t, lp } = useLanguage();
   return (
     <motion.div
       initial={{ opacity: 0, y: 8, scale: 0.97 }}
@@ -34,7 +37,7 @@ function ServicesDropdown({ onClose }) {
             return (
               <Link
                 key={svc.path}
-                to={svc.path}
+                to={lp(svc.path)}
                 onClick={onClose}
                 className="group flex items-start gap-3 rounded-xl p-3 transition-all duration-200 hover:bg-gradient-to-br hover:from-brandkraf-teal/5 hover:to-brandkraf-purple/5"
               >
@@ -50,13 +53,13 @@ function ServicesDropdown({ onClose }) {
           })}
         </div>
         <div className="mt-1 border-t border-gray-100 pt-2 px-2 pb-1 flex items-center justify-between">
-          <span className="text-xs text-muted-foreground">9 services available</span>
+          <span className="text-xs text-muted-foreground">{services.length} {t('nav.servicesAvailable')}</span>
           <Link
-            to="/pricing"
+            to={lp('/pricing')}
             onClick={onClose}
             className="inline-flex items-center gap-1 text-xs font-semibold text-brandkraf-teal hover:text-brandkraf-purple transition-colors duration-200"
           >
-            View all pricing <ArrowRight className="h-3 w-3" />
+            {t('nav.viewAllPricing')} <ArrowRight className="h-3 w-3" />
           </Link>
         </div>
       </div>
@@ -72,6 +75,11 @@ function Header() {
   const location = useLocation();
   const servicesRef = useRef(null);
   const { isScrolled } = useScrollPosition(50, 100);
+  const { t, lp } = useLanguage();
+
+  // Active-state checks work in EN path-space, so strip the /ms prefix first.
+  const basePath =
+    location.pathname === '/ms' ? '/' : location.pathname.startsWith('/ms/') ? location.pathname.slice(3) : location.pathname;
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
@@ -90,15 +98,15 @@ function Header() {
   }, []);
 
   const navLinks = [
-    { name: 'Home',     path: '/' },
-    { name: 'About Us', path: '/about-us' },
-    { name: 'Portfolio',path: '/portfolio' },
-    { name: 'Pricing',  path: '/pricing' },
-    { name: 'Blog',     path: '/blog' },
-    { name: 'Contact',  path: '/contact' },
+    { key: 'nav.home',      path: '/' },
+    { key: 'nav.about',     path: '/about-us' },
+    { key: 'nav.portfolio', path: '/portfolio' },
+    { key: 'nav.pricing',   path: '/pricing' },
+    { key: 'nav.blog',      path: '/blog' },
+    { key: 'nav.contact',   path: '/contact' },
   ];
 
-  const isServiceActive = services.some(s => location.pathname.startsWith(s.path));
+  const isServiceActive = services.some(s => basePath.startsWith(s.path));
 
   return (
     <>
@@ -115,7 +123,7 @@ function Header() {
         <nav className="container-custom">
           <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'h-[5.5rem]' : 'h-24'}`}>
             {/* Logo */}
-            <Link to="/" className="flex items-center flex-shrink-0">
+            <Link to={lp('/')} className="flex items-center flex-shrink-0">
               <img
                 src="https://horizons-cdn.hostinger.com/6602f595-c4d7-40bf-a729-a377f9b27c39/45f4e79912ee94c15363cebd3219075f.png"
                 alt="BrandKraf logo"
@@ -144,7 +152,7 @@ function Header() {
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
-                  <span className="relative z-10">Services</span>
+                  <span className="relative z-10">{t('nav.services')}</span>
                   <ChevronDown className={`relative z-10 h-4 w-4 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`} />
                   {(isServiceActive || isServicesOpen) && (
                     <motion.span
@@ -161,11 +169,11 @@ function Header() {
 
               {/* Regular nav links */}
               {navLinks.map((link) => {
-                const isActive = location.pathname === link.path;
+                const isActive = basePath === link.path;
                 return (
                   <Link
                     key={link.path}
-                    to={link.path}
+                    to={lp(link.path)}
                     className={`group relative px-4 py-2.5 text-[15px] font-semibold rounded-xl transition-all duration-200 ${
                       isActive
                         ? 'text-brandkraf-teal'
@@ -179,7 +187,7 @@ function Header() {
                         transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                       />
                     )}
-                    <span className="relative z-10">{link.name}</span>
+                    <span className="relative z-10">{t(link.key)}</span>
                     {isActive && (
                       <motion.span
                         layoutId="activeNav"
@@ -195,13 +203,14 @@ function Header() {
               })}
             </div>
 
-            {/* CTA button */}
-            <div className="hidden md:block">
+            {/* CTA + language */}
+            <div className="hidden md:flex items-center gap-3">
+              <LanguageToggle />
               <Button
                 onClick={() => setIsFormOpen(true)}
                 className="h-11 px-6 text-[15px] font-semibold bg-gradient-to-r from-brandkraf-teal to-brandkraf-purple text-white bg-[length:200%_100%] bg-left hover:bg-right transition-[background-position,box-shadow,transform] duration-500 rounded-xl shadow-md shadow-brandkraf-teal/20 hover:shadow-lg hover:shadow-brandkraf-purple/25 active:scale-[0.98]"
               >
-                Get Free Strategy Call
+                {t('cta.strategyCall')}
               </Button>
             </div>
 
@@ -236,7 +245,7 @@ function Header() {
                   }`}
                   aria-expanded={isMobileServicesOpen}
                 >
-                  Services
+                  {t('nav.services')}
                   <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isMobileServicesOpen ? 'rotate-180' : ''}`} />
                 </button>
                 <AnimatePresence>
@@ -254,7 +263,7 @@ function Header() {
                           return (
                             <Link
                               key={svc.path}
-                              to={svc.path}
+                              to={lp(svc.path)}
                               className="flex items-center gap-2.5 py-2 px-3 text-sm text-gray-600 hover:text-brandkraf-teal rounded-lg hover:bg-brandkraf-teal/5 transition-colors"
                             >
                               <Icon className="h-4 w-4 flex-shrink-0 text-brandkraf-teal" />
@@ -270,23 +279,26 @@ function Header() {
                 {navLinks.map((link) => (
                   <Link
                     key={link.path}
-                    to={link.path}
+                    to={lp(link.path)}
                     className={`block py-2.5 px-3 text-base font-medium rounded-xl transition-colors ${
-                      location.pathname === link.path
+                      basePath === link.path
                         ? 'text-brandkraf-teal bg-brandkraf-teal/5'
                         : 'text-gray-600 hover:text-brandkraf-teal hover:bg-brandkraf-teal/5'
                     }`}
                   >
-                    {link.name}
+                    {t(link.key)}
                   </Link>
                 ))}
 
+                <div className="flex items-center justify-between pt-3">
+                  <LanguageToggle />
+                </div>
                 <div className="pt-3">
                   <Button
                     onClick={() => { setIsFormOpen(true); setIsMobileMenuOpen(false); }}
                     className="w-full bg-gradient-to-r from-brandkraf-teal to-brandkraf-purple text-white transition-all duration-300 rounded-xl h-12 shadow-md shadow-brandkraf-teal/20 active:scale-[0.99]"
                   >
-                    Get Free Strategy Call
+                    {t('cta.strategyCall')}
                   </Button>
                 </div>
               </div>

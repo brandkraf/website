@@ -2,18 +2,20 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
 import { locations } from '@/data/locations.js';
+import { useLanguage } from '@/contexts/LanguageContext.jsx';
 
 function Footer() {
   const currentYear = new Date().getFullYear();
+  const { t, lp } = useLanguage();
 
   const quickLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Portfolio', path: '/portfolio' },
-    { name: 'Pricing', path: '/pricing' },
-    { name: 'Free Tools', path: '/tools' },
-    { name: 'Guides', path: '/guides' },
-    { name: 'Blog', path: '/blog' },
-    { name: 'Contact', path: '/contact' }
+    { key: 'nav.home', path: '/' },
+    { key: 'nav.portfolio', path: '/portfolio' },
+    { key: 'nav.pricing', path: '/pricing' },
+    { key: 'footer.freeTools', path: '/tools' },
+    { key: 'footer.guides', path: '/guides' },
+    { key: 'nav.blog', path: '/blog' },
+    { key: 'nav.contact', path: '/contact' },
   ];
 
   const socialLinks = [
@@ -32,7 +34,7 @@ function Footer() {
       <div className="container-custom py-16 relative">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           <div>
-            <Link to="/" className="inline-block mb-6 group">
+            <Link to={lp('/')} className="inline-block mb-6 group">
               <div className="bg-white p-4 rounded-xl shadow-md group-hover:shadow-lg transition-shadow duration-200">
                 <img
                   src="https://horizons-cdn.hostinger.com/6602f595-c4d7-40bf-a729-a377f9b27c39/45f4e79912ee94c15363cebd3219075f.png"
@@ -42,7 +44,7 @@ function Footer() {
               </div>
             </Link>
             <p className="text-sm text-slate-400 leading-relaxed mb-6 max-w-xs">
-              We help businesses grow with content, ads, and AI-driven marketing strategies.
+              {t('footer.tagline')}
             </p>
             <div className="flex gap-3">
               {socialLinks.map((social) => {
@@ -65,17 +67,17 @@ function Footer() {
 
           <div>
             <span className="text-xs font-semibold tracking-wider uppercase mb-4 block text-slate-400">
-              Quick Links
+              {t('footer.quickLinks')}
             </span>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.path}>
                   <Link
-                    to={link.path}
+                    to={lp(link.path)}
                     className="group inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors duration-200"
                   >
                     <span className="h-px w-3 bg-brandkraf-teal/0 group-hover:bg-brandkraf-teal transition-all duration-200" />
-                    {link.name}
+                    {t(link.key)}
                   </Link>
                 </li>
               ))}
@@ -84,7 +86,7 @@ function Footer() {
 
           <div>
             <span className="text-xs font-semibold tracking-wider uppercase mb-4 block text-slate-400">
-              Contact Info
+              {t('footer.contactInfo')}
             </span>
             <ul className="space-y-3">
               <li className="flex items-start gap-2.5 text-sm text-slate-400">
@@ -108,23 +110,23 @@ function Footer() {
 
           <div>
             <span className="text-xs font-semibold tracking-wider uppercase mb-4 block text-slate-400">
-              Business Hours
+              {t('footer.businessHours')}
             </span>
             <ul className="space-y-2 text-sm text-slate-400">
-              <li>Monday - Friday: 9am - 6pm</li>
-              <li>Saturday: 10am - 4pm</li>
-              <li>Sunday: Closed</li>
+              <li>{t('footer.monFri')}</li>
+              <li>{t('footer.sat')}</li>
+              <li>{t('footer.sun')}</li>
             </ul>
           </div>
         </div>
 
         <div className="mb-8 border-t border-white/10 pt-8">
-          <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">Areas we serve</span>
+          <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">{t('footer.areasWeServe')}</span>
           <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-400">
             {locations.map((loc) => (
               <Link
                 key={loc.slug}
-                to={`/digital-marketing-agency/${loc.slug}`}
+                to={lp(`/digital-marketing-agency/${loc.slug}`)}
                 className="transition-colors duration-200 hover:text-white"
               >
                 {loc.city}
@@ -136,26 +138,17 @@ function Footer() {
         <div className="pt-8 border-t border-white/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-slate-500">
-              © {currentYear} BrandKraf. All rights reserved.
+              © {currentYear} BrandKraf. {t('footer.rights')}
             </p>
             <div className="flex flex-wrap gap-6">
-              <Link
-                to="/privacy-policy"
-                className="text-sm text-slate-500 hover:text-white transition-colors duration-200"
-              >
-                Privacy Policy
+              <Link to={lp('/privacy-policy')} className="text-sm text-slate-500 hover:text-white transition-colors duration-200">
+                {t('footer.privacy')}
               </Link>
-              <Link
-                to="/terms-and-conditions"
-                className="text-sm text-slate-500 hover:text-white transition-colors duration-200"
-              >
-                Terms and Conditions
+              <Link to={lp('/terms-and-conditions')} className="text-sm text-slate-500 hover:text-white transition-colors duration-200">
+                {t('footer.terms')}
               </Link>
-              <Link
-                to="/refund-policy"
-                className="text-sm text-slate-500 hover:text-white transition-colors duration-200"
-              >
-                Refund Policy
+              <Link to={lp('/refund-policy')} className="text-sm text-slate-500 hover:text-white transition-colors duration-200">
+                {t('footer.refund')}
               </Link>
             </div>
           </div>
