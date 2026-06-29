@@ -207,6 +207,58 @@ export const clusters = [
     serviceLabel: 'Social Media Management',
     serviceHref: '/portfolio/social-media-management',
   },
+  {
+    slug: 'ecommerce-marketing',
+    title: 'E-commerce Marketing',
+    metaTitle: 'E-commerce Marketing in Malaysia: Complete Guide | BrandKraf',
+    metaDescription:
+      'Grow your online store in Malaysia — traffic, conversion, product pages, SEO, reviews, promotions, and choosing between marketplaces and your own website.',
+    tagline: 'Turn your online store into a selling machine.',
+    overview: [
+      'Starting an online store is easy; getting consistent sales is the real work. E-commerce growth comes down to three levers — more traffic, better conversion, and stronger retention — and the brands that win optimise all three.',
+      'This hub covers the full picture: starting and choosing a platform, writing product pages that sell, reducing cart abandonment, e-commerce SEO, reviews, promotions, and whether to sell on marketplaces, your own store, or both.',
+    ],
+    articleSlugs: [
+      'ecommerce-marketing-guide-malaysia',
+      'how-to-start-online-store-malaysia',
+      'ecommerce-platform-comparison-malaysia',
+      'reduce-cart-abandonment',
+      'product-photography-tips',
+      'how-to-write-product-descriptions',
+      'ecommerce-seo-guide',
+      'get-more-customer-reviews',
+      'online-sale-promotion-strategy',
+      'marketplace-vs-own-website',
+    ],
+    serviceLabel: 'Website Development',
+    serviceHref: '/portfolio/website-development',
+  },
+  {
+    slug: 'email-automation',
+    title: 'Email & Marketing Automation',
+    metaTitle: 'Email Marketing & Automation Guide for Malaysia | BrandKraf',
+    metaDescription:
+      'Build an email list, set up automated flows, and run marketing that sells on autopilot — welcome sequences, abandoned cart, CRM, lead nurturing, and deliverability.',
+    tagline: 'Marketing that works while you sleep.',
+    overview: [
+      'Email and automation are the quiet engines of profitable marketing — they reach people directly, run automatically, and deliver some of the highest returns of any channel. Best of all, you build them once and they keep working.',
+      'This hub covers building your list, the essential automated flows, welcome and abandoned-cart sequences, CRM, lead nurturing, deliverability, and connecting everything into one automated customer journey.',
+    ],
+    articleSlugs: [
+      'email-marketing-automation-guide',
+      'how-to-build-an-email-list',
+      'welcome-email-sequence',
+      'abandoned-cart-email-strategy',
+      'marketing-automation-101',
+      'crm-for-small-business',
+      'email-newsletter-strategy',
+      'lead-nurturing-drip-campaigns',
+      'email-deliverability-guide',
+      'customer-journey-automation',
+    ],
+    serviceLabel: 'AI-Driven Marketing',
+    serviceHref: '/portfolio/ai-driven-marketing',
+  },
 ];
 
 export const clusterSlugs = clusters.map((c) => c.slug);
