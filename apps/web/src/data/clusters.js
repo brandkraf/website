@@ -259,6 +259,58 @@ export const clusters = [
     serviceLabel: 'AI-Driven Marketing',
     serviceHref: '/portfolio/ai-driven-marketing',
   },
+  {
+    slug: 'video-marketing',
+    title: 'Video Marketing',
+    metaTitle: 'Video Marketing Guide for Malaysian Businesses | BrandKraf',
+    metaDescription:
+      'Master video marketing — strategy, product and explainer videos, video ads, testimonials, live streaming, editing, video SEO, and scripting. Practical guides.',
+    tagline: 'The format that earns attention and trust.',
+    overview: [
+      'Video is the most engaging, trust-building format online — and it is no longer optional. From short social clips to product videos, ads, and live selling, video is how modern brands get discovered and chosen.',
+      'This hub covers the full craft: building a video strategy, making product and explainer videos, video ads that convert, testimonials, live streaming, editing, scripting, and getting your videos found through search.',
+    ],
+    articleSlugs: [
+      'video-marketing-strategy',
+      'how-to-make-product-videos',
+      'explainer-video-guide',
+      'video-ads-that-convert',
+      'testimonial-video-guide',
+      'live-streaming-for-business',
+      'video-editing-tips-beginners',
+      'video-seo-youtube',
+      'video-scripting-guide',
+      'corporate-brand-video-guide',
+    ],
+    serviceLabel: 'UGC & Video Content',
+    serviceHref: '/portfolio/ugc-content-creation',
+  },
+  {
+    slug: 'marketing-analytics',
+    title: 'Marketing Analytics',
+    metaTitle: 'Marketing Analytics Guide: Measure What Works | BrandKraf',
+    metaDescription:
+      'Measure what actually works — KPIs, marketing ROI, Google Search Console, UTM tracking, A/B testing, attribution, conversion tracking, dashboards, and CAC/LTV.',
+    tagline: 'Stop guessing. Start measuring.',
+    overview: [
+      'The brands that grow fastest are not the ones that spend most — they are the ones that measure best. Marketing analytics turns spend into insight, so you invest where it pays and cut what does not.',
+      'This hub covers the essentials: the KPIs that matter, measuring ROI, Search Console, UTM and conversion tracking, A/B testing, attribution, dashboards, and understanding CAC and LTV — the numbers behind profitable growth.',
+    ],
+    articleSlugs: [
+      'marketing-analytics-guide',
+      'marketing-kpis-to-track',
+      'how-to-measure-marketing-roi',
+      'google-search-console-guide',
+      'utm-tracking-guide',
+      'ab-testing-guide',
+      'marketing-attribution-guide',
+      'conversion-tracking-guide',
+      'marketing-dashboard-guide',
+      'customer-acquisition-cost-guide',
+    ],
+    serviceLabel: 'AI-Driven Marketing',
+    serviceHref: '/portfolio/ai-driven-marketing',
+  },
 ];
 
 export const clusterSlugs = clusters.map((c) => c.slug);
