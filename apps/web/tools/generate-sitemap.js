@@ -28,9 +28,10 @@ function priorityFor(p) {
 const enUrl = (base) => SITE + (base === '/' ? '' : base);
 const msUrl = (base) => SITE + (base === '/' ? '/ms' : `/ms${base}`);
 
-// One <url> block. When bilingual is live, includes hreflang alternates for EN/BM.
-function urlBlock(loc, base, lastmod, priority) {
-  const hreflang = BM_SITEMAP
+// One <url> block. Includes hreflang alternates when bilingual is true (i.e. a BM
+// version of this page exists and is indexable).
+function urlBlock(loc, base, lastmod, priority, bilingual) {
+  const hreflang = bilingual
     ? `    <xhtml:link rel="alternate" hreflang="en" href="${enUrl(base)}"/>\n` +
       `    <xhtml:link rel="alternate" hreflang="ms" href="${msUrl(base)}"/>\n` +
       `    <xhtml:link rel="alternate" hreflang="x-default" href="${enUrl(base)}"/>\n`
@@ -57,16 +58,19 @@ async function main() {
   for (const slug of locationSlugs) bases.push({ path: `/digital-marketing-agency/${slug}`, lastmod: today, priority: '0.8' });
   for (const slug of clusterSlugs) bases.push({ path: `/guides/${slug}`, lastmod: today, priority: '0.7' });
 
-  // Live published blog posts.
+  // Live published blog posts (title_ms tells us which have a BM translation).
+  let blogPosts = [];
   try {
-    const res = await fetch(
-      `${SUPABASE_URL}/rest/v1/blog_posts?select=slug,published_date&published=eq.true`,
-      { headers: { apikey: ANON, Authorization: `Bearer ${ANON}` } }
-    );
+    const headers = { apikey: ANON, Authorization: `Bearer ${ANON}` };
+    let res = await fetch(`${SUPABASE_URL}/rest/v1/blog_posts?select=slug,published_date,title_ms&published=eq.true`, { headers });
+    if (!res.ok) {
+      // title_ms column may not exist yet (migration not run) — retry without it so blog URLs still ship.
+      res = await fetch(`${SUPABASE_URL}/rest/v1/blog_posts?select=slug,published_date&published=eq.true`, { headers });
+    }
     if (res.ok) {
-      const posts = await res.json();
-      for (const post of posts) bases.push({ path: `/blog/${post.slug}`, lastmod: post.published_date || today, priority: '0.7' });
-      console.log(`[sitemap] added ${posts.length} blog posts`);
+      blogPosts = await res.json();
+      const translated = blogPosts.filter((p) => p.title_ms).length;
+      console.log(`[sitemap] added ${blogPosts.length} blog posts (${translated} translated to BM)`);
     } else {
       console.warn(`[sitemap] blog fetch returned ${res.status}; routes only`);
     }
@@ -74,11 +78,19 @@ async function main() {
     console.warn('[sitemap] blog fetch skipped:', e && e.message);
   }
 
-  // Emit EN + BM entries for every base path.
   const blocks = [];
+  // Routes/data pages: EN always; BM only when the global bilingual flag is on.
   for (const b of bases) {
-    blocks.push(urlBlock(enUrl(b.path), b.path, b.lastmod, b.priority));
-    if (BM_SITEMAP) blocks.push(urlBlock(msUrl(b.path), b.path, b.lastmod, b.priority));
+    blocks.push(urlBlock(enUrl(b.path), b.path, b.lastmod, b.priority, BM_SITEMAP));
+    if (BM_SITEMAP) blocks.push(urlBlock(msUrl(b.path), b.path, b.lastmod, b.priority, true));
+  }
+  // Blog posts: EN always; BM per-post once that post is translated (title_ms present).
+  for (const post of blogPosts) {
+    const base = `/blog/${post.slug}`;
+    const lastmod = post.published_date || today;
+    const hasMs = !!post.title_ms;
+    blocks.push(urlBlock(enUrl(base), base, lastmod, '0.7', hasMs));
+    if (hasMs) blocks.push(urlBlock(msUrl(base), base, lastmod, '0.7', true));
   }
 
   const xml =
@@ -88,7 +100,7 @@ async function main() {
     '\n</urlset>\n';
 
   fs.writeFileSync(path.join(cwd, 'public', 'sitemap.xml'), xml);
-  console.log(`[sitemap] wrote ${blocks.length} URLs (${bases.length} pages x EN+BM)`);
+  console.log(`[sitemap] wrote ${blocks.length} URLs`);
 }
 
 main().catch((e) => {

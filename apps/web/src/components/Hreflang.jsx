@@ -11,6 +11,9 @@ const BM_LIVE = false;
 
 const SITE = 'https://www.brandkraf.com';
 const PRIVATE = ['/admin', '/checkout', '/payment', '/media-upload'];
+// Sections whose pages manage their own per-page hreflang/canonical/robots (they know
+// which items are translated), so this global component only sets <html lang> for them.
+const SELF_MANAGED = ['/blog'];
 
 export default function Hreflang() {
   const { pathname } = useLocation();
@@ -18,7 +21,10 @@ export default function Hreflang() {
   const base = pathname === '/ms' ? '/' : isMs ? pathname.slice(3) : pathname;
   const lang = isMs ? 'ms' : 'en';
 
-  if (PRIVATE.some((p) => base === p || base.startsWith(p))) {
+  if (
+    PRIVATE.some((p) => base === p || base.startsWith(p)) ||
+    SELF_MANAGED.some((p) => base === p || base.startsWith(`${p}/`))
+  ) {
     return (
       <Helmet>
         <html lang={lang} />

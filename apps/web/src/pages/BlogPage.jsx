@@ -10,8 +10,10 @@ import BlogFilter from '@/components/BlogFilter.jsx';
 import { supabase } from '@/lib/supabaseClient.js';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/contexts/LanguageContext.jsx';
 
 function BlogPage() {
+  const { lang } = useLanguage();
   const [activeTag, setActiveTag] = useState('All Posts');
   const [posts, setPosts] = useState([]);
   const [categories, setCategories] = useState(['All Posts']);
@@ -58,11 +60,12 @@ function BlogPage() {
     : posts.filter(post => post.category === activeTag);
 
   // Helper to estimate read time
+  const readUnit = lang === 'ms' ? 'minit bacaan' : 'min read';
   const calculateReadTime = (text) => {
-    if (!text) return '3 min read';
+    if (!text) return `3 ${readUnit}`;
     const words = text.trim().split(/\s+/).length;
     const minutes = Math.ceil(words / 200);
-    return `${minutes} min read`;
+    return `${minutes} ${readUnit}`;
   };
 
   // Blog index structured data (ItemList of posts) for richer search treatment.
@@ -87,6 +90,9 @@ function BlogPage() {
           name="description"
           content="Expert insights on TikTok marketing, lead generation, content strategy, and ads optimization. Learn from real campaigns and proven strategies."
         />
+        {lang === 'ms' && <title>Blog Pemasaran - TikTok, Jana Petunjuk & Strategi Kandungan | BrandKraf</title>}
+        {lang === 'ms' && <meta name="description" content="Pandangan pakar tentang pemasaran TikTok, penjanaan petunjuk, strategi kandungan, dan pengoptimuman iklan untuk perniagaan Malaysia." />}
+        {lang === 'ms' && <meta name="robots" content="noindex,follow" />}
         {listSchema && <script type="application/ld+json">{JSON.stringify(listSchema)}</script>}
       </Helmet>
 
@@ -105,10 +111,16 @@ function BlogPage() {
           >
             <span className="chip-brand mb-4">Blog</span>
             <h1 className="mb-4">
-              Marketing insights &amp; <span className="text-gradient">strategies</span>
+              {lang === 'ms' ? (
+                <>Pandangan &amp; <span className="text-gradient">strategi</span> pemasaran</>
+              ) : (
+                <>Marketing insights &amp; <span className="text-gradient">strategies</span></>
+              )}
             </h1>
             <p className="mx-auto max-w-2xl text-xl text-muted-foreground">
-              Learn from real campaigns, proven strategies, and industry insights to grow your brand.
+              {lang === 'ms'
+                ? 'Belajar daripada kempen sebenar, strategi terbukti, dan pandangan industri untuk mengembangkan jenama anda.'
+                : 'Learn from real campaigns, proven strategies, and industry insights to grow your brand.'}
             </p>
           </motion.div>
 
@@ -167,11 +179,11 @@ function BlogPage() {
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <BlogCard 
+                    <BlogCard
                       slug={post.slug}
                       image={imageUrl}
-                      title={post.title}
-                      excerpt={post.excerpt}
+                      title={lang === 'ms' && post.title_ms ? post.title_ms : post.title}
+                      excerpt={lang === 'ms' && post.excerpt_ms ? post.excerpt_ms : post.excerpt}
                       date={formattedDate}
                       readTime={calculateReadTime(post.content)}
                       category={post.category || 'Article'}

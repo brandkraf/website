@@ -10,10 +10,12 @@ import { supabase } from '@/lib/supabaseClient.js';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { useLanguage } from '@/contexts/LanguageContext.jsx';
 
 export default function BlogDetailPage() {
   const { slug } = useParams();
   const navigate = useNavigate();
+  const { lang, lp } = useLanguage();
   const [post, setPost] = useState(null);
   const [related, setRelated] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -37,7 +39,7 @@ export default function BlogDetailPage() {
       if (data.category) {
         const { data: sameCat } = await supabase
           .from('blog_posts')
-          .select('slug,title,featured_image,category')
+          .select('slug,title,title_ms,featured_image,category')
           .eq('published', true)
           .eq('category', data.category)
           .neq('slug', slug)
@@ -49,7 +51,7 @@ export default function BlogDetailPage() {
         const exclude = [slug, ...rel.map((r) => r.slug)];
         const { data: recent } = await supabase
           .from('blog_posts')
-          .select('slug,title,featured_image,category')
+          .select('slug,title,title_ms,featured_image,category')
           .eq('published', true)
           .not('slug', 'in', `(${exclude.join(',')})`)
           .order('published_date', { ascending: false })
@@ -71,7 +73,19 @@ export default function BlogDetailPage() {
   }, [fetchPost]);
 
   const imageUrl = post?.featured_image || null;
-  const postUrl = post ? `https://www.brandkraf.com/blog/${post.slug}` : null;
+
+  // Bilingual content: show BM fields on /ms when a translation exists, else fall back to EN.
+  const hasMs = lang === 'ms' && !!post?.content_ms;
+  const dTitle = post ? (hasMs && post.title_ms ? post.title_ms : post.title) : null;
+  const dExcerpt = post ? (hasMs && post.excerpt_ms ? post.excerpt_ms : post.excerpt) : null;
+  const dContent = post ? (hasMs ? post.content_ms : post.content) : null;
+
+  // SEO URLs. Each language self-canonicalises; hreflang links them when a translation exists.
+  const postUrlEn = post ? `https://www.brandkraf.com/blog/${post.slug}` : null;
+  const postUrlMs = post ? `https://www.brandkraf.com/ms/blog/${post.slug}` : null;
+  const currentUrl = lang === 'ms' ? postUrlMs : postUrlEn;
+  const hasTranslation = !!post?.content_ms; // a BM version exists at all
+  const noindex = lang === 'ms' && !post?.content_ms; // BM page not yet translated → don't index
 
   // Google Rich Results wants a full ISO 8601 datetime WITH a timezone offset, not a
   // bare date. published_date is a Postgres DATE ("2026-06-16"); updated_at is timestamptz.
@@ -90,8 +104,9 @@ export default function BlogDetailPage() {
     '@graph': [
       {
         '@type': 'BlogPosting',
-        headline: post.title,
-        description: post.excerpt || undefined,
+        headline: dTitle,
+        description: dExcerpt || undefined,
+        inLanguage: lang === 'ms' ? 'ms-MY' : 'en-MY',
         image: imageUrl || undefined,
         datePublished: publishedIso,
         dateModified: modifiedIso,
@@ -104,14 +119,14 @@ export default function BlogDetailPage() {
             url: 'https://horizons-cdn.hostinger.com/6602f595-c4d7-40bf-a729-a377f9b27c39/45f4e79912ee94c15363cebd3219075f.png',
           },
         },
-        mainEntityOfPage: { '@type': 'WebPage', '@id': postUrl },
+        mainEntityOfPage: { '@type': 'WebPage', '@id': currentUrl },
       },
       {
         '@type': 'BreadcrumbList',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.brandkraf.com' },
-          { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://www.brandkraf.com/blog' },
-          { '@type': 'ListItem', position: 3, name: post.title, item: postUrl },
+          { '@type': 'ListItem', position: 1, name: 'Home', item: lang === 'ms' ? 'https://www.brandkraf.com/ms' : 'https://www.brandkraf.com' },
+          { '@type': 'ListItem', position: 2, name: 'Blog', item: lang === 'ms' ? 'https://www.brandkraf.com/ms/blog' : 'https://www.brandkraf.com/blog' },
+          { '@type': 'ListItem', position: 3, name: dTitle, item: currentUrl },
         ],
       },
     ],
@@ -119,10 +134,10 @@ export default function BlogDetailPage() {
 
   // Build a table of contents from the article's <h2> headings, injecting ids for anchor links.
   const { contentHtml, toc } = useMemo(() => {
-    if (!post?.content) return { contentHtml: '', toc: [] };
+    if (!dContent) return { contentHtml: '', toc: [] };
     const items = [];
     const used = {};
-    const html = post.content.replace(/<h2(\s[^>]*)?>([\s\S]*?)<\/h2>/gi, (m, attrs, inner) => {
+    const html = dContent.replace(/<h2(\s[^>]*)?>([\s\S]*?)<\/h2>/gi, (m, attrs, inner) => {
       const text = inner.replace(/<[^>]+>/g, '').trim();
       let id = text.toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').slice(0, 60) || 'section';
       used[id] = (used[id] || 0) + 1;
@@ -131,21 +146,26 @@ export default function BlogDetailPage() {
       return `<h2 id="${id}"${attrs || ''}>${inner}</h2>`;
     });
     return { contentHtml: html, toc: items };
-  }, [post]);
+  }, [dContent]);
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Helmet>
-        <title>{post ? `${post.title} | BrandKraf Blog` : 'Blog Article | BrandKraf'}</title>
-        {post?.excerpt && <meta name="description" content={post.excerpt} />}
-        {postUrl && <link rel="canonical" href={postUrl} />}
+        <title>{post ? `${dTitle} | BrandKraf Blog` : 'Blog Article | BrandKraf'}</title>
+        {dExcerpt && <meta name="description" content={dExcerpt} />}
+        {currentUrl && <link rel="canonical" href={currentUrl} />}
+        {noindex && <meta name="robots" content="noindex,follow" />}
+        {post && hasTranslation && <link rel="alternate" hrefLang="en" href={postUrlEn} />}
+        {post && hasTranslation && <link rel="alternate" hrefLang="ms" href={postUrlMs} />}
+        {post && hasTranslation && <link rel="alternate" hrefLang="x-default" href={postUrlEn} />}
         {post && <meta property="og:type" content="article" />}
-        {post && <meta property="og:title" content={post.title} />}
-        {post?.excerpt && <meta property="og:description" content={post.excerpt} />}
-        {postUrl && <meta property="og:url" content={postUrl} />}
+        {post && <meta property="og:locale" content={lang === 'ms' ? 'ms_MY' : 'en_MY'} />}
+        {post && <meta property="og:title" content={dTitle} />}
+        {dExcerpt && <meta property="og:description" content={dExcerpt} />}
+        {currentUrl && <meta property="og:url" content={currentUrl} />}
         {imageUrl && <meta property="og:image" content={imageUrl} />}
         {post && <meta name="twitter:card" content="summary_large_image" />}
-        {post && <meta name="twitter:title" content={post.title} />}
+        {post && <meta name="twitter:title" content={dTitle} />}
         {imageUrl && <meta name="twitter:image" content={imageUrl} />}
         {post && <meta property="article:published_time" content={publishedIso} />}
         {post && <meta property="article:modified_time" content={modifiedIso} />}
@@ -159,10 +179,10 @@ export default function BlogDetailPage() {
           
           {/* Breadcrumbs */}
           <nav className="flex items-center text-sm text-muted-foreground mb-8">
-            <Link to="/blog" className="hover:text-primary transition-colors">Blog</Link>
+            <Link to={lp('/blog')} className="hover:text-primary transition-colors">Blog</Link>
             <ChevronRight className="w-4 h-4 mx-2" />
             <span className="text-foreground truncate max-w-[200px] sm:max-w-xs md:max-w-sm">
-              {loading ? <Skeleton className="h-4 w-32 inline-block" /> : post?.title || 'Article Not Found'}
+              {loading ? <Skeleton className="h-4 w-32 inline-block" /> : dTitle || 'Article Not Found'}
             </span>
           </nav>
 
@@ -212,7 +232,7 @@ export default function BlogDetailPage() {
                   </Badge>
                 )}
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-6 leading-[1.15] text-balance">
-                  {post.title}
+                  {dTitle}
                 </h1>
                 
                 <div className="flex flex-wrap items-center justify-center md:justify-start gap-6 text-muted-foreground font-medium">
@@ -232,9 +252,9 @@ export default function BlogDetailPage() {
               {/* Featured Image */}
               {imageUrl && (
                 <figure className="mb-12 overflow-hidden rounded-2xl border border-border/50 shadow-xl bg-muted/20">
-                  <img 
-                    src={imageUrl} 
-                    alt={post.title}
+                  <img
+                    src={imageUrl}
+                    alt={dTitle}
                     className="w-full h-auto object-cover aspect-video"
                   />
                 </figure>
@@ -267,24 +287,30 @@ export default function BlogDetailPage() {
               {/* End-of-article CTA */}
               <div className="mt-14 rounded-2xl bg-gradient-to-br from-brandkraf-teal to-brandkraf-purple p-[1.5px]">
                 <div className="rounded-2xl bg-white px-7 py-8 text-center sm:px-10">
-                  <h3 className="text-2xl font-extrabold tracking-tight text-foreground">Ready to grow your brand?</h3>
-                  <p className="mx-auto mt-2 max-w-md text-muted-foreground">BrandKraf helps Malaysian businesses scale with content, ads, and AI-driven marketing.</p>
+                  <h3 className="text-2xl font-extrabold tracking-tight text-foreground">
+                    {lang === 'ms' ? 'Sedia untuk kembangkan jenama anda?' : 'Ready to grow your brand?'}
+                  </h3>
+                  <p className="mx-auto mt-2 max-w-md text-muted-foreground">
+                    {lang === 'ms'
+                      ? 'BrandKraf membantu perniagaan Malaysia berkembang dengan kandungan, iklan, dan pemasaran dipacu AI.'
+                      : 'BrandKraf helps Malaysian businesses scale with content, ads, and AI-driven marketing.'}
+                  </p>
                   <Button asChild className="mt-5 h-12 rounded-xl bg-gradient-to-r from-brandkraf-teal to-brandkraf-purple px-7 font-semibold text-white shadow-lg shadow-brandkraf-teal/25 hover:-translate-y-0.5 transition-transform">
-                    <Link to="/contact">Book a Free Strategy Call</Link>
+                    <Link to={lp('/contact')}>{lang === 'ms' ? 'Tempah Sesi Strategi Percuma' : 'Book a Free Strategy Call'}</Link>
                   </Button>
                 </div>
               </div>
 
               {/* Footer */}
               <footer className="mt-16 pt-8 border-t border-border flex justify-between items-center">
-                <Button 
-                  variant="ghost" 
-                  asChild 
+                <Button
+                  variant="ghost"
+                  asChild
                   className="gap-2 text-muted-foreground hover:text-foreground"
                 >
-                  <Link to="/blog">
+                  <Link to={lp('/blog')}>
                     <ArrowLeft className="w-4 h-4" />
-                    Back to all articles
+                    {lang === 'ms' ? 'Kembali ke semua artikel' : 'Back to all articles'}
                   </Link>
                 </Button>
               </footer>
@@ -292,18 +318,22 @@ export default function BlogDetailPage() {
               {/* Related articles — internal linking + dwell time */}
               {related.length > 0 && (
                 <section className="mt-16 border-t border-border pt-10">
-                  <h2 className="mb-6 text-2xl font-extrabold tracking-tight">Related articles</h2>
+                  <h2 className="mb-6 text-2xl font-extrabold tracking-tight">
+                    {lang === 'ms' ? 'Artikel berkaitan' : 'Related articles'}
+                  </h2>
                   <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    {related.map((r) => (
+                    {related.map((r) => {
+                      const rTitle = lang === 'ms' && r.title_ms ? r.title_ms : r.title;
+                      return (
                       <Link
                         key={r.slug}
-                        to={`/blog/${r.slug}`}
+                        to={lp(`/blog/${r.slug}`)}
                         className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
                       >
                         {r.featured_image && (
                           <img
                             src={r.featured_image}
-                            alt={r.title}
+                            alt={rTitle}
                             loading="lazy"
                             decoding="async"
                             className="aspect-video w-full object-cover"
@@ -316,14 +346,15 @@ export default function BlogDetailPage() {
                             </span>
                           )}
                           <h3 className="font-bold leading-tight text-foreground line-clamp-2 group-hover:text-brandkraf-teal">
-                            {r.title}
+                            {rTitle}
                           </h3>
                           <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-brandkraf-teal">
-                            Read more <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                            {lang === 'ms' ? 'Baca lagi' : 'Read more'} <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
                           </span>
                         </div>
                       </Link>
-                    ))}
+                      );
+                    })}
                   </div>
                 </section>
               )}

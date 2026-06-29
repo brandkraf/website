@@ -4,8 +4,10 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { motion } from 'framer-motion';
 import { Calendar, Clock } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext.jsx';
 
 function BlogCard({ slug, image, title, excerpt, date, readTime, category, delay = 0 }) {
+  const { lang, lp } = useLanguage();
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -15,7 +17,7 @@ function BlogCard({ slug, image, title, excerpt, date, readTime, category, delay
       className="h-full"
     >
       <Card className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card soft-shadow smooth-transition hover:-translate-y-1.5 hover:border-brandkraf-teal/30 hover:elevated-shadow">
-        <Link to={`/blog/${slug}`} className="relative block aspect-video overflow-hidden">
+        <Link to={lp(`/blog/${slug}`)} className="relative block aspect-video overflow-hidden">
           <img
             src={image || 'https://images.unsplash.com/photo-1681184025442-1517cb9319c1'}
             alt={title}
@@ -44,7 +46,7 @@ function BlogCard({ slug, image, title, excerpt, date, readTime, category, delay
               </div>
             )}
           </div>
-          <Link to={`/blog/${slug}`} className="group-hover:text-primary transition-colors duration-200">
+          <Link to={lp(`/blog/${slug}`)} className="group-hover:text-primary transition-colors duration-200">
             <h3 className="text-xl font-semibold text-foreground mb-2 line-clamp-2">
               {title}
             </h3>
@@ -53,10 +55,10 @@ function BlogCard({ slug, image, title, excerpt, date, readTime, category, delay
             {excerpt}
           </p>
           <Link 
-            to={`/blog/${slug}`} 
+            to={lp(`/blog/${slug}`)} 
             className="mt-6 text-sm font-medium text-primary hover:text-primary/80 smooth-transition self-start inline-flex items-center gap-1"
           >
-            Read more <span className="text-lg leading-none">&rarr;</span>
+            {lang === 'ms' ? 'Baca lagi' : 'Read more'} <span className="text-lg leading-none">&rarr;</span>
           </Link>
         </CardContent>
       </Card>
