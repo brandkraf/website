@@ -155,6 +155,58 @@ export const clusters = [
     serviceLabel: 'See our pricing',
     serviceHref: '/pricing',
   },
+  {
+    slug: 'content-creation',
+    title: 'Content Creation',
+    metaTitle: 'Content Creation Guide for Malaysian Businesses | BrandKraf',
+    metaDescription:
+      'Everything you need to create scroll-stopping content — ideas, hooks, captions, hashtags, batching, filming with your phone, repurposing, and AI tools.',
+    tagline: 'Create content that gets seen, saved, and shared.',
+    overview: [
+      'Great marketing starts with great content — but creating it consistently is where most businesses get stuck. The good news: content creation is a set of repeatable systems, not a mysterious talent.',
+      'This hub covers the whole craft: where to find endless ideas, how to write hooks and captions that convert, how to batch a month of content in a day, how to film with just your phone, and how to use AI to do more with less.',
+    ],
+    articleSlugs: [
+      'social-media-content-ideas',
+      'how-to-write-hooks-that-stop-the-scroll',
+      'how-to-write-social-media-captions',
+      'hashtag-strategy-guide',
+      'how-to-batch-create-content',
+      'content-pillars-guide',
+      'how-to-film-content-with-your-phone',
+      'how-to-repurpose-content',
+      'ai-tools-for-content-creation',
+      'faceless-content-guide',
+    ],
+    serviceLabel: 'UGC Content Creation',
+    serviceHref: '/portfolio/ugc-content-creation',
+  },
+  {
+    slug: 'social-media-growth',
+    title: 'Growing on Social Media',
+    metaTitle: 'How to Grow on Social Media: The Complete Guide | BrandKraf',
+    metaDescription:
+      'Grow your social media organically — followers, engagement, Reels, Stories, posting times, Facebook, metrics, and trends. Practical growth guides for Malaysia.',
+    tagline: 'Turn a small account into a growing, engaged audience.',
+    overview: [
+      'Growing on social media in 2026 is less about luck and more about doing the right things consistently — quality content, the right formats, genuine engagement, and smart timing.',
+      'These guides cover how to grow your following organically, master Reels and Stories, lift engagement, post at the right time and frequency, win on Facebook, track the metrics that matter, and stay ahead of the trends.',
+    ],
+    articleSlugs: [
+      'grow-social-media-following-organically',
+      'instagram-reels-guide',
+      'instagram-stories-strategy',
+      'how-to-increase-social-media-engagement',
+      'best-time-to-post-social-media-malaysia',
+      'how-often-to-post-on-social-media',
+      'facebook-marketing-for-business',
+      'social-media-metrics-that-matter',
+      'handling-negative-comments-social-media',
+      'social-media-trends-2026',
+    ],
+    serviceLabel: 'Social Media Management',
+    serviceHref: '/portfolio/social-media-management',
+  },
 ];
 
 export const clusterSlugs = clusters.map((c) => c.slug);
