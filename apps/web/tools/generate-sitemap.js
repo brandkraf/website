@@ -63,6 +63,11 @@ async function main() {
   ];
   const translated = [
     { path: '/', priority: '1.0' },
+    { path: '/about-us', priority: '0.8' },
+    { path: '/contact', priority: '0.8' },
+    { path: '/portfolio', priority: '0.8' },
+    { path: '/pricing', priority: '0.8' },
+    { path: '/tools', priority: '0.8' },
     { path: '/guides', priority: '0.8' },
     ...SERVICE_PATHS.map((p) => ({ path: p, priority: '0.8' })),
     ...clusterSlugs.map((slug) => ({ path: `/guides/${slug}`, priority: '0.7' })),

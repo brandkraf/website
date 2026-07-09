@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import TeamMemberCard from './TeamMemberCard.jsx';
+import { useLanguage } from '@/contexts/LanguageContext.jsx';
 
 // Grouped by department for a tidy, scannable org structure.
 const teamGroups = [
@@ -35,7 +36,16 @@ const teamGroups = [
   },
 ];
 
+// Department labels shown in BM (roles stay as-is — they are proper job titles).
+const departmentMs = {
+  'Leadership & Management': 'Kepimpinan & Pengurusan',
+  'Creative & Production': 'Kreatif & Pengeluaran',
+  'Sales': 'Jualan',
+};
+
 export default function OurTeamSection() {
+  const { lang } = useLanguage();
+  const T = (en, ms) => (lang === 'ms' ? ms : en);
   return (
     <section className="section-padding bg-background relative overflow-hidden">
       {/* Decorative background element */}
@@ -49,7 +59,7 @@ export default function OurTeamSection() {
             viewport={{ once: true }}
             className="chip-brand mb-4"
           >
-            The people
+            {T('The people', 'Insan kami')}
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -57,7 +67,11 @@ export default function OurTeamSection() {
             viewport={{ once: true }}
             className="mb-4"
           >
-            Our <span className="text-gradient">team</span>
+            {lang === 'ms' ? (
+              <><span className="text-gradient">Pasukan</span> kami</>
+            ) : (
+              <>Our <span className="text-gradient">team</span></>
+            )}
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -66,7 +80,10 @@ export default function OurTeamSection() {
             transition={{ delay: 0.1 }}
             className="text-muted-foreground text-lg"
           >
-            Meet the passionate creatives, strategists, and visionaries driving digital growth for our partners every single day.
+            {T(
+              'Meet the passionate creatives, strategists, and visionaries driving digital growth for our partners every single day.',
+              'Temui kreatif, pakar strategi, dan visionari yang bersemangat memacu pertumbuhan digital untuk rakan kongsi kami setiap hari.',
+            )}
           </motion.p>
         </div>
 
@@ -74,10 +91,10 @@ export default function OurTeamSection() {
           {teamGroups.map((group) => (
             <div key={group.department}>
               <div className="mb-8 flex items-center gap-4">
-                <h3 className="whitespace-nowrap text-xl font-bold md:text-2xl">{group.department}</h3>
+                <h3 className="whitespace-nowrap text-xl font-bold md:text-2xl">{lang === 'ms' ? departmentMs[group.department] || group.department : group.department}</h3>
                 <span className="h-px flex-1 bg-gradient-to-r from-border to-transparent" />
                 <span className="rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">
-                  {group.members.length} {group.members.length === 1 ? 'member' : 'members'}
+                  {group.members.length} {lang === 'ms' ? 'ahli' : group.members.length === 1 ? 'member' : 'members'}
                 </span>
               </div>
               <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">

@@ -9,39 +9,64 @@ import WhatsAppButton from '@/components/WhatsAppButton.jsx';
 import { Button } from '@/components/ui/button.jsx';
 import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogDescription } from '@/components/ui/dialog.jsx';
 import OurTeamSection from '@/components/OurTeamSection.jsx';
+import { useLanguage } from '@/contexts/LanguageContext.jsx';
 
 export default function AboutUsPage() {
+  const { lang, lp } = useLanguage();
+  const T = (en, ms) => (lang === 'ms' ? ms : en);
+
   const values = [{
     icon: Lightbulb,
-    title: "Innovation",
-    description: "We constantly explore new tools, AI technologies, and strategies to stay ahead of the digital curve."
+    title: T('Innovation', 'Inovasi'),
+    description: T(
+      'We constantly explore new tools, AI technologies, and strategies to stay ahead of the digital curve.',
+      'Kami sentiasa meneroka alat baharu, teknologi AI, dan strategi untuk kekal mendahului lengkung digital.',
+    )
   }, {
     icon: Palette,
-    title: "Creativity",
-    description: "Data drives our decisions, but creativity powers our execution. We craft memorable brand experiences."
+    title: T('Creativity', 'Kreativiti'),
+    description: T(
+      'Data drives our decisions, but creativity powers our execution. We craft memorable brand experiences.',
+      'Data memacu keputusan kami, tetapi kreativiti menguasakan pelaksanaan kami. Kami membentuk pengalaman jenama yang mudah diingati.',
+    )
   }, {
     icon: Search,
-    title: "Transparency",
-    description: "Honest reporting, clear communication, and no hidden fees. We believe in building trust through clarity."
+    title: T('Transparency', 'Ketelusan'),
+    description: T(
+      'Honest reporting, clear communication, and no hidden fees. We believe in building trust through clarity.',
+      'Pelaporan jujur, komunikasi jelas, dan tiada yuran tersembunyi. Kami percaya membina kepercayaan melalui kejelasan.',
+    )
   }, {
     icon: Zap,
-    title: "Performance",
-    description: "We are obsessed with ROI. Every campaign is optimized for maximum impact and measurable results."
+    title: T('Performance', 'Prestasi'),
+    description: T(
+      'We are obsessed with ROI. Every campaign is optimized for maximum impact and measurable results.',
+      'Kami taksub dengan ROI. Setiap kempen dioptimumkan untuk impak maksimum dan hasil boleh diukur.',
+    )
   }, {
     icon: ShieldCheck,
-    title: "Integrity",
-    description: "We do what we say we'll do. We treat your brand's reputation as if it were our own."
+    title: T('Integrity', 'Integriti'),
+    description: T(
+      "We do what we say we'll do. We treat your brand's reputation as if it were our own.",
+      'Kami melakukan apa yang kami katakan. Kami melayan reputasi jenama anda seolah-olah milik kami sendiri.',
+    )
   }, {
     icon: Users,
-    title: "Collaboration",
-    description: "We aren't just an agency; we are your extended team, working side-by-side to achieve your goals."
+    title: T('Collaboration', 'Kerjasama'),
+    description: T(
+      "We aren't just an agency; we are your extended team, working side-by-side to achieve your goals.",
+      'Kami bukan sekadar agensi; kami pasukan lanjutan anda, bekerja seiring untuk mencapai matlamat anda.',
+    )
   }];
-  
+
   return (
     <>
       <Helmet>
-        <title>About Us | BrandKraf</title>
-        <meta name="description" content="Learn about BrandKraf - your one-stop digital marketing, content production, and creative growth partner." />
+        <title>{T('About Us | BrandKraf', 'Tentang Kami | BrandKraf')}</title>
+        <meta name="description" content={T(
+          'Learn about BrandKraf - your one-stop digital marketing, content production, and creative growth partner.',
+          'Kenali BrandKraf - rakan sehenti anda untuk pemasaran digital, pengeluaran kandungan, dan pertumbuhan kreatif.',
+        )} />
       </Helmet>
 
       <Header />
@@ -61,7 +86,7 @@ export default function AboutUsPage() {
               transition={{ duration: 0.6 }}
               className="chip-brand mb-6"
             >
-              Who we are
+              {T('Who we are', 'Siapa kami')}
             </motion.span>
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
@@ -69,7 +94,7 @@ export default function AboutUsPage() {
               transition={{ duration: 0.7, ease: "easeOut" }}
               className="mb-6"
             >
-              About <span className="text-gradient">BrandKraf</span>
+              {T('About ', 'Tentang ')}<span className="text-gradient">BrandKraf</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -77,7 +102,10 @@ export default function AboutUsPage() {
               transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
               className="mx-auto max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl"
             >
-              Your ultimate one-stop digital marketing, premium content production, and creative growth partner. We bridge the gap between imagination and measurable success.
+              {T(
+                'Your ultimate one-stop digital marketing, premium content production, and creative growth partner. We bridge the gap between imagination and measurable success.',
+                'Rakan sehenti muktamad anda untuk pemasaran digital, pengeluaran kandungan premium, dan pertumbuhan kreatif. Kami merapatkan jurang antara imaginasi dan kejayaan yang boleh diukur.',
+              )}
             </motion.p>
           </div>
         </section>
@@ -117,14 +145,17 @@ export default function AboutUsPage() {
               >
                 <div className="flex items-center gap-3 mb-6">
                   <Quote className="w-8 h-8 text-brandkraf-teal/40" />
-                  <h2 className="text-3xl md:text-4xl">Founder's Foreword</h2>
+                  <h2 className="text-3xl md:text-4xl">{T("Founder's Foreword", 'Kata Alu-aluan Pengasas')}</h2>
                 </div>
                 <blockquote className="text-lg md:text-xl text-muted-foreground leading-relaxed italic mb-8 border-l-4 border-brandkraf-teal/30 pl-6">
-                  "When we started BrandKraf, the goal wasn't just to be another agency. We wanted to be the growth engine for brands that dare to think bigger. In a digital landscape cluttered with noise, we prioritize data-driven creativity—crafting stories that don't just look beautiful, but actually convert. Your brand's potential is limitless, and our mission is to help you realize it."
+                  {T(
+                    '"When we started BrandKraf, the goal wasn\'t just to be another agency. We wanted to be the growth engine for brands that dare to think bigger. In a digital landscape cluttered with noise, we prioritize data-driven creativity—crafting stories that don\'t just look beautiful, but actually convert. Your brand\'s potential is limitless, and our mission is to help you realize it."',
+                    '"Apabila kami memulakan BrandKraf, matlamatnya bukan sekadar menjadi satu lagi agensi. Kami mahu menjadi enjin pertumbuhan untuk jenama yang berani berfikir lebih besar. Dalam landskap digital yang sesak dengan kebisingan, kami mengutamakan kreativiti dipacu data—membentuk kisah yang bukan sahaja kelihatan cantik, tetapi benar-benar menukar. Potensi jenama anda tiada had, dan misi kami ialah membantu anda merealisasikannya."',
+                  )}
                 </blockquote>
                 <div>
                   <h4 className="font-bold text-foreground">Muhammad Marzuk</h4>
-                  <p className="text-primary font-medium">Founder & CEO, BrandKraf</p>
+                  <p className="text-primary font-medium">{T('Founder & CEO, BrandKraf', 'Pengasas & CEO, BrandKraf')}</p>
                 </div>
               </motion.div>
             </div>
@@ -140,8 +171,8 @@ export default function AboutUsPage() {
               viewport={{ once: true }} 
               className="text-center mb-16"
             >
-              <h2 className="mb-4">The Brand Story</h2>
-              <p className="text-muted-foreground">The journey of building a modern marketing powerhouse.</p>
+              <h2 className="mb-4">{T('The Brand Story', 'Kisah Jenama')}</h2>
+              <p className="text-muted-foreground">{T('The journey of building a modern marketing powerhouse.', 'Perjalanan membina kuasa pemasaran moden.')}</p>
             </motion.div>
 
             <div className="space-y-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-border before:to-transparent">
@@ -156,8 +187,11 @@ export default function AboutUsPage() {
                   <div className="w-2 h-2 rounded-full bg-white" />
                 </div>
                 <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-card p-6 md:p-8 rounded-2xl shadow-sm border border-border">
-                  <h4 className="text-xl font-bold mb-2">The Spark</h4>
-                  <p className="text-muted-foreground">Born out of the frustration with fragmented marketing services, BrandKraf was established to provide a unified, seamless approach where creative vision meets analytical precision.</p>
+                  <h4 className="text-xl font-bold mb-2">{T('The Spark', 'Cetusan')}</h4>
+                  <p className="text-muted-foreground">{T(
+                    'Born out of the frustration with fragmented marketing services, BrandKraf was established to provide a unified, seamless approach where creative vision meets analytical precision.',
+                    'Lahir daripada kekecewaan terhadap perkhidmatan pemasaran yang berpecah-pecah, BrandKraf ditubuhkan untuk menyediakan pendekatan bersatu dan lancar di mana visi kreatif bertemu ketepatan analitikal.',
+                  )}</p>
                 </div>
               </motion.div>
 
@@ -173,8 +207,11 @@ export default function AboutUsPage() {
                   <div className="w-2 h-2 rounded-full bg-white" />
                 </div>
                 <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-card p-6 md:p-8 rounded-2xl shadow-sm border border-border">
-                  <h4 className="text-xl font-bold mb-2">Rapid Scaling</h4>
-                  <p className="text-muted-foreground">By delivering uncompromising quality in UGC, Paid Ads, and Social Media Management, we quickly earned the trust of over 200+ leading brands across Malaysia and Southeast Asia.</p>
+                  <h4 className="text-xl font-bold mb-2">{T('Rapid Scaling', 'Penskalaan Pantas')}</h4>
+                  <p className="text-muted-foreground">{T(
+                    'By delivering uncompromising quality in UGC, Paid Ads, and Social Media Management, we quickly earned the trust of over 200+ leading brands across Malaysia and Southeast Asia.',
+                    'Dengan menyampaikan kualiti tanpa kompromi dalam UGC, Iklan Berbayar, dan Pengurusan Media Sosial, kami dengan pantas memperoleh kepercayaan lebih 200+ jenama terkemuka di seluruh Malaysia dan Asia Tenggara.',
+                  )}</p>
                 </div>
               </motion.div>
 
@@ -190,8 +227,11 @@ export default function AboutUsPage() {
                   <div className="w-2 h-2 rounded-full bg-white" />
                 </div>
                 <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-card p-6 md:p-8 rounded-2xl shadow-sm border border-border">
-                  <h4 className="text-xl font-bold mb-2">The Future</h4>
-                  <p className="text-muted-foreground">Today, we are pioneering AI-driven marketing and chatbot development, constantly evolving to ensure our clients remain at the absolute forefront of their industries.</p>
+                  <h4 className="text-xl font-bold mb-2">{T('The Future', 'Masa Depan')}</h4>
+                  <p className="text-muted-foreground">{T(
+                    'Today, we are pioneering AI-driven marketing and chatbot development, constantly evolving to ensure our clients remain at the absolute forefront of their industries.',
+                    'Hari ini, kami memelopori pemasaran dipacu AI dan pembangunan chatbot, sentiasa berkembang untuk memastikan pelanggan kami kekal di barisan paling hadapan industri mereka.',
+                  )}</p>
                 </div>
               </motion.div>
             </div>
@@ -215,9 +255,12 @@ export default function AboutUsPage() {
                     <div className="mb-8 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brandkraf-teal to-brandkraf-purple text-white shadow-lg shadow-brandkraf-teal/25">
                       <Target className="h-7 w-7" />
                     </div>
-                    <h3 className="mb-4">Our Mission</h3>
+                    <h3 className="mb-4">{T('Our Mission', 'Misi Kami')}</h3>
                     <p className="text-lg leading-relaxed text-muted-foreground">
-                      To empower businesses with scalable, data-driven marketing strategies and scroll-stopping creative content. We aim to act as the catalyst that transforms ambitious visions into sustainable market leadership.
+                      {T(
+                        'To empower businesses with scalable, data-driven marketing strategies and scroll-stopping creative content. We aim to act as the catalyst that transforms ambitious visions into sustainable market leadership.',
+                        'Memperkasakan perniagaan dengan strategi pemasaran dipacu data yang berskala dan kandungan kreatif yang menghentikan susur. Kami berhasrat menjadi pemangkin yang mengubah visi bercita-cita tinggi menjadi kepimpinan pasaran yang mampan.',
+                      )}
                     </p>
                   </div>
                 </div>
@@ -237,9 +280,12 @@ export default function AboutUsPage() {
                     <div className="mb-8 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brandkraf-purple to-brandkraf-teal text-white shadow-lg shadow-brandkraf-purple/25">
                       <Eye className="h-7 w-7" />
                     </div>
-                    <h3 className="mb-4">Our Vision</h3>
+                    <h3 className="mb-4">{T('Our Vision', 'Visi Kami')}</h3>
                     <p className="text-lg leading-relaxed text-muted-foreground">
-                      To become the premier, globally recognized standard for digital marketing excellence. We envision a future where every brand we partner with not only succeeds, but redefines the boundaries of their industry.
+                      {T(
+                        'To become the premier, globally recognized standard for digital marketing excellence. We envision a future where every brand we partner with not only succeeds, but redefines the boundaries of their industry.',
+                        'Menjadi piawaian utama yang diiktiraf global untuk kecemerlangan pemasaran digital. Kami membayangkan masa depan di mana setiap jenama yang bekerjasama dengan kami bukan sahaja berjaya, malah mentakrifkan semula sempadan industri mereka.',
+                      )}
                     </p>
                   </div>
                 </div>
@@ -252,14 +298,18 @@ export default function AboutUsPage() {
         <section className="section-padding bg-muted/20 border-y border-border">
           <div className="container-custom">
             <div className="mx-auto mb-16 flex max-w-3xl flex-col items-center text-center">
-              <span className="chip-brand mb-4">What drives us</span>
+              <span className="chip-brand mb-4">{T('What drives us', 'Apa yang memacu kami')}</span>
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 className="mb-4"
               >
-                Core <span className="text-gradient">values</span>
+                {lang === 'ms' ? (
+                  <><span className="text-gradient">Nilai</span> teras</>
+                ) : (
+                  <>Core <span className="text-gradient">values</span></>
+                )}
               </motion.h2>
               <motion.p 
                 initial={{ opacity: 0, y: 20 }} 
@@ -268,7 +318,10 @@ export default function AboutUsPage() {
                 transition={{ delay: 0.1 }} 
                 className="text-muted-foreground text-lg"
               >
-                The principles that guide our work, our culture, and how we treat our partners.
+                {T(
+                  'The principles that guide our work, our culture, and how we treat our partners.',
+                  'Prinsip yang membimbing kerja kami, budaya kami, dan cara kami melayan rakan kongsi kami.',
+                )}
               </motion.p>
             </div>
 
@@ -309,7 +362,7 @@ export default function AboutUsPage() {
                 viewport={{ once: true }} 
                 className="mb-6"
               >
-                Official Registration
+                {T('Official Registration', 'Pendaftaran Rasmi')}
               </motion.h2>
               <motion.p 
                 initial={{ opacity: 0, y: 20 }} 
@@ -318,7 +371,10 @@ export default function AboutUsPage() {
                 transition={{ delay: 0.1 }} 
                 className="text-muted-foreground mb-12"
               >
-                BrandKraf is a fully registered and legally recognized entity, operating with complete transparency and compliance. We are proud of our professional standing.
+                {T(
+                  'BrandKraf is a fully registered and legally recognized entity, operating with complete transparency and compliance. We are proud of our professional standing.',
+                  'BrandKraf ialah entiti yang berdaftar penuh dan diiktiraf di sisi undang-undang, beroperasi dengan ketelusan dan pematuhan sepenuhnya. Kami berbangga dengan kedudukan profesional kami.',
+                )}
               </motion.p>
 
               <motion.div 
@@ -338,12 +394,12 @@ export default function AboutUsPage() {
                         />
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center">
                           <div className="bg-white/90 backdrop-blur text-foreground px-4 py-2 rounded-full font-medium shadow-lg transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all flex items-center gap-2">
-                            <Maximize2 className="w-4 h-4" /> View Certificate
+                            <Maximize2 className="w-4 h-4" /> {T('View Certificate', 'Lihat Sijil')}
                           </div>
                         </div>
                       </div>
                       <p className="mt-6 text-sm font-medium text-muted-foreground uppercase tracking-widest">
-                        Suruhanjaya Syarikat Malaysia (SSM) Registered
+                        {T('Suruhanjaya Syarikat Malaysia (SSM) Registered', 'Berdaftar dengan Suruhanjaya Syarikat Malaysia (SSM)')}
                       </p>
                     </div>
                   </DialogTrigger>
@@ -374,7 +430,7 @@ export default function AboutUsPage() {
               viewport={{ once: true }}
               className="mb-6 text-4xl font-bold text-white md:text-5xl lg:text-6xl"
             >
-              Let&apos;s Build Something That Matters.
+              {T("Let's Build Something That Matters.", 'Mari Bina Sesuatu yang Bermakna.')}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -383,7 +439,10 @@ export default function AboutUsPage() {
               transition={{ delay: 0.1 }}
               className="mx-auto mb-10 max-w-2xl text-lg text-white/90"
             >
-              Whether you need compelling UGC, aggressive ad scaling, or a complete digital overhaul, we are ready to partner with you.
+              {T(
+                'Whether you need compelling UGC, aggressive ad scaling, or a complete digital overhaul, we are ready to partner with you.',
+                'Sama ada anda memerlukan UGC yang menarik, penskalaan iklan yang agresif, atau rombakan digital lengkap, kami bersedia bekerjasama dengan anda.',
+              )}
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -392,8 +451,8 @@ export default function AboutUsPage() {
               transition={{ delay: 0.2 }}
             >
               <Button asChild size="lg" className="h-14 rounded-xl bg-white px-8 text-lg font-bold text-brandkraf-teal shadow-xl transition-all duration-300 hover:-translate-y-1 hover:bg-gray-50 hover:shadow-2xl">
-                <Link to="/contact">
-                  Contact Us <ArrowRight className="ml-2 w-5 h-5" />
+                <Link to={lp('/contact')}>
+                  {T('Contact Us', 'Hubungi Kami')} <ArrowRight className="ml-2 w-5 h-5" />
                 </Link>
               </Button>
             </motion.div>

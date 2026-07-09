@@ -8,8 +8,11 @@ import { Textarea } from '@/components/ui/textarea.jsx';
 import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { supabase } from '@/lib/supabaseClient.js';
+import { useLanguage } from '@/contexts/LanguageContext.jsx';
 
 function WhatsAppInquiryForm({ open, onOpenChange }) {
+  const { lang } = useLanguage();
+  const T = (en, ms) => (lang === 'ms' ? ms : en);
   const [isSubmitting, setIsSubmitting] = useState(false);
   
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -32,7 +35,7 @@ function WhatsAppInquiryForm({ open, onOpenChange }) {
       const encodedText = encodeURIComponent(waText);
       const waUrl = `https://wa.me/601121017939?text=${encodedText}`;
 
-      toast.success("Inquiry received! Redirecting to WhatsApp...");
+      toast.success(T('Inquiry received! Redirecting to WhatsApp...', 'Pertanyaan diterima! Mengalihkan ke WhatsApp...'));
 
       // 3. Redirect, reset, and close
       window.open(waUrl, '_blank', 'noopener,noreferrer');
@@ -40,7 +43,7 @@ function WhatsAppInquiryForm({ open, onOpenChange }) {
       onOpenChange(false);
     } catch (error) {
       console.error('Submission error:', error);
-      toast.error("Failed to submit inquiry. Please try again.");
+      toast.error(T('Failed to submit inquiry. Please try again.', 'Gagal menghantar pertanyaan. Sila cuba lagi.'));
     } finally {
       setIsSubmitting(false);
     }
@@ -51,20 +54,23 @@ function WhatsAppInquiryForm({ open, onOpenChange }) {
       <DialogContent className="sm:max-w-[500px] bg-white text-gray-900 border border-gray-100 shadow-2xl rounded-2xl">
         <DialogHeader>
           <DialogTitle className="text-2xl text-gray-900 font-bold tracking-tight">
-            Get Your Free Strategy Call
+            {T('Get Your Free Strategy Call', 'Dapatkan Panggilan Strategi Percuma Anda')}
           </DialogTitle>
           <DialogDescription className="text-gray-500 text-base mt-2 leading-relaxed">
-            Fill out the form below. Once submitted, you'll be redirected to WhatsApp to chat with our team immediately.
+            {T(
+              "Fill out the form below. Once submitted, you'll be redirected to WhatsApp to chat with our team immediately.",
+              'Isi borang di bawah. Setelah dihantar, anda akan dialihkan ke WhatsApp untuk bersembang dengan pasukan kami serta-merta.',
+            )}
           </DialogDescription>
         </DialogHeader>
         
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 mt-4">
           <div className="space-y-1.5">
-            <Label htmlFor="fullName" className="text-gray-700 font-medium">Full Name <span className="text-brandkraf-teal">*</span></Label>
+            <Label htmlFor="fullName" className="text-gray-700 font-medium">{T('Full Name', 'Nama Penuh')} <span className="text-brandkraf-teal">*</span></Label>
             <Input
               id="fullName"
-              {...register('fullName', { required: 'Name is required' })}
-              placeholder="e.g. Maya Chen"
+              {...register('fullName', { required: T('Name is required', 'Nama diperlukan') })}
+              placeholder={T('e.g. Maya Chen', 'cth. Maya Chen')}
               className="bg-gray-50 text-gray-900 border-transparent focus:bg-white focus:border-brandkraf-teal focus:ring-2 focus:ring-brandkraf-teal/20 transition-all duration-200 h-11"
             />
             {errors.fullName && <p className="text-sm text-destructive font-medium">{errors.fullName.message}</p>}
@@ -72,15 +78,15 @@ function WhatsAppInquiryForm({ open, onOpenChange }) {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div className="space-y-1.5">
-              <Label htmlFor="email" className="text-gray-700 font-medium">Email Address <span className="text-brandkraf-teal">*</span></Label>
+              <Label htmlFor="email" className="text-gray-700 font-medium">{T('Email Address', 'Alamat E-mel')} <span className="text-brandkraf-teal">*</span></Label>
               <Input
                 id="email"
                 type="email"
-                {...register('email', { 
-                  required: 'Email is required',
+                {...register('email', {
+                  required: T('Email is required', 'E-mel diperlukan'),
                   pattern: {
                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: 'Invalid email address'
+                    message: T('Invalid email address', 'Alamat e-mel tidak sah')
                   }
                 })}
                 placeholder="maya@company.com"
@@ -90,11 +96,11 @@ function WhatsAppInquiryForm({ open, onOpenChange }) {
             </div>
 
             <div className="space-y-1.5">
-              <Label htmlFor="phoneNumber" className="text-gray-700 font-medium">Phone Number <span className="text-brandkraf-teal">*</span></Label>
+              <Label htmlFor="phoneNumber" className="text-gray-700 font-medium">{T('Phone Number', 'Nombor Telefon')} <span className="text-brandkraf-teal">*</span></Label>
               <Input
                 id="phoneNumber"
                 type="tel"
-                {...register('phoneNumber', { required: 'Phone number is required' })}
+                {...register('phoneNumber', { required: T('Phone number is required', 'Nombor telefon diperlukan') })}
                 placeholder="+60 12-345 6789"
                 className="bg-gray-50 text-gray-900 border-transparent focus:bg-white focus:border-brandkraf-teal focus:ring-2 focus:ring-brandkraf-teal/20 transition-all duration-200 h-11"
               />
@@ -103,11 +109,11 @@ function WhatsAppInquiryForm({ open, onOpenChange }) {
           </div>
 
           <div className="space-y-1.5">
-            <Label htmlFor="message" className="text-gray-700 font-medium">Message / Inquiry <span className="text-brandkraf-teal">*</span></Label>
+            <Label htmlFor="message" className="text-gray-700 font-medium">{T('Message / Inquiry', 'Mesej / Pertanyaan')} <span className="text-brandkraf-teal">*</span></Label>
             <Textarea
               id="message"
-              {...register('message', { required: 'Message is required' })}
-              placeholder="Tell us briefly about your brand and what you're looking to achieve..."
+              {...register('message', { required: T('Message is required', 'Mesej diperlukan') })}
+              placeholder={T("Tell us briefly about your brand and what you're looking to achieve...", 'Ceritakan secara ringkas tentang jenama anda dan apa yang anda ingin capai...')}
               rows={4}
               className="bg-gray-50 text-gray-900 border-transparent focus:bg-white focus:border-brandkraf-teal focus:ring-2 focus:ring-brandkraf-teal/20 transition-all duration-200 resize-none py-3"
             />
@@ -122,10 +128,10 @@ function WhatsAppInquiryForm({ open, onOpenChange }) {
             {isSubmitting ? (
               <>
                 <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                Connecting...
+                {T('Connecting...', 'Menyambung...')}
               </>
             ) : (
-              'Submit & Chat on WhatsApp'
+              T('Submit & Chat on WhatsApp', 'Hantar & Sembang di WhatsApp')
             )}
           </Button>
         </form>

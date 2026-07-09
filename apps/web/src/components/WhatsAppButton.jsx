@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button.jsx';
 import { MessageCircle } from 'lucide-react';
 import WhatsAppInquiryForm from './WhatsAppInquiryForm.jsx';
+import { useLanguage } from '@/contexts/LanguageContext.jsx';
 
-function WhatsAppButton({ 
-  className = '', 
-  size = 'default', 
-  variant = 'default', 
-  children 
+function WhatsAppButton({
+  className = '',
+  size = 'default',
+  variant = 'default',
+  children
 }) {
+  const { lang } = useLanguage();
   const [isModalOpen, setIsModalOpen] = useState(false);
   
   // Only apply WhatsApp green branding if it's the default variant 
@@ -28,7 +30,7 @@ function WhatsAppButton({
         {children || (
           <>
             <MessageCircle className="mr-2 h-5 w-5" />
-            WhatsApp Us
+            {lang === 'ms' ? 'WhatsApp Kami' : 'WhatsApp Us'}
           </>
         )}
       </Button>

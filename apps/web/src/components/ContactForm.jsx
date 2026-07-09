@@ -9,8 +9,11 @@ import { Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'sonner';
 import { supabase } from '@/lib/supabaseClient.js';
+import { useLanguage } from '@/contexts/LanguageContext.jsx';
 
 function ContactForm() {
+  const { lang } = useLanguage();
+  const T = (en, ms) => (lang === 'ms' ? ms : en);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
   const [ipAddress, setIpAddress] = useState('');
@@ -62,14 +65,14 @@ function ContactForm() {
     if (data.website) {
       // Silently accept bots to deter them
       setSubmitStatus('success');
-      toast.success('Thank you! Your message has been sent.');
+      toast.success(T('Thank you! Your message has been sent.', 'Terima kasih! Mesej anda telah dihantar.'));
       reset();
       return;
     }
 
     // 2. Check Rate Limit
     if (!checkRateLimit()) {
-      toast.error('Too many requests. Please try again later.');
+      toast.error(T('Too many requests. Please try again later.', 'Terlalu banyak permintaan. Sila cuba lagi kemudian.'));
       return;
     }
 
@@ -93,15 +96,15 @@ function ContactForm() {
       if (sbError) throw sbError;
 
       setSubmitStatus('success');
-      toast.success('Thank you! Your message has been sent.');
+      toast.success(T('Thank you! Your message has been sent.', 'Terima kasih! Mesej anda telah dihantar.'));
       reset();
-      
+
       // Clear success message after 5 seconds
       setTimeout(() => setSubmitStatus(null), 5000);
     } catch (error) {
       console.error('Submission error:', error);
       setSubmitStatus('error');
-      toast.error('Failed to send message. Please try again.');
+      toast.error(T('Failed to send message. Please try again.', 'Gagal menghantar mesej. Sila cuba lagi.'));
     } finally {
       setIsSubmitting(false);
     }
@@ -125,8 +128,8 @@ function ContactForm() {
           >
             <CheckCircle2 className="h-5 w-5 text-brandkraf-teal flex-shrink-0 mt-0.5" />
             <div>
-              <h4 className="text-sm font-semibold text-brandkraf-teal">Message sent successfully!</h4>
-              <p className="text-sm text-brandkraf-teal/80 mt-1">We'll get back to you within 24 hours.</p>
+              <h4 className="text-sm font-semibold text-brandkraf-teal">{T('Message sent successfully!', 'Mesej berjaya dihantar!')}</h4>
+              <p className="text-sm text-brandkraf-teal/80 mt-1">{T("We'll get back to you within 24 hours.", 'Kami akan menghubungi anda dalam 24 jam.')}</p>
             </div>
           </motion.div>
         )}
@@ -140,8 +143,8 @@ function ContactForm() {
           >
             <AlertCircle className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
             <div>
-              <h4 className="text-sm font-semibold text-red-600">Failed to send message</h4>
-              <p className="text-sm text-red-500/80 mt-1">Please try again or contact us via WhatsApp.</p>
+              <h4 className="text-sm font-semibold text-red-600">{T('Failed to send message', 'Gagal menghantar mesej')}</h4>
+              <p className="text-sm text-red-500/80 mt-1">{T('Please try again or contact us via WhatsApp.', 'Sila cuba lagi atau hubungi kami melalui WhatsApp.')}</p>
             </div>
           </motion.div>
         )}
@@ -161,10 +164,10 @@ function ContactForm() {
         </div>
 
         <div>
-          <Label htmlFor="name" className="text-foreground font-medium">Full Name *</Label>
+          <Label htmlFor="name" className="text-foreground font-medium">{T('Full Name *', 'Nama Penuh *')}</Label>
           <Input
             id="name"
-            {...register('name', { required: 'Name is required' })}
+            {...register('name', { required: T('Name is required', 'Nama diperlukan') })}
             placeholder="Maya Chen"
             className="mt-1.5 bg-white text-gray-900 border-gray-200 focus:border-brandkraf-teal focus:ring-2 focus:ring-brandkraf-teal/20 smooth-transition"
           />
@@ -174,7 +177,7 @@ function ContactForm() {
         </div>
 
         <div>
-          <Label htmlFor="phone" className="text-foreground font-medium">Phone Number</Label>
+          <Label htmlFor="phone" className="text-foreground font-medium">{T('Phone Number', 'Nombor Telefon')}</Label>
           <Input
             id="phone"
             type="tel"
@@ -185,15 +188,15 @@ function ContactForm() {
         </div>
 
         <div>
-          <Label htmlFor="email" className="text-foreground font-medium">Email Address *</Label>
+          <Label htmlFor="email" className="text-foreground font-medium">{T('Email Address *', 'Alamat E-mel *')}</Label>
           <Input
             id="email"
             type="email"
-            {...register('email', { 
-              required: 'Email is required',
+            {...register('email', {
+              required: T('Email is required', 'E-mel diperlukan'),
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: 'Invalid email address'
+                message: T('Invalid email address', 'Alamat e-mel tidak sah')
               }
             })}
             placeholder="maya@company.com"
@@ -205,28 +208,28 @@ function ContactForm() {
         </div>
 
         <div>
-          <Label htmlFor="businessType" className="text-foreground font-medium">Business Type</Label>
+          <Label htmlFor="businessType" className="text-foreground font-medium">{T('Business Type', 'Jenis Perniagaan')}</Label>
           <Select onValueChange={(value) => setValue('businessType', value)}>
             <SelectTrigger className="mt-1.5 bg-white text-gray-900 border-gray-200 focus:border-brandkraf-teal focus:ring-2 focus:ring-brandkraf-teal/20 smooth-transition">
-              <SelectValue placeholder="Select your business type" />
+              <SelectValue placeholder={T('Select your business type', 'Pilih jenis perniagaan anda')} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="ecommerce">E-commerce</SelectItem>
-              <SelectItem value="saas">SaaS / Tech</SelectItem>
-              <SelectItem value="retail">Retail</SelectItem>
-              <SelectItem value="services">Professional Services</SelectItem>
-              <SelectItem value="hospitality">Hospitality</SelectItem>
-              <SelectItem value="other">Other</SelectItem>
+              <SelectItem value="ecommerce">{T('E-commerce', 'E-dagang')}</SelectItem>
+              <SelectItem value="saas">{T('SaaS / Tech', 'SaaS / Teknologi')}</SelectItem>
+              <SelectItem value="retail">{T('Retail', 'Runcit')}</SelectItem>
+              <SelectItem value="services">{T('Professional Services', 'Perkhidmatan Profesional')}</SelectItem>
+              <SelectItem value="hospitality">{T('Hospitality', 'Hospitaliti')}</SelectItem>
+              <SelectItem value="other">{T('Other', 'Lain-lain')}</SelectItem>
             </SelectContent>
           </Select>
         </div>
 
         <div>
-          <Label htmlFor="message" className="text-foreground font-medium">Message *</Label>
+          <Label htmlFor="message" className="text-foreground font-medium">{T('Message *', 'Mesej *')}</Label>
           <Textarea
             id="message"
-            {...register('message', { required: 'Message is required' })}
-            placeholder="Tell us about your marketing goals..."
+            {...register('message', { required: T('Message is required', 'Mesej diperlukan') })}
+            placeholder={T('Tell us about your marketing goals...', 'Ceritakan kepada kami tentang matlamat pemasaran anda...')}
             rows={4}
             className="mt-1.5 bg-white text-gray-900 border-gray-200 focus:border-brandkraf-teal focus:ring-2 focus:ring-brandkraf-teal/20 smooth-transition resize-none"
           />
@@ -241,12 +244,12 @@ function ContactForm() {
               id="consentGiven"
               type="checkbox"
               className="w-4 h-4 rounded border-gray-300 text-brandkraf-teal focus:ring-brandkraf-teal bg-white"
-              {...register('consentGiven', { required: 'You must consent to be contacted.' })}
+              {...register('consentGiven', { required: T('You must consent to be contacted.', 'Anda mesti bersetuju untuk dihubungi.') })}
             />
           </div>
           <div className="flex flex-col">
             <Label htmlFor="consentGiven" className="text-sm text-gray-700 cursor-pointer font-normal leading-tight">
-              I consent to being contacted by BrandKraf regarding my inquiry.
+              {T('I consent to being contacted by BrandKraf regarding my inquiry.', 'Saya bersetuju untuk dihubungi oleh BrandKraf berkenaan pertanyaan saya.')}
             </Label>
             {errors.consentGiven && (
               <p className="text-sm text-red-500 mt-1">{errors.consentGiven.message}</p>
@@ -263,10 +266,10 @@ function ContactForm() {
           {isSubmitting ? (
             <>
               <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-              Sending...
+              {T('Sending...', 'Menghantar...')}
             </>
           ) : (
-            'Send Message'
+            T('Send Message', 'Hantar Mesej')
           )}
         </Button>
       </form>

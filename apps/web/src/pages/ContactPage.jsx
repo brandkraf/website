@@ -8,42 +8,49 @@ import OfficeDirections from '@/components/OfficeDirections.jsx';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card.jsx';
+import { useLanguage } from '@/contexts/LanguageContext.jsx';
 
 function ContactPage() {
+  const { lang } = useLanguage();
+  const T = (en, ms) => (lang === 'ms' ? ms : en);
+
   const contactInfo = [
     {
       icon: MapPin,
-      title: 'Office Location',
+      title: T('Office Location', 'Lokasi Pejabat'),
       details: ['28-02-02, Jalan 2/101c, Cheras Business Centre', '56100 Cheras, Wilayah Persekutuan Kuala Lumpur']
     },
     {
       icon: Phone,
-      title: 'Phone',
+      title: T('Phone', 'Telefon'),
       details: ['+60391343603'],
       isLink: true,
       linkPrefix: 'tel:'
     },
     {
       icon: Mail,
-      title: 'Email',
+      title: T('Email', 'E-mel'),
       details: ['admin@brandkraf.com'],
       isLink: true,
       linkPrefix: 'mailto:'
     },
     {
       icon: Clock,
-      title: 'Business Hours',
-      details: ['Mon-Fri: 9am - 6pm', 'Sat: 10am - 4pm']
+      title: T('Business Hours', 'Waktu Operasi'),
+      details: [T('Mon-Fri: 9am - 6pm', 'Isnin-Jumaat: 9 pagi - 6 petang'), T('Sat: 10am - 4pm', 'Sabtu: 10 pagi - 4 petang')]
     }
   ];
 
   return (
     <>
       <Helmet>
-        <title>Contact Us - Get Your Free Marketing Strategy Call</title>
+        <title>{T('Contact Us - Get Your Free Marketing Strategy Call', 'Hubungi Kami - Dapatkan Panggilan Strategi Pemasaran Percuma')}</title>
         <meta
           name="description"
-          content="Book a free 30-minute strategy call with BrandKraf. Based in Cheras, Kuala Lumpur, Malaysia. We respond within 24 hours."
+          content={T(
+            'Book a free 30-minute strategy call with BrandKraf. Based in Cheras, Kuala Lumpur, Malaysia. We respond within 24 hours.',
+            'Tempah panggilan strategi percuma 30 minit dengan BrandKraf. Berpangkalan di Cheras, Kuala Lumpur, Malaysia. Kami membalas dalam 24 jam.',
+          )}
         />
       </Helmet>
 
@@ -60,12 +67,19 @@ function ContactPage() {
             transition={{ duration: 0.6 }}
             className="mb-16 flex flex-col items-center text-center"
           >
-            <span className="chip-brand mb-4">Contact us</span>
+            <span className="chip-brand mb-4">{T('Contact us', 'Hubungi kami')}</span>
             <h1 className="mb-4">
-              Let&apos;s grow your brand <span className="text-gradient">together</span>
+              {lang === 'ms' ? (
+                <>Mari kembangkan jenama anda <span className="text-gradient">bersama-sama</span></>
+              ) : (
+                <>Let&apos;s grow your brand <span className="text-gradient">together</span></>
+              )}
             </h1>
             <p className="mx-auto max-w-2xl text-xl text-muted-foreground">
-              Book a free 30-minute strategy call. We&apos;ll analyze your current marketing and show you exactly how we can help you scale.
+              {T(
+                "Book a free 30-minute strategy call. We'll analyze your current marketing and show you exactly how we can help you scale.",
+                'Tempah panggilan strategi percuma 30 minit. Kami akan menganalisis pemasaran semasa anda dan menunjukkan dengan tepat cara kami boleh membantu anda berkembang.',
+              )}
             </p>
           </motion.div>
 
@@ -77,7 +91,7 @@ function ContactPage() {
             >
               <Card className="shadow-premium-lg">
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-semibold mb-6">Send us a message</h2>
+                  <h2 className="text-2xl font-semibold mb-6">{T('Send us a message', 'Hantar mesej kepada kami')}</h2>
                   <ContactForm />
                 </CardContent>
               </Card>
@@ -91,9 +105,12 @@ function ContactPage() {
             >
               <Card className="relative overflow-hidden border-none bg-gradient-to-br from-brandkraf-teal to-brandkraf-purple text-white">
                 <CardContent className="p-8">
-                  <h3 className="text-xl font-semibold mb-4">Prefer WhatsApp?</h3>
+                  <h3 className="text-xl font-semibold mb-4">{T('Prefer WhatsApp?', 'Lebih suka WhatsApp?')}</h3>
                   <p className="mb-6 text-white/90">
-                    Get instant responses to your questions. Chat with our team directly on WhatsApp.
+                    {T(
+                      'Get instant responses to your questions. Chat with our team directly on WhatsApp.',
+                      'Dapatkan jawapan segera untuk soalan anda. Sembang dengan pasukan kami terus di WhatsApp.',
+                    )}
                   </p>
                   <WhatsAppButton
                     variant="secondary"

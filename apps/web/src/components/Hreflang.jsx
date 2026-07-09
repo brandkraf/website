@@ -19,6 +19,11 @@ const SELF_MANAGED = ['/blog', '/guides', '/digital-marketing-agency'];
 // keep in sync with the `translated` list in tools/generate-sitemap.js.
 const TRANSLATED = [
   '/',
+  '/about-us',
+  '/contact',
+  '/portfolio',
+  '/pricing',
+  '/tools',
   '/portfolio/social-media-management',
   '/portfolio/ugc-content-creation',
   '/portfolio/paid-advertising',
