@@ -48,28 +48,39 @@ async function main() {
   const routesSrc = fs.readFileSync(path.join(cwd, 'src', 'routes.jsx'), 'utf8');
 
   // Base (English) paths from the shared route config — drop dynamic + private.
+  // Fully-translated pages — emitted bilingual NOW, independent of the global
+  // BM_SITEMAP flag for the rest. Keep in sync with TRANSLATED in Hreflang.jsx.
+  const SERVICE_PATHS = [
+    '/portfolio/social-media-management',
+    '/portfolio/ugc-content-creation',
+    '/portfolio/paid-advertising',
+    '/portfolio/website-development',
+    '/portfolio/branding-creative',
+    '/portfolio/koc-kol-service',
+    '/portfolio/tiktok-live-service',
+    '/portfolio/ai-driven-marketing',
+    '/portfolio/chatbot-development',
+  ];
+  const translated = [
+    { path: '/', priority: '1.0' },
+    { path: '/guides', priority: '0.8' },
+    ...SERVICE_PATHS.map((p) => ({ path: p, priority: '0.8' })),
+    ...clusterSlugs.map((slug) => ({ path: `/guides/${slug}`, priority: '0.7' })),
+    ...locationSlugs.map((slug) => ({ path: `/digital-marketing-agency/${slug}`, priority: '0.8' })),
+  ];
+  const translatedPaths = new Set(translated.map((t) => t.path));
+
   const routePaths = [...routesSrc.matchAll(/path:\s*'([^']+)'/g)]
     .map((m) => m[1])
     .filter(
       (p) =>
         p.startsWith('/') &&
         !p.includes(':') &&
-        p !== '/' && // homepage is emitted bilingual below (already translated)
-        p !== '/guides' && // guides index is emitted bilingual below (already translated)
+        !translatedPaths.has(p) && // translated pages are emitted bilingual below
         !PRIVATE.some((b) => p === b || p.startsWith(b)),
     );
 
   const bases = [...new Set(routePaths)].map((p) => ({ path: p, lastmod: today, priority: priorityFor(p) }));
-
-  // Fully-translated pages — emitted bilingual NOW (homepage, guides + location pages
-  // have complete BM versions), independent of the global BM_SITEMAP flag for the rest.
-  // Keep in sync with TRANSLATED in src/components/Hreflang.jsx.
-  const translated = [
-    { path: '/', priority: '1.0' },
-    { path: '/guides', priority: '0.8' },
-    ...clusterSlugs.map((slug) => ({ path: `/guides/${slug}`, priority: '0.7' })),
-    ...locationSlugs.map((slug) => ({ path: `/digital-marketing-agency/${slug}`, priority: '0.8' })),
-  ];
 
   // Live published blog posts (title_ms tells us which have a BM translation).
   let blogPosts = [];

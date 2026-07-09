@@ -1,8 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import ProjectCard from './ProjectCard.jsx';
+import { useLanguage } from '@/contexts/LanguageContext.jsx';
 
 function PortfolioExamplesSection({ projects }) {
+  const { lang } = useLanguage();
+  const T = (en, ms) => (lang === 'ms' ? ms : en);
   if (!projects || projects.length === 0) return null;
 
   return (
@@ -17,10 +20,14 @@ function PortfolioExamplesSection({ projects }) {
         >
           <span className="chip-brand mb-4">Portfolio</span>
           <h2 className="mb-4">
-            Featured <span className="text-gradient">work</span>
+            {lang === 'ms' ? (
+              <>Kerja <span className="text-gradient">pilihan</span></>
+            ) : (
+              <>Featured <span className="text-gradient">work</span></>
+            )}
           </h2>
           <p className="max-w-2xl text-lg text-muted-foreground">
-            See how we&apos;ve helped other brands achieve their goals.
+            {T("See how we've helped other brands achieve their goals.", 'Lihat cara kami membantu jenama lain mencapai matlamat mereka.')}
           </p>
         </motion.div>
 

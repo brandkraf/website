@@ -3,8 +3,13 @@ import { motion } from 'framer-motion';
 import { ArrowRight, ChevronRight, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button.jsx';
+import { useLanguage } from '@/contexts/LanguageContext.jsx';
 
-function ServiceHero({ title, subtitle, image, parentLink = '/portfolio', parentLabel = 'Portfolio', altText, eyebrow = 'Our Services' }) {
+function ServiceHero({ title, subtitle, image, parentLink = '/portfolio', parentLabel, altText, eyebrow }) {
+  const { lang, lp } = useLanguage();
+  const T = (en, ms) => (lang === 'ms' ? ms : en);
+  const resolvedParentLabel = parentLabel || T('Portfolio', 'Portfolio');
+  const resolvedEyebrow = eyebrow || T('Our Services', 'Perkhidmatan Kami');
   return (
     <section className="relative overflow-hidden bg-background pt-32 pb-20 md:pt-40 md:pb-28">
       {/* Aurora backdrop */}
@@ -15,7 +20,7 @@ function ServiceHero({ title, subtitle, image, parentLink = '/portfolio', parent
 
       <div className="container-custom relative z-10">
         <nav className="mb-8 flex items-center text-sm font-medium text-muted-foreground">
-          <Link to={parentLink} className="transition-colors hover:text-brandkraf-teal">{parentLabel}</Link>
+          <Link to={lp(parentLink)} className="transition-colors hover:text-brandkraf-teal">{resolvedParentLabel}</Link>
           <ChevronRight className="mx-2 h-4 w-4" />
           <span className="text-foreground">{title}</span>
         </nav>
@@ -28,7 +33,7 @@ function ServiceHero({ title, subtitle, image, parentLink = '/portfolio', parent
           >
             <span className="chip-brand mb-5">
               <Sparkles className="h-4 w-4" />
-              {eyebrow}
+              {resolvedEyebrow}
             </span>
             <h1 className="mb-6 text-foreground">{title}</h1>
             <p className="mb-8 text-lg leading-relaxed text-muted-foreground md:text-xl">
@@ -40,8 +45,8 @@ function ServiceHero({ title, subtitle, image, parentLink = '/portfolio', parent
                 size="lg"
                 className="h-14 rounded-xl bg-gradient-to-r from-brandkraf-teal to-brandkraf-purple bg-[length:200%_100%] bg-left px-8 text-base font-semibold text-white shadow-lg shadow-brandkraf-teal/30 transition-[background-position,box-shadow,transform] duration-500 hover:-translate-y-0.5 hover:bg-right hover:shadow-xl hover:shadow-brandkraf-purple/40"
               >
-                <Link to="/contact">
-                  Get Started <ArrowRight className="ml-2 h-5 w-5" />
+                <Link to={lp('/contact')}>
+                  {T('Get Started', 'Mula Sekarang')} <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
             </div>

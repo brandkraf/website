@@ -3,8 +3,11 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils.js';
+import { useLanguage } from '@/contexts/LanguageContext.jsx';
 
 export default function IndustryCard({ title, description, icon: Icon, slug, index = 0, basePath = "/portfolio/ugc-content-creation" }) {
+  const { lang, lp } = useLanguage();
+  const T = (en, ms) => (lang === 'ms' ? ms : en);
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -14,7 +17,7 @@ export default function IndustryCard({ title, description, icon: Icon, slug, ind
       className="h-full"
     >
       <Link
-        to={`${basePath}/${slug}`}
+        to={lp(`${basePath}/${slug}`)}
         className={cn(
           'group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl bg-card p-6',
           'border border-border/60 shadow-sm',
@@ -32,7 +35,7 @@ export default function IndustryCard({ title, description, icon: Icon, slug, ind
           {description}
         </p>
         <div className="relative mt-auto inline-flex items-center text-sm font-semibold text-brandkraf-teal">
-          View Cases <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+          {T('View Cases', 'Lihat Kes')} <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
         </div>
       </Link>
     </motion.div>

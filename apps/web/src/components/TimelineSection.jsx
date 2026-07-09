@@ -1,7 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext.jsx';
 
 function TimelineSection({ phases, duration }) {
+  const { lang } = useLanguage();
+  const T = (en, ms) => (lang === 'ms' ? ms : en);
   return (
     <section className="section-padding relative overflow-hidden bg-background">
       <div className="absolute inset-0 bg-grid-soft opacity-30 pointer-events-none" />
@@ -13,12 +16,16 @@ function TimelineSection({ phases, duration }) {
           transition={{ duration: 0.5 }}
           className="mb-16 flex flex-col items-center text-center"
         >
-          <span className="chip-brand mb-4">Timeline</span>
+          <span className="chip-brand mb-4">{T('Timeline', 'Garis Masa')}</span>
           <h2 className="mb-4">
-            Project <span className="text-gradient">timeline</span>
+            {lang === 'ms' ? (
+              <><span className="text-gradient">Garis masa</span> projek</>
+            ) : (
+              <>Project <span className="text-gradient">timeline</span></>
+            )}
           </h2>
           <p className="inline-flex items-center rounded-full border border-brandkraf-teal/20 bg-brandkraf-teal/5 px-4 py-2 text-base font-semibold text-brandkraf-teal">
-            Estimated Duration: {duration}
+            {T('Estimated Duration:', 'Anggaran Tempoh:')} {duration}
           </p>
         </motion.div>
 
@@ -43,7 +50,7 @@ function TimelineSection({ phases, duration }) {
               }`}>
                 <div className="glass-card rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl">
                   <div className="mb-2 text-sm font-bold uppercase tracking-wider text-brandkraf-teal">
-                    Phase {idx + 1}
+                    {T('Phase', 'Fasa')} {idx + 1}
                   </div>
                   <h4 className="mb-2 text-xl font-bold">{phase.title}</h4>
                   <p className="text-muted-foreground">{phase.description}</p>

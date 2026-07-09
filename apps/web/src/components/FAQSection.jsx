@@ -7,8 +7,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion.jsx';
+import { useLanguage } from '@/contexts/LanguageContext.jsx';
 
 function FAQSection({ faqs }) {
+  const { lang } = useLanguage();
+  const T = (en, ms) => (lang === 'ms' ? ms : en);
   // FAQPage structured data → eligible for expandable FAQ rich results in Google.
   const faqSchema =
     faqs && faqs.length
@@ -39,12 +42,16 @@ function FAQSection({ faqs }) {
           transition={{ duration: 0.5 }}
           className="mb-12 flex flex-col items-center text-center"
         >
-          <span className="chip-brand mb-4">FAQ</span>
+          <span className="chip-brand mb-4">{T('FAQ', 'Soalan Lazim')}</span>
           <h2 className="mb-4">
-            Frequently asked <span className="text-gradient">questions</span>
+            {lang === 'ms' ? (
+              <>Soalan <span className="text-gradient">lazim</span></>
+            ) : (
+              <>Frequently asked <span className="text-gradient">questions</span></>
+            )}
           </h2>
           <p className="text-lg text-muted-foreground">
-            Got questions? We&apos;ve got answers.
+            {T("Got questions? We've got answers.", 'Ada soalan? Kami ada jawapannya.')}
           </p>
         </motion.div>
 

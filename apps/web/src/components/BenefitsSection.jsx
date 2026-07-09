@@ -1,7 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext.jsx';
 
 function BenefitsSection({ benefits }) {
+  const { lang } = useLanguage();
+  const T = (en, ms) => (lang === 'ms' ? ms : en);
   return (
     <section className="section-padding relative overflow-hidden border-y border-border bg-gradient-to-b from-muted/40 via-background to-muted/30">
       <div className="container-custom relative">
@@ -12,12 +15,16 @@ function BenefitsSection({ benefits }) {
           transition={{ duration: 0.5 }}
           className="mx-auto mb-16 flex max-w-2xl flex-col items-center text-center"
         >
-          <span className="chip-brand mb-4">Why it matters</span>
+          <span className="chip-brand mb-4">{T('Why it matters', 'Mengapa ia penting')}</span>
           <h2 className="mb-4">
-            Key <span className="text-gradient">benefits</span>
+            {lang === 'ms' ? (
+              <><span className="text-gradient">Manfaat</span> utama</>
+            ) : (
+              <>Key <span className="text-gradient">benefits</span></>
+            )}
           </h2>
           <p className="text-lg text-muted-foreground">
-            What you can expect when partnering with us
+            {T('What you can expect when partnering with us', 'Apa yang boleh anda jangkakan apabila bekerjasama dengan kami')}
           </p>
         </motion.div>
 

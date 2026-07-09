@@ -1,8 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext.jsx';
 
 function ServiceOverview({ description, differentiators }) {
+  const { lang } = useLanguage();
+  const T = (en, ms) => (lang === 'ms' ? ms : en);
   return (
     <section className="section-padding relative overflow-hidden bg-background">
       <div className="absolute inset-0 bg-grid-soft opacity-30 pointer-events-none" />
@@ -14,9 +17,13 @@ function ServiceOverview({ description, differentiators }) {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <span className="chip-brand mb-4">Overview</span>
+            <span className="chip-brand mb-4">{T('Overview', 'Gambaran')}</span>
             <h2 className="mb-6">
-              Service <span className="text-gradient">overview</span>
+              {lang === 'ms' ? (
+                <><span className="text-gradient">Gambaran</span> perkhidmatan</>
+              ) : (
+                <>Service <span className="text-gradient">overview</span></>
+              )}
             </h2>
             <p className="text-lg leading-relaxed text-muted-foreground">
               {description}
@@ -32,7 +39,11 @@ function ServiceOverview({ description, differentiators }) {
           >
             <div className="glass-card rounded-[1.4rem] p-8 md:p-10">
               <h3 className="mb-6 text-xl font-bold">
-                Why <span className="text-gradient">BrandKraf?</span>
+                {lang === 'ms' ? (
+                  <>Mengapa <span className="text-gradient">BrandKraf?</span></>
+                ) : (
+                  <>Why <span className="text-gradient">BrandKraf?</span></>
+                )}
               </h3>
               <ul className="space-y-4">
                 {differentiators.map((item, idx) => (

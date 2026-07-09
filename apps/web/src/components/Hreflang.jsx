@@ -17,7 +17,18 @@ const SELF_MANAGED = ['/blog', '/guides', '/digital-marketing-agency'];
 // Route pages whose BM version is fully translated — these get hreflang alternates and
 // are indexable even while BM_LIVE is false. Append paths here as each page is translated;
 // keep in sync with the `translated` list in tools/generate-sitemap.js.
-const TRANSLATED = ['/'];
+const TRANSLATED = [
+  '/',
+  '/portfolio/social-media-management',
+  '/portfolio/ugc-content-creation',
+  '/portfolio/paid-advertising',
+  '/portfolio/website-development',
+  '/portfolio/branding-creative',
+  '/portfolio/koc-kol-service',
+  '/portfolio/tiktok-live-service',
+  '/portfolio/ai-driven-marketing',
+  '/portfolio/chatbot-development',
+];
 
 export default function Hreflang() {
   const { pathname } = useLocation();

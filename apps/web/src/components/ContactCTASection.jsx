@@ -3,8 +3,11 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button.jsx';
 import { ArrowRight, Sparkles } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext.jsx';
 
 function ContactCTASection() {
+  const { lang, lp } = useLanguage();
+  const T = (en, ms) => (lang === 'ms' ? ms : en);
   return (
     <section className="relative overflow-hidden bg-background py-24">
       <div className="container-custom relative z-10">
@@ -23,19 +26,22 @@ function ContactCTASection() {
           <div className="relative z-10 mx-auto max-w-2xl">
             <span className="chip-glass mb-6">
               <Sparkles className="h-4 w-4" />
-              Let&apos;s talk
+              {T("Let's talk", 'Mari berbincang')}
             </span>
-            <h2 className="mb-6 text-3xl font-bold text-white md:text-5xl">Ready to scale your brand?</h2>
+            <h2 className="mb-6 text-3xl font-bold text-white md:text-5xl">{T('Ready to scale your brand?', 'Bersedia untuk mengembangkan jenama anda?')}</h2>
             <p className="mb-10 text-lg leading-relaxed text-white/90 md:text-xl">
-              Let&apos;s build something remarkable together. Get in touch with our team to discuss your goals and how we can help you achieve them.
+              {T(
+                "Let's build something remarkable together. Get in touch with our team to discuss your goals and how we can help you achieve them.",
+                'Mari bina sesuatu yang luar biasa bersama-sama. Hubungi pasukan kami untuk membincangkan matlamat anda dan cara kami boleh membantu anda mencapainya.',
+              )}
             </p>
             <Button
               asChild
               size="lg"
               className="h-14 rounded-xl bg-white px-8 text-base font-bold text-brandkraf-teal shadow-xl transition-all duration-300 hover:-translate-y-1 hover:bg-gray-50 hover:shadow-2xl"
             >
-              <Link to="/contact">
-                Schedule a Consultation <ArrowRight className="ml-2 h-5 w-5" />
+              <Link to={lp('/contact')}>
+                {T('Schedule a Consultation', 'Jadualkan Perundingan')} <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
           </div>
