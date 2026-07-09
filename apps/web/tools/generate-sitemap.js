@@ -50,13 +50,23 @@ async function main() {
   // Base (English) paths from the shared route config — drop dynamic + private.
   const routePaths = [...routesSrc.matchAll(/path:\s*'([^']+)'/g)]
     .map((m) => m[1])
-    .filter((p) => p.startsWith('/') && !p.includes(':') && !PRIVATE.some((b) => p === b || p.startsWith(b)));
+    .filter(
+      (p) =>
+        p.startsWith('/') &&
+        !p.includes(':') &&
+        p !== '/guides' && // guides index is emitted bilingual below (already translated)
+        !PRIVATE.some((b) => p === b || p.startsWith(b)),
+    );
 
   const bases = [...new Set(routePaths)].map((p) => ({ path: p, lastmod: today, priority: priorityFor(p) }));
 
-  // Location landing pages + topic cluster guides (dynamic routes, added explicitly).
-  for (const slug of locationSlugs) bases.push({ path: `/digital-marketing-agency/${slug}`, lastmod: today, priority: '0.8' });
-  for (const slug of clusterSlugs) bases.push({ path: `/guides/${slug}`, lastmod: today, priority: '0.7' });
+  // Fully-translated data pages — emitted bilingual NOW (guides + location pages have
+  // complete BM versions), independent of the global BM_SITEMAP flag used for the rest.
+  const translated = [
+    { path: '/guides', priority: '0.8' },
+    ...clusterSlugs.map((slug) => ({ path: `/guides/${slug}`, priority: '0.7' })),
+    ...locationSlugs.map((slug) => ({ path: `/digital-marketing-agency/${slug}`, priority: '0.8' })),
+  ];
 
   // Live published blog posts (title_ms tells us which have a BM translation).
   let blogPosts = [];
@@ -79,10 +89,15 @@ async function main() {
   }
 
   const blocks = [];
-  // Routes/data pages: EN always; BM only when the global bilingual flag is on.
+  // Route pages: EN always; BM only when the global bilingual flag is on.
   for (const b of bases) {
     blocks.push(urlBlock(enUrl(b.path), b.path, b.lastmod, b.priority, BM_SITEMAP));
     if (BM_SITEMAP) blocks.push(urlBlock(msUrl(b.path), b.path, b.lastmod, b.priority, true));
+  }
+  // Fully-translated data pages: EN + BM emitted now, each with hreflang alternates.
+  for (const t of translated) {
+    blocks.push(urlBlock(enUrl(t.path), t.path, today, t.priority, true));
+    blocks.push(urlBlock(msUrl(t.path), t.path, today, t.priority, true));
   }
   // Blog posts: EN always; BM per-post once that post is translated (title_ms present).
   for (const post of blogPosts) {

@@ -314,3 +314,166 @@ export const clusters = [
 ];
 
 export const clusterSlugs = clusters.map((c) => c.slug);
+
+// Bahasa Melayu overlay, keyed by slug. Fields present here override the English
+// ones at render time (GuidePage/GuidesIndexPage merge { ...cluster, ...clustersMs[slug] });
+// anything omitted (serviceHref, articleSlugs) falls back to English. A slug missing
+// here simply renders in English on /ms.
+export const clustersMs = {
+  'tiktok-marketing': {
+    title: 'Pemasaran TikTok di Malaysia',
+    metaTitle: 'Pemasaran TikTok Malaysia: Panduan Lengkap | BrandKraf',
+    metaDescription:
+      'Segala yang perniagaan Malaysia perlukan untuk menang di TikTok — pertumbuhan organik, TikTok Shop, jualan langsung, dan video pendek yang menukar. Panduan + strategi percuma.',
+    tagline: 'Kuasai platform yang rakyat Malaysia tidak henti-henti menyusur.',
+    overview: [
+      'TikTok telah menjadi saluran pertumbuhan organik paling berkuasa untuk perniagaan Malaysia. Ia memberi ganjaran kepada kandungan, bukan jumlah pengikut, yang bermakna akaun baharu boleh mencapai berjuta-juta jika kandungannya betul. Daripada penemuan produk kepada jualan langsung dan pembayaran terbina dalam, keseluruhan perjalanan pembelian kini berlaku di dalam aplikasi.',
+      'Hab panduan ini menghimpunkan segala yang kami tahu tentang menang di TikTok di Malaysia — daripada video organik pertama anda kepada menjalankan TikTok Shop yang menguntungkan dan menjual secara langsung. Mula dengan asas, kemudian mendalami format yang memacu jualan.',
+    ],
+    serviceLabel: 'Perkhidmatan TikTok Live',
+  },
+  'social-media-marketing': {
+    title: 'Pemasaran Media Sosial',
+    metaTitle: 'Pemasaran Media Sosial Malaysia: Panduan Lengkap | BrandKraf',
+    metaDescription:
+      'Berkembang dan menjual di media sosial di Malaysia — strategi, Instagram, tonggak kandungan, harga, dan kempen perayaan. Panduan praktikal untuk PKS dan jenama.',
+    tagline: 'Tukar pengikut menjadi pelanggan, bukan sekadar suka.',
+    overview: [
+      'Media sosial ialah tempat jenama Malaysia ditemui, dinilai, dan dipilih. Tetapi suapan yang cantik sahaja tidak lagi memacu jualan — ia memerlukan strategi kandungan yang jelas, campuran platform yang betul, dan sistem yang menukar perhatian menjadi pertanyaan dan pesanan.',
+      'Panduan ini meliputi gambaran penuh: membina strategi sosial dari awal, berkembang dan menjual di Instagram, berapa patut kos pengurusan profesional, dan cara menang saat perayaan besar seperti Hari Raya. Sama ada anda lakukan sendiri atau upah pasukan, mula di sini.',
+    ],
+    serviceLabel: 'Pengurusan Media Sosial',
+  },
+  'ugc-influencer-marketing': {
+    title: 'Pemasaran UGC & Pempengaruh',
+    metaTitle: 'Pemasaran UGC & Pempengaruh Malaysia: Panduan | BrandKraf',
+    metaDescription:
+      'Kandungan jana pengguna dan pemasaran pempengaruh/KOC di Malaysia — apa itu UGC, kadar pencipta, cara mengupah, dan menjalankan kempen KOC yang menukar.',
+    tagline: 'Kandungan autentik yang menjual lebih kuat daripada iklan.',
+    overview: [
+      'Penonton mempercayai orang, bukan jenama. Itulah sebabnya kandungan jana pengguna (UGC) dan pemasaran KOC/pempengaruh kini mengatasi pengiklanan digilap — ia terasa nyata, dan yang nyata menukar. Bagi jenama Malaysia, ini salah satu cara paling menjimatkan kos untuk menghasilkan kandungan yang benar-benar memacu jualan.',
+      'Hab ini menerangkan apa itu UGC dan mengapa ia berkesan, apa yang pencipta caj dan cara memberi taklimat, dan cara menjalankan kempen pempengaruh dan KOC yang memberikan hasil boleh diukur dan bukannya jangkauan kesombongan.',
+    ],
+    serviceLabel: 'Penciptaan Kandungan UGC',
+  },
+  'paid-advertising': {
+    title: 'Pengiklanan Berbayar',
+    metaTitle: 'Pengiklanan Berbayar Malaysia: Iklan Meta, Google & Pasaran | BrandKraf',
+    metaDescription:
+      'Jalankan iklan berbayar yang menguntungkan di Malaysia — Iklan Meta dan Google, iklan Shopee/Lazada, meningkatkan ROAS, pengoptimuman penukaran, dan saluran jualan yang menukar.',
+    tagline: 'Jadikan setiap ringgit perbelanjaan iklan bekerja lebih keras.',
+    overview: [
+      'Iklan berbayar ialah cara terpantas untuk meletakkan jenama anda di hadapan pembeli berniat tinggi — tetapi juga cara terpantas untuk membazir wang tanpa strategi yang betul. Pengiklanan menguntungkan ialah satu sistem: platform yang betul, penyasaran tajam, kreatif yang kukuh, dan saluran yang menukar klik.',
+      'Panduan ini membawa anda daripada kempen Meta atau Google pertama anda kepada iklan pasaran lanjutan di Shopee dan Lazada, serta kemahiran yang memisahkan keuntungan daripada pembaziran — meningkatkan ROAS, mengoptimumkan penukaran, dan membina saluran yang menukar klik menjadi pelanggan.',
+    ],
+    serviceLabel: 'Pengiklanan Berbayar',
+  },
+  'seo': {
+    title: 'SEO & Pemasaran Tempatan',
+    metaTitle: 'SEO Malaysia: Kedudukan di Google & Pek Tempatan | BrandKraf',
+    metaDescription:
+      'Ditemui di Google di Malaysia — asas SEO, SEO tempatan, dan pengoptimuman Profil Perniagaan Google untuk mendapat kedudukan dalam Pek Peta dan memenangi pelanggan tempatan.',
+    tagline: 'Jadilah jenama yang pelanggan temui dahulu.',
+    overview: [
+      'Kebanyakan perjalanan pembelian bermula dengan carian Google. SEO ialah cara anda muncul pada saat itu — secara percuma, dan dengan niat tinggi. Untuk perniagaan tempatan khususnya, mendapat kedudukan dalam Pek Peta boleh lebih bernilai daripada mana-mana saluran berbayar kerana pencari itu bersedia bertindak.',
+      'Hab ini meliputi asas mendapat kedudukan di Google, pendekatan lengkap kepada SEO tempatan di Malaysia, dan cara mengoptimumkan Profil Perniagaan Google anda untuk memenangi pek tempatan dan menukar carian menjadi kunjungan dan panggilan.',
+    ],
+    serviceLabel: 'Bincang dengan kami tentang SEO',
+  },
+  'ai-marketing': {
+    title: 'Pemasaran AI & Automasi',
+    metaTitle: 'Pemasaran AI & Automasi Malaysia: Panduan | BrandKraf',
+    metaDescription:
+      'Gunakan AI dan automasi untuk mengembangkan perniagaan Malaysia anda — alat pemasaran AI terbaik, chatbot, dan automasi WhatsApp yang menjimatkan masa dan memacu jualan.',
+    tagline: 'Buat lebih banyak dengan pasukan yang lebih kecil.',
+    overview: [
+      'AI telah beralih daripada gembar-gembur kepada benar-benar berguna. Bagi PKS Malaysia dengan pasukan ramping, alat yang betul bertindak seperti kakitangan tambahan — merangka kandungan, melayakkan petunjuk, dan menjawab pelanggan sepanjang masa. Perniagaan yang menang dengan AI bukan mengautomasi secara membuta; mereka menggunakannya untuk berbuat lebih banyak perkara yang penting.',
+      'Panduan ini meliputi di mana AI benar-benar membantu dalam pemasaran, alat yang berbaloi dengan wang anda pada 2026, dan cara menggunakan chatbot dan automasi WhatsApp untuk menukar perbualan menjadi jualan.',
+    ],
+    serviceLabel: 'Pemasaran Dipacu AI',
+  },
+  'digital-marketing-basics': {
+    title: 'Asas & Pertumbuhan Pemasaran Digital',
+    metaTitle: 'Pemasaran Digital untuk Perniagaan Malaysia: Mula Di Sini | BrandKraf',
+    metaDescription:
+      'Baharu dalam pemasaran digital? Mula di sini — berapa kosnya di Malaysia, Geran Pendigitalan PKS, penjanaan petunjuk, pemasaran e-mel, dan membina jenama.',
+    tagline: 'Asas yang setiap perniagaan Malaysia perlukan.',
+    overview: [
+      'Jika anda baru mula serius memasarkan perniagaan anda dalam talian, inilah titik permulaan anda. Sebelum mengejar taktik, ada baiknya memahami apa sebenarnya kos pemasaran digital, apa pembiayaan yang tersedia, dan sistem teras — penjanaan petunjuk, e-mel, dan penjenamaan — yang menjadi asas segala yang lain.',
+      'Panduan ini memberi anda asasnya: harga realistik untuk pasaran Malaysia, cara menuntut Geran Pendigitalan PKS, dan asas menjana petunjuk, menukarnya dengan e-mel, dan membina jenama yang orang ingati.',
+    ],
+    serviceLabel: 'Lihat harga kami',
+  },
+  'content-creation': {
+    title: 'Penciptaan Kandungan',
+    metaTitle: 'Panduan Penciptaan Kandungan untuk Perniagaan Malaysia | BrandKraf',
+    metaDescription:
+      'Segala yang anda perlukan untuk mencipta kandungan yang menghentikan susur — idea, kail, kapsyen, hashtag, berkelompok, merakam dengan telefon, mengguna semula, dan alat AI.',
+    tagline: 'Cipta kandungan yang dilihat, disimpan, dan dikongsi.',
+    overview: [
+      'Pemasaran hebat bermula dengan kandungan hebat — tetapi menciptanya secara konsisten ialah tempat kebanyakan perniagaan tersekat. Berita baiknya: penciptaan kandungan ialah satu set sistem boleh diulang, bukan bakat misteri.',
+      'Hab ini meliputi keseluruhan kraf: di mana mencari idea tanpa henti, cara menulis kail dan kapsyen yang menukar, cara berkelompok sebulan kandungan dalam sehari, cara merakam dengan hanya telefon anda, dan cara menggunakan AI untuk berbuat lebih banyak dengan kurang.',
+    ],
+    serviceLabel: 'Penciptaan Kandungan UGC',
+  },
+  'social-media-growth': {
+    title: 'Berkembang di Media Sosial',
+    metaTitle: 'Cara Berkembang di Media Sosial: Panduan Lengkap | BrandKraf',
+    metaDescription:
+      'Kembangkan media sosial anda secara organik — pengikut, penglibatan, Reels, Stories, masa penyiaran, Facebook, metrik, dan trend. Panduan pertumbuhan praktikal untuk Malaysia.',
+    tagline: 'Tukar akaun kecil menjadi penonton yang berkembang dan terlibat.',
+    overview: [
+      'Berkembang di media sosial pada 2026 kurang tentang nasib dan lebih tentang melakukan perkara yang betul secara konsisten — kandungan berkualiti, format yang betul, penglibatan tulen, dan masa yang bijak.',
+      'Panduan ini meliputi cara mengembangkan pengikut anda secara organik, menguasai Reels dan Stories, meningkatkan penglibatan, menyiar pada masa dan kekerapan yang betul, menang di Facebook, menjejaki metrik yang penting, dan kekal mendahului trend.',
+    ],
+    serviceLabel: 'Pengurusan Media Sosial',
+  },
+  'ecommerce-marketing': {
+    title: 'Pemasaran E-dagang',
+    metaTitle: 'Pemasaran E-dagang di Malaysia: Panduan Lengkap | BrandKraf',
+    metaDescription:
+      'Kembangkan kedai dalam talian anda di Malaysia — trafik, penukaran, halaman produk, SEO, ulasan, promosi, dan memilih antara pasaran dan laman web anda sendiri.',
+    tagline: 'Tukar kedai dalam talian anda menjadi mesin jualan.',
+    overview: [
+      'Memulakan kedai dalam talian itu mudah; mendapat jualan yang konsisten ialah kerja sebenar. Pertumbuhan e-dagang bergantung pada tiga tuas — lebih banyak trafik, penukaran lebih baik, dan pengekalan lebih kukuh — dan jenama yang menang mengoptimumkan ketiga-tiganya.',
+      'Hab ini meliputi gambaran penuh: memulakan dan memilih platform, menulis halaman produk yang menjual, mengurangkan pengabaian troli, SEO e-dagang, ulasan, promosi, dan sama ada hendak menjual di pasaran, kedai sendiri, atau kedua-duanya.',
+    ],
+    serviceLabel: 'Pembangunan Laman Web',
+  },
+  'email-automation': {
+    title: 'E-mel & Automasi Pemasaran',
+    metaTitle: 'Panduan Pemasaran E-mel & Automasi untuk Malaysia | BrandKraf',
+    metaDescription:
+      'Bina senarai e-mel, sediakan aliran automatik, dan jalankan pemasaran yang menjual secara autopilot — urutan selamat datang, troli ditinggalkan, CRM, pemupukan petunjuk, dan kebolehhantaran.',
+    tagline: 'Pemasaran yang berfungsi semasa anda tidur.',
+    overview: [
+      'E-mel dan automasi ialah enjin senyap pemasaran menguntungkan — ia mencapai orang secara langsung, berjalan secara automatik, dan memberikan antara pulangan tertinggi mana-mana saluran. Paling baik, anda membinanya sekali dan ia terus berfungsi.',
+      'Hab ini meliputi membina senarai anda, aliran automatik yang penting, urutan selamat datang dan troli ditinggalkan, CRM, pemupukan petunjuk, kebolehhantaran, dan menyambungkan segalanya menjadi satu perjalanan pelanggan automatik.',
+    ],
+    serviceLabel: 'Pemasaran Dipacu AI',
+  },
+  'video-marketing': {
+    title: 'Pemasaran Video',
+    metaTitle: 'Panduan Pemasaran Video untuk Perniagaan Malaysia | BrandKraf',
+    metaDescription:
+      'Kuasai pemasaran video — strategi, video produk dan penerang, iklan video, testimoni, penstriman langsung, penyuntingan, SEO video, dan penulisan skrip. Panduan praktikal.',
+    tagline: 'Format yang memperoleh perhatian dan kepercayaan.',
+    overview: [
+      'Video ialah format paling menarik dan membina kepercayaan dalam talian — dan ia tidak lagi pilihan. Daripada klip sosial pendek kepada video produk, iklan, dan jualan langsung, video ialah cara jenama moden ditemui dan dipilih.',
+      'Hab ini meliputi keseluruhan kraf: membina strategi video, membuat video produk dan penerang, iklan video yang menukar, testimoni, penstriman langsung, penyuntingan, penulisan skrip, dan menjadikan video anda ditemui melalui carian.',
+    ],
+    serviceLabel: 'Kandungan UGC & Video',
+  },
+  'marketing-analytics': {
+    title: 'Analitik Pemasaran',
+    metaTitle: 'Panduan Analitik Pemasaran: Ukur Apa yang Berkesan | BrandKraf',
+    metaDescription:
+      'Ukur apa yang benar-benar berkesan — KPI, ROI pemasaran, Google Search Console, penjejakan UTM, ujian A/B, atribusi, penjejakan penukaran, papan pemuka, dan CAC/LTV.',
+    tagline: 'Berhenti meneka. Mula mengukur.',
+    overview: [
+      'Jenama yang berkembang paling pantas bukan yang membelanjakan paling banyak — mereka yang mengukur paling baik. Analitik pemasaran menukar perbelanjaan menjadi pandangan, jadi anda melabur di tempat ia membuahkan hasil dan memotong apa yang tidak.',
+      'Hab ini meliputi asasnya: KPI yang penting, mengukur ROI, Search Console, penjejakan UTM dan penukaran, ujian A/B, atribusi, papan pemuka, dan memahami CAC dan LTV — nombor di sebalik pertumbuhan menguntungkan.',
+    ],
+    serviceLabel: 'Pemasaran Dipacu AI',
+  },
+};

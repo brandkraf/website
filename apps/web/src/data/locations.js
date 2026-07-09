@@ -107,3 +107,95 @@ export const locations = [
 ];
 
 export const locationSlugs = locations.map((l) => l.slug);
+
+// Bahasa Melayu overlay, keyed by slug. Merged over the English record at render time
+// (LocationPage: { ...data, ...locationsMs[slug] }); omitted fields fall back to English.
+export const locationsMs = {
+  'kuala-lumpur': {
+    state: 'Wilayah Persekutuan',
+    metaTitle: 'Agensi Pemasaran Digital di Kuala Lumpur | BrandKraf',
+    metaDescription:
+      'BrandKraf ialah agensi pemasaran digital Kuala Lumpur yang membantu perniagaan KL berkembang dengan UGC, TikTok, iklan berbayar, media sosial, dan pemasaran AI. Dapatkan sebut harga percuma.',
+    intro:
+      'Kuala Lumpur ialah medan pertempuran pemasaran paling kompetitif di Malaysia — setiap jenama bersaing untuk suapan dan hasil carian yang sama. BrandKraf membantu perniagaan KL menembusi kebisingan dengan kandungan dan kempen yang dibina untuk menukar, bukan sekadar kelihatan cantik.',
+    localContext:
+      'Daripada menara korporat KLCC dan Bangsar kepada senario F&B dan runcit di Bukit Bintang, Cheras, dan Mont Kiara, penonton KL mengutamakan mudah alih, berbilang bahasa, dan pantas menyusur. Kami menyesuaikan setiap kempen dengan cara pelanggan Lembah Klang sebenarnya menemui dan membeli — merentasi TikTok, Instagram, Google, dan WhatsApp. Sebagai agensi berpangkalan di KL sendiri (berdaftar di Cheras), kami mengenali pasaran ini dari dalam.',
+    faqs: [
+      { question: 'Berapa kos pemasaran digital di Kuala Lumpur?', answer: 'Kebanyakan PKS KL melabur antara RM1,500 dan RM8,000 sebulan sebelum perbelanjaan iklan, bergantung pada perkhidmatan dan skop. Kami menawarkan pakej telus dan sebut harga tersuai — lihat halaman harga kami atau hubungi kami.' },
+      { question: 'Adakah anda bekerja dengan perniagaan kecil di KL?', answer: 'Ya. Kami bekerja dengan semua orang daripada pengasas solo dan syarikat baharu kepada jenama Lembah Klang yang mantap, menyesuaikan skop dengan matlamat dan bajet anda.' },
+      { question: 'Bolehkah anda membantu perniagaan KL saya mendapat kedudukan di Google?', answer: 'Sudah tentu. Kami menggabungkan SEO tempatan (Profil Perniagaan Google, kandungan tempatan, dan petikan) dengan carian berbayar untuk membuatkan anda ditemui oleh pelanggan yang mencari di Kuala Lumpur.' },
+    ],
+  },
+  'petaling-jaya': {
+    metaTitle: 'Agensi Pemasaran Digital di Petaling Jaya (PJ) | BrandKraf',
+    metaDescription:
+      'Agensi pemasaran digital untuk perniagaan Petaling Jaya. BrandKraf menyampaikan UGC, TikTok, iklan berbayar, media sosial, dan pemasaran AI untuk PKS dan korporat PJ. Sebut harga percuma.',
+    intro:
+      'Petaling Jaya ialah salah satu hab komersial terpadat di Lembah Klang, penuh dengan PKS, syarikat teknologi, dan jenama runcit yang semuanya bersaing dalam talian. BrandKraf memberi perniagaan PJ enjin kandungan dan strategi iklan untuk menonjol dan berkembang.',
+    localContext:
+      'PJ berjalan atas campuran pejabat korporat sekitar Seksyen 13 dan daerah perniagaan PJ, runcit sibuk di tempat seperti 1 Utama dan Sunway, dan komuniti PKS yang berkembang pesat. Penonton ini mengharapkan jenama yang digilap dan boleh dipercayai — jadi kami menggabungkan kreatif yang menghentikan susur dengan disiplin data yang dihormati pembuat keputusan PJ. Berada betul-betul di sebelah di Lembah Klang bermakna kerjasama yang pantas dan praktikal.',
+    faqs: [
+      { question: 'Adakah anda berkhidmat untuk perniagaan di seluruh Petaling Jaya dan Selangor?', answer: 'Ya — kami bekerja dengan jenama di seluruh PJ, Damansara, Sunway, dan kawasan Selangor yang lebih luas, secara jarak jauh dan bersemuka.' },
+      { question: 'Perkhidmatan pemasaran digital apa yang paling banyak digunakan perniagaan PJ?', answer: 'Pengurusan media sosial, iklan berbayar (Meta dan Google), dan kandungan UGC ialah yang paling banyak diminta oleh PKS PJ, sering digabungkan menjadi pakej berbilang saluran yang diurus.' },
+      { question: 'Bolehkah anda membantu syarikat B2B di PJ?', answer: 'Ya. Untuk jenama B2B kami bersandar pada LinkedIn, Google Ads, pemasaran kandungan, dan saluran penjanaan petunjuk dan bukannya sosial berasaskan kesedaran semata-mata.' },
+    ],
+  },
+  'shah-alam': {
+    metaTitle: 'Agensi Pemasaran Digital di Shah Alam | BrandKraf',
+    metaDescription:
+      'Agensi pemasaran digital Shah Alam. BrandKraf membantu pengeluar, PKS, dan peruncit di Shah Alam berkembang dengan kandungan, iklan berbayar, UGC, dan pemasaran AI. Dapatkan sebut harga.',
+    intro:
+      'Sebagai ibu negeri Selangor dan pusat perindustrian utama, Shah Alam ialah rumah kepada pengeluar, pengedar, dan jenama pengguna yang sedang berkembang. BrandKraf membantu perniagaan Shah Alam menukar kekuatan operasi itu menjadi permintaan dalam talian.',
+    localContext:
+      'Shah Alam menggabungkan industri berat merentasi seksyen-seksyennya dan Hicom dengan populasi kediaman dan runcit yang berkembang pesat. Pengeluar dan pembekal B2B di sini sering mempunyai produk hebat tetapi kehadiran digital yang kurang berkembang — tepat di mana kami membantu, dengan saluran penjanaan petunjuk, video/UGC profesional, dan keterlihatan carian. Untuk jenama pengguna, kami membawa kuasa sosial dan TikTok untuk mencapai pembeli Selangor secara langsung.',
+    faqs: [
+      { question: 'Adakah anda bekerja dengan pengeluar dan syarikat B2B di Shah Alam?', answer: 'Ya. Kami membantu jenama industri dan B2B dengan kandungan profesional, kempen penjanaan petunjuk, SEO, dan LinkedIn serta Google Ads untuk mencapai pembeli dan pengedar.' },
+      { question: 'Bolehkah pemasaran digital berfungsi untuk perniagaan industri?', answer: 'Sudah tentu. Malah syarikat B2B dan pembuatan niche pun mendapat manfaat daripada ditemui di Google, membina kredibiliti dengan kandungan, dan menjana pertanyaan berkelayakan dalam talian.' },
+      { question: 'Adakah anda menawarkan pengeluaran video dan UGC di Shah Alam?', answer: 'Ya — kami menghasilkan UGC dan kandungan video profesional untuk jenama di seluruh Lembah Klang, termasuk penggambaran di lokasi apabila diperlukan.' },
+    ],
+  },
+  'subang-jaya': {
+    metaTitle: 'Agensi Pemasaran Digital di Subang Jaya | BrandKraf',
+    metaDescription:
+      'Agensi pemasaran digital untuk Subang Jaya. BrandKraf mengembangkan perniagaan SS15, USJ, dan Subang dengan media sosial, iklan berbayar, UGC, dan pemasaran AI. Perundingan percuma.',
+    intro:
+      'Subang Jaya ialah bandar muda yang bersemangat secara komersial dengan populasi pelajar dan profesional yang besar — penonton yang sempurna untuk pemasaran mengutamakan sosial. BrandKraf membantu perniagaan Subang menangkap perhatian itu dan menukarnya menjadi jualan.',
+    localContext:
+      'Daripada kafe dan runcit SS15 kepada kepadatan kediaman USJ dan kumpulan pelajar berhampiran universiti, Subang Jaya condong muda, sosial, dan sangat dalam talian. Trend bergerak pantas di sini, jadi kami bersandar pada TikTok, Instagram Reels, dan kandungan pencipta/UGC untuk mengekalkan jenama relevan dari segi budaya — disokong iklan berbayar dan laluan penukaran yang jelas supaya perhatian bertukar menjadi hasil.',
+    faqs: [
+      { question: 'Apa yang berfungsi terbaik untuk pemasaran di Subang Jaya?', answer: 'Subang condong muda dan sosial, jadi video bentuk pendek (TikTok dan Reels), kandungan pencipta/UGC, dan kempen dipimpin Instagram cenderung berprestasi kukuh, disokong iklan berbayar.' },
+      { question: 'Adakah anda membantu jenama F&B dan runcit di Subang?', answer: 'Ya — F&B, kafe, dan runcit ialah tempat manis. Kami mencipta kandungan yang menyelerakan, menjalankan iklan kesedaran tempatan, dan memacu trafik pejalan kaki serta pesanan dalam talian.' },
+      { question: 'Bolehkah anda menguruskan media sosial kami dari hari ke hari?', answer: 'Ya, pengurusan media sosial penuh ialah salah satu perkhidmatan teras kami — kandungan, penyiaran, pengurusan komuniti, dan pelaporan dikendalikan untuk anda.' },
+    ],
+  },
+  'johor-bahru': {
+    metaTitle: 'Agensi Pemasaran Digital di Johor Bahru (JB) | BrandKraf',
+    metaDescription:
+      'Agensi pemasaran digital Johor Bahru. BrandKraf membantu perniagaan JB berkembang dengan media sosial, iklan berbayar, UGC, dan pemasaran AI — mencapai penonton Johor dan rentas sempadan.',
+    intro:
+      'Johor Bahru terletak di pintu masuk selatan Malaysia, dengan ekonomi yang berkembang pesat dan penonton rentas sempadan yang unik bersebelahan Singapura. BrandKraf membantu perniagaan JB menangkap kedua-dua penduduk Johor tempatan dan pelawat bernilai tinggi dari seberang Tambak.',
+    localContext:
+      'Pertumbuhan JB sekitar pusat bandar, Iskandar Puteri, dan senario runcit serta F&B menarik kedua-dua pelanggan tempatan dan aliran tetap pembeli serta pelancong Singapura. Penonton berkembar itu memerlukan penyasaran bijak — kami membina kempen yang bercakap kepada pencari nilai tempatan sambil turut meletakkan jenama untuk menangkap perbelanjaan rentas sempadan melalui TikTok, Instagram, dan Google.',
+    faqs: [
+      { question: 'Bolehkah anda membantu perniagaan JB saya mencapai pelanggan Singapura?', answer: 'Ya. Kami boleh menyasarkan kempen secara geografi untuk mencapai pelawat Singapura dan pembeli rentas sempadan, dengan mesej dan tawaran yang ditala untuk penonton bernilai tinggi itu.' },
+      { question: 'Adakah anda bekerja dengan perniagaan di seluruh Johor?', answer: 'Ya — kami berkhidmat untuk jenama di seluruh Johor Bahru, Iskandar Puteri, dan wilayah Johor yang lebih luas, bekerja secara jarak jauh dengan sokongan di lokasi mengikut keperluan.' },
+      { question: 'Industri mana yang anda bantu di Johor Bahru?', answer: 'Kami bekerja merentasi F&B, runcit, hartanah, pelancongan, dan perkhidmatan — menyesuaikan campuran saluran dengan penonton dan matlamat setiap jenama.' },
+    ],
+  },
+  'penang': {
+    city: 'Pulau Pinang',
+    state: 'Pulau Pinang',
+    metaTitle: 'Agensi Pemasaran Digital di Pulau Pinang (George Town) | BrandKraf',
+    metaDescription:
+      'Agensi pemasaran digital Pulau Pinang. BrandKraf membantu perniagaan George Town dan Pulau Pinang berkembang dengan media sosial, iklan berbayar, UGC, dan pemasaran AI. Perundingan percuma.',
+    intro:
+      'Pulau Pinang menggabungkan senario pelancongan dan F&B yang terkenal di dunia dengan ekonomi teknologi dan pembuatan yang serius. BrandKraf membantu perniagaan Pulau Pinang menceritakan kisah mereka kepada kedua-dua pelawat dan pasaran tempatan dengan kandungan yang merentasi sempadan.',
+    localContext:
+      'Daripada jalan warisan dan kafe George Town kepada taman perindustrian Bayan Lepas, Pulau Pinang ialah dua pasaran dalam satu — penonton pelancongan dan gaya hidup yang lapar akan kandungan boleh dikongsi, dan sektor B2B/teknologi yang memerlukan kredibiliti dan penjanaan petunjuk. Kami menyesuaikan kepada kedua-duanya: sosial dan UGC yang sangat visual untuk jenama hospitaliti dan F&B, serta kandungan profesional tambah carian dan LinkedIn untuk syarikat teknologi dan pembuatan Pulau Pinang.',
+    faqs: [
+      { question: 'Adakah anda membantu perniagaan pelancongan dan F&B di Pulau Pinang?', answer: 'Ya — senario hospitaliti dan F&B Pulau Pinang sesuai untuk kandungan visual yang boleh dikongsi. Kami mencipta UGC dan kempen sosial yang menarik kedua-dua pelancong dan penduduk tempatan.' },
+      { question: 'Bolehkah anda menyokong syarikat teknologi dan pembuatan Pulau Pinang?', answer: 'Ya. Untuk jenama B2B dan teknologi di Bayan Lepas dan seterusnya, kami memfokus pada kandungan profesional, SEO, Google Ads, dan LinkedIn untuk menjana petunjuk berkelayakan.' },
+      { question: 'Adakah anda bekerja secara jarak jauh dengan pelanggan Pulau Pinang?', answer: 'Ya — kami bekerja lancar dengan pelanggan di seluruh Malaysia secara jarak jauh, dengan pengeluaran di lokasi diatur apabila penggambaran diperlukan.' },
+    ],
+  },
+};

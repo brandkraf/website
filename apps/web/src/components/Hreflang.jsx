@@ -13,7 +13,7 @@ const SITE = 'https://www.brandkraf.com';
 const PRIVATE = ['/admin', '/checkout', '/payment', '/media-upload'];
 // Sections whose pages manage their own per-page hreflang/canonical/robots (they know
 // which items are translated), so this global component only sets <html lang> for them.
-const SELF_MANAGED = ['/blog'];
+const SELF_MANAGED = ['/blog', '/guides', '/digital-marketing-agency'];
 
 export default function Hreflang() {
   const { pathname } = useLocation();
