@@ -6,6 +6,7 @@ import { ArrowRight, Sparkles, TrendingUp, Shield, Clock } from 'lucide-react';
 import WhatsAppInquiryForm from './WhatsAppInquiryForm.jsx';
 import KrafinaHero from './KrafinaHero.jsx';
 import { useIsMobile } from '@/hooks/useIsMobile.js';
+import { useLanguage } from '@/contexts/LanguageContext.jsx';
 
 function HeroSection({
   headline = "We don't just market. We scale brands.",
@@ -15,6 +16,8 @@ function HeroSection({
 }) {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const isMobile = useIsMobile();
+  const { lang, lp } = useLanguage();
+  const T = (en, ms) => (lang === 'ms' ? ms : en);
 
   const ease = [0.22, 1, 0.36, 1];
   const rise = (d = 0) => ({
@@ -32,9 +35,9 @@ function HeroSection({
   // client rating, total views) live in the dedicated TrustSection below,
   // so we don't repeat (or contradict) them here.
   const stats = [
-    { icon: TrendingUp, value: '3.5x', label: 'Average ROAS' },
-    { icon: Shield, value: '100%', label: 'In-house team' },
-    { icon: Clock, value: '24h', label: 'Response time' },
+    { icon: TrendingUp, value: '3.5x', label: T('Average ROAS', 'ROAS purata') },
+    { icon: Shield, value: '100%', label: T('In-house team', 'Pasukan dalaman') },
+    { icon: Clock, value: '24h', label: T('Response time', 'Masa tindak balas') },
   ];
 
   return (
@@ -57,7 +60,7 @@ function HeroSection({
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brandkraf-teal opacity-70" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-brandkraf-teal" />
                 </span>
-                Malaysia&apos;s growth marketing partner
+                {T("Malaysia's growth marketing partner", 'Rakan pemasaran pertumbuhan Malaysia')}
                 <Sparkles className="h-4 w-4" />
               </motion.span>
 
@@ -92,7 +95,7 @@ function HeroSection({
                   asChild
                   className="h-14 w-full rounded-xl border-2 border-brandkraf-purple/30 bg-white/40 px-8 text-base font-semibold text-foreground backdrop-blur-md transition-all duration-300 hover:border-brandkraf-purple/50 hover:bg-white/70 sm:w-auto sm:text-lg"
                 >
-                  <Link to="/portfolio">View Our Work</Link>
+                  <Link to={lp('/portfolio')}>{T('View Our Work', 'Lihat Kerja Kami')}</Link>
                 </Button>
               </motion.div>
 

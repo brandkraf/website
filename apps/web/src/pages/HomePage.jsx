@@ -12,159 +12,213 @@ import ServiceCard from '@/components/ServiceCard.jsx';
 import WhatsAppButton from '@/components/WhatsAppButton.jsx';
 import { motion } from 'framer-motion';
 import { Share2, Video, Target, Globe, Palette, Zap, Shield, TrendingUp, Users, Radio, Sparkles, MessageSquare as MessageSquareCode } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext.jsx';
 
 function HomePage() {
+  const { lang } = useLanguage();
+  const T = (en, ms) => (lang === 'ms' ? ms : en);
+
   const services = [
     {
       icon: Share2,
-      title: 'Social Media Management',
+      title: T('Social Media Management', 'Pengurusan Media Sosial'),
       path: '/portfolio/social-media-management',
-      description: 'Strategic content planning and community management across all platforms',
+      description: T(
+        'Strategic content planning and community management across all platforms',
+        'Perancangan kandungan strategik dan pengurusan komuniti merentasi semua platform',
+      ),
       features: [
-        'Content calendar planning',
-        'Daily posting and engagement',
-        'Analytics and reporting',
-        'Community management'
-      ]
+        T('Content calendar planning', 'Perancangan kalendar kandungan'),
+        T('Daily posting and engagement', 'Penyiaran dan penglibatan harian'),
+        T('Analytics and reporting', 'Analitik dan pelaporan'),
+        T('Community management', 'Pengurusan komuniti'),
+      ],
     },
     {
       icon: Video,
-      title: 'UGC Content Creation',
+      title: T('UGC Content Creation', 'Penciptaan Kandungan UGC'),
       path: '/portfolio/ugc-content-creation',
-      description: 'Authentic user-generated content that drives engagement and conversions',
+      description: T(
+        'Authentic user-generated content that drives engagement and conversions',
+        'Kandungan jana pengguna yang autentik yang memacu penglibatan dan penukaran',
+      ),
       features: [
-        'Professional UGC videos',
-        'Product photography',
-        'Testimonial content',
-        'Influencer collaborations'
-      ]
+        T('Professional UGC videos', 'Video UGC profesional'),
+        T('Product photography', 'Fotografi produk'),
+        T('Testimonial content', 'Kandungan testimoni'),
+        T('Influencer collaborations', 'Kerjasama pempengaruh'),
+      ],
     },
     {
       icon: Target,
-      title: 'Paid Advertising',
+      title: T('Paid Advertising', 'Pengiklanan Berbayar'),
       path: '/portfolio/paid-advertising',
-      description: 'Data-driven ad campaigns on Meta, TikTok, and Google',
+      description: T(
+        'Data-driven ad campaigns on Meta, TikTok, and Google',
+        'Kempen iklan dipacu data di Meta, TikTok, dan Google',
+      ),
       features: [
-        'Campaign strategy and setup',
-        'A/B testing and optimization',
-        'Audience targeting',
-        'Performance tracking'
-      ]
+        T('Campaign strategy and setup', 'Strategi dan persediaan kempen'),
+        T('A/B testing and optimization', 'Ujian A/B dan pengoptimuman'),
+        T('Audience targeting', 'Penyasaran penonton'),
+        T('Performance tracking', 'Penjejakan prestasi'),
+      ],
     },
     {
       icon: Globe,
-      title: 'Website Development',
+      title: T('Website Development', 'Pembangunan Laman Web'),
       path: '/portfolio/website-development',
-      description: 'High-converting websites built for performance and user experience',
+      description: T(
+        'High-converting websites built for performance and user experience',
+        'Laman web berpenukaran tinggi yang dibina untuk prestasi dan pengalaman pengguna',
+      ),
       features: [
-        'Custom website design',
-        'E-commerce integration',
-        'Mobile optimization',
-        'SEO foundation'
-      ]
+        T('Custom website design', 'Reka bentuk laman web tersuai'),
+        T('E-commerce integration', 'Integrasi e-dagang'),
+        T('Mobile optimization', 'Pengoptimuman mudah alih'),
+        T('SEO foundation', 'Asas SEO'),
+      ],
     },
     {
       icon: Palette,
-      title: 'Branding & Creative',
+      title: T('Branding & Creative', 'Penjenamaan & Kreatif'),
       path: '/portfolio/branding-creative',
-      description: 'Complete brand identity and creative design services',
+      description: T(
+        'Complete brand identity and creative design services',
+        'Perkhidmatan identiti jenama dan reka bentuk kreatif yang lengkap',
+      ),
       features: [
-        'Logo and brand identity',
-        'Marketing collateral',
-        'Social media graphics',
-        'Brand guidelines'
-      ]
+        T('Logo and brand identity', 'Logo dan identiti jenama'),
+        T('Marketing collateral', 'Bahan pemasaran'),
+        T('Social media graphics', 'Grafik media sosial'),
+        T('Brand guidelines', 'Garis panduan jenama'),
+      ],
     },
     {
       icon: Users,
-      title: 'KOC/KOL Service',
+      title: T('KOC/KOL Service', 'Perkhidmatan KOC/KOL'),
       path: '/portfolio/koc-kol-service',
-      description: 'Strategic collaborations with Key Opinion Creators and Leaders to amplify your brand reach and credibility.',
+      description: T(
+        'Strategic collaborations with Key Opinion Creators and Leaders to amplify your brand reach and credibility.',
+        'Kerjasama strategik dengan Key Opinion Creators dan Leaders untuk menguatkan jangkauan dan kredibiliti jenama anda.',
+      ),
       features: [
-        'Influencer matching & outreach',
-        'Campaign strategy & management',
-        'Content rights negotiation',
-        'Performance & ROI tracking'
-      ]
+        T('Influencer matching & outreach', 'Padanan & jangkauan pempengaruh'),
+        T('Campaign strategy & management', 'Strategi & pengurusan kempen'),
+        T('Content rights negotiation', 'Rundingan hak kandungan'),
+        T('Performance & ROI tracking', 'Penjejakan prestasi & ROI'),
+      ],
     },
     {
       icon: Radio,
-      title: 'TikTok Live Service',
+      title: T('TikTok Live Service', 'Perkhidmatan TikTok Live'),
       path: '/portfolio/tiktok-live-service',
-      description: 'Engaging live streaming sessions designed to boost real-time sales, launch products, and build community.',
+      description: T(
+        'Engaging live streaming sessions designed to boost real-time sales, launch products, and build community.',
+        'Sesi penstriman langsung yang menarik, direka untuk meningkatkan jualan masa nyata, melancarkan produk, dan membina komuniti.',
+      ),
       features: [
-        'Live stream strategy & planning',
-        'Host & talent management',
-        'Technical setup & broadcasting',
-        'Real-time audience engagement'
-      ]
+        T('Live stream strategy & planning', 'Strategi & perancangan strim langsung'),
+        T('Host & talent management', 'Pengurusan hos & bakat'),
+        T('Technical setup & broadcasting', 'Persediaan teknikal & penyiaran'),
+        T('Real-time audience engagement', 'Penglibatan penonton masa nyata'),
+      ],
     },
     {
       icon: Sparkles,
-      title: 'AI Driven Marketing Solution',
+      title: T('AI Driven Marketing Solution', 'Penyelesaian Pemasaran Dipacu AI'),
       path: '/portfolio/ai-driven-marketing',
-      description: 'Leverage advanced artificial intelligence to optimize your marketing strategies, predict trends, and maximize ROI.',
+      description: T(
+        'Leverage advanced artificial intelligence to optimize your marketing strategies, predict trends, and maximize ROI.',
+        'Manfaatkan kecerdasan buatan termaju untuk mengoptimumkan strategi pemasaran anda, meramal trend, dan memaksimumkan ROI.',
+      ),
       features: [
-        'Predictive analytics & modeling',
-        'Automated campaign optimization',
-        'AI-generated content strategy',
-        'Personalized customer journeys'
-      ]
+        T('Predictive analytics & modeling', 'Analitik & pemodelan ramalan'),
+        T('Automated campaign optimization', 'Pengoptimuman kempen automatik'),
+        T('AI-generated content strategy', 'Strategi kandungan jana AI'),
+        T('Personalized customer journeys', 'Perjalanan pelanggan diperibadikan'),
+      ],
     },
     {
       icon: MessageSquareCode,
-      title: 'Chatbot Development',
+      title: T('Chatbot Development', 'Pembangunan Chatbot'),
       path: '/portfolio/chatbot-development',
-      description: 'Intelligent conversational agents designed to qualify leads, automate support, and engage customers 24/7.',
+      description: T(
+        'Intelligent conversational agents designed to qualify leads, automate support, and engage customers 24/7.',
+        'Ejen perbualan pintar yang direka untuk melayakkan petunjuk, mengautomasi sokongan, dan melibatkan pelanggan 24/7.',
+      ),
       features: [
-        'Custom AI chatbot architecture',
-        'WhatsApp & Meta integration',
-        'Automated lead qualification',
-        'Seamless human handoff'
-      ]
-    }
+        T('Custom AI chatbot architecture', 'Seni bina chatbot AI tersuai'),
+        T('WhatsApp & Meta integration', 'Integrasi WhatsApp & Meta'),
+        T('Automated lead qualification', 'Pelayakan petunjuk automatik'),
+        T('Seamless human handoff', 'Penyerahan kepada manusia yang lancar'),
+      ],
+    },
   ];
 
   const whyChoose = [
     {
       icon: Zap,
-      title: 'Data-driven approach',
-      description: 'Every decision backed by analytics and performance metrics'
+      title: T('Data-driven approach', 'Pendekatan dipacu data'),
+      description: T(
+        'Every decision backed by analytics and performance metrics',
+        'Setiap keputusan disokong analitik dan metrik prestasi',
+      ),
     },
     {
       icon: Target,
-      title: 'Content that converts',
-      description: 'We create content designed to drive leads and sales, not just likes'
+      title: T('Content that converts', 'Kandungan yang menukar'),
+      description: T(
+        'We create content designed to drive leads and sales, not just likes',
+        'Kami mencipta kandungan yang direka untuk memacu petunjuk dan jualan, bukan sekadar suka',
+      ),
     },
     {
       icon: Shield,
-      title: 'In-house team',
-      description: 'No outsourcing - your project is handled by our experienced team'
+      title: T('In-house team', 'Pasukan dalaman'),
+      description: T(
+        'No outsourcing - your project is handled by our experienced team',
+        'Tiada penyumberan luar - projek anda dikendalikan oleh pasukan berpengalaman kami',
+      ),
     },
     {
       icon: TrendingUp,
-      title: 'Performance-focused',
-      description: 'We optimize for ROI, not vanity metrics'
-    }
+      title: T('Performance-focused', 'Fokus pada prestasi'),
+      description: T(
+        'We optimize for ROI, not vanity metrics',
+        'Kami mengoptimumkan untuk ROI, bukan metrik kesombongan',
+      ),
+    },
   ];
 
   return (
     <>
       <Helmet>
-        <title>BrandKraf - Scale Your Brand with Content, Ads & AI Marketing</title>
+        <title>{T(
+          'BrandKraf - Scale Your Brand with Content, Ads & AI Marketing',
+          'BrandKraf - Kembangkan Jenama Anda dengan Kandungan, Iklan & Pemasaran AI',
+        )}</title>
         <meta
           name="description"
-          content="We help businesses grow with social media management, UGC content, paid ads, and AI-driven marketing. Based in Malaysia, trusted by 200+ brands."
+          content={T(
+            'We help businesses grow with social media management, UGC content, paid ads, and AI-driven marketing. Based in Malaysia, trusted by 200+ brands.',
+            'Kami membantu perniagaan berkembang dengan pengurusan media sosial, kandungan UGC, iklan berbayar, dan pemasaran dipacu AI. Berpangkalan di Malaysia, dipercayai 200+ jenama.',
+          )}
         />
+        <link rel="canonical" href={lang === 'ms' ? 'https://www.brandkraf.com/ms' : 'https://www.brandkraf.com'} />
+        <meta property="og:locale" content={lang === 'ms' ? 'ms_MY' : 'en_MY'} />
       </Helmet>
 
       <Header />
 
       <main className="relative">
         <HeroSection
-          headline="We don't just market. We scale brands."
-          subheadline="Helping businesses grow with content, ads, and AI-driven marketing"
-          ctaText="Get Free Strategy Call"
+          headline={T("We don't just market. We scale brands.", 'Kami bukan sekadar memasarkan. Kami mengembangkan jenama.')}
+          subheadline={T(
+            'Helping businesses grow with content, ads, and AI-driven marketing',
+            'Membantu perniagaan berkembang dengan kandungan, iklan, dan pemasaran dipacu AI',
+          )}
+          ctaText={T('Get Free Strategy Call', 'Dapatkan Sesi Strategi Percuma')}
         />
 
         <ClientLogosSlider />
@@ -184,13 +238,20 @@ function HomePage() {
               className="text-center mb-16 flex flex-col items-center"
             >
               <span className="chip-brand mb-4">
-                <Sparkles className="h-4 w-4" /> What we do
+                <Sparkles className="h-4 w-4" /> {T('What we do', 'Apa yang kami buat')}
               </span>
               <h2 className="mb-4">
-                Everything you need to <span className="text-gradient">scale</span>
+                {lang === 'ms' ? (
+                  <>Semua yang anda perlukan untuk <span className="text-gradient">berkembang</span></>
+                ) : (
+                  <>Everything you need to <span className="text-gradient">scale</span></>
+                )}
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Full-service marketing solutions to help your brand grow and scale
+                {T(
+                  'Full-service marketing solutions to help your brand grow and scale',
+                  'Penyelesaian pemasaran perkhidmatan penuh untuk membantu jenama anda berkembang',
+                )}
               </p>
             </motion.div>
 
@@ -212,12 +273,19 @@ function HomePage() {
               transition={{ duration: 0.6 }}
               className="text-center mb-16 flex flex-col items-center"
             >
-              <span className="chip-brand mb-4">Why BrandKraf</span>
+              <span className="chip-brand mb-4">{T('Why BrandKraf', 'Mengapa BrandKraf')}</span>
               <h2 className="mb-4">
-                Built to be your <span className="text-gradient">growth partner</span>
+                {lang === 'ms' ? (
+                  <>Dibina untuk menjadi <span className="text-gradient">rakan pertumbuhan</span> anda</>
+                ) : (
+                  <>Built to be your <span className="text-gradient">growth partner</span></>
+                )}
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                We&apos;re not just another marketing agency - we&apos;re invested in your results
+                {T(
+                  "We're not just another marketing agency - we're invested in your results",
+                  'Kami bukan sekadar agensi pemasaran biasa - kami melabur dalam hasil anda',
+                )}
               </p>
             </motion.div>
 

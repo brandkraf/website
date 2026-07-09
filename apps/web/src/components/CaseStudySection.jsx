@@ -4,14 +4,17 @@ import { TrendingUp, Eye, Users, MessageCircle } from 'lucide-react';
 import WhatsAppButton from './WhatsAppButton.jsx';
 import AnimatedCounter from './AnimatedCounter.jsx';
 import { useIsMobile } from '@/hooks/useIsMobile.js';
+import { useLanguage } from '@/contexts/LanguageContext.jsx';
 
 function CaseStudySection() {
   const isMobile = useIsMobile();
+  const { lang } = useLanguage();
+  const T = (en, ms) => (lang === 'ms' ? ms : en);
 
   const metrics = [
-    { icon: Eye, value: 250, suffix: 'K+', label: 'Campaign Views' },
-    { icon: Users, value: 1200, suffix: '+', label: 'Units Sold' },
-    { icon: TrendingUp, value: 45, suffix: '%', label: 'Sales Growth' }
+    { icon: Eye, value: 250, suffix: 'K+', label: T('Campaign Views', 'Tontonan Kempen') },
+    { icon: Users, value: 1200, suffix: '+', label: T('Units Sold', 'Unit Dijual') },
+    { icon: TrendingUp, value: 45, suffix: '%', label: T('Sales Growth', 'Pertumbuhan Jualan') }
   ];
 
   return (
@@ -25,28 +28,38 @@ function CaseStudySection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <span className="chip-brand mb-5">Featured case study</span>
+            <span className="chip-brand mb-5">{T('Featured case study', 'Kajian kes pilihan')}</span>
             <h2 className="mb-6 text-foreground">
-              How we helped an e-commerce brand scale to <span className="text-gradient">6 figures</span>
+              {lang === 'ms' ? (
+                <>Bagaimana kami membantu jenama e-dagang berkembang ke <span className="text-gradient">6 angka</span></>
+              ) : (
+                <>How we helped an e-commerce brand scale to <span className="text-gradient">6 figures</span></>
+              )}
             </h2>
 
             <div className="space-y-5 mb-8">
               <div className="rounded-xl border border-gray-100 bg-gray-50/60 p-4">
-                <h4 className="font-semibold text-foreground mb-1.5">The Challenge</h4>
+                <h4 className="font-semibold text-foreground mb-1.5">{T('The Challenge', 'Cabaran')}</h4>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  A local supplement brand was struggling with low engagement and minimal online sales despite having quality products.
+                  {T(
+                    'A local supplement brand was struggling with low engagement and minimal online sales despite having quality products.',
+                    'Sebuah jenama suplemen tempatan bergelut dengan penglibatan rendah dan jualan dalam talian yang minimum walaupun mempunyai produk berkualiti.',
+                  )}
                 </p>
               </div>
 
               <div className="rounded-xl border border-brandkraf-teal/20 bg-gradient-to-br from-brandkraf-teal/5 to-brandkraf-purple/5 p-4">
-                <h4 className="font-semibold text-foreground mb-1.5">Our Solution</h4>
+                <h4 className="font-semibold text-foreground mb-1.5">{T('Our Solution', 'Penyelesaian Kami')}</h4>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  We implemented a comprehensive UGC content strategy combined with targeted TikTok and Meta ads, focusing on authentic storytelling and social proof.
+                  {T(
+                    'We implemented a comprehensive UGC content strategy combined with targeted TikTok and Meta ads, focusing on authentic storytelling and social proof.',
+                    'Kami melaksanakan strategi kandungan UGC menyeluruh digabungkan dengan iklan TikTok dan Meta yang disasarkan, memfokus pada penceritaan autentik dan bukti sosial.',
+                  )}
                 </p>
               </div>
 
               <div>
-                <h4 className="font-semibold text-foreground mb-4">The Results</h4>
+                <h4 className="font-semibold text-foreground mb-4">{T('The Results', 'Hasilnya')}</h4>
                 <div className="grid grid-cols-3 gap-3">
                   {metrics.map((metric, index) => {
                     const Icon = metric.icon;
@@ -74,7 +87,7 @@ function CaseStudySection() {
             </div>
 
             <WhatsAppButton size="lg" className="bg-gradient-to-r from-brandkraf-teal to-brandkraf-purple text-white hover:shadow-lg hover:shadow-brandkraf-purple/30 hover:-translate-y-0.5 smooth-transition rounded-xl">
-              Get Consultation Now
+              {T('Get Consultation Now', 'Dapatkan Perundingan Sekarang')}
               <MessageCircle className="ml-2 h-4 w-4" />
             </WhatsAppButton>
           </motion.div>

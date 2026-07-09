@@ -2,34 +2,49 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Lightbulb, FileText, Rocket, TrendingUp } from 'lucide-react';
 import { useIsMobile } from '@/hooks/useIsMobile.js';
+import { useLanguage } from '@/contexts/LanguageContext.jsx';
 
 function ProcessSection() {
   const isMobile = useIsMobile();
+  const { lang } = useLanguage();
+  const T = (en, ms) => (lang === 'ms' ? ms : en);
 
   const steps = [
     {
       icon: Lightbulb,
       number: '01',
-      title: 'Strategy',
-      description: 'We analyze your brand, audience, and competitors to create a data-driven marketing strategy.'
+      title: T('Strategy', 'Strategi'),
+      description: T(
+        'We analyze your brand, audience, and competitors to create a data-driven marketing strategy.',
+        'Kami menganalisis jenama, penonton, dan pesaing anda untuk mencipta strategi pemasaran dipacu data.',
+      )
     },
     {
       icon: FileText,
       number: '02',
-      title: 'Content',
-      description: 'Our team produces high-quality UGC content, ad creatives, and copy that resonates with your audience.'
+      title: T('Content', 'Kandungan'),
+      description: T(
+        'Our team produces high-quality UGC content, ad creatives, and copy that resonates with your audience.',
+        'Pasukan kami menghasilkan kandungan UGC berkualiti tinggi, kreatif iklan, dan salinan yang beresonansi dengan penonton anda.',
+      )
     },
     {
       icon: Rocket,
       number: '03',
-      title: 'Execution',
-      description: 'We launch campaigns across TikTok, Meta, and Google with precise targeting and optimization.'
+      title: T('Execution', 'Pelaksanaan'),
+      description: T(
+        'We launch campaigns across TikTok, Meta, and Google with precise targeting and optimization.',
+        'Kami melancarkan kempen merentasi TikTok, Meta, dan Google dengan penyasaran dan pengoptimuman yang tepat.',
+      )
     },
     {
       icon: TrendingUp,
       number: '04',
-      title: 'Scaling',
-      description: 'We continuously test, optimize, and scale what works to maximize your ROI.'
+      title: T('Scaling', 'Penskalaan'),
+      description: T(
+        'We continuously test, optimize, and scale what works to maximize your ROI.',
+        'Kami sentiasa menguji, mengoptimumkan, dan mengembangkan apa yang berkesan untuk memaksimumkan ROI anda.',
+      )
     }
   ];
 
@@ -44,12 +59,19 @@ function ProcessSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16 flex flex-col items-center"
         >
-          <span className="chip-brand mb-4">How we work</span>
+          <span className="chip-brand mb-4">{T('How we work', 'Cara kami bekerja')}</span>
           <h2 className="mb-4 text-foreground">
-            Our proven <span className="text-gradient">process</span>
+            {lang === 'ms' ? (
+              <><span className="text-gradient">Proses</span> terbukti kami</>
+            ) : (
+              <>Our proven <span className="text-gradient">process</span></>
+            )}
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            From strategy to scaling, we handle every step of your marketing journey
+            {T(
+              'From strategy to scaling, we handle every step of your marketing journey',
+              'Daripada strategi ke penskalaan, kami mengendalikan setiap langkah perjalanan pemasaran anda',
+            )}
           </p>
         </motion.div>
 

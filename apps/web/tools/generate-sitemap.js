@@ -54,15 +54,18 @@ async function main() {
       (p) =>
         p.startsWith('/') &&
         !p.includes(':') &&
+        p !== '/' && // homepage is emitted bilingual below (already translated)
         p !== '/guides' && // guides index is emitted bilingual below (already translated)
         !PRIVATE.some((b) => p === b || p.startsWith(b)),
     );
 
   const bases = [...new Set(routePaths)].map((p) => ({ path: p, lastmod: today, priority: priorityFor(p) }));
 
-  // Fully-translated data pages — emitted bilingual NOW (guides + location pages have
-  // complete BM versions), independent of the global BM_SITEMAP flag used for the rest.
+  // Fully-translated pages — emitted bilingual NOW (homepage, guides + location pages
+  // have complete BM versions), independent of the global BM_SITEMAP flag for the rest.
+  // Keep in sync with TRANSLATED in src/components/Hreflang.jsx.
   const translated = [
+    { path: '/', priority: '1.0' },
     { path: '/guides', priority: '0.8' },
     ...clusterSlugs.map((slug) => ({ path: `/guides/${slug}`, priority: '0.7' })),
     ...locationSlugs.map((slug) => ({ path: `/digital-marketing-agency/${slug}`, priority: '0.8' })),

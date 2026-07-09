@@ -14,6 +14,10 @@ const PRIVATE = ['/admin', '/checkout', '/payment', '/media-upload'];
 // Sections whose pages manage their own per-page hreflang/canonical/robots (they know
 // which items are translated), so this global component only sets <html lang> for them.
 const SELF_MANAGED = ['/blog', '/guides', '/digital-marketing-agency'];
+// Route pages whose BM version is fully translated — these get hreflang alternates and
+// are indexable even while BM_LIVE is false. Append paths here as each page is translated;
+// keep in sync with the `translated` list in tools/generate-sitemap.js.
+const TRANSLATED = ['/'];
 
 export default function Hreflang() {
   const { pathname } = useLocation();
@@ -32,7 +36,7 @@ export default function Hreflang() {
     );
   }
 
-  if (!BM_LIVE) {
+  if (!BM_LIVE && !TRANSLATED.includes(base)) {
     return (
       <Helmet>
         <html lang={lang} />

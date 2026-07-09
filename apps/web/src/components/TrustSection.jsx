@@ -4,19 +4,25 @@ import { Star, Award, Users } from 'lucide-react';
 import TestimonialCard from './TestimonialCard.jsx';
 import AnimatedCounter from './AnimatedCounter.jsx';
 import { useIsMobile } from '@/hooks/useIsMobile.js';
+import { useLanguage } from '@/contexts/LanguageContext.jsx';
 
 function TrustSection() {
   const isMobile = useIsMobile();
+  const { lang } = useLanguage();
+  const T = (en, ms) => (lang === 'ms' ? ms : en);
 
   const stats = [
-    { icon: Users, value: 200, decimals: 0, suffix: '+', label: 'Brands Served' },
-    { icon: Star, value: 4.95, decimals: 2, suffix: '/5', label: 'Client Rating' },
-    { icon: Award, value: 1000000, decimals: 0, suffix: '+', label: 'Total Views Generated' }
+    { icon: Users, value: 200, decimals: 0, suffix: '+', label: T('Brands Served', 'Jenama Dilayani') },
+    { icon: Star, value: 4.95, decimals: 2, suffix: '/5', label: T('Client Rating', 'Penilaian Pelanggan') },
+    { icon: Award, value: 1000000, decimals: 0, suffix: '+', label: T('Total Views Generated', 'Jumlah Tontonan Dijana') }
   ];
 
   const testimonials = [
     {
-      quote: 'BrandKraf transformed our social media presence. We went from 2K to 47K followers in 6 months, and our sales increased by 38%.',
+      quote: T(
+        'BrandKraf transformed our social media presence. We went from 2K to 47K followers in 6 months, and our sales increased by 38%.',
+        'BrandKraf mengubah kehadiran media sosial kami. Kami meningkat daripada 2K kepada 47K pengikut dalam 6 bulan, dan jualan kami naik 38%.',
+      ),
       name: 'Prof Yus Aniza',
       company: 'Moryga',
       initials: 'PYA',
@@ -24,7 +30,10 @@ function TrustSection() {
       altText: 'Woman in red hijab smiling at camera, professional headshot'
     },
     {
-      quote: 'Their UGC content strategy helped us generate over 1,200 qualified leads. The ROI has been exceptional.',
+      quote: T(
+        'Their UGC content strategy helped us generate over 1,200 qualified leads. The ROI has been exceptional.',
+        'Strategi kandungan UGC mereka membantu kami menjana lebih 1,200 petunjuk berkelayakan. ROI-nya sangat luar biasa.',
+      ),
       name: 'Mr. Sushil',
       company: 'Nachi Toddy',
       initials: 'MS',
@@ -32,7 +41,10 @@ function TrustSection() {
       altText: 'Man in red Nachi Toddy branded shirt with red umbrella background, professional photo'
     },
     {
-      quote: 'Working with BrandKraf feels like having an in-house marketing team. They understand our brand and deliver consistently.',
+      quote: T(
+        'Working with BrandKraf feels like having an in-house marketing team. They understand our brand and deliver consistently.',
+        'Bekerja dengan BrandKraf terasa seperti mempunyai pasukan pemasaran dalaman. Mereka memahami jenama kami dan menyampaikan secara konsisten.',
+      ),
       name: 'Dr Sonia',
       company: 'Klinik Dr Sonia Qualitas',
       initials: 'DS',
@@ -52,12 +64,19 @@ function TrustSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16 flex flex-col items-center"
         >
-          <span className="chip-brand mb-4">Proven results</span>
+          <span className="chip-brand mb-4">{T('Proven results', 'Hasil terbukti')}</span>
           <h2 className="mb-4 text-foreground">
-            Trusted by <span className="text-gradient">growing brands</span>
+            {lang === 'ms' ? (
+              <>Dipercayai oleh <span className="text-gradient">jenama yang berkembang</span></>
+            ) : (
+              <>Trusted by <span className="text-gradient">growing brands</span></>
+            )}
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            We&apos;ve helped businesses across Malaysia scale their marketing and drive real results
+            {T(
+              "We've helped businesses across Malaysia scale their marketing and drive real results",
+              'Kami telah membantu perniagaan di seluruh Malaysia mengembangkan pemasaran mereka dan memacu hasil sebenar',
+            )}
           </p>
         </motion.div>
 

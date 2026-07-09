@@ -3,9 +3,12 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button.jsx';
 import WhatsAppInquiryForm from './WhatsAppInquiryForm.jsx';
+import { useLanguage } from '@/contexts/LanguageContext.jsx';
 
 function ClosingCTASection() {
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const { lang } = useLanguage();
+  const T = (en, ms) => (lang === 'ms' ? ms : en);
 
   return (
     <>
@@ -27,13 +30,16 @@ function ClosingCTASection() {
           >
             <span className="chip-glass mb-6">
               <Sparkles className="h-4 w-4" />
-              Free 30-minute strategy call
+              {T('Free 30-minute strategy call', 'Panggilan strategi percuma 30 minit')}
             </span>
             <h2 className="mb-6 text-balance text-4xl font-bold leading-tight text-white md:text-5xl">
-              Ready to scale your brand?
+              {T('Ready to scale your brand?', 'Bersedia untuk mengembangkan jenama anda?')}
             </h2>
             <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-white/90">
-              Book a free strategy call with our team. We&apos;ll analyze your current marketing, identify growth opportunities, and show you exactly how we can help you scale.
+              {T(
+                "Book a free strategy call with our team. We'll analyze your current marketing, identify growth opportunities, and show you exactly how we can help you scale.",
+                'Tempah panggilan strategi percuma dengan pasukan kami. Kami akan menganalisis pemasaran semasa anda, mengenal pasti peluang pertumbuhan, dan menunjukkan dengan tepat cara kami boleh membantu anda berkembang.',
+              )}
             </p>
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
               <Button
@@ -41,12 +47,12 @@ function ClosingCTASection() {
                 onClick={() => setIsFormOpen(true)}
                 className="h-14 rounded-xl bg-white px-8 text-lg font-bold text-brandkraf-teal shadow-xl transition-all duration-300 hover:-translate-y-1 hover:bg-gray-50 hover:shadow-2xl active:scale-[0.98]"
               >
-                Get Free Strategy Call
+                {T('Get Free Strategy Call', 'Dapatkan Sesi Strategi Percuma')}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </div>
             <p className="mt-8 text-sm font-medium tracking-wide text-white/80">
-              No commitment required • Response within 24 hours
+              {T('No commitment required • Response within 24 hours', 'Tiada komitmen diperlukan • Tindak balas dalam 24 jam')}
             </p>
           </motion.div>
         </div>

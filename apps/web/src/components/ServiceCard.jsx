@@ -3,10 +3,13 @@ import { Link } from 'react-router-dom';
 import { Check, ChevronDown, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useIsMobile } from '@/hooks/useIsMobile.js';
+import { useLanguage } from '@/contexts/LanguageContext.jsx';
 
 function ServiceCard({ icon: Icon, title, description, features, subServices, path, delay = 0 }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const isMobile = useIsMobile();
+  const { lang, lp } = useLanguage();
+  const T = (en, ms) => (lang === 'ms' ? ms : en);
 
   return (
     <motion.div
@@ -50,7 +53,7 @@ function ServiceCard({ icon: Icon, title, description, features, subServices, pa
                 className="flex items-center gap-1.5 text-sm font-semibold text-brandkraf-teal hover:text-brandkraf-purple smooth-transition focus:outline-none focus-visible:ring-2 focus-visible:ring-brandkraf-teal rounded-md px-1 -ml-1"
                 aria-expanded={isExpanded}
               >
-                {isExpanded ? 'Hide Sub-services' : 'View Sub-services'}
+                {isExpanded ? T('Hide Sub-services', 'Sembunyikan Sub-perkhidmatan') : T('View Sub-services', 'Lihat Sub-perkhidmatan')}
                 <ChevronDown
                   className={`h-4 w-4 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}
                 />
@@ -81,10 +84,10 @@ function ServiceCard({ icon: Icon, title, description, features, subServices, pa
           {path && (
             <div className="relative mt-5 pt-4 border-t border-gray-100">
               <Link
-                to={path}
+                to={lp(path)}
                 className="inline-flex items-center gap-1.5 text-sm font-semibold text-brandkraf-teal hover:text-brandkraf-purple transition-colors duration-200 group/link"
               >
-                Learn more
+                {T('Learn more', 'Ketahui lebih lanjut')}
                 <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover/link:translate-x-1" />
               </Link>
             </div>
