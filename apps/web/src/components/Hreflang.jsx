@@ -46,6 +46,10 @@ const TRANSLATED = [
   '/pricing/tiktok-live-service',
   '/pricing/ai-driven-marketing',
   '/pricing/chatbot-development',
+  '/portfolio/tiktok-campaigns',
+  '/portfolio/branding-creative-portfolio',
+  '/portfolio/ad-creatives',
+  '/portfolio/ugc-videos',
 ];
 
 export default function Hreflang() {

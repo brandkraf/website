@@ -7,29 +7,33 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ProjectCard from '@/components/ProjectCard';
 import WhatsAppButton from '@/components/WhatsAppButton.jsx';
+import { useLanguage } from '@/contexts/LanguageContext.jsx';
 
 function AdCreativesPortfolioPage() {
+  const { lang, lp } = useLanguage();
+  const T = (en, ms) => (lang === 'ms' ? ms : en);
+
   const projects = [
     {
       image: 'https://images.unsplash.com/photo-1641236210747-48bc43e4517f',
-      clientType: 'Tech Startup',
-      objective: 'Generate qualified B2B leads through LinkedIn ads',
-      category: 'Ad Creatives',
+      clientType: T('Tech Startup', 'Syarikat Baharu Teknologi'),
+      objective: T('Generate qualified B2B leads through LinkedIn ads', 'Menjana petunjuk B2B berkelayakan melalui iklan LinkedIn'),
+      category: T('Ad Creatives', 'Kreatif Iklan'),
       results: [
-        { type: 'leads', value: '1,200+', label: 'Qualified Leads' },
-        { type: 'sales', value: '38%', label: 'Conversion Rate' },
-        { type: 'views', value: '180K', label: 'Impressions' }
+        { type: 'leads', value: '1,200+', label: T('Qualified Leads', 'Petunjuk Berkelayakan') },
+        { type: 'sales', value: '38%', label: T('Conversion Rate', 'Kadar Penukaran') },
+        { type: 'views', value: '180K', label: T('Impressions', 'Tera') }
       ]
     },
     {
       image: 'https://images.unsplash.com/photo-1641236210747-48bc43e4517f',
-      clientType: 'SaaS Platform',
-      objective: 'Performance marketing campaign across Meta and Google',
-      category: 'Ad Creatives',
+      clientType: T('SaaS Platform', 'Platform SaaS'),
+      objective: T('Performance marketing campaign across Meta and Google', 'Kempen pemasaran prestasi merentasi Meta dan Google'),
+      category: T('Ad Creatives', 'Kreatif Iklan'),
       results: [
-        { type: 'leads', value: '2,100', label: 'Trials' },
-        { type: 'sales', value: '28%', label: 'Conversion' },
-        { type: 'views', value: '420K', label: 'Impressions' }
+        { type: 'leads', value: '2,100', label: T('Trials', 'Percubaan') },
+        { type: 'sales', value: '28%', label: T('Conversion', 'Penukaran') },
+        { type: 'views', value: '420K', label: T('Impressions', 'Tera') }
       ]
     }
   ];
@@ -37,20 +41,20 @@ function AdCreativesPortfolioPage() {
   return (
     <>
       <Helmet>
-        <title>Ad Creatives & Paid Advertising Portfolio - BrandKraf</title>
-        <meta name="description" content="See how our performance-focused ad creatives generate qualified leads and maximize ROI." />
+        <title>{T('Ad Creatives & Paid Advertising Portfolio - BrandKraf', 'Portfolio Kreatif Iklan & Pengiklanan Berbayar - BrandKraf')}</title>
+        <meta name="description" content={T('See how our performance-focused ad creatives generate qualified leads and maximize ROI.', 'Lihat cara kreatif iklan kami yang berfokuskan prestasi menjana petunjuk berkelayakan dan memaksimumkan ROI.')} />
       </Helmet>
 
       <Header />
 
       <main className="pt-32 pb-20 min-h-screen relative">
         <div className="container-custom">
-          <Link 
-            to="/portfolio" 
+          <Link
+            to={lp('/portfolio')}
             className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-primary transition-colors mb-8"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to All Services
+            {T('Back to All Services', 'Kembali ke Semua Perkhidmatan')}
           </Link>
 
           <motion.div
@@ -59,9 +63,12 @@ function AdCreativesPortfolioPage() {
             transition={{ duration: 0.6 }}
             className="mb-16"
           >
-            <h1 className="mb-4">Ad Creatives & Paid Ads</h1>
+            <h1 className="mb-4">{T('Ad Creatives & Paid Ads', 'Kreatif Iklan & Iklan Berbayar')}</h1>
             <p className="text-xl text-muted-foreground max-w-2xl">
-              Data-driven ad campaigns that prioritize ROI. We design creatives that stop the scroll and drive action.
+              {T(
+                'Data-driven ad campaigns that prioritize ROI. We design creatives that stop the scroll and drive action.',
+                'Kempen iklan dipacu data yang mengutamakan ROI. Kami mereka bentuk kreatif yang menghentikan susur dan memacu tindakan.',
+              )}
             </p>
           </motion.div>
 

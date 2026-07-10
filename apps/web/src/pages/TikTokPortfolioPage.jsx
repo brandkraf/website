@@ -7,18 +7,22 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ProjectCard from '@/components/ProjectCard';
 import WhatsAppButton from '@/components/WhatsAppButton.jsx';
+import { useLanguage } from '@/contexts/LanguageContext.jsx';
 
 function TikTokPortfolioPage() {
+  const { lang, lp } = useLanguage();
+  const T = (en, ms) => (lang === 'ms' ? ms : en);
+
   const projects = [
     {
       image: 'https://images.unsplash.com/photo-1675682897447-999b32747150',
-      clientType: 'Beauty Brand',
-      objective: 'Viral TikTok campaign for new product launch',
-      category: 'TikTok Campaigns',
+      clientType: T('Beauty Brand', 'Jenama Kecantikan'),
+      objective: T('Viral TikTok campaign for new product launch', 'Kempen TikTok viral untuk pelancaran produk baharu'),
+      category: T('TikTok Campaigns', 'Kempen TikTok'),
       results: [
-        { type: 'views', value: '500K+', label: 'Views' },
-        { type: 'leads', value: '2,400', label: 'Followers Gained' },
-        { type: 'sales', value: '67%', label: 'Engagement Rate' }
+        { type: 'views', value: '500K+', label: T('Views', 'Tontonan') },
+        { type: 'leads', value: '2,400', label: T('Followers Gained', 'Pengikut Diperoleh') },
+        { type: 'sales', value: '67%', label: T('Engagement Rate', 'Kadar Penglibatan') }
       ]
     }
   ];
@@ -26,20 +30,20 @@ function TikTokPortfolioPage() {
   return (
     <>
       <Helmet>
-        <title>TikTok Campaigns Portfolio - BrandKraf</title>
-        <meta name="description" content="Explore our successful TikTok campaigns and live streaming events that maximize engagement and brand visibility." />
+        <title>{T('TikTok Campaigns Portfolio - BrandKraf', 'Portfolio Kempen TikTok - BrandKraf')}</title>
+        <meta name="description" content={T('Explore our successful TikTok campaigns and live streaming events that maximize engagement and brand visibility.', 'Terokai kempen TikTok kami yang berjaya dan acara penstriman langsung yang memaksimumkan penglibatan dan keterlihatan jenama.')} />
       </Helmet>
 
       <Header />
 
       <main className="pt-32 pb-20 min-h-screen relative">
         <div className="container-custom">
-          <Link 
-            to="/portfolio" 
+          <Link
+            to={lp('/portfolio')}
             className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-primary transition-colors mb-8"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to All Services
+            {T('Back to All Services', 'Kembali ke Semua Perkhidmatan')}
           </Link>
 
           <motion.div
@@ -48,9 +52,12 @@ function TikTokPortfolioPage() {
             transition={{ duration: 0.6 }}
             className="mb-16"
           >
-            <h1 className="mb-4">TikTok Campaigns</h1>
+            <h1 className="mb-4">{T('TikTok Campaigns', 'Kempen TikTok')}</h1>
             <p className="text-xl text-muted-foreground max-w-2xl">
-              High-impact TikTok strategies and live events designed to capture attention and boost real-time sales.
+              {T(
+                'High-impact TikTok strategies and live events designed to capture attention and boost real-time sales.',
+                'Strategi TikTok berimpak tinggi dan acara langsung yang direka untuk menarik perhatian dan meningkatkan jualan masa nyata.',
+              )}
             </p>
           </motion.div>
 

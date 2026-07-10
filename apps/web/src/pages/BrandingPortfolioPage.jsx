@@ -7,18 +7,22 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ProjectCard from '@/components/ProjectCard';
 import WhatsAppButton from '@/components/WhatsAppButton.jsx';
+import { useLanguage } from '@/contexts/LanguageContext.jsx';
 
 function BrandingPortfolioPage() {
+  const { lang, lp } = useLanguage();
+  const T = (en, ms) => (lang === 'ms' ? ms : en);
+
   const projects = [
     {
       image: 'https://images.unsplash.com/photo-1641236210747-48bc43e4517f',
-      clientType: 'Restaurant Chain',
-      objective: 'Complete brand refresh and social media presence',
-      category: 'Branding',
+      clientType: T('Restaurant Chain', 'Rangkaian Restoran'),
+      objective: T('Complete brand refresh and social media presence', 'Penyegaran jenama lengkap dan kehadiran media sosial'),
+      category: T('Branding', 'Penjenamaan'),
       results: [
-        { type: 'views', value: '150K', label: 'Reach' },
-        { type: 'leads', value: '3,200', label: 'New Followers' },
-        { type: 'sales', value: '52%', label: 'Foot Traffic' }
+        { type: 'views', value: '150K', label: T('Reach', 'Jangkauan') },
+        { type: 'leads', value: '3,200', label: T('New Followers', 'Pengikut Baharu') },
+        { type: 'sales', value: '52%', label: T('Foot Traffic', 'Trafik Pejalan Kaki') }
       ]
     }
   ];
@@ -26,20 +30,20 @@ function BrandingPortfolioPage() {
   return (
     <>
       <Helmet>
-        <title>Branding & Creative Portfolio - BrandKraf</title>
-        <meta name="description" content="Discover our complete brand identity and creative design transformations." />
+        <title>{T('Branding & Creative Portfolio - BrandKraf', 'Portfolio Penjenamaan & Kreatif - BrandKraf')}</title>
+        <meta name="description" content={T('Discover our complete brand identity and creative design transformations.', 'Temui transformasi identiti jenama dan reka bentuk kreatif lengkap kami.')} />
       </Helmet>
 
       <Header />
 
       <main className="pt-32 pb-20 min-h-screen relative">
         <div className="container-custom">
-          <Link 
-            to="/portfolio" 
+          <Link
+            to={lp('/portfolio')}
             className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-primary transition-colors mb-8"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to All Services
+            {T('Back to All Services', 'Kembali ke Semua Perkhidmatan')}
           </Link>
 
           <motion.div
@@ -48,9 +52,12 @@ function BrandingPortfolioPage() {
             transition={{ duration: 0.6 }}
             className="mb-16"
           >
-            <h1 className="mb-4">Branding & Creative</h1>
+            <h1 className="mb-4">{T('Branding & Creative', 'Penjenamaan & Kreatif')}</h1>
             <p className="text-xl text-muted-foreground max-w-2xl">
-              Memorable brand identities and striking visual designs that help you stand out in a crowded market.
+              {T(
+                'Memorable brand identities and striking visual designs that help you stand out in a crowded market.',
+                'Identiti jenama yang mudah diingati dan reka bentuk visual yang menarik yang membantu anda menonjol dalam pasaran yang sesak.',
+              )}
             </p>
           </motion.div>
 
