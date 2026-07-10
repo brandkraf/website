@@ -4,6 +4,7 @@ import { Check, ArrowRight, Sparkles, CreditCard } from 'lucide-react';
 import { Button } from '@/components/ui/button.jsx';
 import { Link, useNavigate } from 'react-router-dom';
 import CountdownTimer from './CountdownTimer.jsx';
+import { useLanguage } from '@/contexts/LanguageContext.jsx';
 
 export default function PricingTierCard({
   name,
@@ -16,12 +17,15 @@ export default function PricingTierCard({
   isPopular,
   isCustom,
   showTimer,
-  ctaText = 'Contact Us',
+  ctaText,
   delay = 0,
   serviceCategory,
   numericPrice
 }) {
   const navigate = useNavigate();
+  const { lang, lp } = useLanguage();
+  const T = (en, ms) => (lang === 'ms' ? ms : en);
+  const resolvedCta = ctaText || T('Contact Us', 'Hubungi Kami');
 
   const textColor = isCustom ? 'text-slate-300' : 'text-muted-foreground';
   const headingColor = isCustom ? 'text-white' : 'text-foreground';
@@ -36,13 +40,13 @@ export default function PricingTierCard({
     <>
       {isPopular && !isCustom && (
         <div className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-brandkraf-teal to-brandkraf-purple px-4 py-1 text-sm font-bold uppercase tracking-wide text-white shadow-lg shadow-brandkraf-purple/30">
-          Most Popular
+          {T('Most Popular', 'Paling Popular')}
         </div>
       )}
 
       {isCustom && (
         <div className="absolute -top-4 left-1/2 flex -translate-x-1/2 items-center gap-1.5 rounded-full border border-slate-700 bg-slate-800 px-4 py-1 text-sm font-bold uppercase tracking-wide text-slate-200 shadow-sm">
-          <Sparkles className="h-4 w-4 text-brandkraf-teal" /> Tailored
+          <Sparkles className="h-4 w-4 text-brandkraf-teal" /> {T('Tailored', 'Disesuaikan')}
         </div>
       )}
 
@@ -54,7 +58,7 @@ export default function PricingTierCard({
       <div className="mb-8 flex min-h-[100px] flex-col justify-center">
         {isCustom ? (
           <div className="flex items-baseline gap-1">
-            <span className={`text-3xl font-extrabold ${headingColor}`}>Contact for Quote</span>
+            <span className={`text-3xl font-extrabold ${headingColor}`}>{T('Contact for Quote', 'Hubungi untuk Sebut Harga')}</span>
           </div>
         ) : discountPrice ? (
           <div className="flex flex-col gap-2">
@@ -72,14 +76,14 @@ export default function PricingTierCard({
               <span className="bg-gradient-to-r from-brandkraf-teal to-brandkraf-purple bg-clip-text text-4xl font-extrabold text-transparent">
                 {discountPrice}
               </span>
-              <span className={textColor}>/mo</span>
+              <span className={textColor}>{T('/mo', '/bln')}</span>
             </div>
             {showTimer && <CountdownTimer initialDays={3} />}
           </div>
         ) : (
           <div className="flex items-baseline gap-1">
-            <span className={`text-4xl font-extrabold ${headingColor}`}>{price}</span>
-            {price !== 'Custom' && <span className={textColor}>/mo</span>}
+            <span className={`text-4xl font-extrabold ${headingColor}`}>{price === 'Custom' ? T('Custom', 'Tersuai') : price}</span>
+            {price !== 'Custom' && <span className={textColor}>{T('/mo', '/bln')}</span>}
           </div>
         )}
       </div>
@@ -102,7 +106,7 @@ export default function PricingTierCard({
             size="lg"
             onClick={handlePayNow}
           >
-            <CreditCard className="mr-2 h-4 w-4" /> Pay Now
+            <CreditCard className="mr-2 h-4 w-4" /> {T('Pay Now', 'Bayar Sekarang')}
           </Button>
         )}
         <Button
@@ -111,8 +115,8 @@ export default function PricingTierCard({
           size="lg"
           asChild
         >
-          <Link to="/contact">
-            {ctaText} {(!numericPrice || isCustom) && <ArrowRight className="ml-2 h-4 w-4" />}
+          <Link to={lp('/contact')}>
+            {resolvedCta} {(!numericPrice || isCustom) && <ArrowRight className="ml-2 h-4 w-4" />}
           </Link>
         </Button>
       </div>

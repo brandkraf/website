@@ -7,17 +7,24 @@ import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
 import FAQSection from '@/components/FAQSection.jsx';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/contexts/LanguageContext.jsx';
 
-const FAQS = [
-  { question: 'How much should I budget for ads?', answer: 'Work backwards from a goal: decide how many sales or leads you want, then factor in your conversion rate and cost per click. This calculator does that maths for you to estimate a realistic monthly budget.' },
-  { question: 'What is a good cost per click in Malaysia?', answer: 'It varies widely by platform and industry — often RM0.30–RM2.00 on Meta and more on competitive Google search terms. Use your own account data where possible for the most accurate estimate.' },
-  { question: 'Why does conversion rate matter so much?', answer: 'It is the biggest lever on your budget. Doubling your landing-page conversion rate roughly halves the ad spend needed for the same number of sales — often cheaper than buying more clicks.' },
-  { question: 'Is the management fee included?', answer: 'No. This estimates the ad spend paid to the platform. Agency management fees (and creative) are separate — see our pricing page for those.' },
-];
+const SITE = 'https://www.brandkraf.com';
 
 const rm = (n) => 'RM ' + Math.round(n).toLocaleString('en-US');
 
 export default function AdBudgetCalculatorPage() {
+  const { lang, lp } = useLanguage();
+  const T = (en, ms) => (lang === 'ms' ? ms : en);
+  const isMs = lang === 'ms';
+
+  const FAQS = [
+    { question: T('How much should I budget for ads?', 'Berapa patut saya peruntukkan untuk iklan?'), answer: T('Work backwards from a goal: decide how many sales or leads you want, then factor in your conversion rate and cost per click. This calculator does that maths for you to estimate a realistic monthly budget.', 'Kira ke belakang daripada matlamat: tentukan berapa banyak jualan atau petunjuk yang anda mahu, kemudian ambil kira kadar penukaran dan kos seklik anda. Kalkulator ini membuat pengiraan itu untuk anda bagi menganggarkan bajet bulanan yang realistik.') },
+    { question: T('What is a good cost per click in Malaysia?', 'Apa kos seklik yang baik di Malaysia?'), answer: T('It varies widely by platform and industry — often RM0.30–RM2.00 on Meta and more on competitive Google search terms. Use your own account data where possible for the most accurate estimate.', 'Ia berbeza dengan ketara mengikut platform dan industri — selalunya RM0.30–RM2.00 di Meta dan lebih pada istilah carian Google yang kompetitif. Gunakan data akaun anda sendiri jika boleh untuk anggaran paling tepat.') },
+    { question: T('Why does conversion rate matter so much?', 'Mengapa kadar penukaran sangat penting?'), answer: T('It is the biggest lever on your budget. Doubling your landing-page conversion rate roughly halves the ad spend needed for the same number of sales — often cheaper than buying more clicks.', 'Ia tuas terbesar pada bajet anda. Menggandakan kadar penukaran halaman pendaratan anda mengurangkan kira-kira separuh perbelanjaan iklan yang diperlukan untuk bilangan jualan yang sama — selalunya lebih murah daripada membeli lebih banyak klik.') },
+    { question: T('Is the management fee included?', 'Adakah yuran pengurusan termasuk?'), answer: T('No. This estimates the ad spend paid to the platform. Agency management fees (and creative) are separate — see our pricing page for those.', 'Tidak. Ini menganggarkan perbelanjaan iklan yang dibayar kepada platform. Yuran pengurusan agensi (dan kreatif) adalah berasingan — lihat halaman harga kami untuk itu.') },
+  ];
+
   const [goal, setGoal] = useState('50');
   const [cr, setCr] = useState('2');
   const [cpc, setCpc] = useState('1.50');
@@ -41,24 +48,27 @@ export default function AdBudgetCalculatorPage() {
     };
   }, [goal, cr, cpc, aov]);
 
+  const path = '/ad-budget-calculator';
+  const url = `${SITE}${isMs ? '/ms' : ''}${path}`;
+
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [
       {
         '@type': 'WebApplication',
-        name: 'Ad Budget Calculator',
+        name: T('Ad Budget Calculator', 'Kalkulator Bajet Iklan'),
         applicationCategory: 'BusinessApplication',
         operatingSystem: 'Web',
-        url: 'https://www.brandkraf.com/ad-budget-calculator',
+        url,
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'MYR' },
-        provider: { '@type': 'Organization', name: 'BrandKraf', url: 'https://www.brandkraf.com' },
+        provider: { '@type': 'Organization', name: 'BrandKraf', url: SITE },
       },
       {
         '@type': 'BreadcrumbList',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.brandkraf.com' },
-          { '@type': 'ListItem', position: 2, name: 'Free Tools', item: 'https://www.brandkraf.com/tools' },
-          { '@type': 'ListItem', position: 3, name: 'Ad Budget Calculator', item: 'https://www.brandkraf.com/ad-budget-calculator' },
+          { '@type': 'ListItem', position: 1, name: T('Home', 'Utama'), item: isMs ? `${SITE}/ms` : SITE },
+          { '@type': 'ListItem', position: 2, name: T('Free Tools', 'Alat Percuma'), item: `${SITE}${isMs ? '/ms' : ''}/tools` },
+          { '@type': 'ListItem', position: 3, name: T('Ad Budget Calculator', 'Kalkulator Bajet Iklan'), item: url },
         ],
       },
     ],
@@ -85,9 +95,12 @@ export default function AdBudgetCalculatorPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Helmet>
-        <title>Ad Budget Calculator (Free) — Plan Your Ad Spend | BrandKraf</title>
-        <meta name="description" content="Free ad budget calculator. Enter your sales goal, conversion rate, and cost per click to estimate the monthly ad budget you need — plus projected ROAS." />
-        <link rel="canonical" href="https://www.brandkraf.com/ad-budget-calculator" />
+        <title>{T('Ad Budget Calculator (Free) — Plan Your Ad Spend | BrandKraf', 'Kalkulator Bajet Iklan (Percuma) — Rancang Perbelanjaan Iklan Anda | BrandKraf')}</title>
+        <meta name="description" content={T(
+          'Free ad budget calculator. Enter your sales goal, conversion rate, and cost per click to estimate the monthly ad budget you need — plus projected ROAS.',
+          'Kalkulator bajet iklan percuma. Masukkan matlamat jualan, kadar penukaran, dan kos seklik anda untuk menganggarkan bajet iklan bulanan yang anda perlukan — serta unjuran ROAS.',
+        )} />
+        <link rel="canonical" href={url} />
         <script type="application/ld+json">{JSON.stringify(schema)}</script>
       </Helmet>
 
@@ -96,45 +109,54 @@ export default function AdBudgetCalculatorPage() {
       <main className="flex-grow pt-32 pb-24">
         <div className="container-custom">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="mx-auto mb-12 max-w-2xl text-center">
-            <span className="chip-brand mb-4 inline-flex items-center gap-2"><Wallet className="h-4 w-4" /> Free Tool</span>
-            <h1 className="mb-4 text-4xl font-extrabold tracking-tight md:text-5xl">Ad Budget <span className="text-gradient">Calculator</span></h1>
-            <p className="text-lg text-muted-foreground">Work backwards from your sales goal to the ad budget you actually need — no guesswork.</p>
+            <span className="chip-brand mb-4 inline-flex items-center gap-2"><Wallet className="h-4 w-4" /> {T('Free Tool', 'Alat Percuma')}</span>
+            <h1 className="mb-4 text-4xl font-extrabold tracking-tight md:text-5xl">
+              {isMs ? (
+                <><span className="text-gradient">Kalkulator</span> Bajet Iklan</>
+              ) : (
+                <>Ad Budget <span className="text-gradient">Calculator</span></>
+              )}
+            </h1>
+            <p className="text-lg text-muted-foreground">{T(
+              'Work backwards from your sales goal to the ad budget you actually need — no guesswork.',
+              'Kira ke belakang daripada matlamat jualan anda kepada bajet iklan yang anda benar-benar perlukan — tanpa tekaan.',
+            )}</p>
           </motion.div>
 
           <div className="grid gap-8 lg:grid-cols-5">
             <div className="space-y-6 lg:col-span-3">
-              {field('Monthly sales / leads goal', goal, setGoal, '#', 'How many conversions you want per month.')}
-              {field('Landing page conversion rate', cr, setCr, '%', 'Of visitors who convert. 1–3% is typical.')}
-              {field('Average cost per click', cpc, setCpc, 'RM', 'From your ad platform, or an estimate.')}
-              {field('Average order value (optional)', aov, setAov, 'RM', 'Adds projected revenue and ROAS.')}
+              {field(T('Monthly sales / leads goal', 'Matlamat jualan / petunjuk bulanan'), goal, setGoal, '#', T('How many conversions you want per month.', 'Berapa banyak penukaran yang anda mahu sebulan.'))}
+              {field(T('Landing page conversion rate', 'Kadar penukaran halaman pendaratan'), cr, setCr, '%', T('Of visitors who convert. 1–3% is typical.', 'Peratus pelawat yang menukar. 1–3% adalah tipikal.'))}
+              {field(T('Average cost per click', 'Purata kos seklik'), cpc, setCpc, 'RM', T('From your ad platform, or an estimate.', 'Daripada platform iklan anda, atau anggaran.'))}
+              {field(T('Average order value (optional)', 'Purata nilai pesanan (pilihan)'), aov, setAov, 'RM', T('Adds projected revenue and ROAS.', 'Menambah unjuran hasil dan ROAS.'))}
             </div>
 
             <div className="lg:col-span-2">
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }} className="lg:sticky lg:top-28 rounded-3xl bg-gradient-to-br from-brandkraf-teal to-brandkraf-purple p-[1.5px] shadow-xl">
                 <div className="rounded-3xl bg-card p-7">
-                  <p className="text-sm font-medium uppercase tracking-wide text-muted-foreground">Estimated monthly ad budget</p>
+                  <p className="text-sm font-medium uppercase tracking-wide text-muted-foreground">{T('Estimated monthly ad budget', 'Anggaran bajet iklan bulanan')}</p>
                   {!r.hasInput ? (
-                    <p className="mt-6 text-muted-foreground">Fill in your goal, conversion rate, and CPC.</p>
+                    <p className="mt-6 text-muted-foreground">{T('Fill in your goal, conversion rate, and CPC.', 'Isi matlamat, kadar penukaran, dan CPC anda.')}</p>
                   ) : (
                     <>
-                      <div className="mt-2"><span className="text-4xl font-extrabold tracking-tight text-foreground">{rm(r.budget)}</span><span className="block text-sm text-muted-foreground">per month</span></div>
+                      <div className="mt-2"><span className="text-4xl font-extrabold tracking-tight text-foreground">{rm(r.budget)}</span><span className="block text-sm text-muted-foreground">{T('per month', 'sebulan')}</span></div>
                       <dl className="mt-5 space-y-3 border-t border-border pt-5 text-sm">
-                        <div className="flex justify-between"><dt className="text-muted-foreground">Clicks needed</dt><dd className="font-semibold text-foreground">{Math.round(r.clicks).toLocaleString('en-US')}</dd></div>
-                        <div className="flex justify-between"><dt className="text-muted-foreground">Cost per acquisition</dt><dd className="font-semibold text-foreground">{rm(r.cpa)}</dd></div>
-                        {r.hasAov && <div className="flex justify-between"><dt className="text-muted-foreground">Projected revenue</dt><dd className="font-semibold text-foreground">{rm(r.revenue)}</dd></div>}
-                        {r.hasAov && <div className="flex justify-between"><dt className="text-muted-foreground">Projected ROAS</dt><dd className="font-semibold text-brandkraf-teal">{r.roas.toFixed(2)}x</dd></div>}
+                        <div className="flex justify-between"><dt className="text-muted-foreground">{T('Clicks needed', 'Klik diperlukan')}</dt><dd className="font-semibold text-foreground">{Math.round(r.clicks).toLocaleString('en-US')}</dd></div>
+                        <div className="flex justify-between"><dt className="text-muted-foreground">{T('Cost per acquisition', 'Kos sepemerolehan')}</dt><dd className="font-semibold text-foreground">{rm(r.cpa)}</dd></div>
+                        {r.hasAov && <div className="flex justify-between"><dt className="text-muted-foreground">{T('Projected revenue', 'Unjuran hasil')}</dt><dd className="font-semibold text-foreground">{rm(r.revenue)}</dd></div>}
+                        {r.hasAov && <div className="flex justify-between"><dt className="text-muted-foreground">{T('Projected ROAS', 'Unjuran ROAS')}</dt><dd className="font-semibold text-brandkraf-teal">{r.roas.toFixed(2)}x</dd></div>}
                       </dl>
                       <p className="mt-5 flex gap-2 text-xs text-muted-foreground">
                         <Info className="h-4 w-4 shrink-0 text-brandkraf-teal" />
-                        An estimate — real costs vary by platform, audience, and creative.
+                        {T('An estimate — real costs vary by platform, audience, and creative.', 'Anggaran sahaja — kos sebenar berbeza mengikut platform, penonton, dan kreatif.')}
                       </p>
                     </>
                   )}
                   <Button asChild className="mt-7 h-12 w-full rounded-xl bg-gradient-to-r from-brandkraf-teal to-brandkraf-purple font-semibold text-white shadow-lg shadow-brandkraf-teal/25 hover:-translate-y-0.5 transition-transform">
-                    <Link to="/contact" className="flex items-center justify-center gap-2">Plan my campaign <ArrowRight className="h-4 w-4" /></Link>
+                    <Link to={lp('/contact')} className="flex items-center justify-center gap-2">{T('Plan my campaign', 'Rancang kempen saya')} <ArrowRight className="h-4 w-4" /></Link>
                   </Button>
                   <Button asChild variant="ghost" className="mt-2 w-full text-muted-foreground hover:text-foreground">
-                    <Link to="/roas-calculator">Check your ROAS</Link>
+                    <Link to={lp('/roas-calculator')}>{T('Check your ROAS', 'Semak ROAS anda')}</Link>
                   </Button>
                 </div>
               </motion.div>
@@ -142,16 +164,19 @@ export default function AdBudgetCalculatorPage() {
           </div>
 
           <div className="mx-auto mt-20 max-w-3xl prose prose-lg prose-headings:scroll-mt-28">
-            <h2>How to budget for ads the smart way</h2>
+            <h2>{T('How to budget for ads the smart way', 'Cara membelanjakan untuk iklan dengan bijak')}</h2>
             <p>
-              The biggest mistake businesses make is picking an ad budget out of thin air. Instead, start
-              from a goal and work backwards: how many sales do you want, how well does your page convert,
-              and what does a click cost? That tells you the realistic spend — and shows that improving your
-              conversion rate is often cheaper than buying more traffic.
+              {T(
+                'The biggest mistake businesses make is picking an ad budget out of thin air. Instead, start from a goal and work backwards: how many sales do you want, how well does your page convert, and what does a click cost? That tells you the realistic spend — and shows that improving your conversion rate is often cheaper than buying more traffic.',
+                'Kesilapan terbesar perniagaan ialah memilih bajet iklan sesuka hati. Sebaliknya, mula daripada matlamat dan kira ke belakang: berapa banyak jualan yang anda mahu, sebaik mana halaman anda menukar, dan berapa kos satu klik? Itu memberitahu anda perbelanjaan realistik — dan menunjukkan bahawa menambah baik kadar penukaran anda selalunya lebih murah daripada membeli lebih banyak trafik.',
+              )}
             </p>
             <p>
-              Once you are spending, watch your return closely with our <Link to="/roas-calculator">ROAS calculator</Link>,
-              and see <Link to="/guides/paid-advertising">our paid advertising guide</Link> for the full playbook.
+              {T('Once you are spending, watch your return closely with our', 'Setelah anda berbelanja, perhatikan pulangan anda dengan teliti menggunakan')}{' '}
+              <Link to={lp('/roas-calculator')}>{T('ROAS calculator', 'kalkulator ROAS')}</Link>
+              {T(', and see', ' kami, dan lihat')}{' '}
+              <Link to={lp('/guides/paid-advertising')}>{T('our paid advertising guide', 'panduan pengiklanan berbayar kami')}</Link>{' '}
+              {T('for the full playbook.', 'untuk buku panduan penuh.')}
             </p>
           </div>
         </div>
