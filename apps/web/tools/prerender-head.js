@@ -25,8 +25,16 @@ const CLEAN = {
   jsxExpressions: /\{.*?\}/g,
 };
 const HELMET_RE = /<Helmet[^>]*?>([\s\S]*?)<\/Helmet>/i;
-const TITLE_RE = /<title[^>]*?>\s*(.*?)\s*<\/title>/i;
+const TITLE_RE = /<title[^>]*?>\s*([\s\S]*?)\s*<\/title>/i;
 const DESC_RE = /<meta\s+name=["']description["']\s+content=["'](.*?)["']/i;
+// Bilingual pages wrap head strings in T('en', 'ms') — extract the English arg
+// (the prerendered file lives at the EN URL; /ms is handled client-side).
+const T_CALL_RE = /^\{?\s*T\(\s*(?:'((?:[^'\\]|\\.)*)'|"((?:[^"\\]|\\.)*)")\s*,/;
+const DESC_T_RE = /<meta\s+name=["']description["']\s+content=\{\s*T\(\s*(?:'((?:[^'\\]|\\.)*)'|"((?:[^"\\]|\\.)*)")\s*,/i;
+
+function unescapeJs(s) {
+  return s.replace(/\\(['"\\])/g, '$1');
+}
 // path + element component from a routes.jsx entry: { path: '/x', element: <Comp /> }
 const ROUTE_RE = /path:\s*'([^']+)',\s*element:\s*<(\w+)\s*\/>/g;
 
@@ -67,9 +75,22 @@ function extractMeta(file) {
   if (!helmet) return {};
   const titleM = helmet[1].match(TITLE_RE);
   const descM = helmet[1].match(DESC_RE);
-  // Skip dynamic values (contain JSX expressions / template literals)
-  const title = titleM && !/[{}`]/.test(titleM[1]) ? cleanText(titleM[1]) : null;
-  const desc = descM && !/[{}`]/.test(descM[1]) ? cleanText(descM[1]) : null;
+
+  let title = null;
+  if (titleM) {
+    const inner = titleM[1].trim();
+    const tCall = inner.match(T_CALL_RE);
+    if (tCall) title = unescapeJs(tCall[1] ?? tCall[2]);
+    else if (!/[{}`]/.test(inner)) title = cleanText(inner);
+  }
+
+  let desc = null;
+  if (descM && !/[{}`]/.test(descM[1])) {
+    desc = cleanText(descM[1]);
+  } else {
+    const descT = helmet[1].match(DESC_T_RE);
+    if (descT) desc = unescapeJs(descT[1] ?? descT[2]);
+  }
   return { title, desc };
 }
 
@@ -118,9 +139,10 @@ function main() {
     seen.add(routePath);
 
     const file = components[component];
-    if (!file) continue;
-    const { title, desc } = extractMeta(file);
-    if (!title && !desc && routePath !== '/') continue; // nothing to specialise
+    // ALWAYS write a per-route file — even with no title/desc, it carries the
+    // correct canonical/og:url, and it guarantees every route directory has an
+    // index.html (a directory without one returns 403 on LiteSpeed/Apache).
+    const { title, desc } = file ? extractMeta(file) : {};
 
     const url = SITE + (routePath === '/' ? '' : routePath);
     const html = buildHtml(template, { title, desc, url });

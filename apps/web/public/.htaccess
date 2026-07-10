@@ -10,6 +10,13 @@
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{REQUEST_FILENAME} !-d
 	RewriteRule ^ index.html [L]
+
+	# A real directory WITHOUT its own index.html (e.g. /team, or a stale folder left
+	# behind by a deploy sync) would otherwise return 403 Forbidden — fall back to the
+	# SPA shell instead so every shared/deep link always renders.
+	RewriteCond %{REQUEST_FILENAME} -d
+	RewriteCond %{REQUEST_FILENAME}/index.html !-f
+	RewriteRule ^ index.html [L]
 </IfModule>
 
 <IfModule mod_headers.c>
