@@ -60,6 +60,15 @@ async function main() {
     '/portfolio/tiktok-live-service',
     '/portfolio/ai-driven-marketing',
     '/portfolio/chatbot-development',
+    '/pricing/social-media-management',
+    '/pricing/ugc-content-creation',
+    '/pricing/paid-advertising',
+    '/pricing/website-development',
+    '/pricing/branding-creative',
+    '/pricing/koc-kol-service',
+    '/pricing/tiktok-live-service',
+    '/pricing/ai-driven-marketing',
+    '/pricing/chatbot-development',
   ];
   const translated = [
     { path: '/', priority: '1.0' },
