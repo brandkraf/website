@@ -12,6 +12,7 @@ import {
   Radio,
   Sparkles,
   MessageSquare,
+  Search,
   ArrowRight
 } from 'lucide-react';
 import Header from '@/components/Header.jsx';
@@ -77,6 +78,12 @@ function PortfolioPage() {
       title: T('Chatbot Development', 'Pembangunan Chatbot'),
       description: T('Intelligent conversational agents to automate support and qualify leads.', 'Ejen perbualan pintar untuk mengautomasi sokongan dan melayakkan petunjuk.'),
       slug: 'chatbot-development'
+    },
+    {
+      icon: Search,
+      title: T('SEO & AEO Services', 'Perkhidmatan SEO & AEO'),
+      description: T('Rank on Google, win the local Map Pack, and get cited by AI answer engines.', 'Dapatkan kedudukan di Google, menangi Pek Peta tempatan, dan dipetik oleh enjin jawapan AI.'),
+      slug: 'seo-services'
     }
   ];
 

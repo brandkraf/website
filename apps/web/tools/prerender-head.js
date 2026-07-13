@@ -147,9 +147,13 @@ function main() {
     const url = SITE + (routePath === '/' ? '' : routePath);
     const html = buildHtml(template, { title, desc, url });
 
+    // Flat files (`contact.html`), NOT directories (`contact/index.html`): a real
+    // directory makes the server 301 to a trailing-slash URL, contradicting our
+    // non-slash canonicals and splitting signals in Search Console. The .htaccess
+    // serves `/$1.html` for extensionless URLs, so /contact returns 200 directly.
     const outPath = routePath === '/'
       ? indexPath
-      : path.join(distDir, routePath.replace(/^\//, ''), 'index.html');
+      : path.join(distDir, `${routePath.replace(/^\//, '')}.html`);
     fs.mkdirSync(path.dirname(outPath), { recursive: true });
     fs.writeFileSync(outPath, html, 'utf8');
     written++;

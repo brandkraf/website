@@ -18,6 +18,7 @@ const KOCKOLServicePage = lazy(() => import('./pages/KOCKOLServicePage.jsx'));
 const TikTokLiveServicePage = lazy(() => import('./pages/TikTokLiveServicePage.jsx'));
 const AIDrivenMarketingPage = lazy(() => import('./pages/AIDrivenMarketingPage.jsx'));
 const ChatbotDevelopmentPage = lazy(() => import('./pages/ChatbotDevelopmentPage.jsx'));
+const SEOServicePage = lazy(() => import('./pages/SEOServicePage.jsx'));
 
 const TikTokPortfolioPage = lazy(() => import('./pages/TikTokPortfolioPage.jsx'));
 const BrandingPortfolioPage = lazy(() => import('./pages/BrandingPortfolioPage.jsx'));
@@ -93,6 +94,7 @@ export const publicRoutes = [
   { path: '/portfolio/tiktok-live-service', element: <TikTokLiveServicePage /> },
   { path: '/portfolio/ai-driven-marketing', element: <AIDrivenMarketingPage /> },
   { path: '/portfolio/chatbot-development', element: <ChatbotDevelopmentPage /> },
+  { path: '/portfolio/seo-services', element: <SEOServicePage /> },
   { path: '/portfolio/ugc-content-creation', element: <UGCContentCreationPage /> },
   { path: '/portfolio/ugc-content-creation/food-beverage', element: <FoodBeverageUGCPage /> },
   { path: '/portfolio/ugc-content-creation/agriculture-agribusiness', element: <AgricultureUGCPage /> },

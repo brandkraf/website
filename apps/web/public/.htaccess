@@ -6,6 +6,17 @@
 	RewriteCond %{HTTP_HOST} ^brandkraf\.com$ [NC]
 	RewriteRule ^(.*)$ https://www.brandkraf.com/$1 [R=301,L]
 
+	# One canonical URL per page: strip trailing slashes (301) so /contact/ and
+	# /contact never split ranking signals. Root and real files are untouched.
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^(.+)/$ /$1 [R=301,L]
+
+	# Serve the prerendered flat HTML (contact.html) for its extensionless URL
+	# (/contact) — a direct 200 that matches the page's canonical exactly.
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+	RewriteRule ^(.+?)$ /$1.html [L]
+
 	# SPA fallback: serve index.html for anything that isn't a real file or directory
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{REQUEST_FILENAME} !-d

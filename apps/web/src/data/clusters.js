@@ -110,8 +110,8 @@ export const clusters = [
       'google-business-profile-local-pack',
       'ga4-analytics-beginners-guide',
     ],
-    serviceLabel: 'Talk to us about SEO',
-    serviceHref: '/contact',
+    serviceLabel: 'SEO & AEO Services',
+    serviceHref: '/portfolio/seo-services',
   },
   {
     slug: 'ai-marketing',
@@ -378,7 +378,7 @@ export const clustersMs = {
       'Kebanyakan perjalanan pembelian bermula dengan carian Google. SEO ialah cara anda muncul pada saat itu — secara percuma, dan dengan niat tinggi. Untuk perniagaan tempatan khususnya, mendapat kedudukan dalam Pek Peta boleh lebih bernilai daripada mana-mana saluran berbayar kerana pencari itu bersedia bertindak.',
       'Hab ini meliputi asas mendapat kedudukan di Google, pendekatan lengkap kepada SEO tempatan di Malaysia, dan cara mengoptimumkan Profil Perniagaan Google anda untuk memenangi pek tempatan dan menukar carian menjadi kunjungan dan panggilan.',
     ],
-    serviceLabel: 'Bincang dengan kami tentang SEO',
+    serviceLabel: 'Perkhidmatan SEO & AEO',
   },
   'ai-marketing': {
     title: 'Pemasaran AI & Automasi',

@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
-  Megaphone, Target, Video, Radio, Users, Sparkles, Palette, Globe,
+  Megaphone, Target, Video, Radio, Users, Sparkles, Palette, Globe, Search,
   MapPin, ArrowRight, CheckCircle2, ShieldCheck,
 } from 'lucide-react';
 import Header from '@/components/Header.jsx';
@@ -16,6 +16,7 @@ import { useLanguage } from '@/contexts/LanguageContext.jsx';
 const SITE = 'https://www.brandkraf.com';
 
 const SERVICES = [
+  { label: 'SEO & AEO Services', label_ms: 'Perkhidmatan SEO & AEO', href: '/portfolio/seo-services', icon: Search },
   { label: 'Social Media Management', label_ms: 'Pengurusan Media Sosial', href: '/portfolio/social-media-management', icon: Megaphone },
   { label: 'Paid Advertising', label_ms: 'Pengiklanan Berbayar', href: '/portfolio/paid-advertising', icon: Target },
   { label: 'UGC Content Creation', label_ms: 'Penciptaan Kandungan UGC', href: '/portfolio/ugc-content-creation', icon: Video },
@@ -190,6 +191,28 @@ export default function LocationPage() {
             </div>
           </div>
         </section>
+
+        {/* Optional deep-dive sections (unique per-city content for competitive markets) */}
+        {v.sections && v.sections.length > 0 && (
+          <section className="section-padding bg-muted/20 border-t border-border">
+            <div className="container-custom max-w-3xl space-y-12">
+              {v.sections.map((s) => (
+                <motion.div
+                  key={s.heading}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <h2 className="mb-4 text-2xl font-extrabold tracking-tight md:text-3xl">{s.heading}</h2>
+                  {s.paragraphs.map((para, i) => (
+                    <p key={i} className="mb-4 text-lg leading-relaxed text-muted-foreground">{para}</p>
+                  ))}
+                </motion.div>
+              ))}
+            </div>
+          </section>
+        )}
 
         <FAQSection faqs={v.faqs} />
 

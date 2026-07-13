@@ -11,7 +11,7 @@ import ClosingCTASection from '@/components/ClosingCTASection.jsx';
 import ServiceCard from '@/components/ServiceCard.jsx';
 import WhatsAppButton from '@/components/WhatsAppButton.jsx';
 import { motion } from 'framer-motion';
-import { Share2, Video, Target, Globe, Palette, Zap, Shield, TrendingUp, Users, Radio, Sparkles, MessageSquare as MessageSquareCode } from 'lucide-react';
+import { Share2, Video, Target, Globe, Palette, Zap, Shield, TrendingUp, Users, Radio, Sparkles, Search, MessageSquare as MessageSquareCode } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext.jsx';
 
 function HomePage() {
@@ -137,6 +137,21 @@ function HomePage() {
         T('Automated campaign optimization', 'Pengoptimuman kempen automatik'),
         T('AI-generated content strategy', 'Strategi kandungan jana AI'),
         T('Personalized customer journeys', 'Perjalanan pelanggan diperibadikan'),
+      ],
+    },
+    {
+      icon: Search,
+      title: T('SEO & AEO Services', 'Perkhidmatan SEO & AEO'),
+      path: '/portfolio/seo-services',
+      description: T(
+        'Rank on Google, win the local Map Pack, and get cited by AI answer engines like ChatGPT.',
+        'Dapatkan kedudukan di Google, menangi Pek Peta tempatan, dan dipetik oleh enjin jawapan AI seperti ChatGPT.',
+      ),
+      features: [
+        T('Technical & on-page SEO', 'SEO teknikal & pada halaman'),
+        T('Local SEO & Google Business Profile', 'SEO tempatan & Profil Perniagaan Google'),
+        T('AEO for AI search visibility', 'AEO untuk keterlihatan carian AI'),
+        T('Link building & digital PR', 'Pembinaan pautan & PR digital'),
       ],
     },
     {

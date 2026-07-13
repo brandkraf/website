@@ -60,6 +60,7 @@ async function main() {
     '/portfolio/tiktok-live-service',
     '/portfolio/ai-driven-marketing',
     '/portfolio/chatbot-development',
+    '/portfolio/seo-services',
     '/pricing/social-media-management',
     '/pricing/ugc-content-creation',
     '/pricing/paid-advertising',
