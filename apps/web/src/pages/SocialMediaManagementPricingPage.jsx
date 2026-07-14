@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
@@ -87,7 +87,7 @@ export default function SocialMediaManagementPricingPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>{T('Social Media Management Pricing | BrandKraf', 'Harga Pengurusan Media Sosial | BrandKraf')}</title>
         <meta name="description" content={T('Transparent pricing for professional social media management services.', 'Harga telus untuk perkhidmatan pengurusan media sosial profesional.')} />
       </Helmet>

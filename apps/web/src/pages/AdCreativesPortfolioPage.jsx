@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -40,7 +40,7 @@ function AdCreativesPortfolioPage() {
 
   return (
     <>
-      <Helmet>
+      <Helmet defer={false}>
         <title>{T('Ad Creatives & Paid Advertising Portfolio - BrandKraf', 'Portfolio Kreatif Iklan & Pengiklanan Berbayar - BrandKraf')}</title>
         <meta name="description" content={T('See how our performance-focused ad creatives generate qualified leads and maximize ROI.', 'Lihat cara kreatif iklan kami yang berfokuskan prestasi menjana petunjuk berkelayakan dan memaksimumkan ROI.')} />
       </Helmet>

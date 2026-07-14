@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import {
   Share2,
@@ -80,7 +80,7 @@ export default function PricingHubPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>{T('Pricing & Services | BrandKraf', 'Harga & Perkhidmatan | BrandKraf')}</title>
         <meta name="description" content={T(
           'Explore our comprehensive digital marketing services and transparent pricing packages tailored for your business growth.',

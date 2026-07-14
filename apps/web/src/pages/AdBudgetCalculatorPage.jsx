@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Wallet, ArrowRight, Info } from 'lucide-react';
@@ -94,7 +94,7 @@ export default function AdBudgetCalculatorPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>{T('Ad Budget Calculator (Free) — Plan Your Ad Spend | BrandKraf', 'Kalkulator Bajet Iklan (Percuma) — Rancang Perbelanjaan Iklan Anda | BrandKraf')}</title>
         <meta name="description" content={T(
           'Free ad budget calculator. Enter your sales goal, conversion rate, and cost per click to estimate the monthly ad budget you need — plus projected ROAS.',

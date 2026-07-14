@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { format } from 'date-fns';
 import { motion } from 'framer-motion';
 import { AlertCircle, RefreshCw } from 'lucide-react';
@@ -84,7 +84,7 @@ function BlogPage() {
 
   return (
     <>
-      <Helmet>
+      <Helmet defer={false}>
         <title>Marketing Blog - TikTok, Lead Gen & Content Strategy | BrandKraf</title>
         <meta
           name="description"

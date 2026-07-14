@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { CheckCircle2, ArrowRight, HeartHandshake, Users, Megaphone, Target } from 'lucide-react';
@@ -24,7 +24,7 @@ const CONTENT_TYPES = [
 export default function NonProfitUGCPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>Non-Profit & Social Enterprises UGC | BrandKraf</title>
         <meta name="description" content="Stories inspire action. Authentic, on-the-ground content amplifies your mission, dramatically increasing donor engagement and volunteer recruitment." />
       </Helmet>

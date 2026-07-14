@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { ShieldCheck, ArrowLeft, Info, Plus, Minus } from 'lucide-react';
 import Header from '@/components/Header.jsx';
@@ -62,7 +62,7 @@ export default function CheckoutPage() {
 
   return (
     <>
-      <Helmet>
+      <Helmet defer={false}>
         <title>Secure Checkout | BrandKraf</title>
         <meta name="description" content="Secure payment checkout for BrandKraf services." />
       </Helmet>

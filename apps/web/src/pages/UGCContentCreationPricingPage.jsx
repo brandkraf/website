@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
@@ -101,7 +101,7 @@ export default function UGCContentCreationPricingPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>{T('UGC Content Creation Pricing | BrandKraf', 'Harga Penciptaan Kandungan UGC | BrandKraf')}</title>
         <meta name="description" content={T('Transparent pricing for authentic User-Generated Content creation. Limited time offers available.', 'Harga telus untuk penciptaan Kandungan Jana Pengguna yang autentik. Tawaran masa terhad tersedia.')} />
       </Helmet>

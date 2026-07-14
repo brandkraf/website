@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
@@ -87,7 +87,7 @@ export default function WebsiteDevelopmentPricingPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>{T('Website Development Pricing | BrandKraf', 'Harga Pembangunan Laman Web | BrandKraf')}</title>
         <meta name="description" content={T('Transparent pricing for custom website and e-commerce development.', 'Harga telus untuk pembangunan laman web tersuai dan e-dagang.')} />
       </Helmet>

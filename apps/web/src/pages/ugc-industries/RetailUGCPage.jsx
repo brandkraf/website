@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { CheckCircle2, ArrowRight, ShoppingCart, RefreshCcw, Smartphone, MessageSquare } from 'lucide-react';
@@ -24,7 +24,7 @@ const CONTENT_TYPES = [
 export default function RetailUGCPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>Retail & E-commerce UGC | BrandKraf</title>
         <meta name="description" content="In e-commerce, seeing is believing. UGC bridges the gap between digital browsing and physical touch, providing the ultimate social proof to drive cart conversions." />
       </Helmet>

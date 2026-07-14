@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input.jsx';
 import { Label } from '@/components/ui/label.jsx';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx';
 import { Loader2, AlertCircle } from 'lucide-react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 
 function AdminLoginPage() {
   const [email, setEmail] = useState('');
@@ -39,7 +39,7 @@ function AdminLoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-      <Helmet>
+      <Helmet defer={false}>
         <title>Admin Login - BrandKraf</title>
       </Helmet>
       

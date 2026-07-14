@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { CheckCircle2, ArrowRight, Leaf, Lightbulb, Users, Settings } from 'lucide-react';
@@ -24,7 +24,7 @@ const CONTENT_TYPES = [
 export default function EnergyUGCPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>Energy & Utilities UGC | BrandKraf</title>
         <meta name="description" content="Make invisible services tangible. UGC helps energy and utility companies communicate sustainability initiatives and highlight operational transparency." />
       </Helmet>

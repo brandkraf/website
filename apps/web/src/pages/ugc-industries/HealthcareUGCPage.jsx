@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { CheckCircle2, ArrowRight, HeartPulse, BookOpen, Building2, Stethoscope } from 'lucide-react';
@@ -24,7 +24,7 @@ const CONTENT_TYPES = [
 export default function HealthcareUGCPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>Healthcare & Medical UGC | BrandKraf</title>
         <meta name="description" content="Healthcare marketing demands deep empathy and trust. UGC patient testimonials and approachable doctor insights break down anxiety and build lasting community health engagement." />
       </Helmet>

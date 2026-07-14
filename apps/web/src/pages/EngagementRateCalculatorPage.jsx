@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Heart, ArrowRight, Info } from 'lucide-react';
@@ -91,7 +91,7 @@ export default function EngagementRateCalculatorPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>{T('Engagement Rate Calculator (Free) — Instagram & Social | BrandKraf', 'Kalkulator Kadar Penglibatan (Percuma) — Instagram & Sosial | BrandKraf')}</title>
         <meta name="description" content={T(
           'Free engagement rate calculator. Enter your followers, likes, and comments to instantly see your engagement rate and how it compares to industry benchmarks.',

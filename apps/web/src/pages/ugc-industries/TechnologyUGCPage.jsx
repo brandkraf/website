@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { CheckCircle2, ArrowRight, Zap, Shield, Users, Code } from 'lucide-react';
@@ -29,7 +29,7 @@ const VIDEOS = [
 export default function TechnologyUGCPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>Technology & Software (ICT) UGC | BrandKraf</title>
         <meta name="description" content="Simplify the complex. UGC tutorials, feature walkthroughs, and user testimonials help potential users understand your software's value instantly." />
       </Helmet>

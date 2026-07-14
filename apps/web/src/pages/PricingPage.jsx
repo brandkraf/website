@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import PricingCard from '@/components/PricingCard';
@@ -108,7 +108,7 @@ function PricingPage() {
 
   return (
     <>
-      <Helmet>
+      <Helmet defer={false}>
         <title>Pricing - BrandKraf Marketing Packages</title>
         <meta
           name="description"

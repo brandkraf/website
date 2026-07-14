@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
@@ -87,7 +87,7 @@ export default function BrandingCreativePricingPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>{T('Branding & Creative Pricing | BrandKraf', 'Harga Penjenamaan & Kreatif | BrandKraf')}</title>
         <meta name="description" content={T('Transparent pricing for brand identity design and creative retainers.', 'Harga telus untuk reka bentuk identiti jenama dan pengekalan kreatif.')} />
       </Helmet>

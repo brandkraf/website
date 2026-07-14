@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { CheckCircle2, ArrowRight, Sprout, Tractor, Users, BarChart3 } from 'lucide-react';
@@ -35,7 +35,7 @@ const CONTENT_TYPES = [
 export default function AgricultureUGCPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>Agriculture & Agribusiness UGC | BrandKraf</title>
         <meta name="description" content="Showcase your farming practices, sustainability efforts, and product quality through authentic User-Generated Content." />
       </Helmet>

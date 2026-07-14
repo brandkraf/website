@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Wrench, Calculator, TrendingUp, Heart, Wallet, ArrowRight } from 'lucide-react';
@@ -36,7 +36,7 @@ export default function ToolsIndexPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>{T('Free Marketing Tools & Calculators | BrandKraf', 'Alat & Kalkulator Pemasaran Percuma | BrandKraf')}</title>
         <meta name="description" content={T(
           'Free marketing tools for Malaysian businesses — calculate digital marketing costs, ROAS, social engagement rate, and ad budgets. No sign-up required.',

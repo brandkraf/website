@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
@@ -87,7 +87,7 @@ export default function AIDrivenMarketingPricingPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>{T('AI-Driven Marketing Pricing | BrandKraf', 'Harga Pemasaran Dipacu AI | BrandKraf')}</title>
         <meta name="description" content={T('Transparent pricing for AI marketing automation and implementation.', 'Harga telus untuk automasi dan pelaksanaan pemasaran AI.')} />
       </Helmet>

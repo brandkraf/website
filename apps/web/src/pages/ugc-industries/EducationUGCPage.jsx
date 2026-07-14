@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { CheckCircle2, ArrowRight, GraduationCap, TrendingUp, Users, BookOpen } from 'lucide-react';
@@ -24,7 +24,7 @@ const CONTENT_TYPES = [
 export default function EducationUGCPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>Education & Training UGC | BrandKraf</title>
         <meta name="description" content="Showcase the transformative power of learning. Authentic student stories, campus tours, and outcome highlights drive massive enrollment boosts." />
       </Helmet>

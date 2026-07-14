@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
@@ -87,7 +87,7 @@ export default function PaidAdvertisingPricingPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>{T('Paid Advertising Pricing | BrandKraf', 'Harga Pengiklanan Berbayar | BrandKraf')}</title>
         <meta name="description" content={T('Transparent pricing for Meta, TikTok, and Google Ads management.', 'Harga telus untuk pengurusan Iklan Meta, TikTok, dan Google.')} />
       </Helmet>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { CheckCircle2, ArrowRight, Car, ShieldCheck, Users, Video } from 'lucide-react';
@@ -41,7 +41,7 @@ const CONTENT_TYPES = [
 export default function AutomotiveUGCPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>Automotive UGC Content | BrandKraf</title>
         <meta name="description" content="From feature demonstrations to the thrill of a test drive, UGC puts potential buyers in the driver's seat, driving dealership foot traffic and brand loyalty." />
       </Helmet>

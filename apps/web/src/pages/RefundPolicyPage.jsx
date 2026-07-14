@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
 import Header from '@/components/Header.jsx';
@@ -61,7 +61,7 @@ export default function RefundPolicyPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>Refund Policy | BrandKraf</title>
         <meta name="description" content="Read the Refund Policy for BrandKraf Digital Marketing services." />
       </Helmet>

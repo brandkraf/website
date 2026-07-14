@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -102,7 +102,7 @@ export default function MarketingCostCalculatorPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>{T('Digital Marketing Cost Calculator Malaysia (2026) | BrandKraf', 'Kalkulator Kos Pemasaran Digital Malaysia (2026) | BrandKraf')}</title>
         <meta name="description" content={T(
           'Free calculator: estimate what digital marketing costs in Malaysia in 2026. Pick your services, business size, and provider type to get an instant monthly price range.',

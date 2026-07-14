@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
 import Header from '@/components/Header.jsx';
@@ -96,7 +96,7 @@ export default function TermsAndConditionsPage() {
     }
   };
   return <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>Terms and Conditions | BrandKraf</title>
         <meta name="description" content="Read the Terms and Conditions for BrandKraf Digital Marketing services." />
       </Helmet>

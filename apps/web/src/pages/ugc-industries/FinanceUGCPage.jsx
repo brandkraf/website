@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { CheckCircle2, ArrowRight, TrendingUp, ShieldCheck, FileText, Smartphone } from 'lucide-react';
@@ -24,7 +24,7 @@ const CONTENT_TYPES = [
 export default function FinanceUGCPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>Finance & Insurance UGC | BrandKraf</title>
         <meta name="description" content="Finance is intimidating. UGC creators break down complex financial concepts, building unprecedented trust and approachability for banks, apps, and insurance firms." />
       </Helmet>

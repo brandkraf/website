@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
 import HeroSection from '@/components/HeroSection.jsx';
@@ -208,7 +208,7 @@ function HomePage() {
 
   return (
     <>
-      <Helmet>
+      <Helmet defer={false}>
         <title>{T(
           'BrandKraf - Scale Your Brand with Content, Ads & AI Marketing',
           'BrandKraf - Kembangkan Jenama Anda dengan Kandungan, Iklan & Pemasaran AI',

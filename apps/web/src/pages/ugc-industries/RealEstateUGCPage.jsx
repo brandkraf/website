@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { CheckCircle2, ArrowRight, Home, MapPin, Users, TrendingUp } from 'lucide-react';
@@ -24,7 +24,7 @@ const CONTENT_TYPES = [
 export default function RealEstateUGCPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>Real Estate & Property UGC | BrandKraf</title>
         <meta name="description" content="Sell the lifestyle, not just the walls. UGC virtual tours, neighborhood guides, and authentic property showcases drastically reduce time-on-market." />
       </Helmet>

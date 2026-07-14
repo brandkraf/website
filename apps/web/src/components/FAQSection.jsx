@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import {
   Accordion,
@@ -29,7 +29,7 @@ function FAQSection({ faqs }) {
   return (
     <section className="section-padding relative overflow-hidden bg-background border-t border-border">
       {faqSchema && (
-        <Helmet>
+        <Helmet defer={false}>
           <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
         </Helmet>
       )}

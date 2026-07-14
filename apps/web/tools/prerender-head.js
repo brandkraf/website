@@ -13,6 +13,7 @@
  */
 import fs from 'fs';
 import path from 'path';
+import { pathToFileURL } from 'url';
 
 const SITE = 'https://www.brandkraf.com';
 const PRIVATE_PREFIXES = ['/admin', '/admin-login', '/checkout', '/payment', '/media-upload'];
@@ -110,12 +111,16 @@ function buildHtml(template, { title, desc, url }) {
   html = html.replace(/<meta property="og:url" content="[^"]*"\s*\/>/, `<meta property="og:url" content="${escAttr(url)}" />`);
   const canonicalTag = `<link rel="canonical" href="${escAttr(url)}" />`;
   const commentRe = /<!--\s*No hard-coded canonical[\s\S]*?-->/;
+  const existingCanonicalRe = /<link rel="canonical" href="[^"]*"\s*\/>/;
   if (commentRe.test(html)) html = html.replace(commentRe, canonicalTag);
-  else if (!/rel="canonical"/.test(html)) html = html.replace('</head>', `\t\t${canonicalTag}\n\t</head>`);
+  // Replace (not skip) an existing canonical so reruns over an already-processed
+  // template stay correct instead of stamping the home canonical on every page.
+  else if (existingCanonicalRe.test(html)) html = html.replace(existingCanonicalRe, canonicalTag);
+  else html = html.replace('</head>', `\t\t${canonicalTag}\n\t</head>`);
   return html;
 }
 
-function main() {
+async function main() {
   const cwd = process.cwd();
   const distDir = path.join(cwd, '..', '..', 'dist', 'apps', 'web');
   const indexPath = path.join(distDir, 'index.html');
@@ -128,6 +133,15 @@ function main() {
   const template = fs.readFileSync(indexPath, 'utf8');
   const appSrc = fs.readFileSync(routesFile, 'utf8');
   const components = mapComponents(pagesDir, {});
+
+  // SPA fallback shell (spa.html): served for routes with no flat file (/ms/*,
+  // client-only paths). It must carry NO canonical — index.html gets the home
+  // canonical baked in, and serving that for every fallback route put two
+  // conflicting canonicals on each /ms page (static home + Helmet's own).
+  const spaHtml = template
+    .replace(/<!--\s*No hard-coded canonical[\s\S]*?-->/, '')
+    .replace(/<link rel="canonical" href="[^"]*"\s*\/>/, ''); // rerun-safety: template may already be processed
+  fs.writeFileSync(path.join(distDir, 'spa.html'), spaHtml, 'utf8');
 
   const seen = new Set();
   let written = 0;
@@ -158,12 +172,29 @@ function main() {
     fs.writeFileSync(outPath, html, 'utf8');
     written++;
   }
+
+  // Location pages (/digital-marketing-agency/:city) are a dynamic route, so the
+  // routes.jsx loop above never sees them — but their head data lives in a pure
+  // data module, so we can still prerender each city's real title/description.
+  try {
+    const dataUrl = pathToFileURL(path.join(cwd, 'src', 'data', 'locations.js')).href;
+    const { locations } = await import(dataUrl);
+    for (const loc of locations) {
+      const routePath = `/digital-marketing-agency/${loc.slug}`;
+      const url = SITE + routePath;
+      const html = buildHtml(template, { title: loc.metaTitle, desc: loc.metaDescription, url });
+      const outPath = path.join(distDir, `${routePath.replace(/^\//, '')}.html`);
+      fs.mkdirSync(path.dirname(outPath), { recursive: true });
+      fs.writeFileSync(outPath, html, 'utf8');
+      written++;
+    }
+  } catch (err) {
+    console.warn('[prerender] location pages skipped:', err && err.message);
+  }
+
   console.log(`[prerender] wrote ${written} per-route HTML files`);
 }
 
-try {
-  main();
-} catch (err) {
-  console.error('[prerender] non-fatal error:', err && err.message);
-}
-process.exit(0);
+main()
+  .catch((err) => console.error('[prerender] non-fatal error:', err && err.message))
+  .finally(() => process.exit(0));

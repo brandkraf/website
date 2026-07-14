@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { supabase } from '@/lib/supabaseClient.js';
 import { useAuth } from '@/contexts/AuthContext.jsx';
 import { Users, Calendar, TrendingUp, KeyRound, Loader2, AlertCircle } from 'lucide-react';
@@ -80,7 +80,7 @@ function AdminPage() {
 
   return (
     <div className="max-w-6xl mx-auto space-y-8">
-      <Helmet>
+      <Helmet defer={false}>
         <title>Dashboard - Admin Portal</title>
       </Helmet>
 

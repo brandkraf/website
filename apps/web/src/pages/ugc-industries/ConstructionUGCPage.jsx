@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { CheckCircle2, ArrowRight, HardHat, Clock, ShieldCheck, Users } from 'lucide-react';
@@ -24,7 +24,7 @@ const CONTENT_TYPES = [
 export default function ConstructionUGCPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>Construction & Engineering UGC | BrandKraf</title>
         <meta name="description" content="Document massive projects from the ground up. Authentic content builds client confidence and visually proves your engineering capabilities." />
       </Helmet>

@@ -17,7 +17,14 @@
 	RewriteCond %{DOCUMENT_ROOT}/$1.html -f
 	RewriteRule ^(.+?)$ /$1.html [L]
 
-	# SPA fallback: serve index.html for anything that isn't a real file or directory
+	# SPA fallback: serve spa.html (the shell with NO baked-in canonical — index.html
+	# carries the home canonical, which must not leak onto /ms/* and client-only routes)
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond %{DOCUMENT_ROOT}/spa.html -f
+	RewriteRule ^ spa.html [L]
+
+	# Safety net if a deploy ever ships without spa.html
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{REQUEST_FILENAME} !-d
 	RewriteRule ^ index.html [L]
@@ -25,6 +32,11 @@
 	# A real directory WITHOUT its own index.html (e.g. /team, or a stale folder left
 	# behind by a deploy sync) would otherwise return 403 Forbidden — fall back to the
 	# SPA shell instead so every shared/deep link always renders.
+	RewriteCond %{REQUEST_FILENAME} -d
+	RewriteCond %{REQUEST_FILENAME}/index.html !-f
+	RewriteCond %{DOCUMENT_ROOT}/spa.html -f
+	RewriteRule ^ spa.html [L]
+
 	RewriteCond %{REQUEST_FILENAME} -d
 	RewriteCond %{REQUEST_FILENAME}/index.html !-f
 	RewriteRule ^ index.html [L]

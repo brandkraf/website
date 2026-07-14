@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { CheckCircle2, ArrowRight, Heart, Target, Flame, Users } from 'lucide-react';
@@ -24,7 +24,7 @@ const CONTENT_TYPES = [
 export default function FoodBeverageUGCPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>Food & Beverage UGC | BrandKraf</title>
         <meta name="description" content="Food is inherently visual. UGC drives food sales by showcasing authentic reactions, appetite appeal, and powerful social proof that polished studio shoots cannot replicate." />
       </Helmet>

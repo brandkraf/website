@@ -20,6 +20,158 @@ export const locations = [
     ],
   },
   {
+    slug: 'cheras',
+    city: 'Cheras',
+    state: 'Kuala Lumpur',
+    hq: true,
+    metaTitle: 'Digital Marketing Agency in Cheras, KL (Our Home Base) | BrandKraf',
+    metaDescription:
+      'BrandKraf is headquartered at Cheras Business Centre — a digital marketing agency in Cheras offering SEO, social media, UGC, paid ads, and AI marketing. Visit us or get a free quote.',
+    intro:
+      'Cheras is not just a market we serve — it is home. BrandKraf is headquartered at Cheras Business Centre, which means Cheras businesses get something rare: a full-service digital marketing team you can actually drive to, minutes away, that knows every taman, mall, and MRT stop in the area.',
+    localContext:
+      'From the food streets of Taman Connaught and the retail crowds at Cheras Leisure Mall, EkoCheras, and Sunway Velocity, to the thousands of SMEs, clinics, workshops, and home-grown brands spread across Taman Midah, Bandar Sri Permaisuri, and Alam Damai — Cheras runs on local trust and word of mouth. The MRT Kajang line changed how people move and shop here. We build marketing that matches that reality: local SEO that wins "near me" searches, TikTok and Instagram content that Cheras folk actually share, and ads geo-targeted taman by taman.',
+    sections: [
+      {
+        heading: 'Our office is in Cheras — drop by',
+        paragraphs: [
+          'BrandKraf operates from 28-02-02, Jalan 2/101c, Cheras Business Centre, 56100 Kuala Lumpur. Being headquartered here means Cheras clients get face-to-face strategy sessions, fast on-site content shoots at your shop or clinic, and a team that understands the difference between a Taman Connaught crowd and a Sunway Velocity crowd — because we live it daily.',
+          'For food and retail businesses especially, this proximity shows up in the work: we can film UGC and short-form video at your location within days, not weeks, and react to local moments — festivals, pasar malam seasons, mall campaigns — while they still matter.',
+        ],
+      },
+      {
+        heading: 'Local SEO for Cheras businesses',
+        paragraphs: [
+          'When someone searches "dentist cheras", "kedai makan taman connaught", or "aircond service alam damai", the three businesses in the Google Map Pack win the customer. Most Cheras businesses have never optimised for this — which makes it one of the highest-return moves available.',
+          'We optimise your Google Business Profile, build local citations, create Cheras-specific content, and run review systems that compound your visibility. Combined with our SEO and AEO service, your business becomes the answer both Google and AI assistants give when Cheras customers ask.',
+        ],
+      },
+      {
+        heading: 'What Cheras businesses invest in marketing',
+        paragraphs: [
+          'Our rates are the same transparent pricing we publish for all of Malaysia: most SMEs invest RM1,500–RM8,000 a month before ad spend — social media management from around RM2,500/month, SEO from RM1,500/month, and paid ads management from RM800/month. Eligible SMEs can claim up to RM5,000 back through the SME Digitalisation Grant.',
+          'Because we are local, starting is easy: book a free strategy call, or visit our office at Cheras Business Centre and plan your growth over coffee.',
+        ],
+      },
+    ],
+    faqs: [
+      { question: 'Where exactly is BrandKraf located in Cheras?', answer: 'Our office is at 28-02-02, Jalan 2/101c, Cheras Business Centre, 56100 Kuala Lumpur — a short drive from Cheras Leisure Mall and accessible via the MRT Kajang line. Clients are welcome to visit; just book a slot first so the right team members are in.' },
+      { question: 'Do you work with small local businesses in Cheras?', answer: 'Yes — Cheras SMEs are our neighbours and our core clientele: F&B outlets, clinics, tuition centres, workshops, retailers, and online sellers. We scale the scope to your budget, starting from focused single-channel packages.' },
+      { question: 'Can you help my Cheras business appear in Google Maps searches?', answer: 'Absolutely — local SEO is one of our core services. We optimise your Google Business Profile, build citations and reviews, and create locally-relevant content so you rank in the Map Pack for "near me" and Cheras-area searches.' },
+      { question: 'Do you film content at our premises?', answer: 'Yes, and being based in Cheras makes it fast — we can typically schedule on-site UGC and video shoots at Cheras locations within days.' },
+      { question: 'Which nearby areas do you also cover?', answer: 'Everywhere within and beyond the Klang Valley — including Bandar Tun Razak, Ampang, Kajang, Seri Kembangan, Puchong, and Damansara, plus the wider KL and Selangor region. Distance is never a barrier; we serve clients nationwide remotely.' },
+      { question: 'How much does digital marketing cost in Cheras?', answer: 'The same transparent rates as everywhere we operate: most SMEs invest RM1,500–RM8,000 a month before ad spend. Use our free cost calculator for an instant estimate, or drop by the office for an exact quote.' },
+    ],
+  },
+  {
+    slug: 'bandar-tun-razak',
+    city: 'Bandar Tun Razak',
+    state: 'Kuala Lumpur',
+    metaTitle: 'Digital Marketing Agency in Bandar Tun Razak, KL | BrandKraf',
+    metaDescription:
+      'Digital marketing for Bandar Tun Razak businesses — SEO, social media, UGC, and paid ads from BrandKraf, headquartered minutes away in Cheras. Free consultation.',
+    intro:
+      'Bandar Tun Razak is one of KL’s most established residential heartlands — dense, loyal, and deeply local. BrandKraf is headquartered minutes away in Cheras, making us the closest full-service digital marketing team to businesses along the Bandar Tun Razak corridor.',
+    localContext:
+      'Business in Bandar Tun Razak is neighbourhood business: clinics, kedai makan, tuition and tahfiz centres, workshops, mini markets, and services clustered around Taman Bandar Tun Razak, the LRT stations, and the borders it shares with Bandar Sri Permaisuri and Salak South. Customers here choose businesses they see repeatedly and trust — so we focus on local SEO and Google Maps visibility, WhatsApp-first lead handling, and short-form content in the everyday Malay-English mix locals actually speak. Both our English and Bahasa Melayu campaigns are produced in-house.',
+    faqs: [
+      { question: 'Do you really serve Bandar Tun Razak specifically?', answer: 'Yes — our headquarters in Cheras is minutes away, so Bandar Tun Razak businesses get on-site visits, local content shoots, and campaigns built around the area’s neighbourhood dynamics rather than generic KL targeting.' },
+      { question: 'What marketing works best for neighbourhood businesses here?', answer: 'Local SEO and Google Business Profile optimisation win the "near me" searches, while geo-targeted Facebook, Instagram, and TikTok content builds daily familiarity. For clinics and services, WhatsApp-based enquiry funnels convert exceptionally well.' },
+      { question: 'Can you run campaigns in Bahasa Melayu?', answer: 'Ya, sudah tentu. We produce campaigns in both Bahasa Melayu and English in-house — including bilingual websites, content, and ads — matched to how Bandar Tun Razak customers actually communicate.' },
+      { question: 'I run a small stall/home business — is marketing worth it?', answer: 'Often yes, at the right scale. A well-optimised Google Business Profile and consistent short-form content cost little and compound. Start with a free strategy call and we will tell you honestly what is worth spending on.' },
+    ],
+  },
+  {
+    slug: 'ampang',
+    city: 'Ampang',
+    state: 'Kuala Lumpur / Selangor',
+    metaTitle: 'Digital Marketing Agency in Ampang | BrandKraf',
+    metaDescription:
+      'Digital marketing agency serving Ampang and Ampang Jaya — SEO, social media, UGC, paid ads, and AI marketing for F&B, healthcare, and retail brands. Free quote.',
+    intro:
+      'Ampang is where KL’s embassy row, private healthcare hubs, and one of the city’s richest food scenes meet dense residential townships. BrandKraf helps Ampang businesses turn that built-in foot traffic and reputation into measurable online demand.',
+    localContext:
+      'From the yong tau foo streets of Ampang New Village to the international crowd around Ampang Hilir and Great Eastern Mall, and the healthcare ecosystem anchored by KPJ Ampang Puteri — Ampang audiences are unusually diverse. Marketing here has to segment: halal F&B content for local families, English-first campaigns for the expat belt, credibility-led search marketing for clinics and specialists. We build those segments deliberately, with geo-targeted ads and local SEO that separate Ampang KL from Ampang Jaya correctly — a detail most agencies miss.',
+    faqs: [
+      { question: 'Do you handle healthcare and clinic marketing in Ampang?', answer: 'Yes — clinics, dental practices, and wellness centres are a strong focus. We combine local SEO, credible educational content, and compliant ad campaigns that generate patient enquiries without over-promising.' },
+      { question: 'Ampang has a big expat community — can you target it?', answer: 'Yes. We run English-first campaigns geo-targeted to the Ampang Hilir/embassy belt alongside Malay and Chinese-audience campaigns for the wider township, each with its own creative and offers.' },
+      { question: 'Can you help my Ampang restaurant get more customers?', answer: 'Food is Ampang’s superpower. We create crave-worthy short-form video, optimise your Google Business Profile so you win "makan ampang" searches, and run promotions that fill tables on slow days.' },
+      { question: 'How quickly can you visit us in Ampang?', answer: 'Our Cheras headquarters is a short drive away via the MRR2, so on-site meetings and content shoots in Ampang are easy to schedule — typically within the week.' },
+    ],
+  },
+  {
+    slug: 'damansara',
+    city: 'Damansara',
+    state: 'Kuala Lumpur / Selangor',
+    metaTitle: 'Digital Marketing Agency in Damansara | BrandKraf',
+    metaDescription:
+      'Digital marketing for the Damansara corridor — Damansara Heights, TTDI, Damansara Utama, Mutiara Damansara. SEO, social media, UGC, and paid ads that convert. Free quote.',
+    intro:
+      'The Damansara corridor — from Damansara Heights and TTDI to Damansara Utama, Uptown, and Mutiara Damansara — is the Klang Valley’s premium business belt. BrandKraf helps Damansara brands market with the polish this audience expects, backed by the performance data that justifies premium budgets.',
+    localContext:
+      'Damansara is really several markets wearing one name: corporate HQs and professional firms in Damansara Heights, boutique cafes and lifestyle brands in TTDI, SME offices stacked through Uptown and Damansara Utama, and big-box retail crowds at Mutiara Damansara and The Curve. What they share is a discerning, higher-income audience that punishes sloppy branding. We pair sharp creative and brand-consistent content with conversion-tracked SEO, Google Ads, and social campaigns — so Damansara businesses look premium and can prove the ROI.',
+    faqs: [
+      { question: 'Which Damansara areas do you cover?', answer: 'The full corridor: Damansara Heights, TTDI, Damansara Utama, Damansara Uptown, Mutiara Damansara, Bandar Utama, and neighbouring Kota Damansara — with campaigns geo-targeted to each area’s distinct audience.' },
+      { question: 'Do you work with professional firms and B2B companies in Damansara?', answer: 'Yes — law firms, financial advisories, agencies, and consultancies are a natural fit. We lean on LinkedIn, Google Ads, SEO, and authority content rather than consumer-style social campaigns.' },
+      { question: 'Can you make my TTDI cafe or boutique stand out?', answer: 'TTDI runs on aesthetics and word of mouth. We produce scroll-stopping visual content, partner with the right local creators, and run precise geo-targeted campaigns that reach the TTDI and Bangsar crowd without wasting budget.' },
+      { question: 'We already do marketing in-house — can you work alongside our team?', answer: 'Yes. Many Damansara clients keep strategy or brand in-house and plug us in for what they lack — performance ads, SEO, UGC production, or short-form video at scale.' },
+    ],
+  },
+  {
+    slug: 'puchong',
+    city: 'Puchong',
+    state: 'Selangor',
+    metaTitle: 'Digital Marketing Agency in Puchong | BrandKraf',
+    metaDescription:
+      'Puchong digital marketing agency — SEO, social media, UGC, paid ads, and e-commerce marketing for SMEs in Bandar Puteri, Bandar Puchong Jaya & IOI. Free consultation.',
+    intro:
+      'Puchong is one of the Klang Valley’s hardest-working business towns — a dense grid of SMEs, e-commerce sellers, and family businesses stretching from Bandar Puteri to IOI Mall. BrandKraf gives Puchong businesses the marketing firepower to compete far beyond the LDP.',
+    localContext:
+      'Puchong’s commercial rows in Bandar Puteri and Bandar Puchong Jaya house everything from logistics and renovation contractors to bubble tea chains, tuition centres, and some of Malaysia’s busiest online sellers. It is a practical, price-savvy market where businesses want leads, not vanity. That suits us: we run lead-generation funnels with WhatsApp follow-up, local SEO that wins Puchong "near me" searches, and e-commerce campaigns — Shopee, TikTok Shop, and own-store — for Puchong’s online-seller community.',
+    faqs: [
+      { question: 'Do you help Puchong online sellers and e-commerce businesses?', answer: 'Yes — e-commerce is a core strength. We run marketplace ads on Shopee and Lazada, TikTok Shop campaigns and live selling, and build own-store funnels with email and retargeting to grow margins beyond the marketplaces.' },
+      { question: 'What works for service businesses in Puchong — contractors, tuition, clinics?', answer: 'Lead generation: local SEO and Google Ads to capture high-intent searches, plus geo-targeted Facebook and TikTok campaigns feeding a fast WhatsApp follow-up system. We track cost per lead so you know exactly what each enquiry costs.' },
+      { question: 'Can you compete with the cheap freelancers advertising in Puchong?', answer: 'We publish transparent pricing and are honest about the difference: freelancers suit tiny scopes, while our team covers strategy, content, ads, and reporting together. Many clients come to us after a cheap package delivered posts but no customers.' },
+      { question: 'Do you visit clients in Puchong?', answer: 'Yes — Puchong is an easy drive from our Cheras headquarters, so strategy sessions and on-site content shoots are straightforward to arrange.' },
+    ],
+  },
+  {
+    slug: 'kajang',
+    city: 'Kajang',
+    state: 'Selangor',
+    metaTitle: 'Digital Marketing Agency in Kajang | BrandKraf',
+    metaDescription:
+      'Kajang digital marketing agency — SEO, social media, UGC, and paid ads for F&B, property, education, and retail businesses in Kajang & Bangi. Free consultation.',
+    intro:
+      'Kajang has outgrown its satay-town fame: the MRT terminus, massive new townships, and a young family demographic have made it one of the Klang Valley’s fastest-growing markets. BrandKraf helps Kajang businesses capture that growth before their competitors do.',
+    localContext:
+      'Kajang’s market is powered by growth: new residential communities feeding demand for F&B, clinics, kindergartens and tuition, home services, and property — spilling into neighbouring Bangi and Semenyih. The audience is young, Malay-majority, family-focused, and heavily on TikTok, Facebook, and WhatsApp. Our campaigns match that: bilingual content with Bahasa Melayu done properly, local SEO for "kajang" and "bangi" searches, and community-flavoured creative — yes, satay content still slaps — that makes local brands feel like neighbours, not advertisers.',
+    faqs: [
+      { question: 'Do you cover Bangi and Semenyih as well as Kajang?', answer: 'Yes — Kajang, Bandar Baru Bangi, Semenyih, and the surrounding townships form one growth corridor, and we geo-target campaigns across it based on where your customers actually come from.' },
+      { question: 'Our customers are mostly Malay-speaking — can you match that?', answer: 'Ya, boleh. Bahasa Melayu campaigns are produced in-house — content, ads, and even fully bilingual websites — in natural, local BM rather than direct translation.' },
+      { question: 'What industries do you serve in Kajang?', answer: 'F&B and cafes, property and renovation, education (kindergartens, tuition, tahfiz), clinics, and retail are the most common — all benefiting from local SEO plus social-first content.' },
+      { question: 'Is Kajang too far for your team?', answer: 'Not at all — the SILK highway and MRT connect Kajang directly to our Cheras headquarters. On-site meetings and shoots are easy to schedule.' },
+    ],
+  },
+  {
+    slug: 'seri-kembangan',
+    city: 'Seri Kembangan',
+    state: 'Selangor',
+    metaTitle: 'Digital Marketing Agency in Seri Kembangan | BrandKraf',
+    metaDescription:
+      'Digital marketing for Seri Kembangan businesses — SEO, social media, e-commerce, and paid ads for the trade, wholesale, and F&B community around The Mines & Serdang. Free quote.',
+    intro:
+      'Seri Kembangan is one of the Klang Valley’s quiet commercial powerhouses — a trading, wholesale, and F&B hub between The Mines, Serdang, and Balakong. BrandKraf helps Seri Kembangan businesses turn offline reputation into online demand.',
+    localContext:
+      'Business here has deep trading roots: wholesale and hardware rows, factory-adjacent suppliers around Balakong, family F&B institutions, and a growing wave of online sellers — alongside the student economy around UPM in Serdang. Much of it is Chinese-speaking, deal-driven, and referral-based. We help these businesses modernise the funnel without losing that character: bilingual (Chinese/Malay/English) content and ads, marketplace and TikTok Shop campaigns for sellers, B2B lead generation for suppliers, and local SEO that captures "seri kembangan" and "serdang" searches.',
+    faqs: [
+      { question: 'Can you run campaigns in Chinese for Seri Kembangan audiences?', answer: 'Yes — we produce campaigns in Chinese, Malay, and English, matching each audience segment. Many Seri Kembangan businesses win with Chinese-first social content plus bilingual search coverage.' },
+      { question: 'We are a B2B supplier/wholesaler — does digital marketing apply to us?', answer: 'Very much. B2B buyers Google suppliers before calling. We build searchable product/capability pages, run Google Ads on trade keywords, and set up WhatsApp catalogues that turn enquiries into orders.' },
+      { question: 'Do you help online sellers in Seri Kembangan?', answer: 'Yes — from Shopee and Lazada ads to TikTok Shop live selling and own-store funnels. The area’s seller community is exactly who our e-commerce playbooks are built for.' },
+      { question: 'How close are you to Seri Kembangan?', answer: 'Our headquarters in Cheras is roughly 20 minutes up the Besraya/SILK route, so face-to-face meetings and on-site content shoots are easy.' },
+    ],
+  },
+  {
     slug: 'petaling-jaya',
     city: 'Petaling Jaya',
     state: 'Selangor',
@@ -160,6 +312,140 @@ export const locationsMs = {
       { question: 'Berapa kos pemasaran digital di Kuala Lumpur?', answer: 'Kebanyakan PKS KL melabur antara RM1,500 dan RM8,000 sebulan sebelum perbelanjaan iklan, bergantung pada perkhidmatan dan skop. Kami menawarkan pakej telus dan sebut harga tersuai — lihat halaman harga kami atau hubungi kami.' },
       { question: 'Adakah anda bekerja dengan perniagaan kecil di KL?', answer: 'Ya. Kami bekerja dengan semua orang daripada pengasas solo dan syarikat baharu kepada jenama Lembah Klang yang mantap, menyesuaikan skop dengan matlamat dan bajet anda.' },
       { question: 'Bolehkah anda membantu perniagaan KL saya mendapat kedudukan di Google?', answer: 'Sudah tentu. Kami menggabungkan SEO tempatan (Profil Perniagaan Google, kandungan tempatan, dan petikan) dengan carian berbayar untuk membuatkan anda ditemui oleh pelanggan yang mencari di Kuala Lumpur.' },
+    ],
+  },
+  'cheras': {
+    state: 'Kuala Lumpur',
+    metaTitle: 'Agensi Pemasaran Digital di Cheras, KL (Pangkalan Kami) | BrandKraf',
+    metaDescription:
+      'BrandKraf beribu pejabat di Cheras Business Centre — agensi pemasaran digital di Cheras menawarkan SEO, media sosial, UGC, iklan berbayar, dan pemasaran AI. Kunjungi kami atau dapatkan sebut harga percuma.',
+    intro:
+      'Cheras bukan sekadar pasaran yang kami layani — ia rumah kami. BrandKraf beribu pejabat di Cheras Business Centre, yang bermakna perniagaan Cheras mendapat sesuatu yang jarang: pasukan pemasaran digital perkhidmatan penuh yang anda benar-benar boleh pandu ke sana, beberapa minit sahaja, yang mengenali setiap taman, pusat beli-belah, dan stesen MRT di kawasan ini.',
+    localContext:
+      'Daripada jalan makanan Taman Connaught dan kerumunan runcit di Cheras Leisure Mall, EkoCheras, dan Sunway Velocity, kepada ribuan PKS, klinik, bengkel, dan jenama tempatan yang tersebar di Taman Midah, Bandar Sri Permaisuri, dan Alam Damai — Cheras bergerak atas kepercayaan tempatan dan dari mulut ke mulut. Laluan MRT Kajang mengubah cara orang bergerak dan membeli-belah di sini. Kami membina pemasaran yang sepadan dengan realiti itu: SEO tempatan yang memenangi carian "berdekatan saya", kandungan TikTok dan Instagram yang benar-benar dikongsi orang Cheras, dan iklan disasarkan geografi taman demi taman.',
+    sections: [
+      {
+        heading: 'Pejabat kami di Cheras — singgahlah',
+        paragraphs: [
+          'BrandKraf beroperasi dari 28-02-02, Jalan 2/101c, Cheras Business Centre, 56100 Kuala Lumpur. Beribu pejabat di sini bermakna pelanggan Cheras mendapat sesi strategi bersemuka, penggambaran kandungan pantas di kedai atau klinik anda, dan pasukan yang memahami perbezaan antara kerumunan Taman Connaught dan kerumunan Sunway Velocity — kerana kami menghayatinya setiap hari.',
+          'Untuk perniagaan makanan dan runcit khususnya, kedekatan ini terpancar dalam hasil kerja: kami boleh merakam UGC dan video bentuk pendek di lokasi anda dalam beberapa hari, bukan minggu, dan bertindak balas kepada saat tempatan — perayaan, musim pasar malam, kempen pusat beli-belah — semasa ia masih bermakna.',
+        ],
+      },
+      {
+        heading: 'SEO tempatan untuk perniagaan Cheras',
+        paragraphs: [
+          'Apabila seseorang mencari "dentist cheras", "kedai makan taman connaught", atau "servis aircond alam damai", tiga perniagaan dalam Pek Peta Google memenangi pelanggan itu. Kebanyakan perniagaan Cheras tidak pernah mengoptimumkan untuk ini — yang menjadikannya salah satu langkah pulangan tertinggi yang ada.',
+          'Kami mengoptimumkan Profil Perniagaan Google anda, membina petikan tempatan, mencipta kandungan khusus Cheras, dan menjalankan sistem ulasan yang mengkompaunkan keterlihatan anda. Digabungkan dengan perkhidmatan SEO dan AEO kami, perniagaan anda menjadi jawapan yang diberikan Google dan pembantu AI apabila pelanggan Cheras bertanya.',
+        ],
+      },
+      {
+        heading: 'Apa yang perniagaan Cheras laburkan dalam pemasaran',
+        paragraphs: [
+          'Kadar kami ialah harga telus yang sama yang kami terbitkan untuk seluruh Malaysia: kebanyakan PKS melabur RM1,500–RM8,000 sebulan sebelum perbelanjaan iklan — pengurusan media sosial dari sekitar RM2,500/bulan, SEO dari RM1,500/bulan, dan pengurusan iklan berbayar dari RM800/bulan. PKS yang layak boleh menuntut sehingga RM5,000 kembali melalui Geran Pendigitalan PKS.',
+          'Kerana kami tempatan, memulakan itu mudah: tempah panggilan strategi percuma, atau kunjungi pejabat kami di Cheras Business Centre dan rancang pertumbuhan anda sambil minum kopi.',
+        ],
+      },
+    ],
+    faqs: [
+      { question: 'Di mana tepatnya BrandKraf terletak di Cheras?', answer: 'Pejabat kami di 28-02-02, Jalan 2/101c, Cheras Business Centre, 56100 Kuala Lumpur — jarak pandu singkat dari Cheras Leisure Mall dan boleh diakses melalui laluan MRT Kajang. Pelanggan dialu-alukan berkunjung; cuma tempah slot dahulu supaya ahli pasukan yang betul ada.' },
+      { question: 'Adakah anda bekerja dengan perniagaan kecil tempatan di Cheras?', answer: 'Ya — PKS Cheras ialah jiran kami dan pelanggan teras kami: kedai F&B, klinik, pusat tuisyen, bengkel, peruncit, dan penjual dalam talian. Kami menyesuaikan skop dengan bajet anda, bermula daripada pakej fokus satu saluran.' },
+      { question: 'Bolehkah anda membantu perniagaan Cheras saya muncul dalam carian Google Maps?', answer: 'Sudah tentu — SEO tempatan ialah salah satu perkhidmatan teras kami. Kami mengoptimumkan Profil Perniagaan Google anda, membina petikan dan ulasan, dan mencipta kandungan relevan tempatan supaya anda mendapat kedudukan dalam Pek Peta untuk carian "berdekatan saya" dan kawasan Cheras.' },
+      { question: 'Adakah anda merakam kandungan di premis kami?', answer: 'Ya, dan berpangkalan di Cheras menjadikannya pantas — kami biasanya boleh menjadualkan penggambaran UGC dan video di lokasi Cheras dalam beberapa hari.' },
+      { question: 'Kawasan berdekatan mana yang anda turut liputi?', answer: 'Di mana-mana sahaja dalam dan di luar Lembah Klang — termasuk Bandar Tun Razak, Ampang, Kajang, Seri Kembangan, Puchong, dan Damansara, serta wilayah KL dan Selangor yang lebih luas. Jarak tidak pernah menjadi halangan; kami melayani pelanggan di seluruh negara secara jarak jauh.' },
+      { question: 'Berapa kos pemasaran digital di Cheras?', answer: 'Kadar telus yang sama seperti di mana-mana kami beroperasi: kebanyakan PKS melabur RM1,500–RM8,000 sebulan sebelum perbelanjaan iklan. Gunakan kalkulator kos percuma kami untuk anggaran segera, atau singgah ke pejabat untuk sebut harga tepat.' },
+    ],
+  },
+  'bandar-tun-razak': {
+    state: 'Kuala Lumpur',
+    metaTitle: 'Agensi Pemasaran Digital di Bandar Tun Razak, KL | BrandKraf',
+    metaDescription:
+      'Pemasaran digital untuk perniagaan Bandar Tun Razak — SEO, media sosial, UGC, dan iklan berbayar daripada BrandKraf, beribu pejabat beberapa minit sahaja di Cheras. Perundingan percuma.',
+    intro:
+      'Bandar Tun Razak ialah salah satu kawasan kediaman paling mantap di KL — padat, setia, dan sangat tempatan. BrandKraf beribu pejabat beberapa minit sahaja di Cheras, menjadikan kami pasukan pemasaran digital perkhidmatan penuh yang paling dekat dengan perniagaan di sepanjang koridor Bandar Tun Razak.',
+    localContext:
+      'Perniagaan di Bandar Tun Razak ialah perniagaan kejiranan: klinik, kedai makan, pusat tuisyen dan tahfiz, bengkel, pasar mini, dan perkhidmatan yang berkelompok sekitar Taman Bandar Tun Razak, stesen LRT, dan sempadan yang dikongsinya dengan Bandar Sri Permaisuri dan Salak South. Pelanggan di sini memilih perniagaan yang mereka lihat berulang kali dan percayai — jadi kami fokus pada SEO tempatan dan keterlihatan Google Maps, pengendalian petunjuk mengutamakan WhatsApp, dan kandungan bentuk pendek dalam campuran Melayu-Inggeris harian yang benar-benar dituturkan penduduk tempatan. Kempen Inggeris dan Bahasa Melayu kami dihasilkan secara dalaman.',
+    faqs: [
+      { question: 'Adakah anda benar-benar melayani Bandar Tun Razak secara khusus?', answer: 'Ya — ibu pejabat kami di Cheras hanya beberapa minit dari sini, jadi perniagaan Bandar Tun Razak mendapat lawatan di lokasi, penggambaran kandungan tempatan, dan kempen yang dibina sekitar dinamik kejiranan kawasan ini dan bukannya penyasaran KL yang generik.' },
+      { question: 'Pemasaran apa yang paling berkesan untuk perniagaan kejiranan di sini?', answer: 'SEO tempatan dan pengoptimuman Profil Perniagaan Google memenangi carian "berdekatan saya", manakala kandungan Facebook, Instagram, dan TikTok yang disasarkan geografi membina kebiasaan harian. Untuk klinik dan perkhidmatan, saluran pertanyaan berasaskan WhatsApp menukar dengan sangat baik.' },
+      { question: 'Bolehkah anda menjalankan kempen dalam Bahasa Melayu?', answer: 'Ya, sudah tentu. Kami menghasilkan kempen dalam Bahasa Melayu dan Inggeris secara dalaman — termasuk laman web, kandungan, dan iklan dwibahasa — dipadankan dengan cara pelanggan Bandar Tun Razak sebenarnya berkomunikasi.' },
+      { question: 'Saya menjalankan gerai kecil/perniagaan dari rumah — adakah pemasaran berbaloi?', answer: 'Selalunya ya, pada skala yang betul. Profil Perniagaan Google yang dioptimumkan dengan baik dan kandungan bentuk pendek yang konsisten berkos rendah dan berkompaun. Mulakan dengan panggilan strategi percuma dan kami akan beritahu anda dengan jujur apa yang berbaloi dibelanjakan.' },
+    ],
+  },
+  'ampang': {
+    state: 'Kuala Lumpur / Selangor',
+    metaTitle: 'Agensi Pemasaran Digital di Ampang | BrandKraf',
+    metaDescription:
+      'Agensi pemasaran digital yang melayani Ampang dan Ampang Jaya — SEO, media sosial, UGC, iklan berbayar, dan pemasaran AI untuk jenama F&B, penjagaan kesihatan, dan runcit. Sebut harga percuma.',
+    intro:
+      'Ampang ialah tempat deretan kedutaan KL, hab penjagaan kesihatan swasta, dan salah satu senario makanan terkaya di bandar ini bertemu dengan taman kediaman yang padat. BrandKraf membantu perniagaan Ampang menukar trafik pejalan kaki dan reputasi sedia ada itu menjadi permintaan dalam talian yang boleh diukur.',
+    localContext:
+      'Daripada jalan yong tau foo Kampung Baru Ampang kepada kerumunan antarabangsa sekitar Ampang Hilir dan Great Eastern Mall, dan ekosistem penjagaan kesihatan berteraskan KPJ Ampang Puteri — penonton Ampang luar biasa pelbagai. Pemasaran di sini mesti disegmenkan: kandungan F&B halal untuk keluarga tempatan, kempen mengutamakan Inggeris untuk kawasan ekspatriat, pemasaran carian berteraskan kredibiliti untuk klinik dan pakar. Kami membina segmen itu dengan sengaja, dengan iklan disasarkan geografi dan SEO tempatan yang membezakan Ampang KL daripada Ampang Jaya dengan betul — perincian yang kebanyakan agensi terlepas.',
+    faqs: [
+      { question: 'Adakah anda mengendalikan pemasaran penjagaan kesihatan dan klinik di Ampang?', answer: 'Ya — klinik, amalan pergigian, dan pusat kesihatan ialah fokus yang kukuh. Kami menggabungkan SEO tempatan, kandungan pendidikan yang boleh dipercayai, dan kempen iklan patuh yang menjana pertanyaan pesakit tanpa janji berlebihan.' },
+      { question: 'Ampang mempunyai komuniti ekspatriat yang besar — bolehkah anda menyasarkannya?', answer: 'Ya. Kami menjalankan kempen mengutamakan Inggeris yang disasarkan geografi ke kawasan Ampang Hilir/kedutaan di samping kempen penonton Melayu dan Cina untuk taman yang lebih luas, masing-masing dengan kreatif dan tawaran tersendiri.' },
+      { question: 'Bolehkah anda membantu restoran Ampang saya mendapat lebih ramai pelanggan?', answer: 'Makanan ialah kuasa istimewa Ampang. Kami mencipta video bentuk pendek yang menyelerakan, mengoptimumkan Profil Perniagaan Google anda supaya anda memenangi carian "makan ampang", dan menjalankan promosi yang memenuhkan meja pada hari perlahan.' },
+      { question: 'Berapa cepat anda boleh melawat kami di Ampang?', answer: 'Ibu pejabat Cheras kami hanya jarak pandu singkat melalui MRR2, jadi mesyuarat di lokasi dan penggambaran kandungan di Ampang mudah dijadualkan — biasanya dalam minggu yang sama.' },
+    ],
+  },
+  'damansara': {
+    state: 'Kuala Lumpur / Selangor',
+    metaTitle: 'Agensi Pemasaran Digital di Damansara | BrandKraf',
+    metaDescription:
+      'Pemasaran digital untuk koridor Damansara — Damansara Heights, TTDI, Damansara Utama, Mutiara Damansara. SEO, media sosial, UGC, dan iklan berbayar yang menukar. Sebut harga percuma.',
+    intro:
+      'Koridor Damansara — dari Damansara Heights dan TTDI ke Damansara Utama, Uptown, dan Mutiara Damansara — ialah jaluran perniagaan premium Lembah Klang. BrandKraf membantu jenama Damansara memasarkan dengan kegilapan yang dijangkakan penonton ini, disokong data prestasi yang mewajarkan bajet premium.',
+    localContext:
+      'Damansara sebenarnya beberapa pasaran dengan satu nama: ibu pejabat korporat dan firma profesional di Damansara Heights, kafe butik dan jenama gaya hidup di TTDI, pejabat PKS bertingkat di Uptown dan Damansara Utama, dan kerumunan runcit besar di Mutiara Damansara dan The Curve. Persamaan mereka: penonton berpendapatan lebih tinggi dan cerewet yang menghukum penjenamaan yang cuai. Kami menggandingkan kreatif tajam dan kandungan konsisten jenama dengan SEO, Google Ads, dan kempen sosial yang dijejaki penukaran — supaya perniagaan Damansara kelihatan premium dan boleh membuktikan ROI.',
+    faqs: [
+      { question: 'Kawasan Damansara mana yang anda liputi?', answer: 'Koridor penuh: Damansara Heights, TTDI, Damansara Utama, Damansara Uptown, Mutiara Damansara, Bandar Utama, dan Kota Damansara yang berjiran — dengan kempen disasarkan geografi kepada penonton tersendiri setiap kawasan.' },
+      { question: 'Adakah anda bekerja dengan firma profesional dan syarikat B2B di Damansara?', answer: 'Ya — firma guaman, penasihat kewangan, agensi, dan perunding ialah padanan semula jadi. Kami bersandar pada LinkedIn, Google Ads, SEO, dan kandungan kewibawaan dan bukannya kempen sosial gaya pengguna.' },
+      { question: 'Bolehkah anda menjadikan kafe atau butik TTDI saya menonjol?', answer: 'TTDI bergerak atas estetika dan dari mulut ke mulut. Kami menghasilkan kandungan visual yang menghentikan susur, bekerjasama dengan pencipta tempatan yang betul, dan menjalankan kempen disasarkan geografi tepat yang mencapai kerumunan TTDI dan Bangsar tanpa membazir bajet.' },
+      { question: 'Kami sudah ada pemasaran dalaman — bolehkah anda bekerja bersama pasukan kami?', answer: 'Ya. Ramai pelanggan Damansara mengekalkan strategi atau jenama secara dalaman dan memasukkan kami untuk apa yang mereka kurang — iklan prestasi, SEO, pengeluaran UGC, atau video bentuk pendek pada skala.' },
+    ],
+  },
+  'puchong': {
+    metaTitle: 'Agensi Pemasaran Digital di Puchong | BrandKraf',
+    metaDescription:
+      'Agensi pemasaran digital Puchong — SEO, media sosial, UGC, iklan berbayar, dan pemasaran e-dagang untuk PKS di Bandar Puteri, Bandar Puchong Jaya & IOI. Perundingan percuma.',
+    intro:
+      'Puchong ialah salah satu bandar perniagaan paling gigih di Lembah Klang — grid padat PKS, penjual e-dagang, dan perniagaan keluarga yang terbentang dari Bandar Puteri ke IOI Mall. BrandKraf memberi perniagaan Puchong kuasa pemasaran untuk bersaing jauh melangkaui LDP.',
+    localContext:
+      'Deretan komersial Puchong di Bandar Puteri dan Bandar Puchong Jaya menempatkan segalanya daripada kontraktor logistik dan ubah suai kepada rangkaian bubble tea, pusat tuisyen, dan sebilangan penjual dalam talian paling sibuk di Malaysia. Ia pasaran praktikal dan bijak harga di mana perniagaan mahukan petunjuk, bukan kesombongan. Itu sesuai dengan kami: kami menjalankan saluran penjanaan petunjuk dengan susulan WhatsApp, SEO tempatan yang memenangi carian "berdekatan saya" Puchong, dan kempen e-dagang — Shopee, TikTok Shop, dan kedai sendiri — untuk komuniti penjual dalam talian Puchong.',
+    faqs: [
+      { question: 'Adakah anda membantu penjual dalam talian dan perniagaan e-dagang Puchong?', answer: 'Ya — e-dagang ialah kekuatan teras. Kami menjalankan iklan pasaran di Shopee dan Lazada, kempen TikTok Shop dan jualan langsung, dan membina saluran kedai sendiri dengan e-mel dan penyasaran semula untuk mengembangkan margin melangkaui pasaran.' },
+      { question: 'Apa yang berkesan untuk perniagaan perkhidmatan di Puchong — kontraktor, tuisyen, klinik?', answer: 'Penjanaan petunjuk: SEO tempatan dan Google Ads untuk menangkap carian berniat tinggi, serta kempen Facebook dan TikTok disasarkan geografi yang menyalurkan kepada sistem susulan WhatsApp yang pantas. Kami menjejaki kos sepetunjuk supaya anda tahu dengan tepat kos setiap pertanyaan.' },
+      { question: 'Bolehkah anda bersaing dengan pekerja bebas murah yang mengiklan di Puchong?', answer: 'Kami menerbitkan harga telus dan jujur tentang perbezaannya: pekerja bebas sesuai untuk skop kecil, manakala pasukan kami merangkumi strategi, kandungan, iklan, dan pelaporan bersama-sama. Ramai pelanggan datang kepada kami selepas pakej murah menghasilkan siaran tetapi tiada pelanggan.' },
+      { question: 'Adakah anda melawat pelanggan di Puchong?', answer: 'Ya — Puchong ialah pemanduan mudah dari ibu pejabat Cheras kami, jadi sesi strategi dan penggambaran kandungan di lokasi mudah diatur.' },
+    ],
+  },
+  'kajang': {
+    metaTitle: 'Agensi Pemasaran Digital di Kajang | BrandKraf',
+    metaDescription:
+      'Agensi pemasaran digital Kajang — SEO, media sosial, UGC, dan iklan berbayar untuk perniagaan F&B, hartanah, pendidikan, dan runcit di Kajang & Bangi. Perundingan percuma.',
+    intro:
+      'Kajang telah melangkaui kemasyhuran bandar satenya: terminal MRT, bandar baharu yang besar, dan demografi keluarga muda telah menjadikannya salah satu pasaran paling pesat berkembang di Lembah Klang. BrandKraf membantu perniagaan Kajang menangkap pertumbuhan itu sebelum pesaing mereka.',
+    localContext:
+      'Pasaran Kajang dikuasakan oleh pertumbuhan: komuniti kediaman baharu yang menyuburkan permintaan untuk F&B, klinik, tadika dan tuisyen, perkhidmatan rumah, dan hartanah — melimpah ke Bangi dan Semenyih yang berjiran. Penontonnya muda, majoriti Melayu, fokus keluarga, dan aktif di TikTok, Facebook, dan WhatsApp. Kempen kami sepadan dengan itu: kandungan dwibahasa dengan Bahasa Melayu yang betul, SEO tempatan untuk carian "kajang" dan "bangi", dan kreatif berperisa komuniti — ya, kandungan sate memang menjadi — yang menjadikan jenama tempatan terasa seperti jiran, bukan pengiklan.',
+    faqs: [
+      { question: 'Adakah anda meliputi Bangi dan Semenyih serta Kajang?', answer: 'Ya — Kajang, Bandar Baru Bangi, Semenyih, dan taman sekitarnya membentuk satu koridor pertumbuhan, dan kami menyasarkan kempen secara geografi merentasinya berdasarkan dari mana pelanggan anda sebenarnya datang.' },
+      { question: 'Pelanggan kami kebanyakannya berbahasa Melayu — bolehkah anda sepadan?', answer: 'Ya, boleh. Kempen Bahasa Melayu dihasilkan secara dalaman — kandungan, iklan, malah laman web dwibahasa penuh — dalam BM tempatan yang semula jadi dan bukannya terjemahan langsung.' },
+      { question: 'Industri apa yang anda layani di Kajang?', answer: 'F&B dan kafe, hartanah dan ubah suai, pendidikan (tadika, tuisyen, tahfiz), klinik, dan runcit adalah yang paling biasa — semuanya mendapat manfaat daripada SEO tempatan serta kandungan mengutamakan sosial.' },
+      { question: 'Adakah Kajang terlalu jauh untuk pasukan anda?', answer: 'Tidak sama sekali — lebuh raya SILK dan MRT menghubungkan Kajang terus ke ibu pejabat Cheras kami. Mesyuarat dan penggambaran di lokasi mudah dijadualkan.' },
+    ],
+  },
+  'seri-kembangan': {
+    metaTitle: 'Agensi Pemasaran Digital di Seri Kembangan | BrandKraf',
+    metaDescription:
+      'Pemasaran digital untuk perniagaan Seri Kembangan — SEO, media sosial, e-dagang, dan iklan berbayar untuk komuniti perdagangan, borong, dan F&B sekitar The Mines & Serdang. Sebut harga percuma.',
+    intro:
+      'Seri Kembangan ialah salah satu kuasa komersial senyap Lembah Klang — hab perdagangan, borong, dan F&B antara The Mines, Serdang, dan Balakong. BrandKraf membantu perniagaan Seri Kembangan menukar reputasi luar talian menjadi permintaan dalam talian.',
+    localContext:
+      'Perniagaan di sini berakar umbi perdagangan: deretan borong dan perkakasan, pembekal bersebelahan kilang sekitar Balakong, institusi F&B keluarga, dan gelombang penjual dalam talian yang semakin berkembang — di samping ekonomi pelajar sekitar UPM di Serdang. Kebanyakannya berbahasa Cina, dipacu tawaran, dan berasaskan rujukan. Kami membantu perniagaan ini memodenkan saluran tanpa kehilangan karakter itu: kandungan dan iklan dwibahasa (Cina/Melayu/Inggeris), kempen pasaran dan TikTok Shop untuk penjual, penjanaan petunjuk B2B untuk pembekal, dan SEO tempatan yang menangkap carian "seri kembangan" dan "serdang".',
+    faqs: [
+      { question: 'Bolehkah anda menjalankan kempen dalam bahasa Cina untuk penonton Seri Kembangan?', answer: 'Ya — kami menghasilkan kempen dalam bahasa Cina, Melayu, dan Inggeris, sepadan dengan setiap segmen penonton. Banyak perniagaan Seri Kembangan menang dengan kandungan sosial mengutamakan Cina serta liputan carian dwibahasa.' },
+      { question: 'Kami pembekal/pemborong B2B — adakah pemasaran digital terpakai untuk kami?', answer: 'Sangat terpakai. Pembeli B2B Google pembekal sebelum menelefon. Kami membina halaman produk/keupayaan yang boleh dicari, menjalankan Google Ads pada kata kunci perdagangan, dan menyediakan katalog WhatsApp yang menukar pertanyaan menjadi pesanan.' },
+      { question: 'Adakah anda membantu penjual dalam talian di Seri Kembangan?', answer: 'Ya — daripada iklan Shopee dan Lazada kepada jualan langsung TikTok Shop dan saluran kedai sendiri. Komuniti penjual kawasan ini ialah tepat untuk siapa buku panduan e-dagang kami dibina.' },
+      { question: 'Berapa dekat anda dengan Seri Kembangan?', answer: 'Ibu pejabat kami di Cheras kira-kira 20 minit melalui laluan Besraya/SILK, jadi mesyuarat bersemuka dan penggambaran kandungan di lokasi adalah mudah.' },
     ],
   },
   'petaling-jaya': {

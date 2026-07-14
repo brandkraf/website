@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { CheckCircle2, ArrowRight, Sparkles, Star, TrendingUp, Users } from 'lucide-react';
@@ -24,7 +24,7 @@ const CONTENT_TYPES = [
 export default function BeautyUGCPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>Beauty & Personal Care UGC | BrandKraf</title>
         <meta name="description" content="The beauty industry lives on social media. Raw tutorials, honest reviews, and stunning transformations created by real users are the absolute gold standard for driving sales." />
       </Helmet>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
 
 // Bilingual search signals. While BM content is still being translated, /ms pages
@@ -64,7 +64,7 @@ export default function Hreflang() {
     SELF_MANAGED.some((p) => base === p || base.startsWith(`${p}/`))
   ) {
     return (
-      <Helmet>
+      <Helmet defer={false}>
         <html lang={lang} />
       </Helmet>
     );
@@ -72,7 +72,7 @@ export default function Hreflang() {
 
   if (!BM_LIVE && !TRANSLATED.includes(base)) {
     return (
-      <Helmet>
+      <Helmet defer={false}>
         <html lang={lang} />
         {isMs && <meta name="robots" content="noindex,follow" />}
       </Helmet>
@@ -82,7 +82,7 @@ export default function Hreflang() {
   const enUrl = SITE + (base === '/' ? '' : base);
   const msUrl = SITE + (base === '/' ? '/ms' : `/ms${base}`);
   return (
-    <Helmet>
+    <Helmet defer={false}>
       <html lang={lang} />
       <link rel="alternate" hrefLang="en" href={enUrl} />
       <link rel="alternate" hrefLang="ms" href={msUrl} />

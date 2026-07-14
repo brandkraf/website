@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -29,7 +29,7 @@ function TikTokPortfolioPage() {
 
   return (
     <>
-      <Helmet>
+      <Helmet defer={false}>
         <title>{T('TikTok Campaigns Portfolio - BrandKraf', 'Portfolio Kempen TikTok - BrandKraf')}</title>
         <meta name="description" content={T('Explore our successful TikTok campaigns and live streaming events that maximize engagement and brand visibility.', 'Terokai kempen TikTok kami yang berjaya dan acara penstriman langsung yang memaksimumkan penglibatan dan keterlihatan jenama.')} />
       </Helmet>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -61,10 +61,38 @@ export default function LocationPage() {
   const noindex = isMs && !hasMs;
   const homeUrl = isMs ? `${SITE}/ms` : SITE;
 
-  const schema = {
-    '@context': 'https://schema.org',
-    '@graph': [
-      {
+  // The HQ page (Cheras — our physical address) carries full LocalBusiness data;
+  // service-area pages describe the service with BrandKraf as provider.
+  const mainEntity = data.hq
+    ? {
+        '@type': 'ProfessionalService',
+        name: 'BrandKraf',
+        description: v.metaDescription,
+        url,
+        image: 'https://www.brandkraf.com/android-chrome-512x512.png',
+        telephone: '+60-3-9134-3603',
+        email: 'admin@brandkraf.com',
+        priceRange: 'RM1,500 - RM15,000',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: '28-02-02, Jalan 2/101c, Cheras Business Centre',
+          addressLocality: 'Cheras',
+          addressRegion: 'Kuala Lumpur',
+          postalCode: '56100',
+          addressCountry: 'MY',
+        },
+        geo: { '@type': 'GeoCoordinates', latitude: 3.0925, longitude: 101.7345 },
+        openingHoursSpecification: [
+          { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '09:00', closes: '18:00' },
+          { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Saturday', opens: '10:00', closes: '16:00' },
+        ],
+        areaServed: [
+          { '@type': 'City', name: 'Cheras' },
+          { '@type': 'City', name: 'Kuala Lumpur' },
+          { '@type': 'State', name: 'Selangor' },
+        ],
+      }
+    : {
         '@type': 'Service',
         serviceType: 'Digital Marketing',
         name: T(`Digital Marketing Agency in ${v.city}`, `Agensi Pemasaran Digital di ${v.city}`),
@@ -76,7 +104,12 @@ export default function LocationPage() {
           url: 'https://www.brandkraf.com',
           telephone: '+60-3-9134-3603',
         },
-      },
+      };
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      mainEntity,
       {
         '@type': 'BreadcrumbList',
         itemListElement: [
@@ -89,7 +122,7 @@ export default function LocationPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>{v.metaTitle}</title>
         <meta name="description" content={v.metaDescription} />
         <link rel="canonical" href={url} />
@@ -215,6 +248,36 @@ export default function LocationPage() {
         )}
 
         <FAQSection faqs={v.faqs} />
+
+        {/* Hub-and-spoke interlinks: every location page links to every other, so
+            link equity flows through the whole Klang Valley + Malaysia cluster. */}
+        <section className="section-padding border-t border-border">
+          <div className="container-custom">
+            <h2 className="mb-3 text-2xl font-extrabold tracking-tight md:text-3xl">
+              {T('Other areas we serve', 'Kawasan lain yang kami layani')}
+            </h2>
+            <p className="mb-8 max-w-2xl text-muted-foreground">
+              {T(
+                `From our Cheras HQ we work with businesses across the Klang Valley and all of Malaysia — remotely or in person.`,
+                `Dari ibu pejabat kami di Cheras, kami bekerja dengan perniagaan di seluruh Lembah Klang dan seluruh Malaysia — secara jarak jauh atau bersemuka.`
+              )}
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {locations
+                .filter((l) => l.slug !== data.slug)
+                .map((l) => (
+                  <Link
+                    key={l.slug}
+                    to={lp(`/digital-marketing-agency/${l.slug}`)}
+                    className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium transition-colors hover:border-brandkraf-teal/50 hover:text-brandkraf-teal"
+                  >
+                    <MapPin className="h-3.5 w-3.5 text-brandkraf-teal" />
+                    {T(`Digital marketing in ${l.city}`, `Pemasaran digital di ${l.city}`)}
+                  </Link>
+                ))}
+            </div>
+          </div>
+        </section>
 
         {/* CTA */}
         <section className="relative overflow-hidden py-20">

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { CheckCircle2, Download, Home, ArrowRight } from 'lucide-react';
 import Header from '@/components/Header.jsx';
@@ -15,7 +15,7 @@ export default function PaymentSuccessPage() {
 
   return (
     <>
-      <Helmet>
+      <Helmet defer={false}>
         <title>Payment Successful | BrandKraf</title>
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>

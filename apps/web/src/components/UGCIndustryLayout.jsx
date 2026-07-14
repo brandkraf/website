@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ChevronRight, ArrowRight, CheckCircle2, PlayCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -64,7 +64,7 @@ export default function UGCIndustryLayout({
 
   return (
     <>
-      <Helmet>
+      <Helmet defer={false}>
         <title>UGC Content for {title} - BrandKraf</title>
         <meta name="description" content={`Discover how user-generated content transforms the ${title} industry.`} />
       </Helmet>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Quote, Target, Eye, Lightbulb, Palette, Search, Zap, ShieldCheck, Users, ArrowRight, Maximize2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -61,7 +61,7 @@ export default function AboutUsPage() {
 
   return (
     <>
-      <Helmet>
+      <Helmet defer={false}>
         <title>{T('About Us | BrandKraf', 'Tentang Kami | BrandKraf')}</title>
         <meta name="description" content={T(
           'Learn about BrandKraf - your one-stop digital marketing, content production, and creative growth partner.',

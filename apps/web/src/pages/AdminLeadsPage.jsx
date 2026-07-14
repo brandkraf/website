@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { supabase } from '@/lib/supabaseClient.js';
 import { format } from 'date-fns';
 import { Download, Search, Trash2, Mail, Phone, Building2, User, Clock, FileWarning } from 'lucide-react';
@@ -130,7 +130,7 @@ function AdminLeadsPage() {
 
   return (
     <div className="max-w-7xl mx-auto flex flex-col h-full">
-      <Helmet>
+      <Helmet defer={false}>
         <title>Leads Management - Admin Portal</title>
       </Helmet>
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -89,7 +89,7 @@ function PortfolioPage() {
 
   return (
     <>
-      <Helmet>
+      <Helmet defer={false}>
         <title>{T("Portfolio - Explore BrandKraf's Work", 'Portfolio - Terokai Kerja BrandKraf')}</title>
         <meta
           name="description"

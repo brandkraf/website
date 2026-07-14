@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -29,7 +29,7 @@ function BrandingPortfolioPage() {
 
   return (
     <>
-      <Helmet>
+      <Helmet defer={false}>
         <title>{T('Branding & Creative Portfolio - BrandKraf', 'Portfolio Penjenamaan & Kreatif - BrandKraf')}</title>
         <meta name="description" content={T('Discover our complete brand identity and creative design transformations.', 'Temui transformasi identiti jenama dan reka bentuk kreatif lengkap kami.')} />
       </Helmet>

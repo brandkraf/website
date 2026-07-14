@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { CheckCircle2, ArrowRight, Wifi, Headphones as Headset, Smartphone, Users } from 'lucide-react';
@@ -35,7 +35,7 @@ const FAQS = [
 export default function TelecommunicationsUGCPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>Telecommunications UGC | BrandKraf</title>
         <meta name="description" content="Prove your reliability. Telecommunications relies heavily on trust; UGC provides visual proof of coverage, speed, and superior customer service." />
       </Helmet>

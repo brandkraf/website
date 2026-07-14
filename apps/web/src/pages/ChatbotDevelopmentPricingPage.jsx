@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
@@ -87,7 +87,7 @@ export default function ChatbotDevelopmentPricingPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>{T('Chatbot Development Pricing | BrandKraf', 'Harga Pembangunan Chatbot | BrandKraf')}</title>
         <meta name="description" content={T('Transparent pricing for custom AI chatbots and conversational marketing.', 'Harga telus untuk chatbot AI tersuai dan pemasaran perbualan.')} />
       </Helmet>

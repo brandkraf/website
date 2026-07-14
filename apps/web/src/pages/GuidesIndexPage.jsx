@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { BookOpen, ArrowRight } from 'lucide-react';
@@ -36,7 +36,7 @@ export default function GuidesIndexPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>{T('Digital Marketing Guides for Malaysian Businesses | BrandKraf', 'Panduan Pemasaran Digital untuk Perniagaan Malaysia | BrandKraf')}</title>
         <meta name="description" content={T('Free, in-depth digital marketing guides for Malaysian businesses — TikTok, social media, paid ads, SEO, UGC, AI marketing, and the fundamentals. Organized by topic.', 'Panduan pemasaran digital yang mendalam dan percuma untuk perniagaan Malaysia — TikTok, media sosial, iklan berbayar, SEO, UGC, pemasaran AI, dan asasnya. Disusun mengikut topik.')} />
         <link rel="canonical" href={url} />

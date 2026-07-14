@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { CheckCircle2, ArrowRight, Lightbulb, MessageSquare, Presentation, ShieldCheck } from 'lucide-react';
@@ -24,7 +24,7 @@ const CONTENT_TYPES = [
 export default function ProfessionalServicesUGCPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>Professional Services UGC | BrandKraf</title>
         <meta name="description" content="For law firms, consultancies, and agencies, your expertise is your product. UGC transforms dry case studies into engaging thought leadership and powerful client endorsements." />
       </Helmet>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { CheckCircle2, ArrowRight, Users, FileText, ShieldCheck, Megaphone } from 'lucide-react';
@@ -24,7 +24,7 @@ const CONTENT_TYPES = [
 export default function GovernmentUGCPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>Government & Public Sector UGC | BrandKraf</title>
         <meta name="description" content="Modernize public communication. UGC formats allow government agencies to communicate policies clearly, showcase community impact, and encourage civic participation authentically." />
       </Helmet>

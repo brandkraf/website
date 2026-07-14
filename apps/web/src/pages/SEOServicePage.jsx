@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
 import ServiceHero from '@/components/ServiceHero.jsx';
@@ -63,7 +63,7 @@ function SEOServicePage() {
 
   return (
     <>
-      <Helmet>
+      <Helmet defer={false}>
         <title>{T('SEO & AEO Agency Malaysia - Rank on Google & AI Search | BrandKraf', 'Agensi SEO & AEO Malaysia - Kedudukan di Google & Carian AI | BrandKraf')}</title>
         <meta name="description" content={T(
           'SEO agency for Malaysian businesses — technical SEO, local Map Pack rankings, and AEO so AI engines cite your brand. Serving KL, Selangor & Johor Bahru. Free audit.',

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { CheckCircle2, ArrowRight, Truck, ShieldCheck, Users, Clock } from 'lucide-react';
@@ -35,7 +35,7 @@ const FAQS = [
 export default function TransportationUGCPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>Transportation & Logistics UGC | BrandKraf</title>
         <meta name="description" content="Showcase the reliable engine that keeps businesses moving. UGC humanizes logistics, highlights operational efficiency, and builds immense B2B trust." />
       </Helmet>

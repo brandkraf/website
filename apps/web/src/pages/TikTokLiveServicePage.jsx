@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
 import ServiceHero from '@/components/ServiceHero.jsx';
@@ -75,7 +75,7 @@ function TikTokLiveServicePage() {
 
   return (
     <>
-      <Helmet>
+      <Helmet defer={false}>
         <title>{T('TikTok Live Service - BrandKraf', 'Perkhidmatan TikTok Live - BrandKraf')}</title>
         <meta name="description" content={serviceData.hero.subtitle} />
       </Helmet>

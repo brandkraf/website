@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { CheckCircle2, ArrowRight, Factory, Wrench, Users, Truck } from 'lucide-react';
@@ -24,7 +24,7 @@ const CONTENT_TYPES = [
 export default function ManufacturingUGCPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>Manufacturing & Industrial UGC | BrandKraf</title>
         <meta name="description" content="Lift the veil on your manufacturing processes. UGC allows industrial companies to showcase production quality, highlight innovation, and humanize massive operational footprints." />
       </Helmet>

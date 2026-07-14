@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { CheckCircle2, ArrowRight, MapPin, CalendarCheck, Camera, Globe } from 'lucide-react';
@@ -35,7 +35,7 @@ const FAQS = [
 export default function TravelUGCPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>Travel, Tourism & Hospitality UGC | BrandKraf</title>
         <meta name="description" content="Wanderlust is driven by visual storytelling. Authentic travel UGC transports potential guests to your destination, significantly increasing booking rates and engagement." />
       </Helmet>

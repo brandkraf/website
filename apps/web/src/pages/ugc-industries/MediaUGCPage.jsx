@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { CheckCircle2, ArrowRight, TrendingUp, Zap, Users, UserPlus } from 'lucide-react';
@@ -24,7 +24,7 @@ const CONTENT_TYPES = [
 export default function MediaUGCPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>Media & Entertainment UGC | BrandKraf</title>
         <meta name="description" content="Generate massive hype. UGC is the ultimate tool for entertainment marketing, leveraging audience reactions and behind-the-scenes access to create viral momentum." />
       </Helmet>

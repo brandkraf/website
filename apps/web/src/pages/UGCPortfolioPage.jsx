@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -40,7 +40,7 @@ function UGCPortfolioPage() {
 
   return (
     <>
-      <Helmet>
+      <Helmet defer={false}>
         <title>{T('UGC Videos Portfolio - BrandKraf', 'Portfolio Video UGC - BrandKraf')}</title>
         <meta name="description" content={T('Explore our successful User-Generated Content (UGC) campaigns that drive authentic engagement and conversions.', 'Terokai kempen Kandungan Jana Pengguna (UGC) kami yang berjaya memacu penglibatan dan penukaran autentik.')} />
       </Helmet>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { format } from 'date-fns';
 import { motion } from 'framer-motion';
 import { ChevronRight, ArrowLeft, ArrowRight, Calendar, User, AlertCircle, RefreshCw, List } from 'lucide-react';
@@ -150,7 +150,7 @@ export default function BlogDetailPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>{post ? `${dTitle} | BrandKraf Blog` : 'Blog Article | BrandKraf'}</title>
         {dExcerpt && <meta name="description" content={dExcerpt} />}
         {currentUrl && <link rel="canonical" href={currentUrl} />}

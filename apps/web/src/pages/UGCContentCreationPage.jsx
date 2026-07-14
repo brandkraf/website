@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
@@ -96,7 +96,7 @@ function UGCContentCreationPage() {
 
   return (
     <>
-      <Helmet>
+      <Helmet defer={false}>
         <title>{T('UGC Content Creation - BrandKraf', 'Penciptaan Kandungan UGC - BrandKraf')}</title>
         <meta name="description" content={serviceData.hero.subtitle} />
       </Helmet>

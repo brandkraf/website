@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { TrendingUp, ArrowRight, Info } from 'lucide-react';
@@ -105,7 +105,7 @@ export default function RoasCalculatorPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
+      <Helmet defer={false}>
         <title>{T('ROAS Calculator (Free) — Return on Ad Spend | BrandKraf', 'Kalkulator ROAS (Percuma) — Pulangan atas Perbelanjaan Iklan | BrandKraf')}</title>
         <meta name="description" content={T(
           'Free ROAS calculator: enter your ad spend and revenue to instantly see your Return on Ad Spend, ROI, profit, and cost per acquisition — plus what the number means.',

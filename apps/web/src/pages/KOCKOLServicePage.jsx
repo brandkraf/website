@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
 import ServiceHero from '@/components/ServiceHero.jsx';
@@ -76,7 +76,7 @@ function KOCKOLServicePage() {
 
   return (
     <>
-      <Helmet>
+      <Helmet defer={false}>
         <title>{T('KOC/KOL Service - BrandKraf', 'Perkhidmatan KOC/KOL - BrandKraf')}</title>
         <meta name="description" content={serviceData.hero.subtitle} />
       </Helmet>
