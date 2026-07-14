@@ -173,23 +173,60 @@ async function main() {
     written++;
   }
 
-  // Location pages (/digital-marketing-agency/:city) are a dynamic route, so the
-  // routes.jsx loop above never sees them — but their head data lives in a pure
-  // data module, so we can still prerender each city's real title/description.
+  // Dynamic routes (locations, guides, blog) are invisible to the routes.jsx loop
+  // above, but their head data is reachable at build time — pure data modules for
+  // locations/guides, Supabase REST for blog posts. Prerendering real titles/
+  // descriptions/canonicals means crawlers index these without rendering JS.
+  const writeFlat = (routePath, title, desc) => {
+    const url = SITE + routePath;
+    const html = buildHtml(template, { title, desc, url });
+    const outPath = path.join(distDir, `${routePath.replace(/^\//, '')}.html`);
+    fs.mkdirSync(path.dirname(outPath), { recursive: true });
+    fs.writeFileSync(outPath, html, 'utf8');
+    written++;
+  };
+
   try {
     const dataUrl = pathToFileURL(path.join(cwd, 'src', 'data', 'locations.js')).href;
     const { locations } = await import(dataUrl);
     for (const loc of locations) {
-      const routePath = `/digital-marketing-agency/${loc.slug}`;
-      const url = SITE + routePath;
-      const html = buildHtml(template, { title: loc.metaTitle, desc: loc.metaDescription, url });
-      const outPath = path.join(distDir, `${routePath.replace(/^\//, '')}.html`);
-      fs.mkdirSync(path.dirname(outPath), { recursive: true });
-      fs.writeFileSync(outPath, html, 'utf8');
-      written++;
+      writeFlat(`/digital-marketing-agency/${loc.slug}`, loc.metaTitle, loc.metaDescription);
     }
   } catch (err) {
     console.warn('[prerender] location pages skipped:', err && err.message);
+  }
+
+  try {
+    const dataUrl = pathToFileURL(path.join(cwd, 'src', 'data', 'clusters.js')).href;
+    const { clusters } = await import(dataUrl);
+    for (const c of clusters) {
+      writeFlat(`/guides/${c.slug}`, c.metaTitle, c.metaDescription);
+    }
+  } catch (err) {
+    console.warn('[prerender] guide pages skipped:', err && err.message);
+  }
+
+  // Blog posts: same Supabase REST fetch as generate-sitemap.js. Title format
+  // mirrors BlogDetailPage's Helmet (`${title} | BrandKraf Blog`), excerpt = description.
+  try {
+    const SUPABASE_URL = 'https://xweoognqlpvafyxhzvgz.supabase.co';
+    const ANON =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh3ZW9vZ25xbHB2YWZ5eGh6dmd6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE4NDE0NjcsImV4cCI6MjA5NzQxNzQ2N30.SgeHayMBuaBraN2BjYmXr475AVFpnvSOLyYlRgm-2Rc';
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/blog_posts?select=slug,title,excerpt&published=eq.true`, {
+      headers: { apikey: ANON, Authorization: `Bearer ${ANON}` },
+    });
+    if (res.ok) {
+      const posts = await res.json();
+      for (const post of posts) {
+        if (!post.slug) continue;
+        writeFlat(`/blog/${post.slug}`, `${post.title} | BrandKraf Blog`, post.excerpt || null);
+      }
+      console.log(`[prerender] blog posts prerendered: ${posts.length}`);
+    } else {
+      console.warn(`[prerender] blog fetch returned ${res.status}; skipped`);
+    }
+  } catch (err) {
+    console.warn('[prerender] blog pages skipped:', err && err.message);
   }
 
   console.log(`[prerender] wrote ${written} per-route HTML files`);
