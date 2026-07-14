@@ -3,7 +3,10 @@ import React, { lazy } from 'react';
 // Single source of truth for public routes. App.jsx mounts these twice — once at
 // the root (English, default) and once under /ms (Bahasa Melayu). The build tools
 // (generate-sitemap.js, prerender-head.js) read this file too, so keep the array
-// entries in the `{ path: '/x', element: <Comp /> }` shape (self-closing element).
+// entries in the shape { path, element } with single-quoted paths and self-closing
+// elements. NOTE: those tools regex-match `path: <quote>...` anywhere in this file,
+// comments included — a doc example here once leaked a fake /x URL into the live
+// sitemap and prerender output (Google Search Console picked it up).
 
 // Eager: landing page + wildcard fallback.
 import HomePage from './pages/HomePage.jsx';

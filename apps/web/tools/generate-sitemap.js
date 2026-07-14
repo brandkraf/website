@@ -45,7 +45,11 @@ function urlBlock(loc, base, lastmod, priority, bilingual) {
 async function main() {
   const cwd = process.cwd();
   const today = new Date().toISOString().slice(0, 10);
-  const routesSrc = fs.readFileSync(path.join(cwd, 'src', 'routes.jsx'), 'utf8');
+  // Strip line comments before regex-matching route paths — a `path: '/x'` example
+  // inside a comment once leaked a fake URL into the live sitemap.
+  const routesSrc = fs
+    .readFileSync(path.join(cwd, 'src', 'routes.jsx'), 'utf8')
+    .replace(/^\s*\/\/.*$/gm, '');
 
   // Base (English) paths from the shared route config — drop dynamic + private.
   // Fully-translated pages — emitted bilingual NOW, independent of the global

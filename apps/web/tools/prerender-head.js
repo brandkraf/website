@@ -131,7 +131,8 @@ async function main() {
   if (!fs.existsSync(routesFile)) { console.warn('[prerender] routes.jsx not found, skipping'); return; }
 
   const template = fs.readFileSync(indexPath, 'utf8');
-  const appSrc = fs.readFileSync(routesFile, 'utf8');
+  // Strip line comments so a route-shaped doc example can't produce a phantom page.
+  const appSrc = fs.readFileSync(routesFile, 'utf8').replace(/^\s*\/\/.*$/gm, '');
   const components = mapComponents(pagesDir, {});
 
   // SPA fallback shell (spa.html): served for routes with no flat file (/ms/*,
