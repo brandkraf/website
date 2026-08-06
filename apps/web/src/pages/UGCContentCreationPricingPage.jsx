@@ -30,7 +30,7 @@ export default function UGCContentCreationPricingPage() {
       showTimer: true,
       description: T('Test the waters with high-converting UGC for your ads.', 'Cuba dahulu dengan UGC berpenukaran tinggi untuk iklan anda.'),
       features: [
-        T('40 simple UGC Videos', '40 Video UGC ringkas'),
+        T('30 simple UGC Videos', '30 Video UGC ringkas'),
         T('1 Professional Creator/Talent', '1 Pencipta/Bakat Profesional'),
         T('Scriptwriting & Storyboarding', 'Penulisan Skrip & Papan Cerita'),
         T('Basic Editing & Captions', 'Penyuntingan Asas & Kapsyen'),
@@ -50,7 +50,7 @@ export default function UGCContentCreationPricingPage() {
       showTimer: true,
       description: T('Scale your ad testing with diverse creator content.', 'Kembangkan ujian iklan anda dengan kandungan pencipta yang pelbagai.'),
       features: [
-        T('120 simple UGC Videos', '120 Video UGC ringkas'),
+        T('90 simple UGC Videos', '90 Video UGC ringkas'),
         T('1 Professional Creator/Talent', '1 Pencipta/Bakat Profesional'),
         T('Scriptwriting & Storyboarding', 'Penulisan Skrip & Papan Cerita'),
         T('Basic Editing & Captions', 'Penyuntingan Asas & Kapsyen'),
