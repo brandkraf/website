@@ -111,7 +111,6 @@ export default function RoasCalculatorPage() {
           'Free ROAS calculator: enter your ad spend and revenue to instantly see your Return on Ad Spend, ROI, profit, and cost per acquisition — plus what the number means.',
           'Kalkulator ROAS percuma: masukkan perbelanjaan iklan dan hasil anda untuk melihat serta-merta Pulangan atas Perbelanjaan Iklan, ROI, keuntungan, dan kos sepemerolehan — serta apa maksud nombor itu.',
         )} />
-        <link rel="canonical" href={url} />
         <script type="application/ld+json">{JSON.stringify(schema)}</script>
       </Helmet>
 

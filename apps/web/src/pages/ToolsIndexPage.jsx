@@ -42,7 +42,6 @@ export default function ToolsIndexPage() {
           'Free marketing tools for Malaysian businesses — calculate digital marketing costs, ROAS, social engagement rate, and ad budgets. No sign-up required.',
           'Alat pemasaran percuma untuk perniagaan Malaysia — kira kos pemasaran digital, ROAS, kadar penglibatan sosial, dan bajet iklan. Tanpa pendaftaran.',
         )} />
-        <link rel="canonical" href={url} />
         <script type="application/ld+json">{JSON.stringify(schema)}</script>
       </Helmet>
 

@@ -39,7 +39,6 @@ export default function GuidesIndexPage() {
       <Helmet defer={false}>
         <title>{T('Digital Marketing Guides for Malaysian Businesses | BrandKraf', 'Panduan Pemasaran Digital untuk Perniagaan Malaysia | BrandKraf')}</title>
         <meta name="description" content={T('Free, in-depth digital marketing guides for Malaysian businesses — TikTok, social media, paid ads, SEO, UGC, AI marketing, and the fundamentals. Organized by topic.', 'Panduan pemasaran digital yang mendalam dan percuma untuk perniagaan Malaysia — TikTok, media sosial, iklan berbayar, SEO, UGC, pemasaran AI, dan asasnya. Disusun mengikut topik.')} />
-        <link rel="canonical" href={url} />
         <link rel="alternate" hrefLang="en" href={enUrl} />
         <link rel="alternate" hrefLang="ms" href={msUrl} />
         <link rel="alternate" hrefLang="x-default" href={enUrl} />

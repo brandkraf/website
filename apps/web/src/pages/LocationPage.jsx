@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useParams, Link, Navigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   Megaphone, Target, Video, Radio, Users, Sparkles, Palette, Globe, Search,
@@ -9,6 +9,7 @@ import {
 import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
 import FAQSection from '@/components/FAQSection.jsx';
+import NotFoundPage from '@/pages/NotFoundPage.jsx';
 import { Button } from '@/components/ui/button';
 import { locations, locationsMs } from '@/data/locations.js';
 import { useLanguage } from '@/contexts/LanguageContext.jsx';
@@ -45,7 +46,10 @@ export default function LocationPage() {
   const { lang, lp } = useLanguage();
   const data = locations.find((l) => l.slug === slug);
 
-  if (!data) return <Navigate to={lp('/contact')} replace />;
+  // Unknown city slug (e.g. /digital-marketing-agency/KL) → a real 404, not a redirect
+  // to /contact. The redirect made Google file these as "Page with redirect" and kept
+  // them in the crawl queue indefinitely.
+  if (!data) return <NotFoundPage />;
 
   const isMs = lang === 'ms';
   const T = (en, ms) => (isMs ? ms : en);
@@ -125,7 +129,6 @@ export default function LocationPage() {
       <Helmet defer={false}>
         <title>{v.metaTitle}</title>
         <meta name="description" content={v.metaDescription} />
-        <link rel="canonical" href={url} />
         {noindex && <meta name="robots" content="noindex,follow" />}
         {hasMs && <link rel="alternate" hrefLang="en" href={enUrl} />}
         {hasMs && <link rel="alternate" hrefLang="ms" href={msUrl} />}

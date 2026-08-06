@@ -85,7 +85,11 @@ export default function BlogDetailPage() {
   const postUrlMs = post ? `https://www.brandkraf.com/ms/blog/${post.slug}` : null;
   const currentUrl = lang === 'ms' ? postUrlMs : postUrlEn;
   const hasTranslation = !!post?.content_ms; // a BM version exists at all
-  const noindex = lang === 'ms' && !post?.content_ms; // BM page not yet translated → don't index
+  // noindex when: the BM page has no translation yet, OR the slug does not resolve to a
+  // post at all. Without the second case an unknown /blog/<slug> renders an "Article Not
+  // Found" body at HTTP 200 — a soft 404 that Google indexes and reports.
+  const notFound = !loading && (!!error || !post);
+  const noindex = notFound || (lang === 'ms' && !post?.content_ms);
 
   // Google Rich Results wants a full ISO 8601 datetime WITH a timezone offset, not a
   // bare date. published_date is a Postgres DATE ("2026-06-16"); updated_at is timestamptz.
@@ -151,9 +155,8 @@ export default function BlogDetailPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Helmet defer={false}>
-        <title>{post ? `${dTitle} | BrandKraf Blog` : 'Blog Article | BrandKraf'}</title>
+        <title>{post ? `${dTitle} | BrandKraf Blog` : notFound ? 'Article Not Found (404) | BrandKraf' : 'Blog Article | BrandKraf'}</title>
         {dExcerpt && <meta name="description" content={dExcerpt} />}
-        {currentUrl && <link rel="canonical" href={currentUrl} />}
         {noindex && <meta name="robots" content="noindex,follow" />}
         {post && hasTranslation && <link rel="alternate" hrefLang="en" href={postUrlEn} />}
         {post && hasTranslation && <link rel="alternate" hrefLang="ms" href={postUrlMs} />}

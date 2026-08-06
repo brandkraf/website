@@ -100,7 +100,6 @@ export default function AdBudgetCalculatorPage() {
           'Free ad budget calculator. Enter your sales goal, conversion rate, and cost per click to estimate the monthly ad budget you need — plus projected ROAS.',
           'Kalkulator bajet iklan percuma. Masukkan matlamat jualan, kadar penukaran, dan kos seklik anda untuk menganggarkan bajet iklan bulanan yang anda perlukan — serta unjuran ROAS.',
         )} />
-        <link rel="canonical" href={url} />
         <script type="application/ld+json">{JSON.stringify(schema)}</script>
       </Helmet>
 

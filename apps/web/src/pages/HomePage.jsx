@@ -220,7 +220,6 @@ function HomePage() {
             'Kami membantu perniagaan berkembang dengan pengurusan media sosial, kandungan UGC, iklan berbayar, dan pemasaran dipacu AI. Berpangkalan di Malaysia, dipercayai 200+ jenama.',
           )}
         />
-        <link rel="canonical" href={lang === 'ms' ? 'https://www.brandkraf.com/ms' : 'https://www.brandkraf.com'} />
         <meta property="og:locale" content={lang === 'ms' ? 'ms_MY' : 'en_MY'} />
       </Helmet>
 

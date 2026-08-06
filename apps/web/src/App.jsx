@@ -6,7 +6,10 @@ import { LanguageProvider } from './contexts/LanguageContext.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 import WhatsAppButton from './components/WhatsAppButton.jsx';
 import Hreflang from './components/Hreflang.jsx';
-import { publicRoutes, HomePage } from './routes.jsx';
+import { publicRoutes } from './routes.jsx';
+
+// Eager (not lazy): the 404 must render immediately for crawlers, with no chunk fetch.
+import NotFoundPage from './pages/NotFoundPage.jsx';
 
 // Admin is English-only (internal tool) — kept here, never mirrored to /ms.
 const AdminLayout = lazy(() => import('./components/AdminLayout.jsx'));
@@ -55,8 +58,9 @@ function App() {
                 </Route>
               </Route>
 
-              {/* Fallback */}
-              <Route path="*" element={<HomePage />} />
+              {/* Fallback: a real, noindexed 404 — NOT the home page. Rendering
+                  HomePage here made every unknown URL a duplicate of the home page. */}
+              <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </Suspense>
 

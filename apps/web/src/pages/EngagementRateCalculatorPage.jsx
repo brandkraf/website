@@ -97,7 +97,6 @@ export default function EngagementRateCalculatorPage() {
           'Free engagement rate calculator. Enter your followers, likes, and comments to instantly see your engagement rate and how it compares to industry benchmarks.',
           'Kalkulator kadar penglibatan percuma. Masukkan pengikut, suka, dan komen anda untuk melihat serta-merta kadar penglibatan anda dan bagaimana ia berbanding penanda aras industri.',
         )} />
-        <link rel="canonical" href={url} />
         <script type="application/ld+json">{JSON.stringify(schema)}</script>
       </Helmet>
 

@@ -108,7 +108,6 @@ export default function MarketingCostCalculatorPage() {
           'Free calculator: estimate what digital marketing costs in Malaysia in 2026. Pick your services, business size, and provider type to get an instant monthly price range.',
           'Kalkulator percuma: anggarkan kos pemasaran digital di Malaysia pada 2026. Pilih perkhidmatan, saiz perniagaan, dan jenis penyedia untuk mendapat julat harga bulanan segera.',
         )} />
-        <link rel="canonical" href={url} />
         <script type="application/ld+json">{JSON.stringify(schema)}</script>
       </Helmet>
 

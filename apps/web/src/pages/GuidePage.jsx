@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useParams, Link, Navigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { format } from 'date-fns';
 import { motion } from 'framer-motion';
 import { BookOpen, ArrowRight } from 'lucide-react';
@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { supabase } from '@/lib/supabaseClient.js';
 import { clusters, clustersMs } from '@/data/clusters.js';
+import NotFoundPage from '@/pages/NotFoundPage.jsx';
 import { useLanguage } from '@/contexts/LanguageContext.jsx';
 
 const SITE = 'https://www.brandkraf.com';
@@ -41,7 +42,8 @@ export default function GuidePage() {
     fetchArticles();
   }, [fetchArticles]);
 
-  if (!cluster) return <Navigate to={lp('/blog')} replace />;
+  // Unknown guide slug → real 404 rather than a redirect to /blog.
+  if (!cluster) return <NotFoundPage />;
 
   const T = (en, ms) => (lang === 'ms' ? ms : en);
   const msData = lang === 'ms' ? clustersMs[cluster.slug] : null;
@@ -84,7 +86,6 @@ export default function GuidePage() {
       <Helmet defer={false}>
         <title>{v.metaTitle}</title>
         <meta name="description" content={v.metaDescription} />
-        <link rel="canonical" href={url} />
         {noindex && <meta name="robots" content="noindex,follow" />}
         {hasMs && <link rel="alternate" hrefLang="en" href={enUrl} />}
         {hasMs && <link rel="alternate" hrefLang="ms" href={msUrl} />}
