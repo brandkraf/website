@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { CheckCircle2, ArrowRight, Truck, ShieldCheck, Users, Clock } from 'lucide-react';
 import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
-import TransportationUGCVideoGrid from '@/components/TransportationUGCVideoGrid.jsx';
+import PortfolioTeaser from '@/components/PortfolioTeaser.jsx';
 import { Button } from '@/components/ui/button.jsx';
 import {
   Accordion,
@@ -116,7 +116,7 @@ export default function TransportationUGCPage() {
         {/* Featured UGC Content Section - Video Grid */}
         <section className="py-24 bg-background border-t border-border/50">
           <div className="container-custom">
-            <TransportationUGCVideoGrid />
+            <PortfolioTeaser industry="transportation" />
           </div>
         </section>
 

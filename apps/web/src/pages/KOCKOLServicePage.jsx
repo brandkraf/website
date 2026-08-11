@@ -2,6 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
+import PortfolioTeaser from '@/components/PortfolioTeaser.jsx';
 import ServiceHero from '@/components/ServiceHero.jsx';
 import ServiceOverview from '@/components/ServiceOverview.jsx';
 import BenefitsSection from '@/components/BenefitsSection.jsx';
@@ -10,7 +11,6 @@ import PortfolioExamplesSection from '@/components/PortfolioExamplesSection.jsx'
 import FAQSection from '@/components/FAQSection.jsx';
 import ContactCTASection from '@/components/ContactCTASection.jsx';
 import WhatsAppButton from '@/components/WhatsAppButton.jsx';
-import KOCKOLVideoGrid from '@/components/KOCKOLVideoGrid.jsx';
 import { Users, Mic, Rocket, ShieldCheck } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext.jsx';
 
@@ -88,7 +88,7 @@ function KOCKOLServicePage() {
         <TimelineSection phases={serviceData.timeline.phases} duration={serviceData.timeline.duration} />
 
         {/* New 18-video Featured Work Grid */}
-        <KOCKOLVideoGrid />
+        <PortfolioTeaser />
 
         {/* Existing Portfolio Examples Section */}
         <PortfolioExamplesSection projects={serviceData.projects} />

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { CheckCircle2, ArrowRight, TrendingUp, ShieldCheck, FileText, Smartphone } from 'lucide-react';
 import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
-import GoogleDriveVideoEmbed from '@/components/GoogleDriveVideoEmbed.jsx';
+import PortfolioTeaser from '@/components/PortfolioTeaser.jsx';
 import { Button } from '@/components/ui/button.jsx';
 
 const BENEFITS = [
@@ -116,13 +116,7 @@ export default function FinanceUGCPage() {
               <div className="w-24 h-1 bg-[#14B8A6] mx-auto rounded-full"></div>
             </motion.div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8 max-w-7xl mx-auto w-full">
-              <GoogleDriveVideoEmbed 
-                url="https://drive.google.com/file/d/1GDJCX3yGVbYLuoy_tMb8r9d_VznY4uCp/view?usp=sharing" 
-                title="Finance UGC Example"
-                delay={0.1}
-              />
-            </div>
+            <PortfolioTeaser industry="finance" />
           </div>
         </section>
 

@@ -5,19 +5,8 @@ import { Link } from 'react-router-dom';
 import { CheckCircle2, ArrowRight, Sprout, Tractor, Users, BarChart3 } from 'lucide-react';
 import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
-import GoogleDriveVideoGrid from '@/components/GoogleDriveVideoGrid.jsx';
+import PortfolioTeaser from '@/components/PortfolioTeaser.jsx';
 import { Button } from '@/components/ui/button.jsx';
-
-const FEATURED_VIDEOS = [
-  "https://drive.google.com/file/d/1A88rPzlEI1jPlw4t-s2n3zmZiA4hWHFm/view?usp=sharing",
-  "https://drive.google.com/file/d/1CggYo5YohgbS9SVPVc17WqCZoTUvZVye/view?usp=sharing",
-  "https://drive.google.com/file/d/1EmZkX3SnEjun28hrbAHLYlsWQXBBj-SS/view?usp=sharing",
-  "https://drive.google.com/file/d/1Jnd6DZtdUtatJfNyv5lrrrSEk142eOZ3/view?usp=sharing",
-  "https://drive.google.com/file/d/1WlR2QseUe2KxRSRuVeuIsdxN31UV9TDT/view?usp=sharing",
-  "https://drive.google.com/file/d/1bmmWqxBLW0PirgHHrNMGGKJ6_8aauqC5/view?usp=sharing",
-  "https://drive.google.com/file/d/1n8G6mHgbbSC9kqCaBPpuz5K_906ir0FR/view?usp=sharing",
-  "https://drive.google.com/file/d/1yc_cFmJdfJqRKiQKAQG80wGA-aK1hiF4/view?usp=sharing"
-];
 
 const BENEFITS = [
   { title: "Build B2B Trust", desc: "Demonstrate operational scale and quality to prospective buyers.", icon: Users },
@@ -123,7 +112,7 @@ export default function AgricultureUGCPage() {
               </p>
             </div>
             
-            <GoogleDriveVideoGrid videos={FEATURED_VIDEOS} />
+            <PortfolioTeaser industry="agriculture" />
           </div>
         </section>
 

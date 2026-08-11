@@ -5,25 +5,8 @@ import { Link } from 'react-router-dom';
 import { CheckCircle2, ArrowRight, Car, ShieldCheck, Users, Video } from 'lucide-react';
 import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
-import GoogleDriveVideoGrid from '@/components/GoogleDriveVideoGrid.jsx';
+import PortfolioTeaser from '@/components/PortfolioTeaser.jsx';
 import { Button } from '@/components/ui/button.jsx';
-
-const FEATURED_VIDEOS = [
-  "https://drive.google.com/file/d/109Y2wXXulCqsw8hn0usL4MgMJ1k2Wq8a/preview",
-  "https://drive.google.com/file/d/11jGaeL8hvk7CiPPRhKXweohw1soKWYhX/preview",
-  "https://drive.google.com/file/d/12KHbjYe9WIAbD8S6pEQ_PS276w7MkuO5/preview",
-  "https://drive.google.com/file/d/12wHSnkez-lnmYQfGMVciia-L4SFzj52D/preview",
-  "https://drive.google.com/file/d/18cgKWJ0DVBxZzjoKBkVJLcieQbZ6s8Wm/preview",
-  "https://drive.google.com/file/d/1IbReVAHlwV6XeQFm2cSD9OqYdJkVstdk/preview",
-  "https://drive.google.com/file/d/1W1D5Z-aY_lIGEv8jn-02ra00aXNLLHex/preview",
-  "https://drive.google.com/file/d/1X-OfPmvIobV5NkEhP5lY1zu8XH0oKE0K/preview",
-  "https://drive.google.com/file/d/1YPqLqcQh50OBK6W1j3iPNg4X2VX6jDvk/preview",
-  "https://drive.google.com/file/d/1a6xwhwWDUAky-fKD9iw4itTPjT-DzEoN/preview",
-  "https://drive.google.com/file/d/1aocRyCE5yvI6kYImCljI9SrvDa_5j4P7/preview",
-  "https://drive.google.com/file/d/1ePQ8Q8RUGCJtJv6Aj_7SoSbtQB7MohCq/preview",
-  "https://drive.google.com/file/d/1q67bDAKFb7mg_DggILtQ1cpoFp4X0i04/preview",
-  "https://drive.google.com/file/d/1zh9QvuTpsHvujWZoTy4msVebbShIm6qv/preview"
-];
 
 const BENEFITS = [
   { title: "Feature Demos", desc: "Showcase complex car features in an easy-to-understand way.", icon: Video },
@@ -122,10 +105,7 @@ export default function AutomotiveUGCPage() {
         {/* Featured UGC Content Section */}
         <section className="py-24 bg-background">
           <div className="container-custom">
-            <GoogleDriveVideoGrid 
-              videos={FEATURED_VIDEOS} 
-              title="Featured Automotive UGC Content" 
-            />
+            <PortfolioTeaser industry="automotive" />
           </div>
         </section>
 

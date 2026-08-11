@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { CheckCircle2, ArrowRight, Leaf, Lightbulb, Users, Settings } from 'lucide-react';
 import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
-import EnergyUGCVideoGrid from '@/components/EnergyUGCVideoGrid.jsx';
+import PortfolioTeaser from '@/components/PortfolioTeaser.jsx';
 import { Button } from '@/components/ui/button.jsx';
 
 const BENEFITS = [
@@ -105,7 +105,7 @@ export default function EnergyUGCPage() {
         {/* Featured UGC Content Section - New Video Grid */}
         <section className="py-24 bg-background border-t border-border/50">
           <div className="container-custom">
-            <EnergyUGCVideoGrid />
+            <PortfolioTeaser industry="energy" />
           </div>
         </section>
 

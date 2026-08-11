@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
+import PortfolioTeaser from '@/components/PortfolioTeaser.jsx';
 import ServiceHero from '@/components/ServiceHero.jsx';
 import ServiceOverview from '@/components/ServiceOverview.jsx';
 import BenefitsSection from '@/components/BenefitsSection.jsx';
@@ -10,7 +11,6 @@ import TimelineSection from '@/components/TimelineSection.jsx';
 import FAQSection from '@/components/FAQSection.jsx';
 import ContactCTASection from '@/components/ContactCTASection.jsx';
 import WhatsAppButton from '@/components/WhatsAppButton.jsx';
-import GoogleDriveVideoGrid from '@/components/GoogleDriveVideoGrid.jsx';
 import IndustryCard from '@/components/IndustryCard.jsx';
 import {
   Video, Users, TrendingUp, Award,
@@ -111,7 +111,7 @@ function UGCContentCreationPage() {
         <ServiceOverview {...serviceData.overview} />
         <BenefitsSection benefits={serviceData.benefits} />
         <TimelineSection phases={serviceData.timeline.phases} duration={serviceData.timeline.duration} />
-        <GoogleDriveVideoGrid />
+        <PortfolioTeaser />
 
         {/* Niches / Industries Section */}
         <section className="py-24 bg-muted/30 relative">

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { CheckCircle2, ArrowRight, HeartPulse, BookOpen, Building2, Stethoscope } from 'lucide-react';
 import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
-import HealthcareUGCVideoGrid from '@/components/HealthcareUGCVideoGrid.jsx';
+import PortfolioTeaser from '@/components/PortfolioTeaser.jsx';
 import { Button } from '@/components/ui/button.jsx';
 
 const BENEFITS = [
@@ -105,7 +105,7 @@ export default function HealthcareUGCPage() {
         {/* Featured UGC Content Section - 16 Videos Grid */}
         <section className="py-24 bg-background border-t border-border/50">
           <div className="container-custom">
-            <HealthcareUGCVideoGrid />
+            <PortfolioTeaser industry="healthcare" />
           </div>
         </section>
 

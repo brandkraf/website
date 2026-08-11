@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { CheckCircle2, ArrowRight, Zap, Shield, Users, Code } from 'lucide-react';
 import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
-import GoogleDriveVideoGrid from '@/components/GoogleDriveVideoGrid.jsx';
+import PortfolioTeaser from '@/components/PortfolioTeaser.jsx';
 import { Button } from '@/components/ui/button.jsx';
 
 const BENEFITS = [
@@ -19,11 +19,6 @@ const CONTENT_TYPES = [
   { title: "Screen-share Tutorials", desc: "Native, fast-paced guides on key features." },
   { title: "Reaction Videos", desc: "Developers reacting to your UI or speed." },
   { title: "Setup Guides", desc: "Simplifying the installation or integration process." }
-];
-
-const VIDEOS = [
-  "https://drive.google.com/file/d/1_Mopy9O4MpjhROP7Zviu4VRCAOUVpSxk/view?usp=sharing",
-  "https://drive.google.com/file/d/1wmhmL70b2W8RtHYKilHg99U9jElqhZD7/view?usp=sharing"
 ];
 
 export default function TechnologyUGCPage() {
@@ -120,7 +115,7 @@ export default function TechnologyUGCPage() {
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Featured UGC Content</h2>
               <div className="w-24 h-1 bg-[#14B8A6] mx-auto rounded-full"></div>
             </motion.div>
-            <GoogleDriveVideoGrid videos={VIDEOS} />
+            <PortfolioTeaser industry="technology" />
           </div>
         </section>
 
