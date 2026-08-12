@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
+import FeaturedClientWork from '@/components/FeaturedClientWork.jsx';
 import WhatsAppButton from '@/components/WhatsAppButton.jsx';
 import { useLanguage } from '@/contexts/LanguageContext.jsx';
 
@@ -171,6 +172,9 @@ function PortfolioPage() {
             })}
           </div>
         </div>
+
+        {/* The by-client video portfolio — the proof behind the service list above. */}
+        <FeaturedClientWork />
 
         {/* Floating WhatsApp Button */}
         <div className="fixed bottom-6 right-6 z-50">

@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
-import PortfolioTeaser from '@/components/PortfolioTeaser.jsx';
+import FeaturedClientWork from '@/components/FeaturedClientWork.jsx';
 import ServiceHero from '@/components/ServiceHero.jsx';
 import ServiceOverview from '@/components/ServiceOverview.jsx';
 import BenefitsSection from '@/components/BenefitsSection.jsx';
@@ -111,7 +111,7 @@ function UGCContentCreationPage() {
         <ServiceOverview {...serviceData.overview} />
         <BenefitsSection benefits={serviceData.benefits} />
         <TimelineSection phases={serviceData.timeline.phases} duration={serviceData.timeline.duration} />
-        <PortfolioTeaser />
+        <FeaturedClientWork />
 
         {/* Niches / Industries Section */}
         <section className="py-24 bg-muted/30 relative">
