@@ -6,7 +6,7 @@ import ServiceHero from '@/components/ServiceHero.jsx';
 import ServiceOverview from '@/components/ServiceOverview.jsx';
 import BenefitsSection from '@/components/BenefitsSection.jsx';
 import TimelineSection from '@/components/TimelineSection.jsx';
-import PortfolioExamplesSection from '@/components/PortfolioExamplesSection.jsx';
+import AdsCaseStudies from '@/components/AdsCaseStudies.jsx';
 import FAQSection from '@/components/FAQSection.jsx';
 import ContactCTASection from '@/components/ContactCTASection.jsx';
 import WhatsAppButton from '@/components/WhatsAppButton.jsx';
@@ -28,7 +28,7 @@ function PaidAdvertisingPage() {
     },
     overview: {
       description: T(
-        'Stop guessing with your ad spend. We create data-driven paid advertising campaigns across Meta, Google, and TikTok. By combining compelling ad creatives with rigorous media buying strategies, we ensure every dollar spent works hard to acquire new customers and generate profitable returns.',
+        'Stop guessing with your ad spend. We create data-driven paid advertising campaigns across Meta, Google, and TikTok. By combining compelling ad creatives with rigorous media buying strategies, we ensure every ringgit spent works hard to acquire new customers and generate profitable returns.',
         'Berhenti meneka dengan perbelanjaan iklan anda. Kami mencipta kempen pengiklanan berbayar dipacu data merentasi Meta, Google, dan TikTok. Dengan menggabungkan kreatif iklan yang menarik dengan strategi pembelian media yang ketat, kami memastikan setiap ringgit yang dibelanjakan bekerja keras untuk memperoleh pelanggan baharu dan menjana pulangan yang menguntungkan.',
       ),
       differentiators: [
@@ -53,20 +53,8 @@ function PaidAdvertisingPage() {
         { title: T('Scale & Optimize', 'Kembang & Optimumkan'), description: T('Daily monitoring, killing underperforming ads, and scaling profitable ad sets.', 'Pemantauan harian, menghentikan iklan berprestasi rendah, dan mengembangkan set iklan yang menguntungkan.') }
       ]
     },
-    projects: [
-      {
-        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f',
-        clientType: T('E-Commerce Store', 'Kedai E-Dagang'),
-        objective: T('Scale daily sales while maintaining 3x ROAS', 'Mengembangkan jualan harian sambil mengekalkan ROAS 3x'),
-        category: T('Paid Ads', 'Iklan Berbayar'),
-        results: [
-          { type: 'sales', value: '4.2x', label: T('Average ROAS', 'ROAS Purata') },
-          { type: 'leads', value: '215%', label: T('Revenue Increase', 'Peningkatan Hasil') }
-        ]
-      }
-    ],
     faqs: [
-      { question: T('What is the minimum ad budget?', 'Apa bajet iklan minimum?'), answer: T('We recommend a minimum starting ad spend of $1,500/month to allow sufficient data collection for optimization.', 'Kami mengesyorkan perbelanjaan iklan permulaan minimum sekitar RM1,500/bulan untuk membolehkan pengumpulan data yang mencukupi bagi pengoptimuman.') },
+      { question: T('What is the minimum ad budget?', 'Apa bajet iklan minimum?'), answer: T('We recommend a minimum starting ad spend of around RM1,500/month to allow sufficient data collection for optimization.', 'Kami mengesyorkan perbelanjaan iklan permulaan minimum sekitar RM1,500/bulan untuk membolehkan pengumpulan data yang mencukupi bagi pengoptimuman.') },
       { question: T('Do you design the ad creatives?', 'Adakah anda mereka bentuk kreatif iklan?'), answer: T('Yes, our team designs image and video creatives tailored for performance marketing.', 'Ya, pasukan kami mereka bentuk kreatif imej dan video yang disesuaikan untuk pemasaran prestasi.') },
       { question: T('How long until we see results?', 'Berapa lama sehingga kami nampak hasil?'), answer: T('While initial data comes in immediately, it typically takes 2-4 weeks to optimize the campaigns and stabilize CPA.', 'Walaupun data awal masuk serta-merta, biasanya mengambil masa 2-4 minggu untuk mengoptimumkan kempen dan menstabilkan CPA.') },
       { question: T('What platforms do you advertise on?', 'Platform apa yang anda iklankan?'), answer: T('We specialize in Meta (Facebook/Instagram), Google Search/Max, and TikTok Ads.', 'Kami pakar dalam Meta (Facebook/Instagram), Google Search/Max, dan Iklan TikTok.') }
@@ -76,16 +64,16 @@ function PaidAdvertisingPage() {
   return (
     <>
       <Helmet defer={false}>
-        <title>{T('Paid Advertising - BrandKraf', 'Pengiklanan Berbayar - BrandKraf')}</title>
-        <meta name="description" content={serviceData.hero.subtitle} />
+        <title>{T('Meta Ads Agency Malaysia: Real Client Results | BrandKraf', 'Agensi Meta Ads Malaysia: Hasil Pelanggan Sebenar | BrandKraf')}</title>
+        <meta name="description" content={T('1,742 customer conversations at an average of RM5.44 each, across 4 Malaysian clients. Real Meta Ads Manager results and client feedback. Get a free quote.', '1,742 perbualan pelanggan pada purata RM5.44 setiap satu, untuk 4 pelanggan Malaysia. Hasil sebenar Meta Ads Manager dan maklum balas pelanggan. Dapatkan sebut harga percuma.')} />
       </Helmet>
       <Header />
       <main className="relative">
         <ServiceHero {...serviceData.hero} />
         <ServiceOverview {...serviceData.overview} />
+        <AdsCaseStudies />
         <BenefitsSection benefits={serviceData.benefits} />
         <TimelineSection phases={serviceData.timeline.phases} duration={serviceData.timeline.duration} />
-        <PortfolioExamplesSection projects={serviceData.projects} />
         <FAQSection faqs={serviceData.faqs} />
         <ContactCTASection />
 
