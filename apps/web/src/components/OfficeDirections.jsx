@@ -3,6 +3,7 @@ import { MapPin, Navigation } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card.jsx';
 import { useLanguage } from '@/contexts/LanguageContext.jsx';
+import { OFFICE } from '@/data/office.js';
 
 function OfficeDirections() {
   const { lang } = useLanguage();
@@ -13,15 +14,15 @@ function OfficeDirections() {
         <h3 className="text-xl font-semibold mb-2">{T('Get Directions', 'Dapatkan Arah')}</h3>
         <p className="text-muted-foreground mb-6 text-sm">
           {T(
-            'Find your way to our office in Cheras Business Centre using your preferred navigation app.',
-            'Cari jalan ke pejabat kami di Cheras Business Centre menggunakan aplikasi navigasi pilihan anda.',
+            'Find your way to our office in Taman Kencana, Cheras using your preferred navigation app.',
+            'Cari jalan ke pejabat kami di Taman Kencana, Cheras menggunakan aplikasi navigasi pilihan anda.',
           )}
         </p>
         <div className="flex flex-col sm:flex-row gap-4">
           <motion.a
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            href="https://maps.app.goo.gl/Ap4tXX93iMdRWTEr8?g_st=ic"
+            href={OFFICE.mapsUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="flex-1 flex items-center justify-center gap-2.5 h-14 rounded-xl bg-brandkraf-teal text-white font-medium shadow-md hover:shadow-lg transition-all duration-200"
@@ -32,7 +33,7 @@ function OfficeDirections() {
           <motion.a
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            href="https://waze.com/ul/hw283ehhmp"
+            href={OFFICE.wazeUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="flex-1 flex items-center justify-center gap-2.5 h-14 rounded-xl bg-brandkraf-purple text-white font-medium shadow-md hover:shadow-lg transition-all duration-200"

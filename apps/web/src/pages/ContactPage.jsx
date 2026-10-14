@@ -9,6 +9,7 @@ import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card.jsx';
 import { useLanguage } from '@/contexts/LanguageContext.jsx';
+import { OFFICE, OFFICE_LINE_2 } from '@/data/office.js';
 
 function ContactPage() {
   const { lang } = useLanguage();
@@ -18,7 +19,7 @@ function ContactPage() {
     {
       icon: MapPin,
       title: T('Office Location', 'Lokasi Pejabat'),
-      details: ['28-02-02, Jalan 2/101c, Cheras Business Centre', '56100 Cheras, Wilayah Persekutuan Kuala Lumpur']
+      details: [OFFICE.streetAddress, OFFICE_LINE_2]
     },
     {
       icon: Phone,

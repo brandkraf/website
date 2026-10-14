@@ -14,9 +14,13 @@ Work top-to-bottom — the early tiers are the easiest wins and also strengthen 
 Search engines treat consistent **N**ame/**A**ddress/**P**hone as a trust signal. Copy-paste
 this exact block into every directory and profile. Do not reword it.
 
+> **Office moved (Oct 2026).** Any listing created before then carries the old Cheras Business
+> Centre address. Update every existing citation to the block below — a mix of old and new
+> addresses is worse for local rankings than either one alone.
+
 ```
 Business name:  BrandKraf
-Address:        28-02-02, Jalan 2/101c, Cheras Business Centre, 56100 Cheras,
+Address:        55A, Jalan Kencana 15, Taman Kencana, 56100 Kuala Lumpur,
                 Wilayah Persekutuan Kuala Lumpur, Malaysia
 Phone:          +60 3-9134 3603
 Email:          admin@brandkraf.com

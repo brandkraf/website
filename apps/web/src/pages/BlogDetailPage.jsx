@@ -155,7 +155,7 @@ export default function BlogDetailPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Helmet defer={false}>
-        <title>{post ? `${dTitle} | BrandKraf Blog` : notFound ? 'Article Not Found (404) | BrandKraf' : 'Blog Article | BrandKraf'}</title>
+        <title>{post ? dTitle : notFound ? 'Article Not Found (404) | BrandKraf' : 'Blog Article | BrandKraf'}</title>
         {dExcerpt && <meta name="description" content={dExcerpt} />}
         {noindex && <meta name="robots" content="noindex,follow" />}
         {post && hasTranslation && <link rel="alternate" hrefLang="en" href={postUrlEn} />}

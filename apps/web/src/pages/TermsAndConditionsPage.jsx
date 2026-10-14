@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
 import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
+import { OFFICE_FULL } from '@/data/office.js';
 const SECTIONS = [{
   id: "about",
   title: "1. About BrandKraf Digital Marketing"
@@ -263,7 +264,7 @@ export default function TermsAndConditionsPage() {
                   <ul className="list-none space-y-1 mt-4">
                     <li><strong>Email:</strong> admin@brandkraf.com</li>
                     <li><strong>Phone:</strong> +60391343603</li>
-                    <li><strong>Address:</strong> 28-02-02, Jalan 2/101c, Cheras Business Centre, 56100 Cheras, Wilayah Persekutuan Kuala Lumpur</li>
+                    <li><strong>Address:</strong> {OFFICE_FULL}</li>
                   </ul>
                 </section>
               </div>

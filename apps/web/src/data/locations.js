@@ -26,16 +26,16 @@ export const locations = [
     hq: true,
     metaTitle: 'Digital Marketing Agency in Cheras, KL (Our Home Base) | BrandKraf',
     metaDescription:
-      'BrandKraf is headquartered at Cheras Business Centre — a digital marketing agency in Cheras offering SEO, social media, UGC, paid ads, and AI marketing. Visit us or get a free quote.',
+      'Digital marketing agency headquartered in Taman Kencana, Cheras — SEO, social media, UGC, paid ads and AI marketing. Visit our office or get a free quote.',
     intro:
-      'Cheras is not just a market we serve — it is home. BrandKraf is headquartered at Cheras Business Centre, which means Cheras businesses get something rare: a full-service digital marketing team you can actually drive to, minutes away, that knows every taman, mall, and MRT stop in the area.',
+      'Cheras is not just a market we serve — it is home. BrandKraf is headquartered in Taman Kencana, Cheras, which means Cheras businesses get something rare: a full-service digital marketing team you can actually drive to, minutes away, that knows every taman, mall, and MRT stop in the area.',
     localContext:
       'From the food streets of Taman Connaught and the retail crowds at Cheras Leisure Mall, EkoCheras, and Sunway Velocity, to the thousands of SMEs, clinics, workshops, and home-grown brands spread across Taman Midah, Bandar Sri Permaisuri, and Alam Damai — Cheras runs on local trust and word of mouth. The MRT Kajang line changed how people move and shop here. We build marketing that matches that reality: local SEO that wins "near me" searches, TikTok and Instagram content that Cheras folk actually share, and ads geo-targeted taman by taman.',
     sections: [
       {
         heading: 'Our office is in Cheras — drop by',
         paragraphs: [
-          'BrandKraf operates from 28-02-02, Jalan 2/101c, Cheras Business Centre, 56100 Kuala Lumpur. Being headquartered here means Cheras clients get face-to-face strategy sessions, fast on-site content shoots at your shop or clinic, and a team that understands the difference between a Taman Connaught crowd and a Sunway Velocity crowd — because we live it daily.',
+          'BrandKraf operates from 55A, Jalan Kencana 15, Taman Kencana, 56100 Kuala Lumpur, just off the MRR2. Being headquartered here means Cheras clients get face-to-face strategy sessions, fast on-site content shoots at your shop or clinic, and a team that understands the difference between a Taman Connaught crowd and a Sunway Velocity crowd — because we live it daily.',
           'For food and retail businesses especially, this proximity shows up in the work: we can film UGC and short-form video at your location within days, not weeks, and react to local moments — festivals, pasar malam seasons, mall campaigns — while they still matter.',
         ],
       },
@@ -50,12 +50,12 @@ export const locations = [
         heading: 'What Cheras businesses invest in marketing',
         paragraphs: [
           'Our rates are the same transparent pricing we publish for all of Malaysia: most SMEs invest RM1,500–RM8,000 a month before ad spend — social media management from around RM2,500/month, SEO from RM1,500/month, and paid ads management from RM800/month. Eligible SMEs can claim up to RM5,000 back through the SME Digitalisation Grant.',
-          'Because we are local, starting is easy: book a free strategy call, or visit our office at Cheras Business Centre and plan your growth over coffee.',
+          'Because we are local, starting is easy: book a free strategy call, or visit our office in Taman Kencana and plan your growth over coffee.',
         ],
       },
     ],
     faqs: [
-      { question: 'Where exactly is BrandKraf located in Cheras?', answer: 'Our office is at 28-02-02, Jalan 2/101c, Cheras Business Centre, 56100 Kuala Lumpur — a short drive from Cheras Leisure Mall and accessible via the MRT Kajang line. Clients are welcome to visit; just book a slot first so the right team members are in.' },
+      { question: 'Where exactly is BrandKraf located in Cheras?', answer: 'Our office is at 55A, Jalan Kencana 15, Taman Kencana, 56100 Kuala Lumpur — in Cheras, right beside the MRR2 Taman Kencana interchange, so it is easy to reach from across the Klang Valley. Clients are welcome to visit; just book a slot first so the right team members are in.' },
       { question: 'Do you work with small local businesses in Cheras?', answer: 'Yes — Cheras SMEs are our neighbours and our core clientele: F&B outlets, clinics, tuition centres, workshops, retailers, and online sellers. We scale the scope to your budget, starting from focused single-channel packages.' },
       { question: 'Can you help my Cheras business appear in Google Maps searches?', answer: 'Absolutely — local SEO is one of our core services. We optimise your Google Business Profile, build citations and reviews, and create locally-relevant content so you rank in the Map Pack for "near me" and Cheras-area searches.' },
       { question: 'Do you film content at our premises?', answer: 'Yes, and being based in Cheras makes it fast — we can typically schedule on-site UGC and video shoots at Cheras locations within days.' },
@@ -150,7 +150,7 @@ export const locations = [
       { question: 'Do you cover Bangi and Semenyih as well as Kajang?', answer: 'Yes — Kajang, Bandar Baru Bangi, Semenyih, and the surrounding townships form one growth corridor, and we geo-target campaigns across it based on where your customers actually come from.' },
       { question: 'Our customers are mostly Malay-speaking — can you match that?', answer: 'Ya, boleh. Bahasa Melayu campaigns are produced in-house — content, ads, and even fully bilingual websites — in natural, local BM rather than direct translation.' },
       { question: 'What industries do you serve in Kajang?', answer: 'F&B and cafes, property and renovation, education (kindergartens, tuition, tahfiz), clinics, and retail are the most common — all benefiting from local SEO plus social-first content.' },
-      { question: 'Is Kajang too far for your team?', answer: 'Not at all — the SILK highway and MRT connect Kajang directly to our Cheras headquarters. On-site meetings and shoots are easy to schedule.' },
+      { question: 'Is Kajang too far for your team?', answer: 'Not at all — Kajang is a straightforward drive from our Cheras headquarters, so on-site meetings and shoots are easy to schedule.' },
     ],
   },
   {
@@ -168,7 +168,7 @@ export const locations = [
       { question: 'Can you run campaigns in Chinese for Seri Kembangan audiences?', answer: 'Yes — we produce campaigns in Chinese, Malay, and English, matching each audience segment. Many Seri Kembangan businesses win with Chinese-first social content plus bilingual search coverage.' },
       { question: 'We are a B2B supplier/wholesaler — does digital marketing apply to us?', answer: 'Very much. B2B buyers Google suppliers before calling. We build searchable product/capability pages, run Google Ads on trade keywords, and set up WhatsApp catalogues that turn enquiries into orders.' },
       { question: 'Do you help online sellers in Seri Kembangan?', answer: 'Yes — from Shopee and Lazada ads to TikTok Shop live selling and own-store funnels. The area’s seller community is exactly who our e-commerce playbooks are built for.' },
-      { question: 'How close are you to Seri Kembangan?', answer: 'Our headquarters in Cheras is roughly 20 minutes up the Besraya/SILK route, so face-to-face meetings and on-site content shoots are easy.' },
+      { question: 'How close are you to Seri Kembangan?', answer: 'Our headquarters in Cheras is a short drive away, so face-to-face meetings and on-site content shoots are easy.' },
     ],
   },
   {
@@ -318,16 +318,16 @@ export const locationsMs = {
     state: 'Kuala Lumpur',
     metaTitle: 'Agensi Pemasaran Digital di Cheras, KL (Pangkalan Kami) | BrandKraf',
     metaDescription:
-      'BrandKraf beribu pejabat di Cheras Business Centre — agensi pemasaran digital di Cheras menawarkan SEO, media sosial, UGC, iklan berbayar, dan pemasaran AI. Kunjungi kami atau dapatkan sebut harga percuma.',
+      'Agensi pemasaran digital beribu pejabat di Taman Kencana, Cheras — SEO, media sosial, UGC, iklan berbayar dan pemasaran AI. Kunjungi kami atau dapatkan sebut harga percuma.',
     intro:
-      'Cheras bukan sekadar pasaran yang kami layani — ia rumah kami. BrandKraf beribu pejabat di Cheras Business Centre, yang bermakna perniagaan Cheras mendapat sesuatu yang jarang: pasukan pemasaran digital perkhidmatan penuh yang anda benar-benar boleh pandu ke sana, beberapa minit sahaja, yang mengenali setiap taman, pusat beli-belah, dan stesen MRT di kawasan ini.',
+      'Cheras bukan sekadar pasaran yang kami layani — ia rumah kami. BrandKraf beribu pejabat di Taman Kencana, Cheras, yang bermakna perniagaan Cheras mendapat sesuatu yang jarang: pasukan pemasaran digital perkhidmatan penuh yang anda benar-benar boleh pandu ke sana, beberapa minit sahaja, yang mengenali setiap taman, pusat beli-belah, dan stesen MRT di kawasan ini.',
     localContext:
       'Daripada jalan makanan Taman Connaught dan kerumunan runcit di Cheras Leisure Mall, EkoCheras, dan Sunway Velocity, kepada ribuan PKS, klinik, bengkel, dan jenama tempatan yang tersebar di Taman Midah, Bandar Sri Permaisuri, dan Alam Damai — Cheras bergerak atas kepercayaan tempatan dan dari mulut ke mulut. Laluan MRT Kajang mengubah cara orang bergerak dan membeli-belah di sini. Kami membina pemasaran yang sepadan dengan realiti itu: SEO tempatan yang memenangi carian "berdekatan saya", kandungan TikTok dan Instagram yang benar-benar dikongsi orang Cheras, dan iklan disasarkan geografi taman demi taman.',
     sections: [
       {
         heading: 'Pejabat kami di Cheras — singgahlah',
         paragraphs: [
-          'BrandKraf beroperasi dari 28-02-02, Jalan 2/101c, Cheras Business Centre, 56100 Kuala Lumpur. Beribu pejabat di sini bermakna pelanggan Cheras mendapat sesi strategi bersemuka, penggambaran kandungan pantas di kedai atau klinik anda, dan pasukan yang memahami perbezaan antara kerumunan Taman Connaught dan kerumunan Sunway Velocity — kerana kami menghayatinya setiap hari.',
+          'BrandKraf beroperasi dari 55A, Jalan Kencana 15, Taman Kencana, 56100 Kuala Lumpur, berhampiran MRR2. Beribu pejabat di sini bermakna pelanggan Cheras mendapat sesi strategi bersemuka, penggambaran kandungan pantas di kedai atau klinik anda, dan pasukan yang memahami perbezaan antara kerumunan Taman Connaught dan kerumunan Sunway Velocity — kerana kami menghayatinya setiap hari.',
           'Untuk perniagaan makanan dan runcit khususnya, kedekatan ini terpancar dalam hasil kerja: kami boleh merakam UGC dan video bentuk pendek di lokasi anda dalam beberapa hari, bukan minggu, dan bertindak balas kepada saat tempatan — perayaan, musim pasar malam, kempen pusat beli-belah — semasa ia masih bermakna.',
         ],
       },
@@ -342,12 +342,12 @@ export const locationsMs = {
         heading: 'Apa yang perniagaan Cheras laburkan dalam pemasaran',
         paragraphs: [
           'Kadar kami ialah harga telus yang sama yang kami terbitkan untuk seluruh Malaysia: kebanyakan PKS melabur RM1,500–RM8,000 sebulan sebelum perbelanjaan iklan — pengurusan media sosial dari sekitar RM2,500/bulan, SEO dari RM1,500/bulan, dan pengurusan iklan berbayar dari RM800/bulan. PKS yang layak boleh menuntut sehingga RM5,000 kembali melalui Geran Pendigitalan PKS.',
-          'Kerana kami tempatan, memulakan itu mudah: tempah panggilan strategi percuma, atau kunjungi pejabat kami di Cheras Business Centre dan rancang pertumbuhan anda sambil minum kopi.',
+          'Kerana kami tempatan, memulakan itu mudah: tempah panggilan strategi percuma, atau kunjungi pejabat kami di Taman Kencana dan rancang pertumbuhan anda sambil minum kopi.',
         ],
       },
     ],
     faqs: [
-      { question: 'Di mana tepatnya BrandKraf terletak di Cheras?', answer: 'Pejabat kami di 28-02-02, Jalan 2/101c, Cheras Business Centre, 56100 Kuala Lumpur — jarak pandu singkat dari Cheras Leisure Mall dan boleh diakses melalui laluan MRT Kajang. Pelanggan dialu-alukan berkunjung; cuma tempah slot dahulu supaya ahli pasukan yang betul ada.' },
+      { question: 'Di mana tepatnya BrandKraf terletak di Cheras?', answer: 'Pejabat kami di 55A, Jalan Kencana 15, Taman Kencana, 56100 Kuala Lumpur — di Cheras, bersebelahan persimpangan MRR2 Taman Kencana, jadi mudah dikunjungi dari seluruh Lembah Klang. Pelanggan dialu-alukan berkunjung; cuma tempah slot dahulu supaya ahli pasukan yang betul ada.' },
       { question: 'Adakah anda bekerja dengan perniagaan kecil tempatan di Cheras?', answer: 'Ya — PKS Cheras ialah jiran kami dan pelanggan teras kami: kedai F&B, klinik, pusat tuisyen, bengkel, peruncit, dan penjual dalam talian. Kami menyesuaikan skop dengan bajet anda, bermula daripada pakej fokus satu saluran.' },
       { question: 'Bolehkah anda membantu perniagaan Cheras saya muncul dalam carian Google Maps?', answer: 'Sudah tentu — SEO tempatan ialah salah satu perkhidmatan teras kami. Kami mengoptimumkan Profil Perniagaan Google anda, membina petikan dan ulasan, dan mencipta kandungan relevan tempatan supaya anda mendapat kedudukan dalam Pek Peta untuk carian "berdekatan saya" dan kawasan Cheras.' },
       { question: 'Adakah anda merakam kandungan di premis kami?', answer: 'Ya, dan berpangkalan di Cheras menjadikannya pantas — kami biasanya boleh menjadualkan penggambaran UGC dan video di lokasi Cheras dalam beberapa hari.' },
@@ -430,7 +430,7 @@ export const locationsMs = {
       { question: 'Adakah anda meliputi Bangi dan Semenyih serta Kajang?', answer: 'Ya — Kajang, Bandar Baru Bangi, Semenyih, dan taman sekitarnya membentuk satu koridor pertumbuhan, dan kami menyasarkan kempen secara geografi merentasinya berdasarkan dari mana pelanggan anda sebenarnya datang.' },
       { question: 'Pelanggan kami kebanyakannya berbahasa Melayu — bolehkah anda sepadan?', answer: 'Ya, boleh. Kempen Bahasa Melayu dihasilkan secara dalaman — kandungan, iklan, malah laman web dwibahasa penuh — dalam BM tempatan yang semula jadi dan bukannya terjemahan langsung.' },
       { question: 'Industri apa yang anda layani di Kajang?', answer: 'F&B dan kafe, hartanah dan ubah suai, pendidikan (tadika, tuisyen, tahfiz), klinik, dan runcit adalah yang paling biasa — semuanya mendapat manfaat daripada SEO tempatan serta kandungan mengutamakan sosial.' },
-      { question: 'Adakah Kajang terlalu jauh untuk pasukan anda?', answer: 'Tidak sama sekali — lebuh raya SILK dan MRT menghubungkan Kajang terus ke ibu pejabat Cheras kami. Mesyuarat dan penggambaran di lokasi mudah dijadualkan.' },
+      { question: 'Adakah Kajang terlalu jauh untuk pasukan anda?', answer: 'Tidak sama sekali — Kajang hanya pemanduan mudah dari ibu pejabat Cheras kami, jadi mesyuarat dan penggambaran di lokasi mudah dijadualkan.' },
     ],
   },
   'seri-kembangan': {
@@ -445,7 +445,7 @@ export const locationsMs = {
       { question: 'Bolehkah anda menjalankan kempen dalam bahasa Cina untuk penonton Seri Kembangan?', answer: 'Ya — kami menghasilkan kempen dalam bahasa Cina, Melayu, dan Inggeris, sepadan dengan setiap segmen penonton. Banyak perniagaan Seri Kembangan menang dengan kandungan sosial mengutamakan Cina serta liputan carian dwibahasa.' },
       { question: 'Kami pembekal/pemborong B2B — adakah pemasaran digital terpakai untuk kami?', answer: 'Sangat terpakai. Pembeli B2B Google pembekal sebelum menelefon. Kami membina halaman produk/keupayaan yang boleh dicari, menjalankan Google Ads pada kata kunci perdagangan, dan menyediakan katalog WhatsApp yang menukar pertanyaan menjadi pesanan.' },
       { question: 'Adakah anda membantu penjual dalam talian di Seri Kembangan?', answer: 'Ya — daripada iklan Shopee dan Lazada kepada jualan langsung TikTok Shop dan saluran kedai sendiri. Komuniti penjual kawasan ini ialah tepat untuk siapa buku panduan e-dagang kami dibina.' },
-      { question: 'Berapa dekat anda dengan Seri Kembangan?', answer: 'Ibu pejabat kami di Cheras kira-kira 20 minit melalui laluan Besraya/SILK, jadi mesyuarat bersemuka dan penggambaran kandungan di lokasi adalah mudah.' },
+      { question: 'Berapa dekat anda dengan Seri Kembangan?', answer: 'Ibu pejabat kami di Cheras hanya pemanduan singkat dari sini, jadi mesyuarat bersemuka dan penggambaran kandungan di lokasi adalah mudah.' },
     ],
   },
   'petaling-jaya': {

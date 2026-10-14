@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
 import { locations } from '@/data/locations.js';
 import { useLanguage } from '@/contexts/LanguageContext.jsx';
+import { OFFICE_LINE_1, OFFICE_LINE_2 } from '@/data/office.js';
 
 function Footer() {
   const currentYear = new Date().getFullYear();
@@ -91,7 +92,7 @@ function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start gap-2.5 text-sm text-slate-400">
                 <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0 text-brandkraf-teal" />
-                <span className="leading-snug">28-02-02, Jalan 2/101c, Cheras Business Centre,<br/>56100 Cheras, Wilayah Persekutuan Kuala Lumpur</span>
+                <span className="leading-snug">{OFFICE_LINE_1}<br/>{OFFICE_LINE_2}</span>
               </li>
               <li className="flex items-center gap-2.5 text-sm text-slate-400 pt-1">
                 <Phone className="h-4 w-4 flex-shrink-0 text-brandkraf-teal" />

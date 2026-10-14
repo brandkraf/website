@@ -14,6 +14,7 @@
 import fs from 'fs';
 import path from 'path';
 import { pathToFileURL } from 'url';
+import { OFFICE, OFFICE_POSTAL_ADDRESS, OFFICE_GEO } from '../src/data/office.js';
 
 const SITE = 'https://www.brandkraf.com';
 const PRIVATE_PREFIXES = ['/admin', '/admin-login', '/checkout', '/payment', '/media-upload'];
@@ -95,7 +96,7 @@ function extractMeta(file) {
   return { title, desc };
 }
 
-function buildHtml(template, { title, desc, url }) {
+function buildHtml(template, { title, desc, url, bodyHtml, schema }) {
   let html = template;
   if (title) {
     html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${escText(title)}</title>`);
@@ -117,7 +118,140 @@ function buildHtml(template, { title, desc, url }) {
   // template stay correct instead of stamping the home canonical on every page.
   else if (existingCanonicalRe.test(html)) html = html.replace(existingCanonicalRe, canonicalTag);
   else html = html.replace('</head>', `\t\t${canonicalTag}\n\t</head>`);
+
+  // Per-route structured data. index.html carries only the site-wide
+  // ProfessionalService node, so without this a crawler sees no Service,
+  // BreadcrumbList, FAQPage or BlogPosting markup for the actual page.
+  if (schema) {
+    const ld = '<script type="application/ld+json" data-prerendered="1">' + JSON.stringify(schema).replace(/</g, '\\u003c') + '</script>';
+    html = html.replace('</head>', '\t\t' + ld + '\n\t</head>');
+  }
+
+  // Real body content for crawlers. Until now every page shipped
+  // <div id="root"></div> with zero text, so Google ranked these pages on their
+  // title tag alone — visible in Search Console as a 25-35 position gap between
+  // queries matching the title and queries matching only body copy.
+  //
+  // Safe because main.jsx uses ReactDOM.createRoot (NOT hydrateRoot): React
+  // discards the container's children on mount, so there is no hydration
+  // mismatch. This markup serves crawlers and first paint only.
+  if (bodyHtml) {
+    html = html.replace('<div id="root"></div>', '<div id="root">' + bodyHtml + '</div>');
+  }
   return html;
+}
+
+
+// ---------- crawler-visible body builders ----------
+// Plain semantic HTML (no Tailwind classes): React throws this away on mount, so
+// it only needs to be correct for crawlers and readable for a split-second first
+// paint. Keeping it class-free also keeps the flat files small.
+const para = (t) => (t ? '<p>' + escText(t) + '</p>' : '');
+
+function faqBlock(faqs) {
+  if (!faqs || !faqs.length) return '';
+  return '<section><h2>Frequently asked questions</h2>' +
+    faqs.map((f) => '<h3>' + escText(f.question) + '</h3>' + para(f.answer)).join('') +
+    '</section>';
+}
+
+function locationBody(loc) {
+  const sections = (loc.sections || [])
+    .map((sec) => '<section><h2>' + escText(sec.heading) + '</h2>' +
+      (sec.paragraphs || []).map(para).join('') + '</section>')
+    .join('');
+  return '<main><article>' +
+    '<h1>Digital Marketing Agency in ' + escText(loc.city) + '</h1>' +
+    '<p><strong>' + escText(loc.city) + ', ' + escText(loc.state || 'Malaysia') + '</strong></p>' +
+    para(loc.intro) +
+    '<section><h2>Marketing built for ' + escText(loc.city) + '</h2>' + para(loc.localContext) + '</section>' +
+    sections +
+    faqBlock(loc.faqs) +
+    '</article></main>';
+}
+
+function locationSchema(loc, url) {
+  const main = loc.hq
+    ? {
+        '@type': 'ProfessionalService',
+        name: 'BrandKraf',
+        description: loc.metaDescription,
+        url,
+        telephone: '+60-3-9134-3603',
+        email: 'admin@brandkraf.com',
+        priceRange: 'RM1,500 - RM15,000',
+        address: OFFICE_POSTAL_ADDRESS,
+        geo: OFFICE_GEO,
+        hasMap: OFFICE.mapsUrl,
+      }
+    : {
+        '@type': 'Service',
+        serviceType: 'Digital Marketing',
+        name: 'Digital Marketing Agency in ' + loc.city,
+        url,
+        areaServed: { '@type': 'City', name: loc.city },
+        provider: { '@type': 'Organization', name: 'BrandKraf', url: SITE, telephone: '+60-3-9134-3603' },
+      };
+  const graph = [main, {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE },
+      { '@type': 'ListItem', position: 2, name: 'Digital Marketing in ' + loc.city, item: url },
+    ],
+  }];
+  if (loc.faqs && loc.faqs.length) {
+    graph.push({
+      '@type': 'FAQPage',
+      mainEntity: loc.faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.question,
+        acceptedAnswer: { '@type': 'Answer', text: f.answer },
+      })),
+    });
+  }
+  return { '@context': 'https://schema.org', '@graph': graph };
+}
+
+function guideBody(c) {
+  const list = (c.articleSlugs || []).length
+    ? '<section><h2>In this guide</h2><ul>' +
+      c.articleSlugs.map((s) => '<li><a href="/blog/' + s + '">' + escText(s.replace(/-/g, ' ')) + '</a></li>').join('') +
+      '</ul></section>'
+    : '';
+  return '<main><article><h1>' + escText(c.title) + '</h1>' +
+    para(c.tagline) + para(c.overview) + list + '</article></main>';
+}
+
+function blogBody(post) {
+  // post.content is HTML authored for this site.
+  return '<main><article><h1>' + escText(post.title) + '</h1>' +
+    para(post.excerpt) + (post.content || '') + '</article></main>';
+}
+
+function blogSchema(post, url) {
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'BlogPosting',
+        headline: post.title,
+        description: post.excerpt || undefined,
+        datePublished: post.published_date || undefined,
+        inLanguage: 'en-MY',
+        mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+        author: { '@type': 'Organization', name: 'BrandKraf', url: SITE },
+        publisher: { '@type': 'Organization', name: 'BrandKraf', url: SITE },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: SITE },
+          { '@type': 'ListItem', position: 2, name: 'Blog', item: SITE + '/blog' },
+          { '@type': 'ListItem', position: 3, name: post.title, item: url },
+        ],
+      },
+    ],
+  };
 }
 
 async function main() {
@@ -178,9 +312,9 @@ async function main() {
   // above, but their head data is reachable at build time — pure data modules for
   // locations/guides, Supabase REST for blog posts. Prerendering real titles/
   // descriptions/canonicals means crawlers index these without rendering JS.
-  const writeFlat = (routePath, title, desc) => {
+  const writeFlat = (routePath, title, desc, bodyHtml, schema) => {
     const url = SITE + routePath;
-    const html = buildHtml(template, { title, desc, url });
+    const html = buildHtml(template, { title, desc, url, bodyHtml, schema });
     const outPath = path.join(distDir, `${routePath.replace(/^\//, '')}.html`);
     fs.mkdirSync(path.dirname(outPath), { recursive: true });
     fs.writeFileSync(outPath, html, 'utf8');
@@ -191,7 +325,8 @@ async function main() {
     const dataUrl = pathToFileURL(path.join(cwd, 'src', 'data', 'locations.js')).href;
     const { locations } = await import(dataUrl);
     for (const loc of locations) {
-      writeFlat(`/digital-marketing-agency/${loc.slug}`, loc.metaTitle, loc.metaDescription);
+      const lp = `/digital-marketing-agency/${loc.slug}`;
+      writeFlat(lp, loc.metaTitle, loc.metaDescription, locationBody(loc), locationSchema(loc, SITE + lp));
     }
   } catch (err) {
     console.warn('[prerender] location pages skipped:', err && err.message);
@@ -201,7 +336,7 @@ async function main() {
     const dataUrl = pathToFileURL(path.join(cwd, 'src', 'data', 'clusters.js')).href;
     const { clusters } = await import(dataUrl);
     for (const c of clusters) {
-      writeFlat(`/guides/${c.slug}`, c.metaTitle, c.metaDescription);
+      writeFlat(`/guides/${c.slug}`, c.metaTitle, c.metaDescription, guideBody(c));
     }
   } catch (err) {
     console.warn('[prerender] guide pages skipped:', err && err.message);
@@ -213,14 +348,15 @@ async function main() {
     const SUPABASE_URL = 'https://xweoognqlpvafyxhzvgz.supabase.co';
     const ANON =
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh3ZW9vZ25xbHB2YWZ5eGh6dmd6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE4NDE0NjcsImV4cCI6MjA5NzQxNzQ2N30.SgeHayMBuaBraN2BjYmXr475AVFpnvSOLyYlRgm-2Rc';
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/blog_posts?select=slug,title,excerpt&published=eq.true`, {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/blog_posts?select=slug,title,excerpt,content,published_date&published=eq.true`, {
       headers: { apikey: ANON, Authorization: `Bearer ${ANON}` },
     });
     if (res.ok) {
       const posts = await res.json();
       for (const post of posts) {
         if (!post.slug) continue;
-        writeFlat(`/blog/${post.slug}`, `${post.title} | BrandKraf Blog`, post.excerpt || null);
+        const bp = `/blog/${post.slug}`;
+        writeFlat(bp, post.title, post.excerpt || null, blogBody(post), blogSchema(post, SITE + bp));
       }
       console.log(`[prerender] blog posts prerendered: ${posts.length}`);
     } else {

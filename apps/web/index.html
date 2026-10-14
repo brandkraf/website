@@ -53,7 +53,7 @@
 		<meta name="twitter:description" content="Social media, UGC content, paid ads, and AI-driven marketing for growing brands. Based in Kuala Lumpur, Malaysia." />
 		<meta name="twitter:image" content="https://horizons-cdn.hostinger.com/6602f595-c4d7-40bf-a729-a377f9b27c39/45f4e79912ee94c15363cebd3219075f.png" />
 
-		<!-- Organization / Local Business structured data -->
+		<!-- Organization / Local Business structured data. Address + geo must match src/data/office.js (this file cannot import it). -->
 		<script type="application/ld+json">
 		{
 			"@context": "https://schema.org",
@@ -68,12 +68,18 @@
 			"priceRange": "$$",
 			"address": {
 				"@type": "PostalAddress",
-				"streetAddress": "28-02-02, Jalan 2/101c, Cheras Business Centre",
-				"addressLocality": "Cheras",
+				"streetAddress": "55A, Jalan Kencana 15, Taman Kencana",
+				"addressLocality": "Kuala Lumpur",
 				"addressRegion": "Wilayah Persekutuan Kuala Lumpur",
 				"postalCode": "56100",
 				"addressCountry": "MY"
 			},
+			"geo": {
+				"@type": "GeoCoordinates",
+				"latitude": 3.119709,
+				"longitude": 101.750114
+			},
+			"hasMap": "https://maps.app.goo.gl/oebBJM1r4sUB7pnn6",
 			"areaServed": "MY",
 			"sameAs": [
 				"https://www.facebook.com/brandkrafdigitalmarketing",

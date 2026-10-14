@@ -51,6 +51,12 @@ export default function Hreflang() {
     document
       .querySelectorAll('link[rel="canonical"]:not([data-rh])')
       .forEach((el) => el.parentNode && el.parentNode.removeChild(el));
+    // Prerendered per-route JSON-LD exists for crawlers that do not run JS. Once the
+    // page's own Helmet schema is live, drop the static copy so the document does not
+    // carry the same entity twice. The site-wide node in index.html is untagged and stays.
+    document
+      .querySelectorAll('script[type="application/ld+json"][data-prerendered]')
+      .forEach((el) => el.parentNode && el.parentNode.removeChild(el));
   }, [pathname]);
 
   const canonical = SITE + (pathname === '/' ? '' : pathname.replace(/\/+$/, ''));

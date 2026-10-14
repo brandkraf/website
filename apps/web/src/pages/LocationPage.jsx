@@ -13,6 +13,7 @@ import NotFoundPage from '@/pages/NotFoundPage.jsx';
 import { Button } from '@/components/ui/button';
 import { locations, locationsMs } from '@/data/locations.js';
 import { useLanguage } from '@/contexts/LanguageContext.jsx';
+import { OFFICE, OFFICE_POSTAL_ADDRESS, OFFICE_GEO } from '@/data/office.js';
 
 const SITE = 'https://www.brandkraf.com';
 
@@ -77,15 +78,9 @@ export default function LocationPage() {
         telephone: '+60-3-9134-3603',
         email: 'admin@brandkraf.com',
         priceRange: 'RM1,500 - RM15,000',
-        address: {
-          '@type': 'PostalAddress',
-          streetAddress: '28-02-02, Jalan 2/101c, Cheras Business Centre',
-          addressLocality: 'Cheras',
-          addressRegion: 'Kuala Lumpur',
-          postalCode: '56100',
-          addressCountry: 'MY',
-        },
-        geo: { '@type': 'GeoCoordinates', latitude: 3.0925, longitude: 101.7345 },
+        address: OFFICE_POSTAL_ADDRESS,
+        geo: OFFICE_GEO,
+        hasMap: OFFICE.mapsUrl,
         openingHoursSpecification: [
           { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '09:00', closes: '18:00' },
           { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Saturday', opens: '10:00', closes: '16:00' },
