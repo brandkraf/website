@@ -6,5 +6,6 @@ export const globalRateLimit = rateLimit({
 	standardHeaders: true,
 	legacyHeaders: false,
 	message: { error: 'Too many requests, please try again later' },
-	validate: { trustProxy: false },
+	// Built-in validation stays ON: it raises ERR_ERL_PERMISSIVE_TRUST_PROXY if
+	// 'trust proxy' is ever set back to true, which would make this limit bypassable.
 });
